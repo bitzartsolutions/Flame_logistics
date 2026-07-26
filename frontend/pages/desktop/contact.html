@@ -94,19 +94,45 @@
                 <input class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-bright transition-all" placeholder="john@enterprise.com" type="email">
               </div>
             </div>
-            <div class="space-y-2">
-              <label class="font-label-md text-label-md text-on-surface-variant uppercase">Service Required</label>
-              <select class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-bright appearance-none transition-all">
-                <option>Oil & Gas Logistics</option>
-                <option>Medical Cold Chain</option>
-                <option>Electronic Secure-Freight</option>
-                <option>General Warehousing</option>
-                <option>Global Network Solutions</option>
-              </select>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant uppercase">Country</label>
+                <select class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-bright appearance-none transition-all">
+                  <option value="">Select Country</option>
+                  <option>Saudi Arabia</option>
+                  <option>United Arab Emirates</option>
+                  <option>Kuwait</option>
+                  <option>Qatar</option>
+                  <option>Bahrain</option>
+                  <option>Oman</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label class="font-label-md text-label-md text-on-surface-variant uppercase">Service Required</label>
+                <select class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-bright appearance-none transition-all">
+                  <option>Oil & Gas Logistics</option>
+                  <option>Medical Cold Chain</option>
+                  <option>Electronic Secure-Freight</option>
+                  <option>General Warehousing</option>
+                  <option>Global Network Solutions</option>
+                </select>
+              </div>
             </div>
             <div class="space-y-2">
               <label class="font-label-md text-label-md text-on-surface-variant uppercase">Message</label>
               <textarea class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-bright transition-all" placeholder="How can we help your business move forward?" rows="4"></textarea>
+            </div>
+            <div class="space-y-2">
+              <label class="font-label-md text-label-md text-on-surface-variant uppercase">Upload Manifest or Project Detail</label>
+              <div class="relative">
+                <input type="file" id="file-upload-desktop" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple/>
+                <label for="file-upload-desktop" class="w-full px-6 py-4 rounded-xl border-2 border-dashed border-outline-variant bg-surface-bright flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container hover:border-secondary transition-all">
+                  <span class="material-symbols-outlined text-secondary text-2xl">upload_file</span>
+                  <span class="text-on-surface-variant font-body-md">Click to upload files or drag and drop</span>
+                </label>
+              </div>
+              <p class="text-xs text-on-surface-variant">Supported formats: PDF, DOC, DOCX, XLS, XLSX, TXT (Max 10MB per file)</p>
             </div>
             <button class="w-full bg-primary text-on-primary py-5 rounded-xl font-bold text-title-lg hover:bg-secondary transition-all duration-500 transform hover:-translate-y-1 shadow-lg flex justify-center items-center gap-3" type="submit">
               Send Inquiry

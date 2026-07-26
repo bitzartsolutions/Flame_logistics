@@ -171,24 +171,57 @@
 <div class="grid grid-cols-1 gap-6">
 <div>
 <label class="block font-label-md text-label-md text-trust-navy mb-2">FULL NAME</label>
-<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="Khalid Al-Rashid" type="text"/>
+<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="John Doe" type="text"/>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">CORPORATE EMAIL</label>
-<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="khalid@energy-corp.sa" type="email"/>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">COMPANY NAME</label>
+<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="Enterprise Ltd." type="text"/>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">INDUSTRY SECTOR</label>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">PHONE NUMBER</label>
+<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="+966 50 000 0000" type="tel"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">EMAIL ADDRESS</label>
+<input class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="john@enterprise.com" type="email"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">COUNTRY</label>
+<select class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target">
+<option value="">Select Country</option>
+<option>Saudi Arabia</option>
+<option>United Arab Emirates</option>
+<option>Kuwait</option>
+<option>Qatar</option>
+<option>Bahrain</option>
+<option>Oman</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">SERVICE REQUIRED</label>
 <select class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target">
 <option>Oil &amp; Gas Logistics</option>
 <option>Medical Cold Chain</option>
 <option>Electronic Secure-Freight</option>
-<option>General Logistics</option>
+<option>General Warehousing</option>
+<option>Global Network Solutions</option>
 </select>
 </div>
 <div>
 <label class="block font-label-md text-label-md text-trust-navy mb-2">MESSAGE</label>
-<textarea class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus" placeholder="Describe your logistical requirements..." rows="4"></textarea>
+<textarea class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus" placeholder="How can we help your business move forward?" rows="4"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-trust-navy mb-2">UPLOAD MANIFEST OR PROJECT DETAIL</label>
+<div class="relative">
+<input type="file" id="file-upload-mobile" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple/>
+<label for="file-upload-mobile" class="w-full px-6 py-4 rounded-xl border-2 border-dashed border-surface-container-highest bg-surface-container-lowest flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container transition-colors touch-target">
+<span class="material-symbols-outlined text-flame-red text-2xl">upload_file</span>
+<span class="text-on-surface-variant font-body-md">Click to upload files</span>
+</label>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">Supported formats: PDF, DOC, DOCX, XLS, XLSX, TXT (Max 10MB per file)</p>
 </div>
 </div>
 <button class="w-full bg-flame-red text-white py-5 rounded-xl font-bold text-lg shadow-xl shadow-flame-red/10 active:scale-[0.98] transition-all" type="submit">
