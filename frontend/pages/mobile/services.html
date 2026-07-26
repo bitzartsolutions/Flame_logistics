@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Flame Logistics | Premium Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-dim": "#dcd9e0",
+                "primary-fixed": "#e2dfff",
+                "glass-border": "rgba(255, 255, 255, 0.2)",
+                "surface-container": "#f0ecf4",
+                "industrial-black": "#151719",
+                "on-secondary-fixed-variant": "#930007",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-container": "#1a1c1e",
+                "secondary-fixed": "#ffdad5",
+                "error-container": "#ffdad6",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "outline-variant": "#c7c5d3",
+                "background": "#fcf8ff",
+                "surface-container-low": "#f6f2fa",
+                "on-tertiary-fixed": "#1a1c1e",
+                "secondary-fixed-dim": "#ffb4aa",
+                "secondary": "#bc000c",
+                "tertiary-fixed": "#e2e2e5",
+                "surface-bright": "#fcf8ff",
+                "primary": "#000000",
+                "secondary-container": "#e12823",
+                "flame-red": "#bc000c",
+                "on-background": "#1b1b20",
+                "on-primary": "#ffffff",
+                "primary-container": "#0f0861",
+                "surface-container-highest": "#e5e1e9",
+                "surface-muted": "#f0ecf5",
+                "on-primary-fixed-variant": "#3e3d8c",
+                "on-tertiary-fixed-variant": "#454749",
+                "on-secondary": "#ffffff",
+                "outline": "#777682",
+                "surface-variant": "#e5e1e9",
+                "inverse-primary": "#c2c1ff",
+                "surface": "#fcf8ff",
+                "on-surface": "#1b1b20",
+                "on-tertiary-container": "#838486",
+                "surface-tint": "#5655a6",
+                "tertiary": "#000000",
+                "on-surface-variant": "#464651",
+                "on-primary-fixed": "#0f0861",
+                "on-secondary-container": "#fffbff",
+                "primary-fixed-dim": "#c2c1ff",
+                "on-secondary-fixed": "#410001",
+                "trust-navy": "#09005d",
+                "error": "#ba1a1a",
+                "tertiary-fixed-dim": "#c6c6c9",
+                "surface-container-high": "#eae7ee",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#f3eff7",
+                "inverse-surface": "#303035",
+                "on-primary-container": "#7c7bcf"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "base-unit": "8px",
+                "margin-desktop": "40px",
+                "container-max": "1280px",
+                "section-padding": "96px"
+            },
+            "fontFamily": {
+                "title-lg": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "display-lg": ["Plus Jakarta Sans"],
+                "body-lg": ["Inter"],
+                "display-lg-mobile": ["Plus Jakarta Sans"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .industrial-shadow {
+            box-shadow: 0 10px 30px -5px rgba(9, 0, 93, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-flame-red selection:text-white">
+<!-- Header Placeholder - Loaded dynamically -->
+<div id="header-placeholder"></div>
+
+<main class="pt-[80px] pb-24">
+<!-- Hero Section -->
+<section class="relative h-[80vh] flex flex-col justify-center items-center text-center px-margin-mobile overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-trust-navy/80 via-trust-navy/40 to-background z-10"></div>
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATGrPcCta4mxCMmAfQ2-3JnR41clHaSfvWJcJ5hzytQsmDlPTHzvdVlSiQzkk4FooYXvKrYj_YGh-ovlHSnhvnH5Z7KoBc2Dl9faAav1-fQvpdPiateHiTmlniIX75UMxTBxq-an_CSmhaON33GDtZIYIYpOfmRlhbGaOBQNMNtRUj2hBx4c44_EVP91vAzvHp_VLLsh5PLhpbkqIPi_1CNOSReV6NdH6RQYsWgK4sfMAzVvOsCW4ixAawZI4rWzvsKCGooOAe7W4')"></div>
+</div>
+<div class="relative z-20 max-w-lg">
+<div class="inline-flex items-center bg-flame-red/10 border border-flame-red/20 rounded-full px-4 py-1 mb-6">
+<span class="w-2 h-2 bg-flame-red rounded-full mr-2 animate-pulse"></span>
+<span class="text-flame-red font-label-md tracking-wider uppercase">GCC Regional Powerhouse</span>
+</div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">Integrated Logistics Solutions Across GCC</h2>
+<p class="text-white/80 font-body-lg mb-8">Engineering certainty in the global supply chain with specialized assets and a dominant regional network.</p>
+<div class="flex flex-col gap-4">
+<button class="bg-flame-red text-white py-4 px-8 rounded-xl font-headline-sm hover:scale-[1.02] transition-transform active:scale-95">
+                        Consult Our Specialists
+                    </button>
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white py-4 px-8 rounded-xl font-headline-sm">
+                        View Fleet Capacity
+                    </button>
+</div>
+</div>
+</section>
+<!-- Regional Performance Gauges -->
+<section class="px-margin-mobile py-12 -mt-16 relative z-30">
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center industrial-shadow">
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-flame-red" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.2" stroke-dashoffset="22.6" stroke-width="6"></circle>
+</svg>
+<span class="absolute font-headline-sm text-trust-navy">90%</span>
+</div>
+<span class="mt-3 font-label-md text-on-surface-variant text-center">On-Time Performance</span>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center industrial-shadow">
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-trust-navy" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.2" stroke-dashoffset="4.5" stroke-width="6"></circle>
+</svg>
+<span class="absolute font-headline-sm text-trust-navy">98%</span>
+</div>
+<span class="mt-3 font-label-md text-on-surface-variant text-center">GCC Coverage</span>
+</div>
+</div>
+</section>
+<!-- Service Catalog (Vertical Stack) -->
+<section class="px-margin-mobile py-16">
+<div class="mb-10">
+<h3 class="font-headline-md text-trust-navy mb-2">Our Specialized Assets</h3>
+<div class="w-16 h-1 bg-flame-red"></div>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow active:bg-surface-container-low transition-colors">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIy-pN7Z_qmRGScuGFsRw51ne1VN_Qf-B1xqWIH3ZdKS2bwoBGC45iV042fQV4rkOEKWAAFZ9w3pPpkEajrH2hcNkplEM65ovm_GQU7IkNhLMgjHi9eiYqoe2g082O6pVgF-LlMeKfi35nV39StbgwuTWelTS3Gx43vW8eTiHeGfUQaDCSl254mYyij883nKU1nBZf5xOrvfIuJEdUOHsRz1E9KmrJQHKD1JD7I4LF-bbE5pmkpXpFSEQOuMC-MvLyxduaBPcpaM0" alt="Land Transportation" class="w-full h-40 object-cover rounded-t-xl mb-4">
+<div class="px-5 pb-5">
+<h4 class="font-title-lg text-trust-navy">Land Transportation</h4>
+<p class="font-body-md text-on-surface-variant mt-1">Cross-border GCC heavy haulage with real-time GPS asset tracking.</p>
+<a href="#" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADu-D9ema0-YFQ4nYsPuDMbJJwSb1wMOWA9fAzcCFqtleH2yIqEnqKA_dv5WgMeAE30lePX2RWAcYDnlmKgavCaCfoCHfIaevYtETGH-xh4iH5C4VY6vMytmQvKjf8qxx2meypbb2Q4JazRtPnp__Y9TxmilptNfkhyin8SvYhUB7YJQjhTjHb6C-eSmtL4R5r_vGJYSJs83_d6zVlJKOF5e8HTYXaM4UCIwh4jdF8_mYFL9AI980J6bkUr-lGiqPSoky25TQA6DU" alt="Customs Clearance" class="w-full h-40 object-cover rounded-t-xl mb-4">
+<div class="px-5 pb-5">
+<h4 class="font-title-lg text-trust-navy">Customs Clearance</h4>
+<p class="font-body-md text-on-surface-variant mt-1">Automated digital clearance at 14 major GCC ports of entry.</p>
+<a href="#" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmgPSwCrBVC0ylb9EpT_-qhVabn05LLyeMV_LNsJpyhWI-EVzf8KGMdPp0HIg2s8otDybLFHhbkl32Jp2LpQvrBkIeoHVdN03bdDXujP2EknhJpxI9dH6kokfh6xzlaxPjRh6BekJHovvbFxEKq_cIwU1wZ9j4x_xkFn3d7ChiKTjalRnPNdZNwbi-wWpGnB30T_75OSfAzDP1xcIBtPKeMvuD6BWjUH36mXgXlbwDZ2Fq8PrqHjB4bJTanNEeupz7yOpHE2wrtgs" alt="Cold Chain Storage" class="w-full h-40 object-cover rounded-t-xl mb-4">
+<div class="px-5 pb-5">
+<h4 class="font-title-lg text-trust-navy">Cold Chain Storage</h4>
+<p class="font-body-md text-on-surface-variant mt-1">GDP-compliant pharmaceutical and food-grade climate control.</p>
+<a href="#" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEDwSm82JzzMIjpV5kxVBTRoO8AJGw22kCKXHdWukvNoBqOs_LLsJwog4i2rRPkPIBEjda7A8iBNnfqI_IoGAqkF7dZhfoN1QwW18Hqun6qRXvqRF67G4DeK1c-DWJ7Qn4KNV7GR6hOQ7wIymMOHg1LAFcbX9bo3IUrTDTOVvU8-CIotZmfpHZNRAeDtbXmF8oNmhf53DipqCLiYQC_w3SlTSLZXrbebSK4JV2LUKc8sPwjtf7MJ1AACCxE7CHG_WJT4jDstKwhno" alt="Project Cargo" class="w-full h-40 object-cover rounded-t-xl mb-4">
+<div class="px-5 pb-5">
+<h4 class="font-title-lg text-trust-navy">Project Cargo</h4>
+<p class="font-body-md text-on-surface-variant mt-1">Specialized engineering for oversized industrial machinery.</p>
+<a href="#" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</div>
+<button class="w-full py-4 border-2 border-trust-navy text-trust-navy rounded-xl font-headline-sm mt-4">
+                    Explore All 12 Services
+                </button>
+</div>
+</section>
+<!-- Why GCC Leaders Partner (Value Prop Stack) -->
+<section class="bg-trust-navy py-16 px-margin-mobile text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-flame-red/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<h3 class="font-headline-md mb-10 text-center">Engineering Absolute Certainty</h3>
+<div class="space-y-8">
+<div class="flex flex-col items-center text-center">
+<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h4 class="font-headline-sm mb-2">100% Asset Ownership</h4>
+<p class="text-white/70 font-body-md">We don't broker your reputation. Every truck, trailer, and warehouse is Flame-owned and operated.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<h4 class="font-headline-sm mb-2">Dominant GCC Network</h4>
+<p class="text-white/70 font-body-md">Seamless transit through Saudi Arabia, UAE, Qatar, Kuwait, Oman, and Bahrain.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<h4 class="font-headline-sm mb-2">24/7 Command Center</h4>
+<p class="text-white/70 font-body-md">Active mission control monitoring every shipment mile in real-time.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Timeline (Vertical Stepper) -->
+<section class="px-margin-mobile py-20">
+<div class="mb-10 text-center">
+<h3 class="font-headline-md text-trust-navy">The Execution Path</h3>
+</div>
+<div class="relative pl-8 border-l-2 border-surface-container-highest space-y-12 ml-4">
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">1</div>
+<h4 class="font-title-lg text-trust-navy mb-1">Inquiry &amp; Analysis</h4>
+<p class="text-on-surface-variant font-body-md">Consult with our logistics engineers to define volume, routing, and compliance needs.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">2</div>
+<h4 class="font-title-lg text-trust-navy mb-1">Optimized Solution</h4>
+<p class="text-on-surface-variant font-body-md">Receive a custom architectural plan for your supply chain including tech integrations.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">3</div>
+<h4 class="font-title-lg text-trust-navy mb-1">Seamless Onboarding</h4>
+<p class="text-on-surface-variant font-body-md">Integration with our Command Center portal for total visibility from day one.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">4</div>
+<h4 class="font-title-lg text-trust-navy mb-1">Execution &amp; Transit</h4>
+<p class="text-on-surface-variant font-body-md">Assets deploy under constant surveillance with active customs handling.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">5</div>
+<h4 class="font-title-lg text-trust-navy mb-1">Secured Delivery</h4>
+<p class="text-on-surface-variant font-body-md">Final delivery with digital proof of condition and performance analytics report.</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section (Accordion) -->
+<section class="px-margin-mobile py-16 bg-surface-container-low">
+<h3 class="font-headline-md text-trust-navy mb-8">Technical FAQ</h3>
+<div class="space-y-2">
+<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
+<span class="font-title-lg text-trust-navy">What is the GCC customs turnaround time?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
+                        Typically under 24 hours at major ports like Jebel Ali or King Abdulaziz Port, thanks to our pre-clearance digital protocols.
+                    </div>
+</details>
+<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
+<span class="font-title-lg text-trust-navy">Do you offer door-to-door tracking?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
+                        Yes, our Flame Vision portal provides satellite tracking for every single VIN in our fleet, updated every 30 seconds.
+                    </div>
+</details>
+<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
+<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
+<span class="font-title-lg text-trust-navy">What certifications do you hold?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
+</summary>
+<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
+                        We are ISO 9001:2015, TAPA TSR Level 1, and GDP pharmaceutical handling certified across all Saudi and UAE facilities.
+                    </div>
+</details>
+</div>
+</section>
+<!-- Lead Generation Form -->
+<section class="px-margin-mobile py-20 bg-industrial-black text-white">
+<div class="text-center mb-10">
+<h3 class="font-headline-md mb-4">Accelerate Your Supply Chain</h3>
+<p class="text-outline-variant">Request a high-performance logistics audit from our technical team.</p>
+</div>
+<form class="space-y-4">
+<div>
+<input class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Full Name" type="text">
+</div>
+<div>
+<input class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Corporate Email" type="email">
+</div>
+<div>
+<select class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white">
+<option class="text-industrial-black">Primary Interest</option>
+<option class="text-industrial-black">Land Transportation</option>
+<option class="text-industrial-black">Warehousing</option>
+<option class="text-industrial-black">Customs Clearance</option>
+</select>
+</div>
+<div>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Brief Description of Logistics Challenge" rows="4"></textarea>
+</div>
+<button class="w-full bg-flame-red text-white font-headline-sm py-5 rounded-xl mt-4 active:scale-95 transition-transform shadow-lg shadow-flame-red/20" type="submit">
+                    Send Inquiry
+                </button>
+</form>
+</section>
+<!-- Footer Placeholder - Loaded dynamically -->
+<div id="footer-placeholder"></div>
+</main>
+<script>
+        // Micro-interaction for service cards.
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('scale-[0.98]');
+            });
+            card.addEventListener('touchend', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Form submission simulation.
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Transmitting...';
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+
+            setTimeout(() => {
+                btn.innerText = 'Request Received';
+                btn.classList.remove('bg-flame-red');
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.add('bg-flame-red');
+                    btn.classList.remove('bg-green-600', 'opacity-80');
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+
+<!-- Bottom Navigation Placeholder - Loaded dynamically -->
+<div id="bottom-nav-placeholder"></div>
+
+    <!-- Mobile Common JS - Loads header and footer components -->
+    <script src="../../assets/js/mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!-- Molecule: Accordion Item -->
+<!-- Usage: Collapsible content sections (footer navigation) -->
+<!-- Composed of: heading, icon-material, text -->
+<div class="molecule-accordion-item">
+  <button class="molecule-accordion-item__trigger w-full flex justify-between items-center py-4 border-b border-white/10 text-white font-title-lg" onclick="toggleAccordion('acc-id')">
+    <span class="molecule-accordion-item__title">Accordion Title</span>
+    <span class="material-symbols-outlined transition-transform" id="icon-acc-id">expand_more</span>
+  </button>
+  <div class="molecule-accordion-item__content hidden flex flex-col gap-3 py-2 text-white/70 font-body-md" id="acc-id">
+    <a href="#" class="molecule-accordion-item__link">Link Item 1</a>
+    <a href="#" class="molecule-accordion-item__link">Link Item 2</a>
+    <a href="#" class="molecule-accordion-item__link">Link Item 3</a>
+  </div>
+</div>

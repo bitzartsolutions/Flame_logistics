@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flame Logistics | Logistics Insights</title>
+<meta content="Strategic logistics insights and news from Flame Logistics Riyadh hub." name="description"/>
+<!-- Design System Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "inverse-on-surface": "#f3eff7",
+              "surface-tint": "#5655a6",
+              "outline-variant": "#c7c5d3",
+              "tertiary-fixed-dim": "#c6c6c9",
+              "trust-navy": "#09005d",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#ffdad5",
+              "on-primary-fixed-variant": "#3e3d8c",
+              "surface-container": "#f0ecf4",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#464651",
+              "surface-container-low": "#f6f2fa",
+              "surface-bright": "#fcf8ff",
+              "on-tertiary-fixed": "#1a1c1e",
+              "on-secondary-fixed": "#410001",
+              "secondary-fixed-dim": "#ffb4aa",
+              "on-secondary-container": "#fffbff",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed-variant": "#454749",
+              "on-primary-fixed": "#0f0861",
+              "surface-container-highest": "#e5e1e9",
+              "tertiary": "#000000",
+              "outline": "#777682",
+              "tertiary-fixed": "#e2e2e5",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#eae7ee",
+              "secondary-container": "#e12823",
+              "surface": "#fcf8ff",
+              "on-surface": "#1b1b20",
+              "surface-dim": "#dcd9e0",
+              "surface-muted": "#f0ecf5",
+              "on-secondary-fixed-variant": "#930007",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#bc000c",
+              "primary-container": "#0f0861",
+              "on-background": "#1b1b20",
+              "industrial-black": "#151719",
+              "inverse-primary": "#c2c1ff",
+              "primary": "#000000",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e5e1e9",
+              "on-tertiary-container": "#838486",
+              "on-error": "#ffffff",
+              "glass-border": "rgba(255, 255, 255, 0.2)",
+              "inverse-surface": "#303035",
+              "flame-red": "#bc000c",
+              "primary-fixed-dim": "#c2c1ff",
+              "error": "#ba1a1a",
+              "background": "#fcf8ff",
+              "on-primary-container": "#7c7bcf",
+              "tertiary-container": "#1a1c1e",
+              "primary-fixed": "#e2dfff"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "gutter": "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "40px",
+              "base-unit": "8px",
+              "section-padding": "96px",
+              "container-max": "1280px"
+            },
+            "fontFamily": {
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "title-lg": ["Plus Jakarta Sans"],
+              "body-sm": ["Inter"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Inter"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+              "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+              "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+              "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+              "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+              "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+              "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+              "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+              "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+  
+  <!-- Base Styles -->
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- Header Placeholder - Loaded dynamically -->
+<div id="header-placeholder"></div>
+
+<main class="pt-[80px] pb-24">
+<!-- Search Bar (Mobile Optimized) -->
+<section class="px-margin-mobile mt-6">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-low border border-outline-variant/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none font-body-md transition-all" placeholder="Search logistics insights..." type="text"/>
+</div>
+</section>
+<!-- Category Scroll Bar -->
+<section class="mt-6 mb-2">
+<div class="flex overflow-x-auto no-scrollbar gap-2 px-margin-mobile pb-2" id="blogCategoryChips">
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full font-label-md text-label-md bg-secondary text-white shadow-md active:scale-95 transition-transform" data-category="all">All</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-outline-variant/20 hover:bg-surface-container active:scale-95 transition-transform" data-category="logistics">Logistics</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-outline-variant/20 hover:bg-surface-container active:scale-95 transition-transform" data-category="transportation">Transportation</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-outline-variant/20 hover:bg-surface-container active:scale-95 transition-transform" data-category="customs">Customs</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface-variant border border-outline-variant/20 hover:bg-surface-container active:scale-95 transition-transform" data-category="warehousing">Warehousing</button>
+</div>
+</section>
+<!-- Featured Hero Section (High Impact) -->
+<section class="px-margin-mobile mt-4">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/3] group active:scale-[0.98] transition-transform">
+<div class="absolute inset-0 bg-cover bg-center" id="featuredImage" data-alt="A sprawling, high-tech logistics hub in Riyadh during twilight. The image features sleek, modern warehouse architecture with glowing red and blue LED accents. In the foreground, a fleet of white and red delivery trucks is perfectly aligned under sharp, professional studio lighting. The atmosphere is efficient, high-velocity, and premium corporate." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCe5SAhTld1qwElXfH5Ymhn2L1IaCyiWpHPsyEji3AOX-5Ne0LVwnhYijNptTLvCZF_2knXkh6Dc_M54zCrKjpEq5liGCA07VoVGxg4Gw_tHf9mXdilUXnwiVwPVdRN9iy9hwtYwrwGWcmBbNO_OfnxyAS5onmKYFkWVXTvRagG6hXOVPFxATXMxxzdnA14-aotzr8F__pTeyj2A9N0Mxlmihle5ISFufWRwmuzGJlddZfNdHVoprKlqDWRulB-jYCohRQiGPQUPt0')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<span class="inline-block bg-secondary text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-sm mb-3" id="featuredBadge">Featured Article</span>
+<h1 class="font-headline-lg-mobile text-white mb-2" id="featuredTitle">Transforming the Riyadh Hub</h1>
+<p class="text-white/80 font-body-sm line-clamp-2" id="featuredExcerpt">How Flame Logistics is redefining the Middle Eastern supply chain with AI-driven orchestration.</p>
+</div>
+</div>
+</section>
+<!-- Article Feed -->
+<section class="mt-10 px-margin-mobile space-y-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-primary">Latest Updates</h2>
+<span class="text-label-sm text-on-surface-variant" id="mobileBlogCount">0 Articles</span>
+</div>
+<div id="mobileBlogFeed" class="space-y-8"></div>
+</section>
+<!-- Newsletter CTA (Compact Mobile) -->
+<section class="mt-12 px-margin-mobile">
+<div class="bg-primary p-8 rounded-3xl relative overflow-hidden text-center">
+<!-- Abstract Background Pattern -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-primary-container/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+<span class="material-symbols-outlined text-white text-5xl mb-4 opacity-40">mail</span>
+<h2 class="font-headline-lg-mobile text-white mb-2">Weekly Insights</h2>
+<p class="text-white/70 font-body-sm mb-8 px-4">Get professional logistics analysis delivered directly to your inbox every Monday.</p>
+<form class="space-y-3" onsubmit="event.preventDefault(); alert('Subscribed!');">
+<input class="w-full h-12 px-6 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none" placeholder="Business Email" required="" type="email"/>
+<button class="w-full h-12 bg-secondary text-white font-label-md rounded-xl shadow-lg shadow-secondary/30 active:scale-95 transition-transform" type="submit">
+                        Subscribe Now
+                    </button>
+</form>
+</div>
+</section>
+<!-- Simplified Category List / Browse by Topic -->
+<section class="mt-16 px-margin-mobile">
+<h3 class="font-headline-md text-primary mb-6">Browse by Industry</h3>
+<div class="grid grid-cols-2 gap-4">
+<a class="p-4 bg-surface-container rounded-xl flex flex-col gap-2 active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-secondary">medication</span>
+<span class="font-label-md text-on-surface">Healthcare</span>
+</a>
+<a class="p-4 bg-surface-container rounded-xl flex flex-col gap-2 active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-secondary">devices</span>
+<span class="font-label-md text-on-surface">Tech &amp; Retail</span>
+</a>
+<a class="p-4 bg-surface-container rounded-xl flex flex-col gap-2 active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-secondary">precision_manufacturing</span>
+<span class="font-label-md text-on-surface">Industrial</span>
+</a>
+<a class="p-4 bg-surface-container rounded-xl flex flex-col gap-2 active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+<span class="font-label-md text-on-surface">Automotive</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer Placeholder - Loaded dynamically -->
+<div id="footer-placeholder"></div>
+<!-- Bottom Navigation Placeholder - Loaded dynamically -->
+<div id="bottom-nav-placeholder"></div>
+<script>
+        // Simple Interaction: Navbar background opacity change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-white');
+                nav.classList.remove('bg-surface/90');
+            } else {
+                nav.classList.add('bg-surface/90');
+                nav.classList.remove('bg-white');
+            }
+        });
+
+        const BLOG_API_BASE = 'http://localhost:4000';
+        const chips = document.querySelectorAll('#blogCategoryChips button');
+        const feedContainer = document.getElementById('mobileBlogFeed');
+        const blogCount = document.getElementById('mobileBlogCount');
+        const searchInput = document.querySelector('input[placeholder="Search logistics insights..."]');
+        const featuredImage = document.getElementById('featuredImage');
+        const featuredTitle = document.getElementById('featuredTitle');
+        const featuredExcerpt = document.getElementById('featuredExcerpt');
+        const featuredBadge = document.getElementById('featuredBadge');
+        let blogPosts = [];
+        let activeCategory = 'all';
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+        }
+
+        function renderFeatured(post) {
+            if (!post) return;
+            featuredImage.style.backgroundImage = `url('${post.imageUrl}')`;
+            featuredTitle.textContent = post.title;
+            featuredExcerpt.textContent = post.excerpt;
+            featuredBadge.textContent = `${post.category} insight`;
+        }
+
+        function renderFeed(posts) {
+            blogCount.textContent = `${posts.length} Articles`;
+
+            if (!posts.length) {
+                feedContainer.innerHTML = '<p class="text-on-surface-variant">No blog posts found.</p>';
+                return;
+            }
+
+            feedContainer.innerHTML = posts.map(post => `
+                <article class="flex flex-col gap-4 border-b border-outline-variant/20 pb-8 last:border-0 group">
+                    <div class="relative h-56 w-full rounded-xl overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-duration-500 transition-all" src="${post.imageUrl}" alt="${post.title}">
+                        <div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-lg">
+                            <span class="text-primary font-label-sm text-[10px] uppercase">${post.category}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-3 text-on-surface-variant font-label-sm">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> ${formatDate(post.date)}</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> ${post.readTime}</span>
+                        </div>
+                        <h3 class="font-headline-md text-primary leading-tight group-hover:text-secondary transition-colors">${post.title}</h3>
+                        <p class="text-on-surface-variant font-body-sm line-clamp-3">${post.excerpt}</p>
+                        <a class="inline-flex items-center gap-1 text-secondary font-label-md mt-2 group-active:translate-x-1 transition-transform h-11" href="#">
+                            Read More <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function applyBlogFilters() {
+            const query = (searchInput?.value || '').trim().toLowerCase();
+            const filtered = blogPosts.filter(post => {
+                const categoryMatch = activeCategory === 'all' || post.category === activeCategory;
+                const queryMatch = !query || post.title.toLowerCase().includes(query) || post.excerpt.toLowerCase().includes(query);
+                return categoryMatch && queryMatch;
+            });
+            renderFeed(filtered.slice(0, 5));
+        }
+
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch(`${BLOG_API_BASE}/api/blog`);
+                if (!response.ok) {
+                    throw new Error('Failed to load blog posts');
+                }
+                const data = await response.json();
+                const featured = data.featured || (data.items && data.items[0]);
+                blogPosts = (data.items || []).filter(post => !featured || post.id !== featured.id);
+                renderFeatured(featured);
+                applyBlogFilters();
+            } catch (error) {
+                feedContainer.innerHTML = '<p class="text-error">Unable to load blog posts from backend.</p>';
+            }
+        }
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-secondary', 'text-white', 'shadow-md');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                chip.classList.add('bg-secondary', 'text-white', 'shadow-md');
+                activeCategory = chip.dataset.category || 'all';
+                applyBlogFilters();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applyBlogFilters);
+        }
+
+        loadBlogPosts();
+    </script>
+
+    <!-- Mobile Header & Navigation Script -->
+    <script src="../../assets/js/mobile.js"></script>
+</body></html>

@@ -1,0 +1,14 @@
+{
+  "name": "flame-logistics-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend server for Flame Logistics",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

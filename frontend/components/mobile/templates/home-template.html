@@ -1,0 +1,126 @@
+<!-- Template: Mobile Home Page Layout -->
+<!-- Usage: Base template for mobile home page structure -->
+<!-- Composed of: All organisms arranged in page order -->
+<!--
+  This template defines the structure and order of organisms
+  for the mobile home page. Each section is marked with
+  data attributes for easy identification and manipulation.
+-->
+
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Flame Logistics | GCC Hub Mobile</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  
+  <!-- Unified Tailwind Config -->
+  <script src="/assets/js/tailwind.config.js"></script>
+  
+  <!-- Common Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Mobile-specific Styles -->
+  <link rel="stylesheet" href="/assets/css/mobile.css">
+  
+  <!-- Atomic Component Styles -->
+  <link rel="stylesheet" href="/assets/css/mobile/atomic.css">
+</head>
+<body class="bg-background text-on-surface">
+  
+  <!-- ============================================
+       ORGANISM: Header
+       Location: components/mobile/organisms/header.html
+       ============================================ -->
+  <div data-organism="header" id="organism-header">
+    <!-- Header component loaded here -->
+  </div>
+  
+  <main>
+    <!-- ============================================
+         ORGANISM: Hero Section
+         Location: components/mobile/organisms/hero-section.html
+         ============================================ -->
+    <div data-organism="hero" id="organism-hero">
+      <!-- Hero section component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Stats Grid
+         Location: components/mobile/organisms/stats-grid.html
+         ============================================ -->
+    <div data-organism="stats" id="organism-stats">
+      <!-- Stats grid component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Services Carousel
+         Location: components/mobile/organisms/services-carousel.html
+         ============================================ -->
+    <div data-organism="services" id="organism-services">
+      <!-- Services carousel component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Sectors Section
+         Location: components/mobile/organisms/sectors-section.html
+         ============================================ -->
+    <div data-organism="sectors" id="organism-sectors">
+      <!-- Sectors section component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Partners Marquee
+         Location: components/mobile/organisms/partners-marquee.html
+         ============================================ -->
+    <div data-organism="partners" id="organism-partners">
+      <!-- Partners marquee component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Authority Section
+         Location: components/mobile/organisms/authority-section.html
+         ============================================ -->
+    <div data-organism="authority" id="organism-authority">
+      <!-- Authority section component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: Gallery Grid
+         Location: components/mobile/organisms/gallery-grid.html
+         ============================================ -->
+    <div data-organism="gallery" id="organism-gallery">
+      <!-- Gallery grid component loaded here -->
+    </div>
+    
+    <!-- ============================================
+         ORGANISM: News Section
+         Location: components/mobile/organisms/news-section.html
+         ============================================ -->
+    <div data-organism="news" id="organism-news">
+      <!-- News section component loaded here -->
+    </div>
+  </main>
+  
+  <!-- ============================================
+       ORGANISM: Footer
+       Location: components/mobile/organisms/footer.html
+       ============================================ -->
+  <div data-organism="footer" id="organism-footer">
+    <!-- Footer component loaded here -->
+  </div>
+  
+  <!-- Common Scripts -->
+  <script src="/assets/js/main.js"></script>
+  
+  <!-- Atomic Component Loader -->
+  <script src="/assets/js/mobile/atomic-loader.js"></script>
+</body>
+</html>

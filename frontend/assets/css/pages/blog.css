@@ -1,0 +1,30 @@
+/**
+ * Flame Logistics - Blog Page Specific Styles
+ */
+
+/* Glass effect for blog */
+.blog-glass-effect {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 25, 125, 0.08);
+}
+
+/* Hover lift effect */
+.blog-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.blog-hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 30px rgba(30, 25, 125, 0.08);
+}
+
+/* Custom scrollbar */
+.blog-custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.blog-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e1e3e4;
+  border-radius: 10px;
+}

@@ -1,0 +1,107 @@
+/* Industries Page Specific Styles */
+
+/* Industry-specific colors */
+.bg-industrial-black {
+  background-color: #151719;
+}
+
+.bg-trust-navy {
+  background-color: #09005d;
+}
+
+.text-flame-red {
+  color: #bc000c;
+}
+
+.bg-flame-red {
+  background-color: #bc000c;
+}
+
+/* Industry hero section */
+.industry-hero {
+  min-height: 819px;
+}
+
+/* Industry badge pills */
+.industry-badge {
+  @apply flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full;
+}
+
+.industry-badge-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-secondary;
+}
+
+/* Industry section cards */
+.industry-stat-card {
+  @apply absolute -bottom-8 -right-8 glass-card p-8 rounded-2xl hidden lg:block max-w-xs shadow-2xl;
+}
+
+/* Workflow progress line */
+.workflow-line {
+  @apply absolute h-[2px] bg-outline-variant/30 left-0 right-0 top-1/2 -translate-y-1/2 z-0;
+}
+
+.workflow-step {
+  @apply z-10 bg-background p-2 rounded-full border;
+}
+
+.workflow-step.active {
+  @apply border-secondary;
+}
+
+.workflow-step.inactive {
+  @apply border-outline-variant;
+}
+
+/* Bento grid cards */
+.bento-card {
+  @apply glass-card p-8 rounded-3xl flex flex-col justify-between;
+}
+
+.bento-card-dark {
+  @apply bg-industrial-black p-8 rounded-3xl flex flex-col justify-between overflow-hidden relative;
+}
+
+/* Industry feature list */
+.industry-feature {
+  @apply flex items-start gap-4;
+}
+
+.industry-feature-icon {
+  @apply mt-1 bg-secondary/10 p-1 rounded;
+}
+
+/* Temperature display card */
+.temp-display {
+  @apply mt-10 p-6 rounded-2xl bg-primary text-white flex items-center gap-6;
+}
+
+/* CTA section shader background */
+.cta-shader-bg {
+  @apply absolute top-0 right-0 w-1/2 h-full opacity-10;
+}
+
+/* Industry grid layouts */
+.industry-grid {
+  @apply grid md:grid-cols-2 gap-16 items-center;
+}
+
+/* Image aspect ratios */
+.aspect-4-5 {
+  aspect-ratio: 4/5;
+}
+
+/* Hover effects for bento cards */
+.bento-card:hover {
+  @apply border-secondary/30;
+}
+
+/* Dark section styling */
+.dark-section {
+  @apply bg-industrial-black py-24 text-white overflow-hidden;
+}
+
+/* Glass card variations for dark backgrounds */
+.glass-card-dark {
+  @apply bg-white/5 border-white/10 p-6 rounded-2xl;
+}

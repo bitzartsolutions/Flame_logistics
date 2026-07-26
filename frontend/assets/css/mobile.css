@@ -1,0 +1,147 @@
+/* Mobile Common Styles */
+
+/* Glass header effect */
+.glass-header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Hero gradient overlay */
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(9, 0, 93, 0.1) 0%, rgba(9, 0, 93, 0.8) 100%);
+}
+
+/* Mobile navigation drawer */
+#mobile-nav-drawer.active {
+  display: block;
+}
+
+#mobile-nav-drawer.active #nav-panel {
+  transform: translateX(0);
+}
+
+.mobile-nav-link.active {
+  background-color: var(--surface-container, #f0ecf4);
+  color: var(--flame-red, #bc000c);
+  font-weight: 700;
+}
+
+/* Scrollbar hide for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    overflow-x: auto;
+    white-space: normal;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mobile card styles */
+.mobile-card {
+  @apply p-6 bg-surface-container-low rounded-xl border border-outline-variant/30;
+}
+
+/* Service card horizontal scroll */
+.service-card-mobile {
+  @apply flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20;
+}
+
+/* Sector card with background image */
+.sector-card {
+  @apply relative h-48 rounded-xl overflow-hidden;
+}
+
+.sector-card-bg {
+  @apply absolute inset-0 bg-cover bg-center transition-transform duration-500;
+}
+
+.sector-card:hover .sector-card-bg,
+.sector-card:active .sector-card-bg {
+  transform: scale(1.1);
+}
+
+.sector-card-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent;
+}
+
+.sector-card-content {
+  @apply absolute bottom-6 left-6;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  @apply p-8 bg-white rounded-2xl shadow-xl shadow-primary/5 border border-outline-variant/30;
+}
+
+/* Gallery grid */
+.gallery-grid-mobile {
+  @apply grid grid-cols-2 gap-3;
+}
+
+.gallery-item-mobile {
+  @apply aspect-square rounded-xl overflow-hidden;
+}
+
+/* Insights card */
+.insight-card {
+  @apply flex gap-4;
+}
+
+.insight-thumbnail {
+  @apply w-24 h-24 flex-none rounded-xl overflow-hidden;
+}
+
+/* Footer accordion */
+.footer-accordion-content {
+  display: none;
+}
+
+.footer-accordion-content.active {
+  display: flex;
+}
+
+/* Touch feedback */
+.touch-feedback {
+  @apply active:scale-[0.98] transition-all;
+}
+
+/* Pulse animation for live indicator */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

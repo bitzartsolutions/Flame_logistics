@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Flame Logistics | GCC Hub Mobile</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f3eff7",
+            "surface-tint": "#5655a6",
+            "outline-variant": "#c7c5d3",
+            "tertiary-fixed-dim": "#c6c6c9",
+            "trust-navy": "#09005d",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#ffdad5",
+            "on-primary-fixed-variant": "#3e3d8c",
+            "surface-container": "#f0ecf4",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#464651",
+            "surface-container-low": "#f6f2fa",
+            "surface-bright": "#fcf8ff",
+            "on-tertiary-fixed": "#1a1c1e",
+            "on-secondary-fixed": "#410001",
+            "secondary-fixed-dim": "#ffb4aa",
+            "on-secondary-container": "#fffbff",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#454749",
+            "on-primary-fixed": "#0f0861",
+            "surface-container-highest": "#e5e1e9",
+            "tertiary": "#000000",
+            "outline": "#777682",
+            "tertiary-fixed": "#e2e2e5",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#eae7ee",
+            "secondary-container": "#e12823",
+            "surface": "#fcf8ff",
+            "on-surface": "#1b1b20",
+            "surface-dim": "#dcd9e0",
+            "surface-muted": "#f0ecf5",
+            "on-secondary-fixed-variant": "#930007",
+            "surface-container-lowest": "#ffffff",
+            "secondary": "#bc000c",
+            "primary-container": "#0f0861",
+            "on-background": "#1b1b20",
+            "industrial-black": "#151719",
+            "inverse-primary": "#c2c1ff",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "surface-variant": "#e5e1e9",
+            "on-tertiary-container": "#838486",
+            "on-error": "#ffffff",
+            "glass-border": "rgba(255, 255, 255, 0.2)",
+            "inverse-surface": "#303035",
+            "flame-red": "#bc000c",
+            "primary-fixed-dim": "#c2c1ff",
+            "error": "#ba1a1a",
+            "background": "#fcf8ff",
+            "on-primary-container": "#7c7bcf",
+            "tertiary-container": "#1a1c1e",
+            "primary-fixed": "#e2dfff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "40px",
+            "base-unit": "8px",
+            "section-padding": "96px",
+            "container-max": "1280px"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "title-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+  
+  <!-- Base Styles -->
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+  
+  <!-- Atomic Component Styles -->
+  <link rel="stylesheet" href="../../assets/css/mobile/atomic.css">
+</head>
+<body class="bg-background text-on-surface">
+
+  <!-- Header Placeholder - Loaded dynamically -->
+  <div id="header-placeholder"></div>
+
+  <main class="pt-[80px]">
+    <!-- ============================================
+         ORGANISM: Hero Section
+         Composed of: Atoms (image, badge, heading, buttons)
+         ============================================ -->
+    <section class="organism-hero relative pt-16 min-h-[85vh] flex flex-col justify-end overflow-hidden">
+      <div class="organism-hero__bg absolute inset-0 z-0">
+        <img class="atom-image w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsB1KT-vJu88yP_nWj2TYnQSOfjrW1dX2yBPkSUmvZzScUEdO81XAIM8lTYMWY7ZuaxmToUPzhX84ZGBMBUUiMFBZVD3BpNnjOinyP0FhLuJT3DwGmm4t-B-l1JSDozp_wvaVX9o4oL-pLz2L8W9SybCmaSv2q4svTrByMQdfe8uCNBZLc3hZaGQifwaIO-3haIV52qkf8S9OTrOhzDmt_uopjAftglxxkbudQvHWUUGTPllsS_5aDBKOCl7AEpfYfbjAG60Dm8sc" alt="Flame Logistics Hero">
+        <div class="absolute inset-0 hero-gradient"></div>
+      </div>
+      <div class="organism-hero__content relative z-10 px-margin-mobile pb-12 text-white">
+        <div class="atom-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-flame-red/20 border border-flame-red/30 backdrop-blur-md mb-4">
+          <span class="atom-badge__dot w-2 h-2 rounded-full bg-flame-red animate-pulse"></span>
+          <span class="atom-badge__text text-label-md font-label-md tracking-widest uppercase">GCC Logistics Hub</span>
+        </div>
+        <h1 class="atom-heading font-display-lg-mobile text-display-lg-mobile mb-6">Connecting the GCC to the World</h1>
+        <div class="organism-hero__actions flex flex-col gap-3">
+          <button class="atom-btn-primary w-full py-4 bg-flame-red text-white rounded-xl font-title-lg flex items-center justify-center gap-2 shadow-xl shadow-flame-red/20 active:scale-[0.98] transition-all">
+            Track Your Shipment
+            <span class="atom-icon material-symbols-outlined">arrow_forward</span>
+          </button>
+          <button class="atom-btn-secondary w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+            Our Solutions
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Stats Grid
+         Composed of: Molecules (stat-card x4)
+         ============================================ -->
+    <section class="organism-stats-grid py-12 bg-white px-margin-mobile">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
+          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">public</span>
+          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">120+</div>
+          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Countries Reached</div>
+        </div>
+        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
+          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">500+</div>
+          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Modern Fleet</div>
+        </div>
+        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
+          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">99.9%</div>
+          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">On-time Delivery</div>
+        </div>
+        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
+          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">24/7</div>
+          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Expert Support</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Services Carousel
+         Composed of: Atoms (heading, divider), Molecules (service-card x3)
+         ============================================ -->
+    <section class="organism-services-carousel py-16 bg-background">
+      <div class="organism-services-carousel__header px-margin-mobile mb-8">
+        <h2 class="atom-heading font-headline-md text-trust-navy">Core Logistics Services</h2>
+        <div class="atom-divider h-1 w-12 bg-flame-red mt-2"></div>
+      </div>
+      <div class="organism-services-carousel__cards flex overflow-x-auto gap-4 px-margin-mobile pb-6 scrollbar-hide">
+        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
+          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
+            <span class="atom-icon material-symbols-outlined text-3xl">airplanemode_active</span>
+          </div>
+          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Air Freight</h3>
+          <p class="atom-text font-body-md text-on-surface-variant">Global expedited air solutions for time-sensitive cargo and tech shipments.</p>
+        </div>
+        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
+          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
+            <span class="atom-icon material-symbols-outlined text-3xl">directions_boat</span>
+          </div>
+          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Sea Freight</h3>
+          <p class="atom-text font-body-md text-on-surface-variant">Cost-effective FCL and LCL shipping across all major global maritime routes.</p>
+        </div>
+        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
+          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
+            <span class="atom-icon material-symbols-outlined text-3xl">local_shipping</span>
+          </div>
+          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Land Transport</h3>
+          <p class="atom-text font-body-md text-on-surface-variant">Comprehensive GCC cross-border trucking and domestic distribution network.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Sectors Section
+         Composed of: Atoms (heading), Molecules (sector-card x3)
+         ============================================ -->
+    <section class="organism-sectors py-16 px-margin-mobile bg-white">
+      <h2 class="atom-heading font-headline-md text-trust-navy mb-8">Sectors We Empower</h2>
+      <div class="organism-sectors__cards space-y-4">
+        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
+          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwxjfVJ774WdKXzo7iBr0vgYLhtskNymP_FazrbRnViQ7E35rGSAjAEkzuudiZpGDtpgJIQJ5Bp_SblVVmCMunUDbeLwqdkAsQGQDu5yExmdAJlbrL42A0bfixcTj-_r6l9crpogMTOKa04VqC5pf4OXSH5HueBjjjDi3B0YwHanAAXWUd08UyI-7GbUiFf3QUexXKQAbLDYBDxtmXibTaHW6OLtsa63BNwx_6rkj6hLXVhgrhU27wrcb_E9NTnl7B3wmn_qD6Vis')"></div>
+          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
+          <div class="molecule-sector-card__content absolute bottom-6 left-6">
+            <h3 class="atom-heading text-white font-headline-sm">Technology</h3>
+            <p class="atom-text text-white/80 font-body-md">Delicate electronics &amp; high-value hardware.</p>
+          </div>
+        </div>
+        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
+          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYCUgAKAjLjQeK3aUfW0lRQcoqwr8A4fy9z2wXPUxatc3gac2LG359OeyDc3FIKWQGaD-DQ-vl0x_kbGqmTSqybKdCGNseTMoqe-Nbr7F4FLIPPGNblwsiK2CMxzxDAkCLJZAIfvNhOpkPtX3VbgYxmfkTlTwHsq_ZgTlzZbg8WiYfUBCe14VFv7Me4w9HEQRkJBqOvUP4kOfLB2tBEZIPs4k7wt61ub_foLwKeUooTROvEfaCE2l-PtlkS_sUEW856f110rreTf4')"></div>
+          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
+          <div class="molecule-sector-card__content absolute bottom-6 left-6">
+            <h3 class="atom-heading text-white font-headline-sm">Healthcare</h3>
+            <p class="atom-text text-white/80 font-body-md">Cold-chain solutions for medical supplies.</p>
+          </div>
+        </div>
+        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
+          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfpgjtuLuzyg2_LvAR0oAPxUUvNZVJANeCsZCMs6WIWSbsEY9Eiyr6Va9-s1CybVfuFht8pRIgH74xFtnGwuAbH5662rUSoCqFPPK59tLTc9UZbytZGRNLT8VYKlUSZE2i2Rv4YJ0ig0dXc3PaXCyuKD9jVKpCi61ZKT86ujVSiohrKekaCHmPQgSLYuTmrHCy0cXVt38aPq9iQ8rne4i7ZlgfY3-Z64uer5wVMLoYdwVGQJIMEZbyffqmIbtWtn6lGNNTUfzNpN0')"></div>
+          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
+          <div class="molecule-sector-card__content absolute bottom-6 left-6">
+            <h3 class="atom-heading text-white font-headline-sm">Energy &amp; Gas</h3>
+            <p class="atom-text text-white/80 font-body-md">Massive equipment &amp; urgent industrial parts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Partners Marquee
+         Composed of: Atoms (heading, divider), Molecules (partner-logo)
+         ============================================ -->
+    <section class="organism-partners-marquee py-16 bg-white overflow-hidden">
+      <div class="organism-partners-marquee__header px-margin-mobile mb-8">
+        <h2 class="atom-heading font-headline-md text-trust-navy">Strategic Partnerships</h2>
+        <div class="atom-divider h-1 w-12 bg-flame-red mt-2"></div>
+      </div>
+      <div class="organism-partners-marquee__track relative flex overflow-hidden">
+        <div class="flex gap-12 animate-marquee whitespace-nowrap items-center py-4">
+          <div class="flex items-center gap-12">
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">NEOM</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">ARAMCO</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">SABIC</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">STC</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Maaden</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Red Sea</span>
+          </div>
+          <div class="flex items-center gap-12">
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">NEOM</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">ARAMCO</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">SABIC</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">STC</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Maaden</span>
+            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Red Sea</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Authority Section
+         Composed of: Atoms (heading, text), Molecules (feature-item, testimonial-card)
+         ============================================ -->
+    <section class="organism-authority py-16 bg-surface-container px-margin-mobile">
+      <div class="organism-authority__content mb-10">
+        <h2 class="atom-heading font-headline-md text-trust-navy mb-4">GCC Authority in Supply Chain</h2>
+        <p class="atom-text font-body-lg text-on-surface-variant mb-6">Our presence in Saudi Arabia and the UAE provides an unmatched gateway for global trade.</p>
+        <ul class="organism-authority__features space-y-4">
+          <li class="molecule-feature-item flex items-start gap-3">
+            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
+            <span class="atom-text font-body-md text-on-surface">Integrated Customs Brokerage at all GCC ports.</span>
+          </li>
+          <li class="molecule-feature-item flex items-start gap-3">
+            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
+            <span class="atom-text font-body-md text-on-surface">Strategic Bonded Warehousing in Riyadh &amp; Dubai.</span>
+          </li>
+          <li class="molecule-feature-item flex items-start gap-3">
+            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
+            <span class="atom-text font-body-md text-on-surface">End-to-end Last Mile visibility and tracking.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="molecule-testimonial-card p-8 bg-white rounded-2xl shadow-xl shadow-trust-navy/5 border border-outline-variant/30">
+        <div class="molecule-testimonial-card__rating flex gap-1 text-flame-red mb-4">
+          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="molecule-testimonial-card__quote italic font-body-lg text-trust-navy mb-6">"Flame Logistics has redefined our regional distribution speed. Their local knowledge combined with global reach is exactly what we needed."</p>
+        <div class="molecule-testimonial-card__author flex items-center gap-4">
+          <div class="molecule-testimonial-card__avatar w-12 h-12 rounded-full bg-surface-container"></div>
+          <div>
+            <div class="atom-heading font-title-lg text-trust-navy">Abdulaziz Al-Salem</div>
+            <div class="atom-text font-label-md text-on-surface-variant">Operations Director, Energy Group</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: Gallery Grid
+         Composed of: Atoms (heading), Molecules (gallery-image x4)
+         ============================================ -->
+    <section class="organism-gallery py-16 px-margin-mobile bg-white">
+      <h2 class="atom-heading font-headline-sm text-trust-navy mb-6">Operations Hub</h2>
+      <div class="organism-gallery__grid grid grid-cols-2 gap-3">
+        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCazUs93WsFibUUUzgEtJ_QQ3bUBHWmUpK8OGUNWgrfR4HNmWXf1W_r5hpWXXVA5biTvB1HxQf2OvYz1cVYhOFJrzF-u8aWSc7DGUtQKxZ-g8JQkL5Rcvhln7gjHPotuiKwWCerJ5H0GolvMQY2e0K0ZcE51lXem8OGbNPt5U91w-1y0PgBIiPKl-OSpKqbyrcSqR4nZMEJkE7mDRQw5qEaEbtSDbb5gKbGEId1JDQBJxoNhfCxEjZwcqdPtOpj5ToFVTogqS0vofs" alt="Operations 1">
+        </div>
+        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzlBSuOMgvLDxJmbSeB8ou6FRRZ10xdyUOfCKdQMJsCdIkl3Dtij47c0KaGxc_EwkOLz3gWOkWMLS5pF9b_ugAMc9N2fIHmyAV1EtyzKbAMUuSrUdHjO6vs6l6I93vpc5Ik5GrFNc_KjQj6I766QjS3J-6WfsiDNZjA9mFVWxPo_pjzXEzR_3dvDX7t8bo0pwjyFQcX1wOLlEbHKBspdSRAxIZ9Tw806WXnJGvxEbut2GaqbD_B8FRXRLZNADBov-w_cDzGiLcSgg" alt="Operations 2">
+        </div>
+        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCUoDJpoqFmNSaAme2_S-tDaZ8JrjtUWxe_uPaoESfdMidvlTW5Dicg2rg75KyouTtMWE7-ewHVFcU-tqZEf9emBAQFIr_JTRob6sSH-zJHGOe0X9Dgp2IWD_yu5yasjokLSG8Qf1SbedROxpwRB4_6BTxUeWEAC_kz8SW0_U4WiBdI75jhEtCUvSF5H7SPU9VAuPQ5f-21CazkueEW1i9pFLBmd6e9cb2zKKVnmBtzJNThZkEdyKBvrjUAdAWPzErPSqPw8-pNLw" alt="Operations 3">
+        </div>
+        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3bTb5ABHOSOFXoWS5udLQehdvuHoRbH61mKKrjxYC85tufjZrliwjolj8_WTDOpKfGkCgtoRaSuHp62kr34101ki90_EkX7LK0IZBuw2zy0Bu9W5x_zuFy47yVzaYDjKHEV-hbNjzLwYpZJwvbw3_ou343-GnHSQCNXm1pwCzKF5he_lbfuAG_p7X_ajAXUHy8U3yVr3YkoRhG3VupZ-33s1Mgj4r2YQnUzQ8j2fbtvgzTC8Kox3WgSdAECTe2Oe-C34xNfk4t9E" alt="Operations 4">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ORGANISM: News Section
+         Composed of: Atoms (heading, button-link), Molecules (news-card x2)
+         ============================================ -->
+    <section class="organism-news py-16 bg-surface-container px-margin-mobile">
+      <div class="organism-news__header flex justify-between items-end mb-8">
+        <h2 class="atom-heading font-headline-md text-trust-navy">Trade Insights</h2>
+        <button class="atom-btn-link text-flame-red font-label-md border-b border-flame-red">View All</button>
+      </div>
+      <div class="organism-news__cards space-y-6">
+        <div class="molecule-news-card flex gap-4 group">
+          <div class="molecule-news-card__image w-24 h-24 flex-none rounded-xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjoPdQy9WqCie2oMo8QSkXOzSFUOM5Y8J1_XLXLcztoYk-ZczyfCQKvStj-b4xojpRl1m675dz39v86a7opryrCLsNtWPeYD-3mX_cQQKqELsiTSeJdVq_W6kYnqA9StAUJpf7tRieiB1GzGZT2asWVdRddyXNq8AIdpuqnmAoxAHzkB8RmewjA83QASSbdNykY36aeUUwjW2p65IWYJZ7NdISThXBlJtMeOnEBo7RiudOi3aMZzBHX4HNX2b0PIhk3iqkjW-kZXc" alt="News 1">
+          </div>
+          <div class="molecule-news-card__content flex flex-col justify-center">
+            <span class="atom-text text-label-md text-on-surface-variant mb-1 uppercase">Industry News • 2 days ago</span>
+            <h3 class="atom-heading font-title-lg text-trust-navy line-clamp-2">Navigating New GCC Customs Regulations in 2024</h3>
+          </div>
+        </div>
+        <div class="molecule-news-card flex gap-4 group">
+          <div class="molecule-news-card__image w-24 h-24 flex-none rounded-xl overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCStdLS81drUIWwUEP-AOFrRTWns5AJile3KOCR4oHqELkx1ne2KpnMkMPMzYV-Nxyctqnnf3QQsPQEGbLkLxgs8UZnHLD5-AO_Wjy1ahzQBhrhS2tjE_Qst6mmAzQTkwT3GNRJ4A-6BkjTFKqq3lkYOY08Mxs8atQ7-CbQUZf8lWbyl4NaB58Y8MFtu6L-nQ_l4P93XKRE8sylqSMHht_j4K949klnqOXzRFpGoLfv2sn9U5a-sBQeYGrIA6z4KXh6UCAhXtGT_e4" alt="News 2">
+          </div>
+          <div class="molecule-news-card__content flex flex-col justify-center">
+            <span class="atom-text text-label-md text-on-surface-variant mb-1 uppercase">Tech Updates • 1 week ago</span>
+            <h3 class="atom-heading font-title-lg text-trust-navy line-clamp-2">Blockchain in Middle East Supply Chains: A New Era</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================
+       ORGANISM: Footer
+       Composed of: Atoms (icon, heading, text), Molecules (social-link, accordion-item, contact-info)
+       ============================================ -->
+  <!-- Footer Placeholder - Loaded dynamically -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Bottom Navigation Placeholder - Loaded dynamically -->
+  <div id="bottom-nav-placeholder"></div>
+
+  <!-- Mobile Common JS - Loads header and footer components -->
+  <script src="../../assets/js/mobile.js"></script>
+</body>
+</html>

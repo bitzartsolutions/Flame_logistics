@@ -1,0 +1,81 @@
+<!-- Organism: Mobile Footer -->
+<!-- Usage: Full footer with brand, accordion navigation, and legal -->
+<!-- Composed of: icon-material, heading, text, social-link (molecule), accordion-item (molecule), contact-info (molecule) -->
+<footer class="organism-footer bg-industrial-black text-white pt-16 pb-8">
+  <div class="px-margin-mobile">
+    <!-- Brand Section -->
+    <div class="organism-footer__brand mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-flame-red" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+        <span class="font-headline-sm text-white font-extrabold uppercase">Flame Logistics</span>
+      </div>
+      <p class="text-white/60 font-body-md mb-6">Pioneering the future of industrial logistics across the GCC and beyond. Reliability at the speed of light.</p>
+      
+      <!-- Social Links -->
+      <div class="organism-footer__social flex gap-4">
+        <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-flame-red transition-colors" href="#">
+          <span class="material-symbols-outlined text-lg">chat</span>
+        </a>
+        <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-flame-red transition-colors" href="#">
+          <span class="material-symbols-outlined text-lg">share</span>
+        </a>
+        <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-flame-red transition-colors" href="#">
+          <span class="material-symbols-outlined text-lg">public</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Accordion Navigation -->
+    <div class="organism-footer__nav space-y-4 mb-12">
+      <!-- Our Network -->
+      <button class="w-full flex justify-between items-center py-4 border-b border-white/10 text-white font-title-lg" onclick="toggleAccordion('acc1')">
+        Our Network
+        <span class="material-symbols-outlined transition-transform" id="icon-acc1">expand_more</span>
+      </button>
+      <div class="hidden flex flex-col gap-3 py-2 text-white/70 font-body-md" id="acc1">
+        <a href="#" class="">Riyadh Central Hub</a>
+        <a href="#" class="">Dubai Logistics City</a>
+        <a href="#" class="">Dammam Port Facility</a>
+        <a href="#" class="">Jeddah Gateway</a>
+      </div>
+      
+      <!-- Company -->
+      <button class="w-full flex justify-between items-center py-4 border-b border-white/10 text-white font-title-lg" onclick="toggleAccordion('acc2')">
+        Company
+        <span class="material-symbols-outlined transition-transform" id="icon-acc2">expand_more</span>
+      </button>
+      <div class="hidden flex flex-col gap-3 py-2 text-white/70 font-body-md" id="acc2">
+        <a href="#" class="">About Us</a>
+        <a href="#" class="">Sustainability</a>
+        <a href="#" class="">Careers</a>
+        <a href="#" class="">Global Partners</a>
+      </div>
+      
+      <!-- Contact Us -->
+      <button class="w-full flex justify-between items-center py-4 border-b border-white/10 text-white font-title-lg" onclick="toggleAccordion('acc3')">
+        Contact Us
+        <span class="material-symbols-outlined transition-transform" id="icon-acc3">expand_more</span>
+      </button>
+      <div class="hidden flex flex-col gap-3 py-2 text-white/70 font-body-md" id="acc3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-flame-red text-sm">phone</span> +966 11 000 0000
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-flame-red text-sm">mail</span> info@flamelogistics.sa
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-flame-red text-sm">location_on</span> Riyadh, Saudi Arabia
+        </div>
+      </div>
+    </div>
+    
+    <!-- Legal Section -->
+    <div class="organism-footer__legal pt-8 border-t border-white/10 text-white/40 text-label-md">
+      © 2026 Flame Logistics. All rights reserved. Riyadh, Saudi Arabia.
+      <div class="flex gap-4 mt-4">
+        <a class="underline" href="#">Privacy Policy</a>
+        <a class="underline" href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

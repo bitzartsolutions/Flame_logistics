@@ -1,0 +1,29 @@
+/**
+ * Flame Logistics - Gallery Page Specific Styles
+ */
+
+/* Gallery image hover effect */
+.gallery-image-hover {
+  transition: transform 0.5s ease;
+}
+
+.gallery-image-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Gallery grid item */
+.gallery-item {
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+/* Lightbox overlay */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "flame-logistics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Flame Logistics fullstack app",
+  "scripts": {
+    "start": "node scripts/start-all.js",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start"
+  }
+}

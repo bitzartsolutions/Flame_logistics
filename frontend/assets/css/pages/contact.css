@@ -1,0 +1,24 @@
+/**
+ * Flame Logistics - Contact Page Specific Styles
+ */
+
+/* Glass card for contact page */
+.contact-glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Text shadow for hero */
+.contact-text-shadow-hero {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Form focus states */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #bc000c !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(188, 0, 12, 0.1);
+}
