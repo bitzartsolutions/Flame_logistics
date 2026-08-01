@@ -235,17 +235,15 @@
 <h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Our GCC Footprint</h2>
 <p class="text-on-surface-variant">Strategically positioned to dominate regional supply chains.</p>
 </div>
-<!-- Mobile Optimized Map Placeholder -->
-<div class="w-full h-80 mb-8 bg-surface-dim relative group">
-<div class="absolute inset-0 bg-cover bg-center" data-alt="A clean, minimalist high-tech logistics map focused on the GCC region, specifically Saudi Arabia. The map features a dark trust-navy ocean background with glowing light-blue landmasses. Key logistical hubs in Riyadh, Jeddah, and Dammam are highlighted with pulsing flame-red markers. The overall look is professional, data-driven, and modern corporate." data-location="Saudi Arabia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWWfi_VK7XhaTfSwT5w72FPWpva1DsCXaU-AT6grP1gH6UcnBFoj2HDPblSvWEBZJ7GPhfT8OySF32zustWy-UPOq6I2S3OdqgCSUMtZm_vozvXTzSMt1q1Uu9onfp4KnAcuv8jadaCgBCesov-ls_RWeMldx0WF5F0y5qwBdnNLHC9msk0f56HzgHX0O6bHol6p_2KJ834gIfa3hhQQE3fUbwcJOvtQpr5VckCI688ah4vCeZceSlJxB-mHBRrBpcqzCCIyfzu2c')"></div>
-<!-- Interactive Markers Overlay (Simulated) -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-<div class="relative">
-<div class="absolute -top-4 -left-4 w-8 h-8 bg-flame-red/30 rounded-full animate-ping"></div>
-<div class="w-4 h-4 bg-flame-red rounded-full border-2 border-white shadow-lg"></div>
+<div class="flex flex-wrap gap-2 mb-4 px-margin-mobile">
+<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-flame-red text-white font-bold text-sm transition-all is-active" data-city="riyadh">Riyadh</button>
+<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-surface-container text-trust-navy font-bold text-sm transition-all" data-city="jeddah">Jeddah</button>
+<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-surface-container text-trust-navy font-bold text-sm transition-all" data-city="dammam">Dammam</button>
 </div>
+<div class="w-full h-80 mb-4 bg-surface-dim relative group overflow-hidden">
+<iframe id="gcc-map-frame-mobile" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Riyadh%20Saudi%20Arabia&z=12&output=embed"></iframe>
 </div>
-</div>
+<p id="gcc-location-copy-mobile" class="px-margin-mobile text-on-surface-variant text-sm mb-8">Our main Riyadh hub processes over 450,000 tons of freight annually with 99.8% precision rating.</p>
 <!-- Locations Stack -->
 <div class="px-margin-mobile space-y-4">
 <!-- Riyadh -->
@@ -381,6 +379,46 @@
                 }
             });
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.city-tab-mobile');
+            const mapFrame = document.getElementById('gcc-map-frame-mobile');
+            const locationCopy = document.getElementById('gcc-location-copy-mobile');
+
+            const locations = {
+                riyadh: {
+                    src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.314100000000!2d46.675296!3d24.713551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ3LjIiTiA0NsKwNDAnMjQuNCJF!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s',
+                    description: 'Our main Riyadh hub processes over 450,000 tons of freight annually with 99.8% precision rating.'
+                },
+                jeddah: {
+                    src: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14290.124145963514!2d39.1610947!3d21.2676182!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDE2JzAzLjQiTiAzOcKwMDknMzkuOSJF!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s',
+                    description: 'Jeddah operations support port-linked cargo flows with rapid customs coordination and coastal distribution access.'
+                },
+                dammam: {
+                    src: 'https://www.google.com/maps?q=Dammam%20Saudi%20Arabia&z=12&output=embed',
+                    description: 'Dammam handles industrial freight corridors and energy logistics with round-the-clock terminal support.'
+                }
+            };
+
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach((item) => {
+                        item.classList.remove('bg-flame-red', 'text-white');
+                        item.classList.add('bg-surface-container', 'text-trust-navy');
+                    });
+
+                    tab.classList.add('bg-flame-red', 'text-white');
+                    tab.classList.remove('bg-surface-container', 'text-trust-navy');
+
+                    const city = tab.getAttribute('data-city');
+                    const location = locations[city];
+                    if (location) {
+                        mapFrame.src = location.src;
+                        locationCopy.textContent = location.description;
+                    }
+                });
+            });
+        });
     </script>
 
 <!-- Bottom Navigation Placeholder - Loaded dynamically -->

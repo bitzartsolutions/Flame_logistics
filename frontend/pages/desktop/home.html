@@ -28,11 +28,11 @@
   
   <main>
     <!-- Hero Section -->
-    <section class="relative h-screen w-full flex items-center overflow-hidden">
+    <section class="relative h-screen w-full flex items-center overflow-hidden" style="margin-top: 80px;">
       <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-black/40 z-10"></div>
         <div class="absolute inset-0 hero-gradient z-20"></div>
-        <img class="w-full h-full object-cover" alt="A cinematic, high-resolution wide shot of a massive modern cargo ship" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUd6uJhYEvZ8jL9xKJkvL0R1-o3GskqDmgHw_UqPIlsy_scqcVn607R5cHSI-6v_tCNsTre4KuhZdKUZfB6DI85_JPzuR4xLYqrmflIA5baI7YYMFLysPYLXYZVKHWyCNER2_1HaP5nSgV0SVZFba4DZvhrzm0L98qApIh0_N-E_0uE5ks2BTE1Nq6oQdzuUM_jJ7rzbz8PYijbAAdXE6ObjeGGWgXfOykDzbRuCGYXgnedGX9lTVk">
+        <img class="w-full h-full object-cover" alt="A cinematic, high-resolution wide shot of a massive modern cargo ship" src="../../assets/images/Home_page.png">
       </div>
       <div class="relative z-30 max-w-[1280px] mx-auto px-[40px] w-full">
         <div class="max-w-2xl">
@@ -96,42 +96,162 @@
             Explore Full Mega Menu <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
-          <div class="reveal group bg-white border border-outline-variant/30 p-8 rounded-xl hover:border-primary transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
-            <div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-              <span class="material-symbols-outlined" style="font-size: 32px;">flight_takeoff</span>
+      </div>
+      <div class="max-w-[1280px] mx-auto px-[40px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] mb-16">
+          <!-- Service Card 1 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Land Transportation" src="../../assets/images/Land_transp.png">
             </div>
-            <h3 class="font-title-lg text-primary mb-4">Air Freight</h3>
-            <p class="font-body-md text-on-surface-variant mb-6">High-velocity global air shipping with priority routing through major GCC hubs.</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Next-day delivery available</li>
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Temperature controlled</li>
-            </ul>
-            <a class="font-label-md text-primary group-hover:text-secondary transition-colors" href="services.html">Learn More →</a>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Land Transportation</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Comprehensive GCC-wide delivery via our proprietary fleet of GPS-tracked heavy vehicles.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> FTL & LTL Solutions</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> 24/7 Real-time Monitoring</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="reveal group bg-white border border-outline-variant/30 p-8 rounded-xl hover:border-primary transition-all duration-500 hover:shadow-xl hover:shadow-primary/5" style="transition-delay: 150ms">
-            <div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-              <span class="material-symbols-outlined" style="font-size: 32px;">directions_boat</span>
+          <!-- Service Card 2 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Customs Clearance" src="../../assets/images/Custom_clear.png">
             </div>
-            <h3 class="font-title-lg text-primary mb-4">Sea Freight</h3>
-            <p class="font-body-md text-on-surface-variant mb-6">Full container and LCL solutions connecting the Red Sea and Gulf to global ports.</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Strategic port optimization</li>
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Real-time vessel tracking</li>
-            </ul>
-            <a class="font-label-md text-primary group-hover:text-secondary transition-colors" href="services.html">Learn More →</a>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Customs Clearance</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Frictionless border transitions managed by our expert local regulatory team.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Duty Drawback Support</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> HS Code Classification</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="reveal group bg-white border border-outline-variant/30 p-8 rounded-xl hover:border-primary transition-all duration-500 hover:shadow-xl hover:shadow-primary/5" style="transition-delay: 300ms">
-            <div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all">
-              <span class="material-symbols-outlined" style="font-size: 32px;">local_shipping</span>
+          <!-- Service Card 3 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Warehousing" src="../../assets/images/Warehouse.png">
             </div>
-            <h3 class="font-title-lg text-primary mb-4">Land Transport</h3>
-            <p class="font-body-md text-on-surface-variant mb-6">Modern trucking fleet optimized for trans-border GCC logistics and last-mile delivery.</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Cross-border expertise</li>
-              <li class="flex items-center gap-2 text-body-sm text-on-surface"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> GPS-monitored security</li>
-            </ul>
-            <a class="font-label-md text-primary group-hover:text-secondary transition-colors" href="services.html">Learn More →</a>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Warehousing & Distribution</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Strategically located hubs in Riyadh and Dubai with WMS integration.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Climate Controlled Zones</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Inventory Management</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Service Card 4 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Packing and Moving" src="../../assets/images/Packaging.png">
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Packing & Moving</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">White-glove residential and commercial relocation services.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Premium Packing Materials</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Door-to-Door Delivery</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Service Card 5 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Industrial Crating" src="../../assets/images/industrial.png">
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Industrial Crating</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Bespoke heavy-duty protection for high-value industrial assets.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> ISPM-15 Wood Compliance</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Custom Fit Engineering</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Service Card 6 -->
+          <div class="reveal service-card group bg-white border border-outline-variant/30 rounded-xl overflow-hidden transition-all duration-300 service-card-shadow flex flex-col">
+            <div class="h-48 overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Freight Forwarding" src="../../assets/images/Flight.png">
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="font-title-lg text-title-lg text-primary mb-3">Freight Forwarding</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Multi-modal Air, Sea, and Land solutions connecting the GCC to the global network.</p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> Global Agent Network</li>
+                <li class="flex items-center gap-2 text-body-sm"><span class="material-symbols-outlined text-secondary scale-75">check_circle</span> End-to-End Tracking</li>
+              </ul>
+              <div class="mt-auto">
+                <button class="text-primary font-bold flex items-center gap-2 group/btn hover:text-secondary transition-colors">
+                  Learn More <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-24 bg-surface-container-lowest border-y border-outline-variant/20">
+      <div class="max-w-[1280px] mx-auto px-[40px]">
+        <div class="text-center mb-16 reveal">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary font-label-md text-label-md uppercase tracking-wider mb-4">How It Works</span>
+          <h2 class="font-headline-md text-primary mb-4">A Streamlined Journey From Request to Delivery</h2>
+          <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">From first contact to final handoff, every step is coordinated with precision, transparency, and proactive support.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
+          <div class="reveal rounded-[24px] border border-outline-variant/30 bg-white p-8 shadow-sm">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-3xl">search</span>
+            </div>
+            <div class="text-secondary font-bold text-label-md uppercase tracking-wider mb-3">Step 01</div>
+            <h3 class="font-title-lg text-primary mb-3">Assess Your Needs</h3>
+            <p class="text-on-surface-variant text-body-md">We begin by understanding your cargo profile, timing, destination, and critical handling requirements.</p>
+          </div>
+
+          <div class="reveal rounded-[24px] border border-outline-variant/30 bg-white p-8 shadow-sm" style="transition-delay: 100ms">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-3xl">route</span>
+            </div>
+            <div class="text-secondary font-bold text-label-md uppercase tracking-wider mb-3">Step 02</div>
+            <h3 class="font-title-lg text-primary mb-3">Build the Supply Chain Plan</h3>
+            <p class="text-on-surface-variant text-body-md">Our specialists design a tailored movement plan using the right mode, route, and asset mix.</p>
+          </div>
+
+          <div class="reveal rounded-[24px] border border-outline-variant/30 bg-white p-8 shadow-sm" style="transition-delay: 200ms">
+            <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-3xl">local_shipping</span>
+            </div>
+            <div class="text-secondary font-bold text-label-md uppercase tracking-wider mb-3">Step 03</div>
+            <h3 class="font-title-lg text-primary mb-3">Track and Deliver with Confidence</h3>
+            <p class="text-on-surface-variant text-body-md">Every shipment stays visible through our command center, with real-time coordination until handoff.</p>
           </div>
         </div>
       </div>
@@ -191,35 +311,35 @@
     <section class="py-32 bg-tertiary text-white overflow-hidden">
       <div class="max-w-[1280px] mx-auto px-[40px]">
         <div class="text-center mb-16 reveal">
-          <h2 class="font-display-lg mb-4">Sectors We Empower</h2>
-          <p class="font-body-lg text-on-surface-variant/80 max-w-2xl mx-auto">Specialized handling and domain expertise for the GCC's most critical industrial verticals.</p>
+          <h1 class="font-display-lg mb-4">Sectors We Empower</h1>
+          <p class="font-body-lg text-on-surface-variant/80 max-w-2xl mx-auto" style="color: gainsboro;">Specialized handling and domain expertise for the GCC's most critical industrial verticals.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]">
           <div class="reveal md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Technology and Electronics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBraLMqPSrfF7MVlGcAWl2k5hMAMOolaytISWYc2W1pFhnNmnpsq4MB22cS-XuGLYagy1Nk3Splqob9ebft8tE97V9_hhP-kgIgKWV0P20MnTLh80jR33-LcUzJiRJqtXSOELDLcXSG-jmI0DCYfyycJ6FZ-P4dudIhkLK5XlGyOAPiRV8077Q6wyrTbLAwbhf3y8mKfL06xbsEh6NV4IDp_37NEaYxZkktyFSWlGyh3Ju7s-n8cOSm">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Technology and Electronics" src="../../assets/images/Technology & Electronics.png">
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex flex-col justify-end p-8">
               <span class="material-symbols-outlined text-secondary mb-4" style="font-size: 40px;">memory</span>
-              <h4 class="font-headline-sm mb-2">Technology &amp; Electronics</h4>
-              <p class="text-on-surface-variant font-body-sm">Sensitive handling and secure chain of custody for high-value tech components.</p>
+              <h3 class="font-headline-sm mb-2">Technology &amp; Electronics</h3>
+              <p class="text-on-surface-variant font-body-sm" style="color: gainsboro;">Sensitive handling and secure chain of custody for high-value tech components.</p>
             </div>
           </div>
           <div class="reveal md:col-span-1 relative rounded-xl overflow-hidden group" style="transition-delay: 100ms">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Pharmaceuticals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJJomhbJOUjSBbqdmHWQCLffPsL-lybpua2GZHdjW4QusM9yqH8R1wNiCmd3HhOXec5YnxwF-zzS9GD6hy56129sArkBlyWSt_s51xSURbtJfNKV6c2uqfHq-35tKWLdcbKSyKrB2JF7DKKM3Jb4cO4ydAO3dSeSXU5OUKKoLU3hbUBKm_8lBtBmggAj0babZRcRaMj-ZJ1HauXkXhlYKXPTWRlByiB1fdAL1403JhFMouZXnfstah">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Pharmaceuticals" src="../../assets/images/Pharmaceuticals.png">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-              <h4 class="font-title-lg mb-1">Pharmaceuticals</h4>
+              <h3 class="font-title-lg mb-1">Pharmaceuticals</h3>
             </div>
           </div>
           <div class="reveal md:col-span-1 relative rounded-xl overflow-hidden group" style="transition-delay: 200ms">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Oil and Gas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYmznWa1I5pIU3MubzcIn7VmmH0E1uYINAXC2w5MB8d83Wgv9qA0s0o2YCGUUktMV28bo4mxQleUvNMfKNO5z-NOZuqfTaYxnpWLzZj7114s1RJ9AVECp-Z8m28nwvT4Z1dj9zDIDef7b2-BKfhDzXhg29RoPAFIeOb9KcRP-ViuUzRxvCer9z3teL94WKbvlgpeE1WFAy2lk9s-YZiYM5yCzr6A1aOWYVZaGjGTiCLpBEfQQdQsAr">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Freight Forwarding & Logistics" src="../../assets/images/Freight Forwarding &Logistics.png">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-              <h4 class="font-title-lg mb-1">Oil &amp; Gas</h4>
+              <h3 class="font-title-lg mb-1">Freight Forwarding &amp; Logistics</h3>
             </div>
           </div>
           <div class="reveal md:col-span-2 relative rounded-xl overflow-hidden group" style="transition-delay: 300ms">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Retail and E-commerce" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqV4_489ZNe4Gd3kMQdnU__0RrBpvKOpcvW9piRckDl0JlNjLydnd2Nz5hrqrJDinicwnMFIItulYzbu6U0d97aONFOceW0CYAmF-TM-RjXe8pvEz9e8btec4erOuSAb-9EY-USXWwwYh_ZfVd6Bqb5k6PxtBpjxBT1ZadFvq16KMu8GvDvmW3SzzI94UTGMzZ-faovpX5BBKP2Lu0PLyjeTeQJ0CFU6T97tqxMOVsgK1Jo5yFWtmQ">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Retail and E-commerce" src="../../assets/images/construction.png">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-              <h4 class="font-headline-sm mb-1">Retail &amp; E-commerce</h4>
-              <p class="text-on-surface-variant font-body-sm">Last-mile fulfillment for the region's fastest-growing digital markets.</p>
+              <h3 class="font-headline-sm mb-1">Construction</h3>
+              <p class="text-on-surface-variant font-body-sm" style="color: gainsboro;">Expertise in managing large-scale construction logistics and site deliveries.</p>
             </div>
           </div>
         </div>
@@ -264,17 +384,7 @@
             </div>
           </div>
           <div class="reveal relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
-            <img class="w-full h-full object-cover" alt="Logistics manager in control room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-16iNK7UCiG65UuaVc3zeCzBUoAI4IxPDJLeuflV_GSTWHBdSO8RHAW9Wmm5WPza_I8YdTCv-1yzL6FSGfx2UXfSY2qXhakDCLkLsJyIbWzbroMW5mQrtBJpGEnIZi1da6whLHJtI8eYIAk5tSfzl0x1TrOqTQL0iAE3j4RJ7gYyJCb0Mvt0uFABydjjkqvyHXMSlHCmPN7J0H31QRiEtFOJPUyz64SYGVw7yZ9kLLFU40y3ZIiqS">
-            <div class="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-md p-6 rounded-xl border border-outline-variant/30">
-              <p class="font-body-lg text-primary italic mb-4">"Flame Logistics hasn't just moved our goods; they've optimized our entire regional growth strategy through their customs expertise."</p>
-              <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-full bg-secondary"></div>
-                <div>
-                  <div class="font-label-md text-primary">Director of Operations</div>
-                  <div class="text-body-sm text-on-surface-variant">Global Pharma Giant</div>
-                </div>
-              </div>
-            </div>
+            <img class="w-full h-full object-cover" alt="Logistics manager in control room" src="../../assets/images/Home.png">
           </div>
         </div>
       </div>

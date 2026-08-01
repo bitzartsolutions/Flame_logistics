@@ -101,7 +101,7 @@ complete honesty and integrity</p>
         </div>
         <div class="reveal relative group">
           <div class="absolute -inset-4 bg-secondary/5 rounded-2xl transform rotate-2 -z-10 group-hover:rotate-0 transition-transform duration-500"></div>
-          <div class="h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-3vOeBfj-0whSD39oUvsAQukHi166qS-MEka9fe9oZM7ydHs8Lw0AoOKwC6W1YLgARJTO4J2SOTP2qVHq79zB7hzDTpEhGqc3qphYbifprXs7UvFLvMu5b9rTSBfxVfuewjS4C2QeSB261NBVHzq5bgqe98KiKt53qhOi8KK4M0XOdyyRwr0p2rI-oLEituvA9nZ71XNctJWvhmPu5lZxgrtqDpfVFHZGx8SYLO1u9QSLQPOXJIGU')"></div>
+          <div class="h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('../../assets/images/About_page.png')"></div>
         </div>
       </div>
     </div>
@@ -157,27 +157,75 @@ complete honesty and integrity</p>
   <!-- Timeline -->
   <section class="py-24 bg-tertiary text-white overflow-hidden">
     <div class="max-w-[1280px] mx-auto px-[40px]">
-      <h2 class="font-headline-md text-headline-md text-white mb-16 reveal">The Journey of Flame</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="reveal group">
-          <div class="mb-8 p-4 bg-secondary inline-block rounded-lg font-bold text-headline-sm">2011</div>
-          <h4 class="text-white font-bold mb-2">Foundation</h4>
-          <p class="text-white/60 text-body-md">Established in Riyadh with a focus on local industrial transport.</p>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+        <h2 class="font-headline-md text-headline-md text-white">The Journey of Flame</h2>
+        <div class="flex gap-3">
+          <button type="button" id="journey-prev" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 hover:bg-secondary transition-colors flex items-center justify-center" aria-label="Previous milestone">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button type="button" id="journey-next" class="w-12 h-12 rounded-full border border-white/20 bg-white/10 hover:bg-secondary transition-colors flex items-center justify-center" aria-label="Next milestone">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
         </div>
-        <div class="reveal group">
-          <div class="mb-8 p-4 bg-white/10 group-hover:bg-secondary transition-colors inline-block rounded-lg font-bold text-headline-sm">2016</div>
-          <h4 class="text-white font-bold mb-2">GCC Expansion</h4>
-          <p class="text-white/60 text-body-md">Opened hubs in Dubai and Kuwait.</p>
-        </div>
-        <div class="reveal group">
-          <div class="mb-8 p-4 bg-white/10 group-hover:bg-secondary transition-colors inline-block rounded-lg font-bold text-headline-sm">2021</div>
-          <h4 class="text-white font-bold mb-2">Asset Dominance</h4>
-          <p class="text-white/60 text-body-md">Reached 500+ owned heavy-duty vehicles.</p>
-        </div>
-        <div class="reveal group">
-          <div class="mb-8 p-4 bg-white/10 group-hover:bg-secondary transition-colors inline-block rounded-lg font-bold text-headline-sm">2024</div>
-          <h4 class="text-white font-bold mb-2">Digital Transformation</h4>
-          <p class="text-white/60 text-body-md">AI-driven 24/7 command center launched.</p>
+      </div>
+
+      <div class="relative rounded-[32px] border border-white/10 bg-white/5 p-8 md:p-12 shadow-2xl">
+        <div class="absolute left-8 top-8 h-[calc(100%-4rem)] w-px bg-white/15 md:left-1/2 md:-translate-x-1/2"></div>
+        <div id="journey-slide" class="relative z-10">
+          <div class="journey-item active flex flex-col md:flex-row md:items-center gap-8">
+            <div class="md:w-1/2">
+              <div class="inline-block mb-6 rounded-lg bg-secondary px-4 py-2 font-bold text-headline-sm">2011</div>
+              <h3 class="text-white font-bold text-headline-sm mb-3">Foundation</h3>
+              <p class="text-white/70 text-body-md leading-relaxed">Established in Riyadh with a focus on local industrial transport and dependable regional service.</p>
+            </div>
+            <div class="md:w-1/2 rounded-2xl border border-white/10 bg-white/10 p-6">
+              <p class="text-white/80 text-body-md">The company began with a clear mission: deliver trusted logistics with precision, accountability, and a strong local presence.</p>
+            </div>
+          </div>
+
+          <div class="journey-item hidden flex flex-col md:flex-row md:items-center gap-8">
+            <div class="md:w-1/2">
+              <div class="inline-block mb-6 rounded-lg bg-white/10 px-4 py-2 font-bold text-headline-sm">2016</div>
+              <h3 class="text-white font-bold text-headline-sm mb-3">GCC Expansion</h3>
+              <p class="text-white/70 text-body-md leading-relaxed">Opened strategic hubs in Dubai and Kuwait to widen network coverage across the region.</p>
+            </div>
+            <div class="md:w-1/2 rounded-2xl border border-white/10 bg-white/10 p-6">
+              <p class="text-white/80 text-body-md">Regional growth accelerated through stronger cross-border capabilities and a deeper understanding of customer demands.</p>
+            </div>
+          </div>
+
+          <div class="journey-item hidden flex flex-col md:flex-row md:items-center gap-8">
+            <div class="md:w-1/2">
+              <div class="inline-block mb-6 rounded-lg bg-white/10 px-4 py-2 font-bold text-headline-sm">2021</div>
+              <h3 class="text-white font-bold text-headline-sm mb-3">Asset Dominance</h3>
+              <p class="text-white/70 text-body-md leading-relaxed">Reached 500+ owned heavy-duty vehicles and strengthened its logistics infrastructure.</p>
+            </div>
+            <div class="md:w-1/2 rounded-2xl border border-white/10 bg-white/10 p-6">
+              <p class="text-white/80 text-body-md">Flame scaled its operational control to become a dependable backbone for industrial and commercial freight movement.</p>
+            </div>
+          </div>
+
+          <div class="journey-item hidden flex flex-col md:flex-row md:items-center gap-8">
+            <div class="md:w-1/2">
+              <div class="inline-block mb-6 rounded-lg bg-white/10 px-4 py-2 font-bold text-headline-sm">2024</div>
+              <h3 class="text-white font-bold text-headline-sm mb-3">Digital Transformation</h3>
+              <p class="text-white/70 text-body-md leading-relaxed">Launched an AI-driven 24/7 command center to provide proactive visibility and support.</p>
+            </div>
+            <div class="md:w-1/2 rounded-2xl border border-white/10 bg-white/10 p-6">
+              <p class="text-white/80 text-body-md">Technology became a key pillar in improving precision, monitoring, and customer responsiveness across all operations.</p>
+            </div>
+          </div>
+
+          <div class="journey-item hidden flex flex-col md:flex-row md:items-center gap-8">
+            <div class="md:w-1/2">
+              <div class="inline-block mb-6 rounded-lg bg-white/10 px-4 py-2 font-bold text-headline-sm">2026</div>
+              <h3 class="text-white font-bold text-headline-sm mb-3">Global Leadership</h3>
+              <p class="text-white/70 text-body-md leading-relaxed">Recognized as a leader in GCC logistics, setting new benchmarks for reliability and service quality.</p>
+            </div>
+            <div class="md:w-1/2 rounded-2xl border border-white/10 bg-white/10 p-6">
+              <p class="text-white/80 text-body-md">Today, Flame continues to expand its capability and reputation as a trusted partner for complex supply chain challenges.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -224,5 +272,32 @@ complete honesty and integrity</p>
   
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = Array.from(document.querySelectorAll('.journey-item'));
+      const prevBtn = document.getElementById('journey-prev');
+      const nextBtn = document.getElementById('journey-next');
+      let activeIndex = 0;
+
+      function showSlide(index) {
+        items.forEach((item, itemIndex) => {
+          item.classList.toggle('hidden', itemIndex !== index);
+          item.classList.toggle('active', itemIndex === index);
+        });
+      }
+
+      prevBtn?.addEventListener('click', () => {
+        activeIndex = (activeIndex - 1 + items.length) % items.length;
+        showSlide(activeIndex);
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        activeIndex = (activeIndex + 1) % items.length;
+        showSlide(activeIndex);
+      });
+
+      showSlide(activeIndex);
+    });
+  </script>
 </body>
 </html>

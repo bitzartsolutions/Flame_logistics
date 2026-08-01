@@ -22,3 +22,13 @@
   outline: none !important;
   box-shadow: 0 0 0 2px rgba(188, 0, 12, 0.1);
 }
+
+/* GCC footprint tab states */
+.city-tab.is-active {
+  background-color: #bc000c;
+  color: #ffffff;
+}
+
+.city-tab:not(.is-active):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

@@ -33,3 +33,10 @@
 .services-process-step:last-child::after {
   display: none;
 }
+
+/* Keep the services hero stats block left-aligned */
+.services-stats-grid {
+  max-width: 360px;
+  margin-right: auto;
+  justify-items: start;
+}
