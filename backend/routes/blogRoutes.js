@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const { getBlogs, saveBlogs } = require('../src/storage');
+const { normalizeImageUrl } = require('../src/imageUrls');
+
+const baseUrl = process.env.PUBLIC_BASE_URL || 'http://localhost:4000';
+
+function normalizeBlogPost(post) {
+  if (!post) return null;
+
+  return {
+    ...post,
+    imageUrl: normalizeImageUrl(post.imageUrl, baseUrl)
+  };
+}
+
+function normalizeBlogPosts(posts) {
+  return (posts || []).map(normalizeBlogPost).filter(Boolean);
+}
 
 // GET /api/blog
 router.get('/', (req, res) => {
@@ -9,7 +25,7 @@ router.get('/', (req, res) => {
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let posts = getBlogs();
+    let posts = normalizeBlogPosts(getBlogs());
 
     if (category !== 'all') {
       posts = posts.filter((post) => (post.category || '').toLowerCase() === category);
@@ -45,14 +61,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   try {
     const postId = Number(req.params.id);
-    const posts = getBlogs();
+    const posts = normalizeBlogPosts(getBlogs());
     const post = posts.find((p) => Number(p.id) === postId);
 
     if (!post) {
       return res.status(404).json({ error: 'Blog post not found' });
     }
 
-    res.json(post);
+    res.json(normalizeBlogPost(post));
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch blog post' });
   }
@@ -69,6 +85,7 @@ router.post('/', (req, res) => {
 
     const posts = getBlogs();
     const newId = posts.length > 0 ? Math.max(...posts.map((p) => Number(p.id) || 0)) + 1 : 1;
+    const normalizedImageUrl = normalizeImageUrl(imageUrl, baseUrl).trim();
 
     const isFeatured = Boolean(featured);
 
@@ -87,7 +104,7 @@ router.post('/', (req, res) => {
       content: content ? content.trim() : excerpt.trim(),
       date: date || new Date().toISOString().split('T')[0],
       readTime: readTime ? readTime.trim() : '5 min read',
-      imageUrl: imageUrl.trim(),
+      imageUrl: normalizedImageUrl,
       featured: isFeatured,
       createdAt: new Date().toISOString()
     };

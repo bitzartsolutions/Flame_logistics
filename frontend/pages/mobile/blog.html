@@ -229,7 +229,7 @@
             }
         });
 
-        const BLOG_API_BASE = 'http://localhost:4000';
+        const BLOG_API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
         const chips = document.querySelectorAll('#blogCategoryChips button');
         const feedContainer = document.getElementById('mobileBlogFeed');
         const blogCount = document.getElementById('mobileBlogCount');
@@ -247,8 +247,17 @@
         }
 
         function renderFeatured(post) {
-            if (!post) return;
+            if (!post) {
+                featuredImage.style.backgroundImage = 'none';
+                featuredImage.classList.add('bg-surface-container');
+                featuredTitle.textContent = 'No articles published yet';
+                featuredExcerpt.textContent = 'Insights will appear here once content is added from the admin panel.';
+                featuredBadge.textContent = 'Updates coming soon';
+                return;
+            }
+
             featuredImage.style.backgroundImage = `url('${post.imageUrl}')`;
+            featuredImage.classList.remove('bg-surface-container');
             featuredTitle.textContent = post.title;
             featuredExcerpt.textContent = post.excerpt;
             featuredBadge.textContent = `${post.category} insight`;
@@ -258,7 +267,7 @@
             blogCount.textContent = `${posts.length} Articles`;
 
             if (!posts.length) {
-                feedContainer.innerHTML = '<p class="text-on-surface-variant">No blog posts found.</p>';
+                feedContainer.innerHTML = '<div class="rounded-2xl border border-dashed border-outline-variant/30 bg-surface-container-low p-8 text-center"><p class="text-on-surface-variant">No blog posts found yet.</p></div>';
                 return;
             }
 
@@ -302,8 +311,9 @@
                     throw new Error('Failed to load blog posts');
                 }
                 const data = await response.json();
-                const featured = data.featured || (data.items && data.items[0]);
-                blogPosts = (data.items || []).filter(post => !featured || post.id !== featured.id);
+                const items = Array.isArray(data.items) ? data.items : [];
+                const featured = data.featured || items[0] || null;
+                blogPosts = items.length > 1 ? items.filter(post => !featured || post.id !== featured.id) : items;
                 renderFeatured(featured);
                 applyBlogFilters();
             } catch (error) {

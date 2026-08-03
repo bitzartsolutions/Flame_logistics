@@ -42,13 +42,14 @@
     <!-- Filter Tabs -->
     <section class="py-8 bg-surface border-b border-outline-variant/30 sticky top-20 z-40">
       <div class="max-w-[1280px] mx-auto px-[40px]">
-        <div class="flex flex-wrap gap-3">
-          <button class="px-6 py-3 bg-primary text-white rounded-xl font-label-md transition-all">All</button>
-          <button class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Fleet</button>
-          <button class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Warehousing</button>
-          <button class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Port Operations</button>
-          <button class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Air Freight</button>
-          <button class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Projects</button>
+        <div class="flex flex-wrap gap-3" id="gallery-filter-tabs">
+          <button data-category="all" class="px-6 py-3 bg-primary text-white rounded-xl font-label-md transition-all">All</button>
+          <button data-category="transportation" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Transportation</button>
+          <button data-category="warehousing" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Warehousing</button>
+          <button data-category="projects" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Projects</button>
+          <button data-category="pharma" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Pharma</button>
+          <button data-category="customs" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Customs Clearance</button>
+          <button data-category="team" class="px-6 py-3 bg-surface-container text-on-surface rounded-xl font-label-md hover:bg-surface-container-high transition-all">Team</button>
         </div>
       </div>
     </section>
@@ -56,7 +57,7 @@
     <!-- Gallery Grid -->
     <section class="py-16 bg-surface">
       <div class="max-w-[1280px] mx-auto px-[40px]">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Gallery Item 1 -->
           <div class="reveal gallery-item group relative rounded-xl overflow-hidden shadow-lg cursor-pointer">
             <img class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700" alt="Fleet trucks at distribution center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-3u1AxQvzBeksv_2jkU_ZKJIBqbBR_lEyQ7s1zu5vMVuYD_6kNXRdVl-9LiaUpCOxpQE5L0HZ0bTzhDS2FCw_oUAfo-0BzQAVOzuluB_pa1nlXpFa_5Aeazw5GLVyTAd7zuQ-RjXkeAUkdSk-OdK1Adg0pZYSWtNYFkJZT9vSF98xNFealx1qlGAFbqD1J_Zn6bPC9baIKg7FMwXgD2nYDjzqFrAAYzs0xu4XYDASfn3jv7EiGcT0">
@@ -184,5 +185,72 @@
   
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
+  <script>
+    const API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterTabs = Array.from(document.querySelectorAll('#gallery-filter-tabs button'));
+    let galleryItems = [];
+
+    function setActiveTab(activeButton) {
+      filterTabs.forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle('bg-primary', isActive);
+        button.classList.toggle('text-white', isActive);
+        button.classList.toggle('bg-surface-container', !isActive);
+        button.classList.toggle('text-on-surface', !isActive);
+      });
+    }
+
+    function renderGallery(items) {
+      if (!items.length) {
+        galleryGrid.innerHTML = '<p class="text-on-surface-variant col-span-full">No gallery photos found for this category.</p>';
+        return;
+      }
+
+      galleryGrid.innerHTML = items.map((item, index) => {
+        const spanClass = index === 1 ? 'md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2' : '';
+        return `
+          <div class="reveal gallery-item group relative rounded-xl overflow-hidden shadow-lg cursor-pointer ${spanClass}">
+            <img class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 ${spanClass ? 'h-full min-h-72' : ''}" alt="${item.title}" src="${item.imageUrl}">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <span class="text-secondary font-label-md uppercase tracking-widest mb-2">${item.category || 'Gallery'}</span>
+              <h3 class="text-white font-title-lg">${item.title}</h3>
+              <p class="text-white/70 text-body-sm">${item.subtitle || item.description || 'Updated from the admin portal'}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function applyFilter(category) {
+      const normalized = (category || 'all').toLowerCase();
+      const filtered = normalized === 'all'
+        ? galleryItems
+        : galleryItems.filter((item) => (item.category || '').toLowerCase() === normalized);
+      renderGallery(filtered);
+    }
+
+    async function loadGallery() {
+      try {
+        const response = await fetch(`${API_BASE}/api/gallery`);
+        if (!response.ok) throw new Error('Unable to load gallery');
+        const data = await response.json();
+        galleryItems = data.items || [];
+        applyFilter('all');
+      } catch (error) {
+        galleryGrid.innerHTML = '<p class="text-error col-span-full">Unable to load gallery from the backend.</p>';
+      }
+    }
+
+    filterTabs.forEach((button) => {
+      button.addEventListener('click', () => {
+        setActiveTab(button);
+        applyFilter(button.dataset.category || 'all');
+      });
+    });
+
+    setActiveTab(filterTabs[0]);
+    loadGallery();
+  </script>
 </body>
 </html>

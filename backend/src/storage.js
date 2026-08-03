@@ -82,73 +82,7 @@ const defaultGalleryItems = [
 ];
 
 // Initial default blog posts
-const defaultBlogPosts = [
-  {
-    id: 1,
-    category: 'logistics',
-    title: 'Transforming the Riyadh Hub',
-    excerpt:
-      'How Flame Logistics is redefining the Middle Eastern supply chain with AI-driven orchestration.',
-    content: `Saudi Arabia is rapidly emerging as a central logistics nexus connecting Asia, Europe, and Africa. At Flame Logistics, we are leading this evolution by integrating smart fleet management, automated cold-storage facilities, and AI-powered predictive dispatching.\n\nOur state-of-the-art hub in Riyadh now handles over 50,000 movements monthly with 99.4% on-time delivery efficiency.`,
-    date: '2024-10-14',
-    readTime: '6 min read',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCe5SAhTld1qwElXfH5Ymhn2L1IaCyiWpHPsyEji3AOX-5Ne0LVwnhYijNptTLvCZF_2knXkh6Dc_M54zCrKjpEq5liGCA07VoVGxg4Gw_tHf9mXdilUXnwiVwPVdRN9iy9hwtYwrwGWcmBbNO_OfnxyAS5onmKYFkWVXTvRagG6hXOVPFxATXMxxzdnA14-aotzr8F__pTeyj2A9N0Mxlmihle5ISFufWRwmuzGJlddZfNdHVoprKlqDWRulB-jYCohRQiGPQUPt0',
-    featured: true
-  },
-  {
-    id: 2,
-    category: 'customs',
-    title: 'Navigating GCC Customs: 2024 Regulatory Update',
-    excerpt:
-      'Essential insights for enterprise logistics managers dealing with cross-border trade in the Gulf region.',
-    content: `Cross-border trade within the GCC requires meticulous compliance with evolving tariff structures and digital customs clearance protocols. This guide outlines key operational shifts introduced in late 2024, including pre-clearance filings and accelerated green-lane clearance.`,
-    date: '2024-10-12',
-    readTime: '5 min read',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBncGCyER_Dp9RBYgDIZEZKULQATPSvXVUU_SJ-Ib0MTu3Cxnamlu7BhRnbJS5NvFD9ZthJBpbVdnXnhnSH9981lzxEr1W-kWgxvJ_gglhn62OcyI_BMM-aUrDrjFIrFs0ZQX0mmwyJJZva2MOn7OT2TT5uNubRiSTpaWz7rHR-wQutLX6PFWbOV9FPVZGIxcBfKfyL1InN_0SokRLnk_Lk56Sd3BYl2lU1KyB6nBixyKaHj5CDwCcjthYOkDPmM37cK50eCy4YYX8',
-    featured: false
-  },
-  {
-    id: 3,
-    category: 'warehousing',
-    title: 'The Future of Cold Storage in Arid Climates',
-    excerpt:
-      'How solar-assisted cooling is revolutionizing the storage of pharmaceuticals across Saudi Arabia.',
-    content: `Maintaining thermal stability in extreme ambient temperatures requires pioneering engineering. Flame Logistics has deployed solar-assisted thermal backup systems across high-density storage complexes in Dammam and Riyadh.`,
-    date: '2024-10-08',
-    readTime: '8 min read',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCR2mqoKLg6otjlJLLICqOEVj5cjT4hjaGyB7d_fZi8ry8oU6RDsj6aQ53c2boypzyVakLv3xgtWP2EeZiX1jyRRePdTuzXoqK2txW-AP-yNnXYQdBV4U4YBKr3yu0c4LJQPL4Ej5LOkYC5dAovL-pPoi2TemAggyGWmopRD44YpWWsiajUAfnU7J2MNayd2zg3yS5lahfOga2NDP_DPzvYxTn4tVliHFhHOWtAADg9h1D-aDhpGsBWZuvSuCTE4rhJk5YgPz-rmXg',
-    featured: false
-  },
-  {
-    id: 4,
-    category: 'global network',
-    title: 'Expanding the Silk Road: Flame New Gateway',
-    excerpt:
-      'Strengthening the bond between East Asian manufacturing hubs and Saudi consumer markets through direct freight routes.',
-    content: `Direct ocean-to-land corridors reduce turnaround time by up to 4 days. Discover how our new multimodal agreements enhance throughput between Far East manufacturing ecosystems and GCC industrial parks.`,
-    date: '2024-10-05',
-    readTime: '4 min read',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCulLaUK6U_lNg1V91KqkVZ4UYlnpJplh3hpL95KTllBJxJofycTNX9c4sryercYw9S86sSnXpT7keMZtEEUHX8WYdQ3qYOscEG6l0wAe8Hig-pO2pzCls9RjzsiTni4i-GfdJ2byNeKr7EUQK9nkFbN1ti2MNcZhlj2jZViZJPfRHkcz1WH1knfhb3CRyykbcxoY4vMMeRSMLmLE6rXcPHwHvaOCNEIyvixoTrho-GyfaIFuLvg8CMK8HxtJpZMQYcv4x20llWPgM',
-    featured: false
-  },
-  {
-    id: 5,
-    category: 'transportation',
-    title: 'The Shift to Green Fleets in the GCC Region',
-    excerpt:
-      'Evaluating the feasibility and benefits of electric vehicle adoption for heavy-duty logistics in desert climates.',
-    content: `Sustainability meets heavy logistics. We evaluate performance data from our preliminary EV heavy-haul pilot tests across desert highway corridors.`,
-    date: '2024-09-20',
-    readTime: '7 min read',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDskU2Hdzjv8zGCVUvoZ1w4Nn-gVxSOM07yN7IQTWsCfbLDnl8zAwYHx8CWLyjU_eMTZh2DPxj3MjBe8s4cK1OM1Qmg7HhyBqWBZ21w8TTEdzimakFZevvMVPUjKmTgI4_zT3pKdHdxeRYJ3CvwyXxddrin9CGXKSf-iCZ7wM6Rwn1oA9M_nl0yKAFeEK5IiMCd4GfwKyl5Em3g4pWttKaocJMJ668dRX_MqSxaG--AC7lx_qUed_kJ',
-    featured: false
-  }
-];
+const defaultBlogPosts = [];
 
 function initDataStorage() {
   if (!fs.existsSync(DATA_DIR)) {

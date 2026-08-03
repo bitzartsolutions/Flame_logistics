@@ -150,11 +150,13 @@
 </section>
 <section class="bg-surface py-8 sticky top-[80px] z-40 border-b border-outline-variant/20">
 <div class="flex overflow-x-auto px-margin-mobile gap-3 hide-scrollbar" id="galleryFilterChips">
-<button class="active-filter whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 font-label-md transition-all" data-category="all">All Works</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="transportation">Transportation</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="warehousing">Warehousing</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="projects">Projects</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="pharma">Pharma Chain</button>
+<button class="active-filter whitespace-nowrap px-6 py-2 rounded-full border border-flame-red bg-flame-red text-white font-label-md transition-all" data-category="all">All</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="transportation">Transportation</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="warehousing">Warehousing</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="projects">Projects</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="pharma">Pharma</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="customs">Customs Clearance</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="team">Team</button>
 </div>
 </section>
 <section class="px-margin-mobile py-12 bg-white">
@@ -279,7 +281,7 @@
             mobileMenu.classList.add('translate-x-full');
         });
 
-        const API_BASE = 'http://localhost:4000';
+        const API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
         const galleryGrid = document.getElementById('galleryGrid');
         const filterButtons = document.querySelectorAll('#galleryFilterChips button');
         let galleryItems = [];
@@ -302,10 +304,10 @@
         }
 
         function applyFilter(category) {
-            const normalized = category.toLowerCase();
+            const normalized = (category || 'all').toLowerCase();
             const filtered = normalized === 'all'
                 ? galleryItems
-                : galleryItems.filter(item => item.category === normalized);
+                : galleryItems.filter(item => (item.category || '').toLowerCase() === normalized);
             renderGallery(filtered);
         }
 
@@ -325,8 +327,12 @@
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active-filter', 'text-white'));
-                btn.classList.add('active-filter');
+                filterButtons.forEach(b => {
+                    b.classList.remove('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
+                    b.classList.add('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
+                });
+                btn.classList.remove('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
+                btn.classList.add('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
                 applyFilter(btn.dataset.category || 'all');
             });
         });

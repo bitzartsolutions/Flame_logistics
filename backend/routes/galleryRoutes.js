@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getGallery, saveGallery } = require('../src/storage');
+const { normalizeImageUrl } = require('../src/imageUrls');
 
 // GET /api/gallery
 router.get('/', (req, res) => {
@@ -53,7 +54,7 @@ router.post('/', (req, res) => {
       title: title.trim(),
       subtitle: subtitle ? subtitle.trim() : 'Showcase',
       description: description ? description.trim() : '',
-      imageUrl: imageUrl.trim(),
+      imageUrl: normalizeImageUrl(imageUrl, process.env.PUBLIC_BASE_URL || 'http://localhost:4000').trim(),
       mobileAspect: mobileAspect || 'aspect-square',
       desktopLayout: desktopLayout || 'default',
       createdAt: new Date().toISOString()
@@ -77,7 +78,7 @@ router.delete('/:id', (req, res) => {
 
     const exists = items.some((i) => Number(i.id) === itemId);
     if (!exists) {
-      return res.status(404).json({ error: 'Gallery item not found' });
+      return res.status(404).json({ error: 'Gallery item not found', id: req.params.id });
     }
 
     items = items.filter((i) => Number(i.id) !== itemId);
@@ -86,7 +87,7 @@ router.delete('/:id', (req, res) => {
     res.json({ message: 'Gallery item deleted successfully', id: itemId });
   } catch (error) {
     console.error('Error deleting gallery item:', error);
-    res.status(500).json({ error: 'Failed to delete gallery item' });
+    res.status(500).json({ error: 'Failed to delete gallery item', detail: error.message });
   }
 });
 
