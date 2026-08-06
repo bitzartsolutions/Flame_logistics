@@ -155,7 +155,10 @@ function toggleFooterAccordion(id) {
 window.toggleFooterAccordion = toggleFooterAccordion;
 
 function getMobileApiBase() {
-  return window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:4000';
+  }
+  return 'https://flame-logistics-backend.vercel.app';
 }
 
 async function handleMobileQuoteFormSubmit(event) {

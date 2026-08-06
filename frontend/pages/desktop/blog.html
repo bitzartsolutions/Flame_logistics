@@ -66,7 +66,9 @@
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-    const BLOG_API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+    const BLOG_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:4000'
+      : 'https://flame-logistics-backend.vercel.app';
     const featuredBlog = document.getElementById('featuredBlog');
     const blogPostsGrid = document.getElementById('blogPostsGrid');
 

@@ -445,7 +445,9 @@
 
   <!-- JavaScript logic -->
   <script>
-    const BACKEND_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+    const BACKEND_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:4000'
+      : 'https://flame-logistics-backend.vercel.app';
     const API_BASE = `${BACKEND_BASE}/api`;
     const HEALTH_URL = `${BACKEND_BASE}/health`;
     let uploadedGalleryUrl = '';

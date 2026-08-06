@@ -44,7 +44,7 @@
             Experience industrial precision and technological superiority in global trade. Riyadh-based, GCC connected, delivering excellence at every node of your supply chain.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a class="bg-secondary text-white px-8 py-4 rounded-xl font-title-lg hover:bg-on-secondary-fixed-variant transition-all active:scale-95 flex items-center gap-2">
+            <a href="/pages/desktop/services.html" class="bg-secondary text-white px-8 py-4 rounded-xl font-title-lg hover:bg-on-secondary-fixed-variant transition-all active:scale-95 flex items-center gap-2">
               Explore Services
               <span class="material-symbols-outlined">trending_flat</span>
             </a>
@@ -444,7 +444,9 @@
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-    const API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:4000'
+      : 'https://flame-logistics-backend.vercel.app';
     const galleryGrid = document.getElementById('operations-gallery-grid');
 
     function renderGallery(items) {

@@ -191,7 +191,9 @@
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-    const API_BASE = window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:4000'
+      : 'https://flame-logistics-backend.vercel.app';
     const galleryGrid = document.getElementById('gallery-grid');
     const filterTabs = Array.from(document.querySelectorAll('#gallery-filter-tabs button'));
     let galleryItems = [];
