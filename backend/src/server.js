@@ -44,7 +44,7 @@ cloudinary.config({
 const app = express();
 const PORT = process.env.PORT || 4000;
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'password';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Flame@2026!';
 const adminSessions = new Map();
 const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'info@flamelogistics.net';
@@ -105,7 +105,7 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 }
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(UPLOADS_DIR));
