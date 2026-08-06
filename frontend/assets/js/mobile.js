@@ -154,9 +154,80 @@ function toggleFooterAccordion(id) {
 // Make toggleFooterAccordion available globally
 window.toggleFooterAccordion = toggleFooterAccordion;
 
+function getMobileApiBase() {
+  return window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+}
+
+async function handleMobileQuoteFormSubmit(event) {
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalLabel = submitButton ? submitButton.innerHTML : '';
+
+  event.preventDefault();
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Sending...';
+  }
+
+  try {
+    const formData = new FormData(form);
+    const fileInput = form.querySelector('input[type="file"]');
+    if (fileInput && fileInput.files && fileInput.files.length) {
+      Array.from(fileInput.files).forEach((file) => {
+        formData.append('attachments', file, file.name);
+      });
+    }
+
+    const payload = Object.fromEntries(formData.entries());
+    payload.formType = form.getAttribute('data-form-type') || 'quote';
+    payload.page = window.location.pathname;
+
+    const response = await fetch(`${getMobileApiBase()}/api/contact`, {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(result.error || 'Unable to send your inquiry.');
+    }
+
+    if (submitButton) {
+      submitButton.innerHTML = 'Request Received';
+      submitButton.classList.remove('bg-flame-red');
+      submitButton.classList.add('bg-green-600');
+    }
+
+    form.reset();
+  } catch (error) {
+    console.error('Mobile quote form submission failed:', error);
+    if (submitButton) {
+      submitButton.innerHTML = 'Try again';
+    }
+  } finally {
+    if (submitButton) {
+      window.setTimeout(() => {
+        submitButton.innerHTML = originalLabel;
+        submitButton.disabled = false;
+        submitButton.classList.remove('bg-green-600');
+        submitButton.classList.add('bg-flame-red');
+      }, 2000);
+    }
+  }
+}
+
+function bindMobileQuoteForms() {
+  document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.removeEventListener('submit', handleMobileQuoteFormSubmit);
+    form.addEventListener('submit', handleMobileQuoteFormSubmit);
+  });
+}
+
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
   loadMobileHeader();
   loadMobileFooter();
   loadMobileBottomNav();
+  bindMobileQuoteForms();
 });

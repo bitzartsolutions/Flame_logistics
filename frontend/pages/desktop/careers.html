@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Careers | Flame Logistics</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="/assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+  <div id="header-placeholder"></div>
+
+  <main class="pt-20">
+    <section class="relative overflow-hidden bg-primary text-white">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(188,0,12,0.28),_transparent_42%)]"></div>
+      <div class="relative mx-auto max-w-[1280px] px-[40px] py-24 lg:py-32">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em]">Careers at Flame Logistics</span>
+          <h1 class="mt-6 font-display-lg text-display-lg leading-tight">Join a team building the next era of regional logistics.</h1>
+          <p class="mt-6 max-w-2xl text-lg text-white/80">We are growing our operations across the GCC and looking for passionate professionals who thrive in fast-moving, high-standard environments.</p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#open-roles" class="rounded-xl bg-secondary px-8 py-4 font-bold text-white transition hover:bg-secondary-hover">View Open Roles</a>
+            <a href="#apply" class="rounded-xl border border-white/30 px-8 py-4 font-bold text-white transition hover:bg-white/10">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-[1280px] px-[40px] py-16 lg:py-24">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="rounded-3xl border border-outline-variant/40 bg-white p-8 shadow-sm">
+          <h2 class="font-headline-md text-headline-md text-primary">Why work with Flame?</h2>
+          <p class="mt-4 text-lg text-on-surface-variant">From multimodal transport to warehousing, customs and last-mile deliveries, our people are central to how we keep critical supply chains moving.</p>
+          <div class="mt-8 grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl bg-surface p-5">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined">groups</span></div>
+              <h3 class="mt-4 font-title-lg text-title-lg text-primary">Growth Culture</h3>
+              <p class="mt-2 text-sm text-on-surface-variant">Collaborate with multidisciplinary teams and grow your expertise in a high-impact environment.</p>
+            </div>
+            <div class="rounded-2xl bg-surface p-5">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined">workspace_premium</span></div>
+              <h3 class="mt-4 font-title-lg text-title-lg text-primary">Operational Excellence</h3>
+              <p class="mt-2 text-sm text-on-surface-variant">Work on projects that require precision, accountability and strong cross-functional execution.</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-outline-variant/40 bg-primary/95 p-8 text-white shadow-sm">
+          <h3 class="font-title-lg text-title-lg">What we value</h3>
+          <ul class="mt-6 space-y-4 text-sm text-white/80">
+            <li class="flex gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Customer-first thinking</li>
+            <li class="flex gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Ownership and reliability</li>
+            <li class="flex gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Strong communication across teams</li>
+            <li class="flex gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Commitment to safe and compliant operations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="open-roles" class="mx-auto max-w-[1280px] px-[40px] py-8 lg:py-16">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Open Positions</p>
+          <h2 class="mt-2 font-headline-md text-headline-md text-primary">Current Opportunities</h2>
+        </div>
+        <a href="#apply" class="hidden text-sm font-semibold text-primary hover:text-secondary md:block">Apply for a role</a>
+      </div>
+      <div id="jobs-list" class="mt-8 grid gap-6 lg:grid-cols-2"></div>
+    </section>
+
+    <section id="apply" class="mx-auto max-w-[1280px] px-[40px] pb-20 pt-8 lg:pt-16">
+      <div class="rounded-3xl border border-outline-variant/40 bg-white p-8 shadow-sm">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Application Form</p>
+          <h2 class="mt-2 font-headline-md text-headline-md text-primary">Apply for a position</h2>
+          <p class="mt-4 text-base text-on-surface-variant">Submit your details and a brief note. Our recruitment team will review your application and contact you if your profile matches an opening.</p>
+        </div>
+        <form id="career-application-form" class="mt-8 grid gap-6 md:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Full name *</label>
+            <input type="text" id="fullName" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Email *</label>
+            <input type="email" id="email" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Phone</label>
+            <input type="tel" id="phone" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Position / Role *</label>
+            <input type="text" id="applyingFor" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Location</label>
+            <input type="text" id="location" placeholder="Riyadh, Jeddah, Dubai..." class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Experience</label>
+            <input type="text" id="experience" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Expected salary</label>
+            <input type="text" id="expectedSalary" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Notice period</label>
+            <input type="text" id="noticePeriod" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Message *</label>
+            <textarea id="message" rows="5" required class="w-full rounded-xl border border-gray-300 px-4 py-3"></textarea>
+          </div>
+          <div class="md:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 pt-4">
+            <p class="text-sm text-gray-500">Applications are reviewed by our HR team. Please include any relevant links or supporting information in your message.</p>
+            <button type="submit" class="rounded-xl bg-secondary px-6 py-3 font-bold text-white transition hover:bg-secondary-hover">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    const API_BASE = window.location.port === '3000' ? 'http://localhost:4000/api' : '/api';
+
+    async function loadJobs() {
+      const container = document.getElementById('jobs-list');
+      try {
+        const response = await fetch(`${API_BASE}/careers`);
+        if (!response.ok) throw new Error('Unable to load roles');
+        const data = await response.json();
+        const jobs = Array.isArray(data.items) ? data.items : [];
+
+        if (!jobs.length) {
+          container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-surface p-8 text-center text-gray-500">No openings are available right now. Please check back soon.</div>';
+          return;
+        }
+
+        container.innerHTML = jobs.map((job) => `
+          <article class="rounded-3xl border border-outline-variant/40 bg-white p-7 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="font-title-lg text-title-lg text-primary">${job.title}</h3>
+                <p class="mt-1 text-sm text-secondary font-semibold">${job.department}</p>
+              </div>
+              <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">${job.jobType || 'Full Time'}</span>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-3 text-sm text-on-surface-variant">
+              <span class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-base">location_on</span> ${job.location || 'Riyadh'}</span>
+              <span class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-base">work_history</span> ${job.experience || 'Mid-Level'}</span>
+              <span class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-base">payments</span> ${job.salary || 'Competitive'}</span>
+            </div>
+            <p class="mt-5 text-sm leading-7 text-on-surface-variant">${job.description || ''}</p>
+            ${job.requirements && job.requirements.length ? `<ul class="mt-5 space-y-2 text-sm text-on-surface-variant">${job.requirements.map((item) => `<li class="flex gap-2"><span class="material-symbols-outlined text-secondary">check_circle</span>${item}</li>`).join('')}</ul>` : ''}
+            ${job.deadline ? `<p class="mt-5 text-sm font-semibold text-primary">Application deadline: ${job.deadline}</p>` : ''}
+          </article>
+        `).join('');
+      } catch (error) {
+        container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-surface p-8 text-center text-gray-500">Unable to load careers data right now.</div>';
+      }
+    }
+
+    document.getElementById('career-application-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = event.target.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+
+      const payload = {
+        fullName: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        applyingFor: document.getElementById('applyingFor').value.trim(),
+        location: document.getElementById('location').value.trim(),
+        experience: document.getElementById('experience').value.trim(),
+        expectedSalary: document.getElementById('expectedSalary').value.trim(),
+        noticePeriod: document.getElementById('noticePeriod').value.trim(),
+        message: document.getElementById('message').value.trim()
+      };
+
+      try {
+        const response = await fetch(`${API_BASE}/careers/apply`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || 'Application submission failed');
+        event.target.reset();
+        alert(data.message || 'Application submitted successfully.');
+      } catch (error) {
+        alert(error.message || 'Application submission failed.');
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadJobs();
+    });
+  </script>
+</body>
+</html>

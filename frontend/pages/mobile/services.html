@@ -181,6 +181,16 @@
 </div>
 </div>
 <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
+<div class="relative">
+<img src="../../assets/images/Land_transp.png" alt="Last Mile Delivery Services" class="w-full h-40 object-cover rounded-t-xl mb-4">
+<div class="absolute top-3 left-3 inline-flex items-center rounded-full bg-secondary/10 px-3 py-1 text-sm font-semibold text-secondary backdrop-blur-sm">Launching Soon</div>
+</div>
+<div class="px-5 pb-5">
+<h4 class="font-title-lg text-trust-navy">Last Mile Delivery Services</h4>
+<p class="font-body-md text-on-surface-variant mt-1">A new flagship division launching this month for fast, reliable final-stop deliveries across urban and industrial locations.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEDwSm82JzzMIjpV5kxVBTRoO8AJGw22kCKXHdWukvNoBqOs_LLsJwog4i2rRPkPIBEjda7A8iBNnfqI_IoGAqkF7dZhfoN1QwW18Hqun6qRXvqRF67G4DeK1c-DWJ7Qn4KNV7GR6hOQ7wIymMOHg1LAFcbX9bo3IUrTDTOVvU8-CIotZmfpHZNRAeDtbXmF8oNmhf53DipqCLiYQC_w3SlTSLZXrbebSK4JV2LUKc8sPwjtf7MJ1AACCxE7CHG_WJT4jDstKwhno" alt="Project Cargo Handling" class="w-full h-40 object-cover rounded-t-xl mb-4">
 <div class="px-5 pb-5">
 <h4 class="font-title-lg text-trust-navy">Project Cargo Handling</h4>
@@ -372,23 +382,34 @@
 <h3 class="font-headline-md mb-4">Accelerate Your Supply Chain</h3>
 <p class="text-outline-variant">Request a high-performance logistics audit from our technical team.</p>
 </div>
-<form class="space-y-4">
+<form class="space-y-4 contact-form" data-form-type="services" enctype="multipart/form-data">
 <div>
-<input class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Full Name" type="text">
+<input name="fullName" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Full Name" type="text" required>
 </div>
 <div>
-<input class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Corporate Email" type="email">
+<input name="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Corporate Email" type="email" required>
 </div>
 <div>
-<select class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white">
-<option class="text-industrial-black">Primary Interest</option>
+<select name="service" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white">
+<option value="" class="text-industrial-black">Primary Interest</option>
 <option class="text-industrial-black">Land Transportation</option>
 <option class="text-industrial-black">Warehousing</option>
 <option class="text-industrial-black">Customs Clearance</option>
 </select>
 </div>
 <div>
-<textarea class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Brief Description of Logistics Challenge" rows="4"></textarea>
+<textarea name="message" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Brief Description of Logistics Challenge" rows="4" required></textarea>
+</div>
+<div>
+<label class="block text-sm text-outline-variant mb-2">UPLOAD MANIFEST OR PROJECT DETAIL</label>
+<div class="relative">
+<input type="file" id="file-upload-mobile-services" name="attachments" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple onchange="document.getElementById('mobile-services-file-list').textContent = Array.from(this.files).map(f => f.name).join(', ') || 'No file selected'"/>
+<label for="file-upload-mobile-services" class="w-full px-5 py-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center gap-3 cursor-pointer text-white/80">
+<span class="material-symbols-outlined text-flame-red">upload_file</span>
+<span>Click to upload files</span>
+</label>
+</div>
+<p id="mobile-services-file-list" class="text-xs text-outline-variant mt-2">No file selected</p>
 </div>
 <button class="w-full bg-flame-red text-white font-headline-sm py-5 rounded-xl mt-4 active:scale-95 transition-transform shadow-lg shadow-flame-red/20" type="submit">
                     Send Inquiry

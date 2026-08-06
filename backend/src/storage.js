@@ -4,6 +4,7 @@ const path = require('path');
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const GALLERY_FILE = path.join(DATA_DIR, 'gallery.json');
 const BLOG_FILE = path.join(DATA_DIR, 'blogs.json');
+const JOBS_FILE = path.join(DATA_DIR, 'jobs.json');
 
 // Initial default gallery items
 const defaultGalleryItems = [
@@ -84,6 +85,8 @@ const defaultGalleryItems = [
 // Initial default blog posts
 const defaultBlogPosts = [];
 
+const defaultJobs = [];
+
 function initDataStorage() {
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -95,6 +98,10 @@ function initDataStorage() {
 
   if (!fs.existsSync(BLOG_FILE)) {
     fs.writeFileSync(BLOG_FILE, JSON.stringify(defaultBlogPosts, null, 2));
+  }
+
+  if (!fs.existsSync(JOBS_FILE)) {
+    fs.writeFileSync(JOBS_FILE, JSON.stringify(defaultJobs, null, 2));
   }
 }
 
@@ -130,9 +137,27 @@ function saveBlogs(posts) {
   fs.writeFileSync(BLOG_FILE, JSON.stringify(posts, null, 2));
 }
 
+function getJobs() {
+  initDataStorage();
+  try {
+    const raw = fs.readFileSync(JOBS_FILE, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error('Error reading jobs file:', err);
+    return defaultJobs;
+  }
+}
+
+function saveJobs(jobs) {
+  initDataStorage();
+  fs.writeFileSync(JOBS_FILE, JSON.stringify(jobs, null, 2));
+}
+
 module.exports = {
   getGallery,
   saveGallery,
   getBlogs,
-  saveBlogs
+  saveBlogs,
+  getJobs,
+  saveJobs
 };

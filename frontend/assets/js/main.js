@@ -91,6 +91,75 @@ window.addEventListener("scroll", () => {
   handleNavScroll();
 });
 
+function getApiBase() {
+  return window.location.port === '3000' ? 'http://localhost:4000' : window.location.origin;
+}
+
+async function handleQuoteFormSubmit(event) {
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalLabel = submitButton ? submitButton.innerHTML : '';
+
+  event.preventDefault();
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Sending...';
+  }
+
+  try {
+    const formData = new FormData(form);
+    const fileInput = form.querySelector('input[type="file"]');
+    if (fileInput && fileInput.files && fileInput.files.length) {
+      Array.from(fileInput.files).forEach((file) => {
+        formData.append('attachments', file, file.name);
+      });
+    }
+
+    const payload = Object.fromEntries(formData.entries());
+    payload.formType = form.getAttribute('data-form-type') || 'quote';
+    payload.page = window.location.pathname;
+
+    const response = await fetch(`${getApiBase()}/api/contact`, {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(result.error || 'Unable to send your inquiry.');
+    }
+
+    if (submitButton) {
+      submitButton.innerHTML = 'Request Received';
+      submitButton.classList.remove('bg-primary', 'bg-secondary');
+      submitButton.classList.add('bg-green-600');
+    }
+
+    form.reset();
+  } catch (error) {
+    console.error('Quote form submission failed:', error);
+    if (submitButton) {
+      submitButton.innerHTML = 'Try again';
+    }
+  } finally {
+    if (submitButton) {
+      window.setTimeout(() => {
+        submitButton.innerHTML = originalLabel;
+        submitButton.disabled = false;
+        submitButton.classList.remove('bg-green-600');
+      }, 2000);
+    }
+  }
+}
+
+function bindQuoteForms() {
+  document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.removeEventListener('submit', handleQuoteFormSubmit);
+    form.addEventListener('submit', handleQuoteFormSubmit);
+  });
+}
+
 // ===== DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize components
@@ -101,6 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initial nav scroll check
   handleNavScroll();
+
+  bindQuoteForms();
 });
 
 // ===== Utility Functions =====
@@ -167,5 +238,7 @@ window.FlameLogistics = {
   formatNumber,
   debounce,
   throttle,
-  setActiveNavLink
+  setActiveNavLink,
+  bindQuoteForms,
+  handleQuoteFormSubmit
 };
