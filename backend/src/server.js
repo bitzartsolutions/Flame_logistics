@@ -302,11 +302,19 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/careers', careersRoutes);
 
 // Health Check
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', service: 'flame-logistics-backend', message: 'Backend is running.' });
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'flame-logistics-backend' });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+// Start Server (local development only)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Backend running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
