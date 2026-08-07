@@ -2,10 +2,15 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const cloudinary = require('cloudinary').v2;
+const { put, head } = require('@vercel/blob');
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 
 function hasCloudinaryConfig() {
   return Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET);
+}
+
+function hasBlobConfig() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
 function getDataDir() {
@@ -150,6 +155,41 @@ function initDataStorage() {
   }
 }
 
+async function readBlobJson(fileName) {
+  if (!hasBlobConfig()) return null;
+
+  try {
+    const blob = await head(`data/${fileName}`, { token: process.env.BLOB_READ_WRITE_TOKEN });
+    if (!blob || !blob.url) return null;
+
+    const response = await fetch(blob.url);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.warn(`Unable to read ${fileName} from Vercel Blob`, error.message);
+    return null;
+  }
+}
+
+async function writeBlobJson(fileName, data) {
+  if (!hasBlobConfig()) return false;
+
+  try {
+    const payload = JSON.stringify(data, null, 2);
+    const blob = await put(`data/${fileName}`, payload, {
+      access: 'public',
+      contentType: 'application/json',
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      overwrite: true
+    });
+
+    return Boolean(blob && blob.url);
+  } catch (error) {
+    console.warn(`Unable to write ${fileName} to Vercel Blob`, error.message);
+    return false;
+  }
+}
+
 async function readRemoteJson(fileName) {
   if (!hasCloudinaryConfig()) return null;
 
@@ -206,6 +246,15 @@ async function writeRemoteJson(fileName, data) {
 async function getGallery() {
   initDataStorage();
   try {
+    const blobItems = await readBlobJson('gallery.json');
+    if (blobItems) {
+      const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
+      return (Array.isArray(blobItems) ? blobItems : []).map((item) => ({
+        ...item,
+        imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
+      }));
+    }
+
     const remoteItems = await readRemoteJson('gallery.json');
     if (remoteItems) {
       const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
@@ -230,6 +279,11 @@ async function getGallery() {
 
 async function saveGallery(items) {
   initDataStorage();
+  const blobSaved = await writeBlobJson('gallery.json', items);
+  if (blobSaved) {
+    return;
+  }
+
   const remoteSaved = await writeRemoteJson('gallery.json', items);
   if (remoteSaved) {
     return;
@@ -240,6 +294,11 @@ async function saveGallery(items) {
 async function getBlogs() {
   initDataStorage();
   try {
+    const blobPosts = await readBlobJson('blogs.json');
+    if (blobPosts) {
+      return blobPosts;
+    }
+
     const remotePosts = await readRemoteJson('blogs.json');
     if (remotePosts) {
       return remotePosts;
@@ -255,6 +314,11 @@ async function getBlogs() {
 
 async function saveBlogs(posts) {
   initDataStorage();
+  const blobSaved = await writeBlobJson('blogs.json', posts);
+  if (blobSaved) {
+    return;
+  }
+
   const remoteSaved = await writeRemoteJson('blogs.json', posts);
   if (remoteSaved) {
     return;
@@ -265,6 +329,11 @@ async function saveBlogs(posts) {
 async function getJobs() {
   initDataStorage();
   try {
+    const blobJobs = await readBlobJson('jobs.json');
+    if (blobJobs) {
+      return blobJobs;
+    }
+
     const remoteJobs = await readRemoteJson('jobs.json');
     if (remoteJobs) {
       return remoteJobs;
@@ -280,6 +349,11 @@ async function getJobs() {
 
 async function saveJobs(jobs) {
   initDataStorage();
+  const blobSaved = await writeBlobJson('jobs.json', jobs);
+  if (blobSaved) {
+    return;
+  }
+
   const remoteSaved = await writeRemoteJson('jobs.json', jobs);
   if (remoteSaved) {
     return;

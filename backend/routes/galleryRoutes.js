@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getGallery, saveGallery } = require('../src/storage');
+const { getContent, createContent, deleteContent } = require('../src/contentStore');
 const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 // GET /api/gallery
@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let results = await getGallery();
+    let results = await getContent('gallery');
 
     if (category !== 'all') {
       results = results.filter((item) => (item.category || '').toLowerCase() === category);
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Title and imageUrl are required' });
     }
 
-    const items = await getGallery();
+    const items = await getContent('gallery', []);
     const newId = items.length > 0 ? Math.max(...items.map((i) => Number(i.id) || 0)) + 1 : 1;
 
     const newItem = {
@@ -57,13 +57,15 @@ router.post('/', async (req, res) => {
       imageUrl: normalizeImageUrl(imageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim(),
       mobileAspect: mobileAspect || 'aspect-square',
       desktopLayout: desktopLayout || 'default',
-      createdAt: new Date().toISOString()
+      created_at: new Date().toISOString()
     };
 
-    items.unshift(newItem); // Add new item to the beginning
-    await saveGallery(items);
+    const savedItem = await createContent('gallery', newItem);
+    if (!savedItem) {
+      return res.status(500).json({ error: 'Failed to save gallery item' });
+    }
 
-    res.status(201).json({ message: 'Gallery image added successfully', item: newItem });
+    res.status(201).json({ message: 'Gallery image added successfully', item: savedItem });
   } catch (error) {
     console.error('Error adding gallery image:', error);
     res.status(500).json({ error: 'Failed to add gallery image' });
@@ -74,15 +76,11 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const itemId = Number(req.params.id);
-    let items = await getGallery();
+    const deleted = await deleteContent('gallery', itemId);
 
-    const exists = items.some((i) => Number(i.id) === itemId);
-    if (!exists) {
+    if (!deleted) {
       return res.status(404).json({ error: 'Gallery item not found', id: req.params.id });
     }
-
-    items = items.filter((i) => Number(i.id) !== itemId);
-    await saveGallery(items);
 
     res.json({ message: 'Gallery item deleted successfully', id: itemId });
   } catch (error) {

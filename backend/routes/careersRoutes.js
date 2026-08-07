@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
-const { getJobs, saveJobs } = require('../src/storage');
+const { getContent, createContent, deleteContent } = require('../src/contentStore');
 
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'info@flamelogistics.net';
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@flamelogistics.net';
@@ -47,7 +47,7 @@ function normalizeJobs(jobs) {
 router.get('/', async (req, res) => {
   try {
     const activeOnly = (req.query.active || 'true').toString().toLowerCase() !== 'false';
-    let jobs = normalizeJobs(await getJobs());
+    let jobs = normalizeJobs(await getContent('careers', []));
 
     if (activeOnly) {
       jobs = jobs.filter((job) => job.active);
@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
-    const jobs = normalizeJobs(await getJobs());
+    const jobs = normalizeJobs(await getContent('careers', []));
     const job = jobs.find((item) => Number(item.id) === jobId);
 
     if (!job) {
@@ -83,7 +83,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Title, department, location, and description are required.' });
     }
 
-    const jobs = await getJobs();
+    const jobs = await getContent('careers', []);
     const newId = jobs.length > 0 ? Math.max(...jobs.map((item) => Number(item.id) || 0)) + 1 : 1;
     const normalizedRequirements = Array.isArray(requirements)
       ? requirements.map((item) => String(item).trim()).filter(Boolean)
@@ -104,10 +104,16 @@ router.post('/', async (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    jobs.unshift(newJob);
-    await saveJobs(jobs);
+    const savedJob = await createContent('careers', {
+      ...newJob,
+      created_at: new Date().toISOString()
+    });
 
-    res.status(201).json({ message: 'Job opening added successfully', item: newJob });
+    if (!savedJob) {
+      return res.status(500).json({ error: 'Failed to save job opening' });
+    }
+
+    res.status(201).json({ message: 'Job opening added successfully', item: savedJob });
   } catch (error) {
     console.error('Error adding job opening:', error);
     res.status(500).json({ error: 'Failed to add job opening' });
@@ -117,15 +123,17 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
-    let jobs = await getJobs();
+    let jobs = await getContent('careers', []);
 
     const exists = jobs.some((job) => Number(job.id) === jobId);
     if (!exists) {
       return res.status(404).json({ error: 'Job opening not found' });
     }
 
-    jobs = jobs.filter((job) => Number(job.id) !== jobId);
-    await saveJobs(jobs);
+    const deleted = await deleteContent('careers', jobId);
+    if (!deleted) {
+      return res.status(404).json({ error: 'Job opening not found' });
+    }
 
     res.json({ message: 'Job opening deleted successfully', id: jobId });
   } catch (error) {

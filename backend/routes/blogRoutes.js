@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getBlogs, saveBlogs } = require('../src/storage');
+const { getContent, createContent, deleteContent } = require('../src/contentStore');
 const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 function getBaseUrl(req) {
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let posts = normalizeBlogPosts(await getBlogs(), req);
+    let posts = normalizeBlogPosts(await getContent('blog', []), req);
 
     if (category !== 'all') {
       posts = posts.filter((post) => (post.category || '').toLowerCase() === category);
@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const postId = Number(req.params.id);
-    const posts = normalizeBlogPosts(await getBlogs(), req);
+    const posts = normalizeBlogPosts(await getContent('blog', []), req);
     const post = posts.find((p) => Number(p.id) === postId);
 
     if (!post) {
@@ -85,7 +85,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Title, excerpt, and imageUrl are required' });
     }
 
-    const posts = await getBlogs();
+    const posts = await getContent('blog', []);
     const newId = posts.length > 0 ? Math.max(...posts.map((p) => Number(p.id) || 0)) + 1 : 1;
     const normalizedImageUrl = normalizeImageUrl(imageUrl, getBaseUrl(req)).trim();
 
@@ -108,13 +108,15 @@ router.post('/', async (req, res) => {
       readTime: readTime ? readTime.trim() : '5 min read',
       imageUrl: normalizedImageUrl,
       featured: isFeatured,
-      createdAt: new Date().toISOString()
+      created_at: new Date().toISOString()
     };
 
-    posts.unshift(newPost); // Place at top of feed
-    await saveBlogs(posts);
+    const savedPost = await createContent('blog', newPost);
+    if (!savedPost) {
+      return res.status(500).json({ error: 'Failed to save blog post' });
+    }
 
-    res.status(201).json({ message: 'Blog post added successfully', item: newPost });
+    res.status(201).json({ message: 'Blog post added successfully', item: savedPost });
   } catch (error) {
     console.error('Error adding blog post:', error);
     res.status(500).json({ error: 'Failed to add blog post' });
@@ -125,21 +127,17 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const postId = Number(req.params.id);
-    let posts = await getBlogs();
+    let posts = await getContent('blog', []);
 
     const exists = posts.some((p) => Number(p.id) === postId);
     if (!exists) {
       return res.status(404).json({ error: 'Blog post not found' });
     }
 
-    posts = posts.filter((p) => Number(p.id) !== postId);
-    
-    // If deleted post was featured, set first remaining post as featured
-    if (posts.length > 0 && !posts.some((p) => p.featured)) {
-      posts[0].featured = true;
+    const deleted = await deleteContent('blog', postId);
+    if (!deleted) {
+      return res.status(404).json({ error: 'Blog post not found' });
     }
-
-    await saveBlogs(posts);
 
     res.json({ message: 'Blog post deleted successfully', id: postId });
   } catch (error) {
