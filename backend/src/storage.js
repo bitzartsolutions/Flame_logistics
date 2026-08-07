@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 
@@ -8,14 +9,31 @@ function getDataDir() {
     return path.resolve(configuredDir);
   }
 
+  if (process.env.VERCEL || process.env.VERCEL_URL || process.env.VERCEL_ENV) {
+    return path.join(os.tmpdir(), 'flame-logistics-data');
+  }
+
   return path.join(__dirname, '..', 'data');
 }
 
-function getDataFile(fileName) {
-  const dataDir = getDataDir();
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+function ensureDataDir(dirPath) {
+  try {
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    return dirPath;
+  } catch (error) {
+    if (error && error.code === 'EROFS') {
+      const fallbackDir = path.join(os.tmpdir(), 'flame-logistics-data');
+      fs.mkdirSync(fallbackDir, { recursive: true });
+      return fallbackDir;
+    }
+    throw error;
   }
+}
+
+function getDataFile(fileName) {
+  const dataDir = ensureDataDir(getDataDir());
   return path.join(dataDir, fileName);
 }
 
