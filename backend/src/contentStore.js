@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { getSupabaseClient } = require('./supabase');
+const { getGallery, saveGallery, getBlogs, saveBlogs, getJobs, saveJobs } = require('./storage');
 
 const TABLES = {
   gallery: 'gallery_items',
@@ -94,66 +95,115 @@ function normalizeRow(row) {
   return row;
 }
 
+function getStorageAdapter(table) {
+  switch (table) {
+    case 'gallery':
+      return { get: getGallery, save: saveGallery };
+    case 'blog':
+      return { get: getBlogs, save: saveBlogs };
+    case 'careers':
+      return { get: getJobs, save: saveJobs };
+    default:
+      return null;
+  }
+}
+
 async function getContent(table, fallback = []) {
   const client = getSupabaseClient();
-  if (!client) {
-    return getLocalTableData(table, fallback);
-  }
-
-  try {
-    const { data, error } = await client.from(TABLES[table]).select('*').order('created_at', { ascending: false });
-    if (error) {
-      console.error(`Supabase read failed for ${table}`, error.message);
-      return getLocalTableData(table, fallback);
+  if (client) {
+    try {
+      const { data, error } = await client.from(TABLES[table]).select('*').order('created_at', { ascending: false });
+      if (error) {
+        console.error(`Supabase read failed for ${table}`, error.message);
+      } else {
+        return (data || []).map(normalizeRow);
+      }
+    } catch (error) {
+      console.error(`Supabase read error for ${table}`, error.message);
     }
-
-    return (data || []).map(normalizeRow);
-  } catch (error) {
-    console.error(`Supabase read error for ${table}`, error.message);
-    return getLocalTableData(table, fallback);
   }
+
+  const adapter = getStorageAdapter(table);
+  if (adapter) {
+    try {
+      const data = await adapter.get();
+      if (Array.isArray(data)) {
+        return data;
+      }
+    } catch (error) {
+      console.warn(`Storage adapter read failed for ${table}`, error.message);
+    }
+  }
+
+  return getLocalTableData(table, fallback);
 }
 
 async function createContent(table, payload) {
   const client = getSupabaseClient();
-  if (!client) {
-    const items = getLocalTableData(table, []);
-    const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
-    items.push(nextPayload);
-    const saved = saveLocalTableData(table, items);
-    return saved ? nextPayload : null;
-  }
-
-  try {
-    const { data, error } = await client.from(TABLES[table]).insert(payload).select().single();
-    if (error) {
-      console.error(`Supabase create failed for ${table}`, error.message);
-      const items = getLocalTableData(table, []);
-      const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
-      items.push(nextPayload);
-      const saved = saveLocalTableData(table, items);
-      return saved ? nextPayload : null;
+  if (client) {
+    try {
+      const { data, error } = await client.from(TABLES[table]).insert(payload).select().single();
+      if (error) {
+        console.error(`Supabase create failed for ${table}`, error.message);
+      } else {
+        return data;
+      }
+    } catch (error) {
+      console.error(`Supabase create error for ${table}`, error.message);
     }
-
-    return data;
-  } catch (error) {
-    console.error(`Supabase create error for ${table}`, error.message);
-    const items = getLocalTableData(table, []);
-    const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
-    items.push(nextPayload);
-    const saved = saveLocalTableData(table, items);
-    return saved ? nextPayload : null;
   }
+
+  const adapter = getStorageAdapter(table);
+  if (adapter) {
+    try {
+      const items = await adapter.get();
+      const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
+      const nextItems = Array.isArray(items) ? [...items, nextPayload] : [nextPayload];
+      await adapter.save(nextItems);
+      return nextPayload;
+    } catch (error) {
+      console.warn(`Storage adapter write failed for ${table}`, error.message);
+    }
+  }
+
+  const items = getLocalTableData(table, []);
+  const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
+  items.push(nextPayload);
+  const saved = saveLocalTableData(table, items);
+  return saved ? nextPayload : null;
 }
 
 async function deleteContent(table, id) {
   const client = getSupabaseClient();
-  if (!client) {
-    const items = getLocalTableData(table, []);
-    const filteredItems = items.filter((item) => Number(item.id) !== Number(id));
-    saveLocalTableData(table, filteredItems);
-    return filteredItems.length !== items.length;
+  if (client) {
+    try {
+      const { error } = await client.from(TABLES[table]).delete().eq('id', id);
+      if (error) {
+        console.error(`Supabase delete failed for ${table}`, error.message);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      console.error(`Supabase delete error for ${table}`, error.message);
+    }
   }
+
+  const adapter = getStorageAdapter(table);
+  if (adapter) {
+    try {
+      const items = await adapter.get();
+      const filteredItems = Array.isArray(items) ? items.filter((item) => Number(item.id) !== Number(id)) : [];
+      await adapter.save(filteredItems);
+      return filteredItems.length !== (Array.isArray(items) ? items.length : 0);
+    } catch (error) {
+      console.warn(`Storage adapter delete failed for ${table}`, error.message);
+    }
+  }
+
+  const items = getLocalTableData(table, []);
+  const filteredItems = items.filter((item) => Number(item.id) !== Number(id));
+  saveLocalTableData(table, filteredItems);
+  return filteredItems.length !== items.length;
 
   try {
     const { error } = await client.from(TABLES[table]).delete().eq('id', id);

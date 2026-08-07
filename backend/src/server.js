@@ -12,6 +12,7 @@ const blogRoutes = require('../routes/blogRoutes');
 const careersRoutes = require('../routes/careersRoutes');
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 const { saveUploadedFiles } = require('./contactAttachments');
+const { printSupabaseSetupHint } = require('./supabaseSetup');
 
 function loadEnvFile(envPath) {
   if (!fs.existsSync(envPath)) return;
@@ -34,6 +35,7 @@ function loadEnvFile(envPath) {
 }
 
 loadEnvFile(path.join(__dirname, '..', '.env'));
+printSupabaseSetupHint();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
