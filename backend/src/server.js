@@ -306,6 +306,15 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', service: 'flame-logistics-backend', message: 'Backend is running.' });
 });
 
+app.get(['/admin', '/admin.html'], (req, res) => {
+  const adminPagePath = path.join(__dirname, '..', '..', 'frontend', 'pages', 'admin.html');
+  if (fs.existsSync(adminPagePath)) {
+    return res.sendFile(adminPagePath);
+  }
+
+  return res.status(404).send('Admin page not found');
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'flame-logistics-backend' });
 });

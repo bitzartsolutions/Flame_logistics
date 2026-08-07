@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/pages/admin.html"
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/pages/admin.html"
+    }
+  ]
+}
