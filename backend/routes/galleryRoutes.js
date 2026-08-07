@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getGallery, saveGallery } = require('../src/storage');
-const { normalizeImageUrl } = require('../src/imageUrls');
+const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 // GET /api/gallery
 router.get('/', (req, res) => {
@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
       title: title.trim(),
       subtitle: subtitle ? subtitle.trim() : 'Showcase',
       description: description ? description.trim() : '',
-      imageUrl: normalizeImageUrl(imageUrl, process.env.PUBLIC_BASE_URL || 'http://localhost:4000').trim(),
+      imageUrl: normalizeImageUrl(imageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim(),
       mobileAspect: mobileAspect || 'aspect-square',
       desktopLayout: desktopLayout || 'default',
       createdAt: new Date().toISOString()

@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 const galleryRoutes = require('../routes/galleryRoutes');
 const blogRoutes = require('../routes/blogRoutes');
 const careersRoutes = require('../routes/careersRoutes');
-const { normalizeImageUrl } = require('./imageUrls');
+const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 const { saveUploadedFiles } = require('./contactAttachments');
 
 function loadEnvFile(envPath) {
@@ -134,7 +134,7 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
       return res.status(400).json({ error: 'No image file uploaded' });
     }
 
-    const publicBaseUrl = process.env.PUBLIC_BASE_URL || 'http://localhost:4000';
+    const publicBaseUrl = getPublicBaseUrl(req, 'http://localhost:4000');
 
     const saveLocally = () => {
       const safeName = `${Date.now()}-${req.file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
@@ -143,7 +143,16 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
       return normalizeImageUrl(`/uploads/${safeName}`, publicBaseUrl);
     };
 
-    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    const hasCloudinaryConfig = Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET);
+    const isVercelProd = Boolean(process.env.VERCEL || process.env.VERCEL_URL);
+
+    if (!hasCloudinaryConfig) {
+      if (isVercelProd) {
+        return res.status(500).json({
+          error: 'Production image uploads are not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in the backend environment.'
+        });
+      }
+
       const publicUrl = saveLocally();
       return res.json({
         message: 'Image uploaded successfully',
@@ -196,7 +205,7 @@ app.post('/api/contact', contactUpload.array('attachments', 5), async (req, res)
       return res.status(400).json({ error: 'Please provide your full name, email address, and message.' });
     }
 
-    const savedFiles = saveUploadedFiles(req.files || [], UPLOADS_DIR, process.env.PUBLIC_BASE_URL || 'http://localhost:4000');
+    const savedFiles = saveUploadedFiles(req.files || [], UPLOADS_DIR, getPublicBaseUrl(req, 'http://localhost:4000'));
     const transporter = createMailTransporter();
     if (!transporter) {
       console.error('SMTP configuration missing. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in backend/.env');
