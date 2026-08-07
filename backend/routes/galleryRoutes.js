@@ -55,8 +55,6 @@ router.post('/', async (req, res) => {
       subtitle: subtitle ? subtitle.trim() : 'Showcase',
       description: description ? description.trim() : '',
       imageUrl: normalizeImageUrl(imageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim(),
-      mobileAspect: mobileAspect || 'aspect-square',
-      desktopLayout: desktopLayout || 'default',
       created_at: new Date().toISOString()
     };
 

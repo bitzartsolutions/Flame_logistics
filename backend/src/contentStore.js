@@ -95,6 +95,36 @@ function normalizeRow(row) {
   return row;
 }
 
+function sanitizePayloadForTable(table, payload) {
+  if (!payload || typeof payload !== 'object') {
+    return payload;
+  }
+
+  const allowedColumns = {
+    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'created_at'],
+    blog: ['id', 'title', 'content', 'excerpt', 'category', 'imageUrl', 'date', 'readTime', 'featured', 'created_at'],
+    careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'requirements', 'deadline', 'active', 'created_at']
+  };
+
+  const columns = allowedColumns[table];
+  if (!columns) {
+    return payload;
+  }
+
+  const sanitizedPayload = {};
+  columns.forEach((column) => {
+    if (payload[column] !== undefined) {
+      sanitizedPayload[column] = payload[column];
+    }
+  });
+
+  if (payload.created_at !== undefined && sanitizedPayload.created_at === undefined) {
+    sanitizedPayload.created_at = payload.created_at;
+  }
+
+  return sanitizedPayload;
+}
+
 function getStorageAdapter(table) {
   switch (table) {
     case 'gallery':
@@ -140,9 +170,10 @@ async function getContent(table, fallback = []) {
 
 async function createContent(table, payload) {
   const client = getSupabaseClient();
+  const safePayload = sanitizePayloadForTable(table, payload);
   if (client) {
     try {
-      const { data, error } = await client.from(TABLES[table]).insert(payload).select().single();
+      const { data, error } = await client.from(TABLES[table]).insert(safePayload).select().single();
       if (error) {
         console.error(`Supabase create failed for ${table}`, error.message);
       } else {
@@ -157,7 +188,7 @@ async function createContent(table, payload) {
   if (adapter) {
     try {
       const items = await adapter.get();
-      const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
+      const nextPayload = { ...safePayload, created_at: safePayload.created_at || new Date().toISOString() };
       const nextItems = Array.isArray(items) ? [...items, nextPayload] : [nextPayload];
       await adapter.save(nextItems);
       return nextPayload;
@@ -167,7 +198,7 @@ async function createContent(table, payload) {
   }
 
   const items = getLocalTableData(table, []);
-  const nextPayload = { ...payload, created_at: payload.created_at || new Date().toISOString() };
+  const nextPayload = { ...safePayload, created_at: safePayload.created_at || new Date().toISOString() };
   items.push(nextPayload);
   const saved = saveLocalTableData(table, items);
   return saved ? nextPayload : null;
