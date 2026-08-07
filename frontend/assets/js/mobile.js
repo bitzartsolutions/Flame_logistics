@@ -156,7 +156,9 @@ window.toggleFooterAccordion = toggleFooterAccordion;
 
 function getMobileApiBase() {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return 'http://localhost:4000';
+    return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:4000'
+      : 'https://flame-logistics-backend.vercel.app';
   }
   return 'https://flame-logistics-backend.vercel.app';
 }

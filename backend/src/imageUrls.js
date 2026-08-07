@@ -4,7 +4,7 @@ function getPublicBaseUrl(req, fallbackBaseUrl = '') {
     return configuredBaseUrl.replace(/\/$/, '');
   }
 
-  const vercelUrl = process.env.VERCEL_URL || '';
+  const vercelUrl = process.env.VERCEL_URL || process.env.VERCEL_BRANCH_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || '';
   if (vercelUrl) {
     const protocol = process.env.VERCEL_ENV === 'development' ? 'http' : 'https';
     return `${protocol}://${vercelUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}`;

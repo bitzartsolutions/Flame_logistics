@@ -136,6 +136,8 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
     const publicBaseUrl = getPublicBaseUrl(req, 'http://localhost:4000');
 
+    const dataUrl = `data:${req.file.mimetype || 'image/png'};base64,${req.file.buffer.toString('base64')}`;
+
     const saveLocally = () => {
       const safeName = `${Date.now()}-${req.file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
       const filePath = path.join(UPLOADS_DIR, safeName);
@@ -148,8 +150,10 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
     if (!hasCloudinaryConfig) {
       if (isVercelProd) {
-        return res.status(500).json({
-          error: 'Production image uploads are not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in the backend environment.'
+        return res.json({
+          message: 'Image uploaded successfully',
+          imageUrl: dataUrl,
+          filename: req.file.originalname
         });
       }
 
@@ -175,11 +179,10 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
         filename: req.file.originalname
       });
     } catch (cloudinaryError) {
-      console.warn('Cloudinary upload failed, using local fallback.', cloudinaryError.message);
-      const publicUrl = saveLocally();
+      console.warn('Cloudinary upload failed, using inline fallback.', cloudinaryError.message);
       res.json({
         message: 'Image uploaded successfully',
-        imageUrl: publicUrl,
+        imageUrl: dataUrl,
         filename: req.file.originalname
       });
     }

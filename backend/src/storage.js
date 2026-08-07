@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 
 function getDataDir() {
   const configuredDir = process.env.DATA_DIR || process.env.STORAGE_DIR;
@@ -130,7 +131,12 @@ function getGallery() {
   initDataStorage();
   try {
     const raw = fs.readFileSync(getDataFile('gallery.json'), 'utf8');
-    return JSON.parse(raw);
+    const items = JSON.parse(raw);
+    const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
+    return (Array.isArray(items) ? items : []).map((item) => ({
+      ...item,
+      imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
+    }));
   } catch (err) {
     console.error('Error reading gallery file:', err);
     return defaultGalleryItems;

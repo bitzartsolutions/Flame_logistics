@@ -3,7 +3,6 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const { getJobs, saveJobs } = require('../src/storage');
 
-const baseUrl = process.env.PUBLIC_BASE_URL || 'http://localhost:4000';
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'info@flamelogistics.net';
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@flamelogistics.net';
 

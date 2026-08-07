@@ -1,21 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const { getBlogs, saveBlogs } = require('../src/storage');
-const { normalizeImageUrl } = require('../src/imageUrls');
+const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
-const baseUrl = process.env.PUBLIC_BASE_URL || 'http://localhost:4000';
+function getBaseUrl(req) {
+  return getPublicBaseUrl(req, 'http://localhost:4000');
+}
 
-function normalizeBlogPost(post) {
+function normalizeBlogPost(post, req) {
   if (!post) return null;
 
   return {
     ...post,
-    imageUrl: normalizeImageUrl(post.imageUrl, baseUrl)
+    imageUrl: normalizeImageUrl(post.imageUrl, getBaseUrl(req))
   };
 }
 
-function normalizeBlogPosts(posts) {
-  return (posts || []).map(normalizeBlogPost).filter(Boolean);
+function normalizeBlogPosts(posts, req) {
+  return (posts || []).map((post) => normalizeBlogPost(post, req)).filter(Boolean);
 }
 
 // GET /api/blog
@@ -25,7 +27,7 @@ router.get('/', (req, res) => {
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let posts = normalizeBlogPosts(getBlogs());
+    let posts = normalizeBlogPosts(getBlogs(), req);
 
     if (category !== 'all') {
       posts = posts.filter((post) => (post.category || '').toLowerCase() === category);
@@ -61,14 +63,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   try {
     const postId = Number(req.params.id);
-    const posts = normalizeBlogPosts(getBlogs());
+    const posts = normalizeBlogPosts(getBlogs(), req);
     const post = posts.find((p) => Number(p.id) === postId);
 
     if (!post) {
       return res.status(404).json({ error: 'Blog post not found' });
     }
 
-    res.json(normalizeBlogPost(post));
+    res.json(normalizeBlogPost(post, req));
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch blog post' });
   }
@@ -85,7 +87,7 @@ router.post('/', (req, res) => {
 
     const posts = getBlogs();
     const newId = posts.length > 0 ? Math.max(...posts.map((p) => Number(p.id) || 0)) + 1 : 1;
-    const normalizedImageUrl = normalizeImageUrl(imageUrl, baseUrl).trim();
+    const normalizedImageUrl = normalizeImageUrl(imageUrl, getBaseUrl(req)).trim();
 
     const isFeatured = Boolean(featured);
 
