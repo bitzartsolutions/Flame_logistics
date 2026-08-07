@@ -1,7 +1,12 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
+
+function hasCloudinaryConfig() {
+  return Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET);
+}
 
 function getDataDir() {
   const configuredDir = process.env.DATA_DIR || process.env.STORAGE_DIR;
@@ -145,9 +150,71 @@ function initDataStorage() {
   }
 }
 
-function getGallery() {
+async function readRemoteJson(fileName) {
+  if (!hasCloudinaryConfig()) return null;
+
+  try {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+
+    const publicId = `flame-logistics-data/${fileName.replace(/\.json$/, '')}`;
+    const publicUrl = cloudinary.url(publicId, { resource_type: 'raw', secure: true });
+    const response = await fetch(publicUrl);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.warn(`Unable to read ${fileName} from Cloudinary`, error.message);
+    return null;
+  }
+}
+
+async function writeRemoteJson(fileName, data) {
+  if (!hasCloudinaryConfig()) return false;
+
+  try {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET
+    });
+
+    const payload = JSON.stringify(data, null, 2);
+    const publicId = fileName.replace(/\.json$/, '');
+
+    await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream({
+        folder: 'flame-logistics-data',
+        resource_type: 'raw',
+        public_id: publicId,
+        overwrite: true
+      }, (error, result) => {
+        if (error) return reject(error);
+        resolve(result);
+      }).end(Buffer.from(payload, 'utf8'));
+    });
+
+    return true;
+  } catch (error) {
+    console.warn(`Unable to write ${fileName} to Cloudinary`, error.message);
+    return false;
+  }
+}
+
+async function getGallery() {
   initDataStorage();
   try {
+    const remoteItems = await readRemoteJson('gallery.json');
+    if (remoteItems) {
+      const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
+      return (Array.isArray(remoteItems) ? remoteItems : []).map((item) => ({
+        ...item,
+        imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
+      }));
+    }
+
     const raw = fs.readFileSync(getDataFile('gallery.json'), 'utf8');
     const items = JSON.parse(raw);
     const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
@@ -161,14 +228,23 @@ function getGallery() {
   }
 }
 
-function saveGallery(items) {
+async function saveGallery(items) {
   initDataStorage();
+  const remoteSaved = await writeRemoteJson('gallery.json', items);
+  if (remoteSaved) {
+    return;
+  }
   fs.writeFileSync(getDataFile('gallery.json'), JSON.stringify(items, null, 2));
 }
 
-function getBlogs() {
+async function getBlogs() {
   initDataStorage();
   try {
+    const remotePosts = await readRemoteJson('blogs.json');
+    if (remotePosts) {
+      return remotePosts;
+    }
+
     const raw = fs.readFileSync(getDataFile('blogs.json'), 'utf8');
     return JSON.parse(raw);
   } catch (err) {
@@ -177,14 +253,23 @@ function getBlogs() {
   }
 }
 
-function saveBlogs(posts) {
+async function saveBlogs(posts) {
   initDataStorage();
+  const remoteSaved = await writeRemoteJson('blogs.json', posts);
+  if (remoteSaved) {
+    return;
+  }
   fs.writeFileSync(getDataFile('blogs.json'), JSON.stringify(posts, null, 2));
 }
 
-function getJobs() {
+async function getJobs() {
   initDataStorage();
   try {
+    const remoteJobs = await readRemoteJson('jobs.json');
+    if (remoteJobs) {
+      return remoteJobs;
+    }
+
     const raw = fs.readFileSync(getDataFile('jobs.json'), 'utf8');
     return JSON.parse(raw);
   } catch (err) {
@@ -193,8 +278,12 @@ function getJobs() {
   }
 }
 
-function saveJobs(jobs) {
+async function saveJobs(jobs) {
   initDataStorage();
+  const remoteSaved = await writeRemoteJson('jobs.json', jobs);
+  if (remoteSaved) {
+    return;
+  }
   fs.writeFileSync(getDataFile('jobs.json'), JSON.stringify(jobs, null, 2));
 }
 

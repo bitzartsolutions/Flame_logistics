@@ -44,10 +44,10 @@ function normalizeJobs(jobs) {
   return (jobs || []).map(normalizeJob).filter(Boolean);
 }
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const activeOnly = (req.query.active || 'true').toString().toLowerCase() !== 'false';
-    let jobs = normalizeJobs(getJobs());
+    let jobs = normalizeJobs(await getJobs());
 
     if (activeOnly) {
       jobs = jobs.filter((job) => job.active);
@@ -59,10 +59,10 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
-    const jobs = normalizeJobs(getJobs());
+    const jobs = normalizeJobs(await getJobs());
     const job = jobs.find((item) => Number(item.id) === jobId);
 
     if (!job) {
@@ -75,7 +75,7 @@ router.get('/:id', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { title, department, location, jobType, experience, salary, description, requirements, deadline, active } = req.body || {};
 
@@ -83,7 +83,7 @@ router.post('/', (req, res) => {
       return res.status(400).json({ error: 'Title, department, location, and description are required.' });
     }
 
-    const jobs = getJobs();
+    const jobs = await getJobs();
     const newId = jobs.length > 0 ? Math.max(...jobs.map((item) => Number(item.id) || 0)) + 1 : 1;
     const normalizedRequirements = Array.isArray(requirements)
       ? requirements.map((item) => String(item).trim()).filter(Boolean)
@@ -105,7 +105,7 @@ router.post('/', (req, res) => {
     };
 
     jobs.unshift(newJob);
-    saveJobs(jobs);
+    await saveJobs(jobs);
 
     res.status(201).json({ message: 'Job opening added successfully', item: newJob });
   } catch (error) {
@@ -114,10 +114,10 @@ router.post('/', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
-    let jobs = getJobs();
+    let jobs = await getJobs();
 
     const exists = jobs.some((job) => Number(job.id) === jobId);
     if (!exists) {
@@ -125,7 +125,7 @@ router.delete('/:id', (req, res) => {
     }
 
     jobs = jobs.filter((job) => Number(job.id) !== jobId);
-    saveJobs(jobs);
+    await saveJobs(jobs);
 
     res.json({ message: 'Job opening deleted successfully', id: jobId });
   } catch (error) {

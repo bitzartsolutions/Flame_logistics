@@ -21,13 +21,13 @@ function normalizeBlogPosts(posts, req) {
 }
 
 // GET /api/blog
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const category = (req.query.category || 'all').toString().toLowerCase();
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let posts = normalizeBlogPosts(getBlogs(), req);
+    let posts = normalizeBlogPosts(await getBlogs(), req);
 
     if (category !== 'all') {
       posts = posts.filter((post) => (post.category || '').toLowerCase() === category);
@@ -60,10 +60,10 @@ router.get('/', (req, res) => {
 });
 
 // GET /api/blog/:id
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const postId = Number(req.params.id);
-    const posts = normalizeBlogPosts(getBlogs(), req);
+    const posts = normalizeBlogPosts(await getBlogs(), req);
     const post = posts.find((p) => Number(p.id) === postId);
 
     if (!post) {
@@ -77,7 +77,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/blog
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { title, category, excerpt, content, imageUrl, readTime, date, featured } = req.body;
 
@@ -85,7 +85,7 @@ router.post('/', (req, res) => {
       return res.status(400).json({ error: 'Title, excerpt, and imageUrl are required' });
     }
 
-    const posts = getBlogs();
+    const posts = await getBlogs();
     const newId = posts.length > 0 ? Math.max(...posts.map((p) => Number(p.id) || 0)) + 1 : 1;
     const normalizedImageUrl = normalizeImageUrl(imageUrl, getBaseUrl(req)).trim();
 
@@ -112,7 +112,7 @@ router.post('/', (req, res) => {
     };
 
     posts.unshift(newPost); // Place at top of feed
-    saveBlogs(posts);
+    await saveBlogs(posts);
 
     res.status(201).json({ message: 'Blog post added successfully', item: newPost });
   } catch (error) {
@@ -122,10 +122,10 @@ router.post('/', (req, res) => {
 });
 
 // DELETE /api/blog/:id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const postId = Number(req.params.id);
-    let posts = getBlogs();
+    let posts = await getBlogs();
 
     const exists = posts.some((p) => Number(p.id) === postId);
     if (!exists) {
@@ -139,7 +139,7 @@ router.delete('/:id', (req, res) => {
       posts[0].featured = true;
     }
 
-    saveBlogs(posts);
+    await saveBlogs(posts);
 
     res.json({ message: 'Blog post deleted successfully', id: postId });
   } catch (error) {

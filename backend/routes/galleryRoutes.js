@@ -4,13 +4,13 @@ const { getGallery, saveGallery } = require('../src/storage');
 const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 // GET /api/gallery
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const category = (req.query.category || 'all').toString().toLowerCase();
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let results = getGallery();
+    let results = await getGallery();
 
     if (category !== 'all') {
       results = results.filter((item) => (item.category || '').toLowerCase() === category);
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 });
 
 // POST /api/gallery
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { title, subtitle, category, description, imageUrl, mobileAspect, desktopLayout } = req.body;
 
@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
       return res.status(400).json({ error: 'Title and imageUrl are required' });
     }
 
-    const items = getGallery();
+    const items = await getGallery();
     const newId = items.length > 0 ? Math.max(...items.map((i) => Number(i.id) || 0)) + 1 : 1;
 
     const newItem = {
@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
     };
 
     items.unshift(newItem); // Add new item to the beginning
-    saveGallery(items);
+    await saveGallery(items);
 
     res.status(201).json({ message: 'Gallery image added successfully', item: newItem });
   } catch (error) {
@@ -71,10 +71,10 @@ router.post('/', (req, res) => {
 });
 
 // DELETE /api/gallery/:id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const itemId = Number(req.params.id);
-    let items = getGallery();
+    let items = await getGallery();
 
     const exists = items.some((i) => Number(i.id) === itemId);
     if (!exists) {
@@ -82,7 +82,7 @@ router.delete('/:id', (req, res) => {
     }
 
     items = items.filter((i) => Number(i.id) !== itemId);
-    saveGallery(items);
+    await saveGallery(items);
 
     res.json({ message: 'Gallery item deleted successfully', id: itemId });
   } catch (error) {
