@@ -15,6 +15,13 @@ test('turns local upload paths into absolute URLs', () => {
   assert.equal(normalizeImageUrl('/uploads/test.png', 'http://localhost:4000'), 'http://localhost:4000/uploads/test.png');
 });
 
+test('rewrites localhost absolute URLs to the current public host', () => {
+  assert.equal(
+    normalizeImageUrl('http://localhost:4000/uploads/test.png', 'https://flame-logistics-backend.vercel.app'),
+    'https://flame-logistics-backend.vercel.app/uploads/test.png'
+  );
+});
+
 test('prefers Vercel hostnames for public URLs', () => {
   const previous = process.env.VERCEL_URL;
   const previousBase = process.env.PUBLIC_BASE_URL;

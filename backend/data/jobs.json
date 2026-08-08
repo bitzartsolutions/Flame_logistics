@@ -1,18 +1,17 @@
 [
   {
-    "id": 1,
-    "title": "Manager",
-    "department": "Flame",
-    "location": "Jeddah",
-    "jobType": "Full time",
-    "experience": "2",
-    "salary": "600",
-    "description": "Job",
+    "id": 999,
+    "title": "Operations Analyst",
+    "department": "Operations",
+    "location": "Riyadh",
+    "jobType": "Full Time",
+    "experience": "2+ years",
+    "salary": "Competitive",
+    "description": "Support day-to-day logistics coordination.",
     "requirements": [
-      "job"
+      "Excellent communication skills"
     ],
-    "deadline": "31 Aug 2026",
     "active": true,
-    "createdAt": "2026-08-06T16:10:20.942Z"
+    "createdAt": "2026-08-08T13:52:27.558Z"
   }
 ]

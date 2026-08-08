@@ -7,6 +7,10 @@
     {
       "source": "/admin.html",
       "destination": "/pages/admin.html"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://flame-logistics-backend.vercel.app/api/$1"
     }
   ]
 }

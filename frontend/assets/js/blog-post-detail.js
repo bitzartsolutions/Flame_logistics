@@ -3,7 +3,7 @@
 
   const BLOG_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? 'http://localhost:4000'
-    : 'https://flame-logistics-backend.vercel.app';
+    : '';
 
   const params = new URLSearchParams(window.location.search);
   const postId = params.get('id');

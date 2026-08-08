@@ -93,11 +93,9 @@ window.addEventListener("scroll", () => {
 
 function getApiBase() {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://localhost:4000'
-      : 'https://flame-logistics-backend.vercel.app';
+    return 'http://localhost:4000';
   }
-  return 'https://flame-logistics-backend.vercel.app';
+  return '';
 }
 
 async function handleQuoteFormSubmit(event) {

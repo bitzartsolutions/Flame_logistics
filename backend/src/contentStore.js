@@ -167,7 +167,7 @@ function getStorageAdapter(table) {
 }
 
 function shouldUseSupabase(table) {
-  return table !== 'gallery' && Boolean(getSupabaseClient());
+  return Boolean(getSupabaseClient());
 }
 
 async function getContent(table, fallback = []) {

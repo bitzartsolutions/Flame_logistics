@@ -24,7 +24,31 @@ function normalizeImageUrl(imageUrl, baseUrl) {
   const trimmed = String(imageUrl).trim();
   if (!trimmed) return '';
 
-  if (trimmed.startsWith('data:') || trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+  if (trimmed.startsWith('data:')) {
+    return trimmed;
+  }
+
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    const normalizedBase = (baseUrl || '').replace(/\/$/, '');
+    if (!normalizedBase) {
+      return trimmed;
+    }
+
+    try {
+      const parsedUrl = new URL(trimmed);
+      const baseHost = new URL(normalizedBase);
+      if (parsedUrl.hostname === 'localhost' || parsedUrl.hostname === '127.0.0.1') {
+        parsedUrl.protocol = baseHost.protocol;
+        parsedUrl.hostname = baseHost.hostname;
+        parsedUrl.port = '';
+        parsedUrl.username = '';
+        parsedUrl.password = '';
+        return parsedUrl.toString();
+      }
+    } catch (error) {
+      // Keep the original URL if it cannot be parsed.
+    }
+
     return trimmed;
   }
 
