@@ -90,8 +90,28 @@ function saveLocalTableData(table, data) {
   return writeLocalJson(fileName, data);
 }
 
+function normalizeGalleryRow(row) {
+  if (!row || typeof row !== 'object') {
+    return row;
+  }
+
+  const youtubeUrl = (row.youtubeUrl || '').toString().trim();
+  const mediaType = (row.mediaType || '').toString().trim().toLowerCase();
+  const resolvedMediaType = mediaType || (youtubeUrl ? 'video' : 'image');
+
+  return {
+    ...row,
+    mediaType: resolvedMediaType,
+    youtubeUrl,
+    thumbnailUrl: row.thumbnailUrl || row.imageUrl || ''
+  };
+}
+
 function normalizeRow(row) {
   if (!row) return null;
+  if (row && typeof row === 'object' && row.youtubeUrl) {
+    return normalizeGalleryRow(row);
+  }
   return row;
 }
 
@@ -101,7 +121,7 @@ function sanitizePayloadForTable(table, payload) {
   }
 
   const allowedColumns = {
-    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'created_at'],
+    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'created_at'],
     blog: ['id', 'title', 'content', 'excerpt', 'category', 'imageUrl', 'date', 'readTime', 'featured', 'created_at'],
     careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'requirements', 'deadline', 'active', 'created_at']
   };
@@ -117,6 +137,14 @@ function sanitizePayloadForTable(table, payload) {
       sanitizedPayload[column] = payload[column];
     }
   });
+
+  if (table === 'gallery') {
+    const normalized = normalizeGalleryRow(sanitizedPayload);
+    if (normalized.youtubeUrl) {
+      normalized.mediaType = 'video';
+    }
+    return normalized;
+  }
 
   if (payload.created_at !== undefined && sanitizedPayload.created_at === undefined) {
     sanitizedPayload.created_at = payload.created_at;
@@ -138,8 +166,12 @@ function getStorageAdapter(table) {
   }
 }
 
+function shouldUseSupabase(table) {
+  return table !== 'gallery' && Boolean(getSupabaseClient());
+}
+
 async function getContent(table, fallback = []) {
-  const client = getSupabaseClient();
+  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
     try {
       const { data, error } = await client.from(TABLES[table]).select('*').order('created_at', { ascending: false });
@@ -169,7 +201,7 @@ async function getContent(table, fallback = []) {
 }
 
 async function createContent(table, payload) {
-  const client = getSupabaseClient();
+  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   const safePayload = sanitizePayloadForTable(table, payload);
   if (client) {
     try {
@@ -205,7 +237,7 @@ async function createContent(table, payload) {
 }
 
 async function deleteContent(table, id) {
-  const client = getSupabaseClient();
+  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
     try {
       const { error } = await client.from(TABLES[table]).delete().eq('id', id);

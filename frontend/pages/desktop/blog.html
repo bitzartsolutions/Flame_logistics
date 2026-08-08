@@ -72,6 +72,28 @@
     const featuredBlog = document.getElementById('featuredBlog');
     const blogPostsGrid = document.getElementById('blogPostsGrid');
 
+    function resolveFeaturedAndFeedPosts(items, featuredOverride = null) {
+      const safeItems = Array.isArray(items) ? items.filter(Boolean) : [];
+      if (!safeItems.length) {
+        return { featured: null, feed: [] };
+      }
+
+      const featuredCandidate = featuredOverride || safeItems.find((post) => Boolean(post && post.featured)) || safeItems[0] || null;
+      if (!featuredCandidate) {
+        return { featured: null, feed: safeItems };
+      }
+
+      const featuredId = featuredCandidate.id !== undefined && featuredCandidate.id !== null ? Number(featuredCandidate.id) : null;
+      const feed = safeItems.length > 1
+        ? safeItems.filter((post) => {
+            const postId = post && post.id !== undefined && post.id !== null ? Number(post.id) : null;
+            return featuredId === null || postId !== featuredId;
+          })
+        : [];
+
+      return { featured: featuredCandidate, feed };
+    }
+
     function formatDate(dateString) {
       if (!dateString) return 'Recent';
       const date = new Date(dateString);
@@ -99,13 +121,17 @@
               <span class="inline-flex w-fit rounded-full bg-secondary/10 px-3 py-1 text-sm font-semibold uppercase tracking-widest text-secondary mb-4">Featured Insight</span>
               <h2 class="font-headline-md text-headline-md text-primary mb-4">${post.title}</h2>
               <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">${post.excerpt}</p>
-              <div class="flex flex-wrap items-center gap-3 text-sm text-on-surface-variant">
+              <div class="flex flex-wrap items-center gap-3 text-sm text-on-surface-variant mb-6">
                 <span>${post.category || 'logistics'}</span>
                 <span>•</span>
                 <span>${formatDate(post.date)}</span>
                 <span>•</span>
                 <span>${post.readTime || '5 min read'}</span>
               </div>
+              <a href="/pages/desktop/blog-post.html?id=${post.id}" class="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors">
+                Read article
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </a>
             </div>
           </div>
         </article>
@@ -114,12 +140,7 @@
 
     function renderPosts(posts) {
       if (!posts.length) {
-        blogPostsGrid.innerHTML = `
-          <div class="md:col-span-2 rounded-3xl border border-dashed border-outline-variant/30 bg-surface p-12 text-center reveal">
-            <h3 class="font-headline-md text-headline-md text-primary mb-3">Blog feed is currently empty</h3>
-            <p class="font-body-lg text-body-lg text-on-surface-variant">Check back soon for new posts and updates.</p>
-          </div>
-        `;
+        blogPostsGrid.innerHTML = '';
         return;
       }
 
@@ -133,6 +154,10 @@
           </div>
           <h3 class="font-headline-md text-headline-md text-primary mb-3">${post.title}</h3>
           <p class="font-body-lg text-body-lg text-on-surface-variant">${post.excerpt}</p>
+          <a href="/pages/desktop/blog-post.html?id=${post.id}" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors">
+            Read article
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
         </article>
       `).join('');
     }
@@ -143,10 +168,9 @@
         if (!response.ok) throw new Error('Failed to load blog posts');
         const data = await response.json();
         const items = Array.isArray(data.items) ? data.items : [];
-        const featured = data.featured || items[0] || null;
-        const feedPosts = featured ? items.filter((post) => post.id !== featured.id) : items;
+        const { featured, feed } = resolveFeaturedAndFeedPosts(items, data.featured || null);
         renderFeatured(featured);
-        renderPosts(feedPosts);
+        renderPosts(feed);
       } catch (error) {
         featuredBlog.innerHTML = `
           <div class="rounded-3xl border border-dashed border-outline-variant/40 bg-white p-12 text-center reveal">

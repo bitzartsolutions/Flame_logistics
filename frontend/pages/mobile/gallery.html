@@ -154,14 +154,26 @@
 <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="transportation">Transportation</button>
 <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="warehousing">Warehousing</button>
 <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="projects">Projects</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="pharma">Pharma</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="customs">Customs Clearance</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="packing">Packing</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="crating">Crating</button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="stuffing-lashing">Stuffing & Lashing</button>
 <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="team">Team</button>
 </div>
 </section>
 <section class="px-margin-mobile py-12 bg-white">
-<div class="grid grid-cols-1 gap-6" id="galleryGrid">
-<p class="text-on-surface-variant">Loading gallery photos...</p>
+<div class="mb-8">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="font-headline-md text-headline-md text-trust-navy">Photos</h2>
+    <span class="text-sm text-on-surface-variant">From operations and facilities</span>
+  </div>
+  <div class="grid grid-cols-1 gap-6" id="galleryGrid"></div>
+</div>
+<div class="border-t border-outline-variant/20 pt-8">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="font-headline-md text-headline-md text-trust-navy">Videos</h2>
+    <span class="text-sm text-on-surface-variant">From YouTube</span>
+  </div>
+  <div class="grid grid-cols-1 gap-6" id="videoGrid"></div>
 </div>
 </section>
 <section class="bg-surface-container-low py-section-padding px-margin-mobile">
@@ -250,6 +262,16 @@
 </main>
 <!-- Footer Placeholder - Loaded dynamically -->
 <div id="footer-placeholder"></div>
+<div id="videoModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/85 px-4 py-6">
+  <div class="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-2xl">
+    <button id="closeVideoModal" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-trust-navy shadow-lg" type="button" aria-label="Close video">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="aspect-video w-full">
+      <iframe id="videoModalFrame" class="h-full w-full" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 <div class="fixed inset-0 bg-trust-navy z-[60] flex flex-col p-8 transition-transform translate-x-full duration-500" id="mobileMenu">
 <div class="flex justify-between items-center mb-16">
 <div class="font-display-lg text-headline-sm font-bold text-white">Flame Logistics</div>
@@ -285,24 +307,89 @@
           ? 'http://localhost:4000'
           : 'https://flame-logistics-backend.vercel.app';
         const galleryGrid = document.getElementById('galleryGrid');
+        const videoGrid = document.getElementById('videoGrid');
         const filterButtons = document.querySelectorAll('#galleryFilterChips button');
+        const videoModal = document.getElementById('videoModal');
+        const videoModalFrame = document.getElementById('videoModalFrame');
+        const closeVideoModal = document.getElementById('closeVideoModal');
         let galleryItems = [];
 
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return '';
+            try {
+                const parsed = new URL(url);
+                if (parsed.hostname.includes('youtube.com')) {
+                    const videoId = parsed.searchParams.get('v');
+                    if (!videoId) return '';
+                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                }
+                if (parsed.hostname.includes('youtu.be')) {
+                    const videoId = parsed.pathname.replace(/^\//, '');
+                    if (!videoId) return '';
+                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                }
+            } catch (error) {
+                return '';
+            }
+            return '';
+        }
+
+        function openVideoModal(url) {
+            const embedUrl = getYouTubeEmbedUrl(url);
+            if (!embedUrl) return;
+            videoModalFrame.src = embedUrl;
+            videoModal.classList.remove('hidden');
+            videoModal.classList.add('flex');
+        }
+
+        function closeVideoModalHandler() {
+            videoModal.classList.add('hidden');
+            videoModal.classList.remove('flex');
+            videoModalFrame.src = '';
+        }
+
         function renderGallery(items) {
-            if (!items.length) {
-                galleryGrid.innerHTML = '<p class="text-on-surface-variant">No gallery photos found for this category.</p>';
-                return;
+            const photoItems = items.filter(item => {
+                const mediaType = (item.mediaType || '').toString().toLowerCase();
+                return mediaType !== 'video' && !item.youtubeUrl;
+            });
+            const videoItems = items.filter(item => {
+                const mediaType = (item.mediaType || '').toString().toLowerCase();
+                return mediaType === 'video' || Boolean(item.youtubeUrl);
+            });
+
+            if (!photoItems.length) {
+                galleryGrid.innerHTML = '<p class="text-on-surface-variant">No photos found for this category.</p>';
+            } else {
+                galleryGrid.innerHTML = photoItems.map(item => `
+                    <div class="group relative rounded-xl overflow-hidden ${item.mobileAspect || 'aspect-[4/5]'} shadow-sm">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.imageUrl}" alt="${item.title}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Photo'}</span>
+                            <h3 class="text-white font-title-lg">${item.title}</h3>
+                        </div>
+                    </div>
+                `).join('');
             }
 
-            galleryGrid.innerHTML = items.map(item => `
-                <div class="group relative rounded-xl overflow-hidden ${item.mobileAspect || 'aspect-[4/5]'} shadow-sm">
-                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.imageUrl}" alt="${item.title}">
-                    <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
-                        <span class="text-flame-red font-label-md mb-1">${item.subtitle}</span>
-                        <h3 class="text-white font-title-lg">${item.title}</h3>
+            if (!videoItems.length) {
+                videoGrid.innerHTML = '<p class="text-on-surface-variant">No videos found for this category.</p>';
+            } else {
+                videoGrid.innerHTML = videoItems.map(item => `
+                    <div class="group relative rounded-xl overflow-hidden aspect-video shadow-sm cursor-pointer" data-video-url="${item.youtubeUrl}" role="button" tabindex="0">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.thumbnailUrl || item.imageUrl}" alt="${item.title}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Video'}</span>
+                            <h3 class="text-white font-title-lg">${item.title}</h3>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-flame-red shadow-lg">
+                                <span class="material-symbols-outlined text-2xl">play_arrow</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
         function applyFilter(category) {
@@ -337,6 +424,29 @@
                 btn.classList.add('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
                 applyFilter(btn.dataset.category || 'all');
             });
+        });
+
+        videoGrid.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-video-url]');
+            if (!trigger) return;
+            event.preventDefault();
+            openVideoModal(trigger.dataset.videoUrl);
+        });
+
+        videoGrid.addEventListener('keydown', (event) => {
+            const trigger = event.target.closest('[data-video-url]');
+            if (!trigger) return;
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openVideoModal(trigger.dataset.videoUrl);
+            }
+        });
+
+        closeVideoModal.addEventListener('click', closeVideoModalHandler);
+        videoModal.addEventListener('click', (event) => {
+            if (event.target === videoModal) {
+                closeVideoModalHandler();
+            }
         });
 
         loadGallery();

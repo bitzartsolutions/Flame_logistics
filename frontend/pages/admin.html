@@ -47,9 +47,7 @@
   <header class="glass-header text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="bg-secondary text-white w-9 h-9 rounded-lg flex items-center justify-center font-black text-xl tracking-tighter">
-          FL
-        </div>
+        <img src="/assets/images/flame_logo.png" alt="Flame Logistics logo" class="w-12 h-12 rounded-lg object-contain bg-white/10 p-1" style="background-color: azure;"/>
         <div>
           <span class="font-display font-bold text-lg tracking-tight text-white">Flame Logistics</span>
           <span class="ml-2 text-xs bg-secondary/80 text-white px-2 py-0.5 rounded font-semibold uppercase tracking-wider">Admin Portal</span>
@@ -140,6 +138,64 @@
     <!-- ==================== GALLERY TAB CONTENT ==================== -->
     <div id="tab-gallery" class="space-y-10">
       
+      <!-- Dedicated YouTube Upload Section -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined">play_circle</span>
+          </div>
+          <div>
+            <h2 class="font-display text-xl font-bold text-primary">Add YouTube Link to Gallery</h2>
+            <p class="text-xs text-gray-500">Use this section to publish a video entry that will appear on the public gallery page.</p>
+          </div>
+        </div>
+
+        <form id="youtube-gallery-form" onsubmit="handleYoutubeGallerySubmit(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Video Title *</label>
+            <input type="text" id="youtube-gallery-title" required placeholder="e.g. Terminal Operations in Motion" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">YouTube Link *</label>
+            <input type="url" id="youtube-gallery-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Category *</label>
+            <select id="youtube-gallery-category" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white">
+              <option value="transportation">Transportation</option>
+              <option value="warehousing">Warehousing</option>
+              <option value="projects">Projects</option>
+              <option value="packing">Packing</option>
+              <option value="crating">Crating</option>
+              <option value="stuffing-lashing">Stuffing & Lashing</option>
+              <option value="team">Team</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Subtitle / Badge</label>
+            <input type="text" id="youtube-gallery-subtitle" placeholder="e.g. Fleet Showcase" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+            <textarea id="youtube-gallery-description" rows="2" placeholder="Brief description of the video asset..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"></textarea>
+          </div>
+
+          <div class="md:col-span-2 flex justify-end gap-3">
+            <button type="button" onclick="document.getElementById('youtube-gallery-form').reset()" class="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 border border-gray-300 rounded-xl hover:bg-gray-50">
+              Clear
+            </button>
+            <button type="submit" id="youtube-gallery-submit-btn" class="px-6 py-2.5 text-sm font-bold text-white bg-secondary hover:bg-secondary-hover rounded-xl shadow-md transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-lg">add_circle</span>
+              Add YouTube Link
+            </button>
+          </div>
+        </form>
+      </div>
+
       <!-- Add Gallery Item Form Card -->
       <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
         <div class="flex items-center gap-3 mb-6">
@@ -147,8 +203,8 @@
             <span class="material-symbols-outlined">add_a_photo</span>
           </div>
           <div>
-            <h2 class="font-display text-xl font-bold text-primary">Add Image to Gallery</h2>
-            <p class="text-xs text-gray-500">Upload a new asset or specify an image URL to feature in the visual showcase.</p>
+            <h2 class="font-display text-xl font-bold text-primary">Add Media to Gallery</h2>
+            <p class="text-xs text-gray-500">Upload a photo or use the dedicated YouTube section above to feature video content in the visual showcase.</p>
           </div>
         </div>
 
@@ -194,8 +250,9 @@
                 <option value="transportation">Transportation</option>
                 <option value="warehousing">Warehousing</option>
                 <option value="projects">Projects</option>
-                <option value="pharma">Pharma</option>
-                <option value="customs">Customs Clearance</option>
+                <option value="packing">Packing</option>
+                <option value="crating">Crating</option>
+                <option value="stuffing-lashing">Stuffing & Lashing</option>
                 <option value="team">Team</option>
               </select>
             </div>
@@ -218,6 +275,12 @@
             <div class="sm:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
               <textarea id="gallery-description" rows="2" placeholder="Brief description of the logistics asset..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"></textarea>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-1">YouTube Link (optional)</label>
+              <input type="url" id="gallery-youtube-url" placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
+              <p class="text-xs text-gray-500 mt-1">Use this for video gallery entries. Leave the image fields blank if you only want to add a video.</p>
             </div>
 
             <div class="sm:col-span-2 flex justify-end gap-3 mt-2">
@@ -692,6 +755,24 @@
       }
     }
 
+    function getYouTubeThumbnailUrl(url) {
+      if (!url) return '';
+      try {
+        const parsed = new URL(url);
+        if (parsed.hostname.includes('youtube.com')) {
+          const videoId = parsed.searchParams.get('v');
+          return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+        }
+        if (parsed.hostname.includes('youtu.be')) {
+          const videoId = parsed.pathname.replace(/^\//, '');
+          return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+        }
+      } catch (error) {
+        return '';
+      }
+      return '';
+    }
+
     function resetGalleryForm() {
       document.getElementById('gallery-form').reset();
       uploadedGalleryUrl = '';
@@ -706,6 +787,56 @@
       document.getElementById('blog-upload-placeholder').classList.remove('hidden');
     }
 
+    async function handleYoutubeGallerySubmit(event) {
+      event.preventDefault();
+      const title = document.getElementById('youtube-gallery-title').value.trim();
+      const category = document.getElementById('youtube-gallery-category').value;
+      const subtitle = document.getElementById('youtube-gallery-subtitle').value.trim();
+      const description = document.getElementById('youtube-gallery-description').value.trim();
+      const youtubeUrl = document.getElementById('youtube-gallery-url').value.trim();
+
+      if (!title || !youtubeUrl) {
+        showToast('Please add a title and a valid YouTube link.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('youtube-gallery-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Adding...';
+
+      try {
+        const thumbnailUrl = getYouTubeThumbnailUrl(youtubeUrl);
+        const res = await fetch(`${API_BASE}/gallery`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
+          body: JSON.stringify({
+            title,
+            category,
+            subtitle,
+            description,
+            imageUrl: '',
+            youtubeUrl,
+            thumbnailUrl,
+            mediaType: 'video'
+          })
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.error || 'Failed to add YouTube gallery item');
+        }
+
+        showToast('Gallery item added successfully!');
+        document.getElementById('youtube-gallery-form').reset();
+        loadGalleryItems();
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add YouTube Link';
+      }
+    }
+
     // Submit New Gallery Item
     async function handleGallerySubmit(event) {
       event.preventDefault();
@@ -715,12 +846,13 @@
       const desktopLayout = document.getElementById('gallery-desktop-layout').value;
       const description = document.getElementById('gallery-description').value.trim();
       const inputUrl = document.getElementById('gallery-image-url').value.trim();
+      const youtubeUrl = document.getElementById('gallery-youtube-url').value.trim();
       const preview = document.getElementById('gallery-image-preview');
       const previewUrl = preview && !preview.classList.contains('hidden') ? (preview.src || preview.getAttribute('src') || '') : '';
       const imageUrl = (uploadedGalleryUrl || inputUrl || previewUrl || '').trim();
 
-      if (!imageUrl) {
-        showToast('Please upload an image file or provide an image URL', 'error');
+      if (!imageUrl && !youtubeUrl) {
+        showToast('Please upload an image file, provide an image URL, or add a YouTube link', 'error');
         return;
       }
 
@@ -729,6 +861,7 @@
       submitBtn.innerText = 'Adding...';
 
       try {
+        const thumbnailUrl = youtubeUrl ? getYouTubeThumbnailUrl(youtubeUrl) : '';
         const res = await fetch(`${API_BASE}/gallery`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
@@ -738,7 +871,10 @@
             subtitle,
             desktopLayout,
             description,
-            imageUrl
+            imageUrl,
+            youtubeUrl,
+            thumbnailUrl,
+            mediaType: youtubeUrl ? 'video' : 'image'
           })
         });
 
@@ -778,13 +914,21 @@
           return;
         }
 
-        grid.innerHTML = items.map(item => `
+        grid.innerHTML = items.map(item => {
+          const isVideo = item.mediaType === 'video' || Boolean(item.youtubeUrl);
+          return `
           <div class="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
             <div class="h-48 relative overflow-hidden bg-gray-100">
-              <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Unavailable'" />
+              <img src="${item.imageUrl || item.thumbnailUrl || 'https://via.placeholder.com/400x300?text=Image+Unavailable'}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Unavailable'" />
+              ${isVideo ? `
+                <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
+                </div>
+              ` : ''}
               <span class="absolute top-3 left-3 bg-primary/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">
                 ${item.category}
               </span>
+              ${isVideo ? `<span class="absolute top-3 right-3 bg-secondary text-white text-[11px] px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Video</span>` : ''}
             </div>
             <div class="p-4 flex-1 flex flex-col justify-between">
               <div>
@@ -793,14 +937,15 @@
                 <p class="text-xs text-gray-500 mt-2 line-clamp-2">${item.description || 'No description provided.'}</p>
               </div>
               <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
-                <span class="text-[11px] text-gray-400">Layout: ${item.desktopLayout || 'default'}</span>
+                <span class="text-[11px] text-gray-400">${isVideo ? 'YouTube video' : `Layout: ${item.desktopLayout || 'default'}`}</span>
                 <button onclick="deleteGalleryItem(${item.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
                   <span class="material-symbols-outlined text-sm">delete</span> Delete
                 </button>
               </div>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
 
       } catch (err) {
         const items = localGalleryItems;
@@ -808,13 +953,21 @@
         if (items.length === 0) {
           grid.innerHTML = '<p class="col-span-full text-center py-8 text-gray-400">No gallery items found.</p>';
         } else {
-          grid.innerHTML = items.map(item => `
+          grid.innerHTML = items.map(item => {
+            const isVideo = item.mediaType === 'video' || Boolean(item.youtubeUrl);
+            return `
             <div class="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col">
               <div class="h-48 relative overflow-hidden bg-gray-100">
-                <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Unavailable'" />
+                <img src="${item.imageUrl || item.thumbnailUrl || 'https://via.placeholder.com/400x300?text=Image+Unavailable'}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Image+Unavailable'" />
+                ${isVideo ? `
+                  <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-white">play_circle</span>
+                  </div>
+                ` : ''}
                 <span class="absolute top-3 left-3 bg-primary/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">
                   ${item.category}
                 </span>
+                ${isVideo ? `<span class="absolute top-3 right-3 bg-secondary text-white text-[11px] px-2.5 py-1 rounded-md font-semibold uppercase tracking-wider">Video</span>` : ''}
               </div>
               <div class="p-4 flex-1 flex flex-col justify-between">
                 <div>
@@ -824,7 +977,8 @@
                 </div>
               </div>
             </div>
-          `).join('');
+          `;
+          }).join('');
         }
       }
     }

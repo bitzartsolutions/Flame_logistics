@@ -243,6 +243,28 @@
         let blogPosts = [];
         let activeCategory = 'all';
 
+        function resolveFeaturedAndFeedPosts(items, featuredOverride = null) {
+            const safeItems = Array.isArray(items) ? items.filter(Boolean) : [];
+            if (!safeItems.length) {
+                return { featured: null, feed: [] };
+            }
+
+            const featuredCandidate = featuredOverride || safeItems.find((post) => Boolean(post && post.featured)) || safeItems[0] || null;
+            if (!featuredCandidate) {
+                return { featured: null, feed: safeItems };
+            }
+
+            const featuredId = featuredCandidate.id !== undefined && featuredCandidate.id !== null ? Number(featuredCandidate.id) : null;
+            const feed = safeItems.length > 1
+                ? safeItems.filter((post) => {
+                    const postId = post && post.id !== undefined && post.id !== null ? Number(post.id) : null;
+                    return featuredId === null || postId !== featuredId;
+                })
+                : [];
+
+            return { featured: featuredCandidate, feed };
+        }
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
@@ -269,7 +291,7 @@
             blogCount.textContent = `${posts.length} Articles`;
 
             if (!posts.length) {
-                feedContainer.innerHTML = '<div class="rounded-2xl border border-dashed border-outline-variant/30 bg-surface-container-low p-8 text-center"><p class="text-on-surface-variant">No blog posts found yet.</p></div>';
+                feedContainer.innerHTML = '';
                 return;
             }
 
@@ -288,7 +310,7 @@
                         </div>
                         <h3 class="font-headline-md text-primary leading-tight group-hover:text-secondary transition-colors">${post.title}</h3>
                         <p class="text-on-surface-variant font-body-sm line-clamp-3">${post.excerpt}</p>
-                        <a class="inline-flex items-center gap-1 text-secondary font-label-md mt-2 group-active:translate-x-1 transition-transform h-11" href="#">
+                        <a class="inline-flex items-center gap-1 text-secondary font-label-md mt-2 group-active:translate-x-1 transition-transform h-11" href="/pages/mobile/blog-post.html?id=${post.id}">
                             Read More <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -314,8 +336,8 @@
                 }
                 const data = await response.json();
                 const items = Array.isArray(data.items) ? data.items : [];
-                const featured = data.featured || items[0] || null;
-                blogPosts = items.length > 1 ? items.filter(post => !featured || post.id !== featured.id) : items;
+                const { featured, feed } = resolveFeaturedAndFeedPosts(items, data.featured || null);
+                blogPosts = feed;
                 renderFeatured(featured);
                 applyBlogFilters();
             } catch (error) {

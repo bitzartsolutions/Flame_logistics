@@ -12,6 +12,18 @@ router.get('/', async (req, res) => {
 
     let results = await getContent('gallery');
 
+    results = (results || []).map((item) => {
+      const hasYoutube = Boolean((item.youtubeUrl || '').toString().trim());
+      const normalizedMediaType = (item.mediaType || '').toString().trim().toLowerCase();
+      const resolvedMediaType = normalizedMediaType || (hasYoutube ? 'video' : 'image');
+      return {
+        ...item,
+        mediaType: resolvedMediaType,
+        youtubeUrl: (item.youtubeUrl || '').toString().trim(),
+        thumbnailUrl: item.thumbnailUrl || item.imageUrl || ''
+      };
+    });
+
     if (category !== 'all') {
       results = results.filter((item) => (item.category || '').toLowerCase() === category);
     }
@@ -39,14 +51,22 @@ router.get('/', async (req, res) => {
 // POST /api/gallery
 router.post('/', async (req, res) => {
   try {
-    const { title, subtitle, category, description, imageUrl, mobileAspect, desktopLayout } = req.body;
+    const { title, subtitle, category, description, imageUrl, youtubeUrl, mobileAspect, desktopLayout, mediaType } = req.body;
 
-    if (!title || !imageUrl) {
-      return res.status(400).json({ error: 'Title and imageUrl are required' });
+    const resolvedImageUrl = (imageUrl || '').toString().trim();
+    const resolvedYoutubeUrl = (youtubeUrl || '').toString().trim();
+    const resolvedMediaType = resolvedYoutubeUrl ? 'video' : ((mediaType || '').toString().trim().toLowerCase() || 'image');
+
+    if (!title || (!resolvedImageUrl && !resolvedYoutubeUrl)) {
+      return res.status(400).json({ error: 'Title and either an image URL or a YouTube link are required' });
     }
 
     const items = await getContent('gallery', []);
     const newId = items.length > 0 ? Math.max(...items.map((i) => Number(i.id) || 0)) + 1 : 1;
+
+    const thumbnailUrl = resolvedYoutubeUrl
+      ? `https://img.youtube.com/vi/${extractYouTubeVideoId(resolvedYoutubeUrl)}/hqdefault.jpg`
+      : normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim();
 
     const newItem = {
       id: newId,
@@ -54,7 +74,14 @@ router.post('/', async (req, res) => {
       title: title.trim(),
       subtitle: subtitle ? subtitle.trim() : 'Showcase',
       description: description ? description.trim() : '',
-      imageUrl: normalizeImageUrl(imageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim(),
+      imageUrl: resolvedImageUrl
+        ? normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim()
+        : thumbnailUrl,
+      thumbnailUrl,
+      youtubeUrl: resolvedYoutubeUrl,
+      mediaType: resolvedMediaType,
+      mobileAspect: mobileAspect || '',
+      desktopLayout: desktopLayout || '',
       created_at: new Date().toISOString()
     };
 
@@ -86,5 +113,20 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete gallery item', detail: error.message });
   }
 });
+
+function extractYouTubeVideoId(url) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname.includes('youtube.com')) {
+      return parsed.searchParams.get('v') || '';
+    }
+    if (parsed.hostname.includes('youtu.be')) {
+      return parsed.pathname.replace(/^\//, '');
+    }
+  } catch (error) {
+    return '';
+  }
+  return '';
+}
 
 module.exports = router;

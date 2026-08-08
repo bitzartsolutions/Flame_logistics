@@ -132,6 +132,23 @@ const defaultBlogPosts = [];
 
 const defaultJobs = [];
 
+function normalizeGalleryItem(item) {
+  if (!item || typeof item !== 'object') {
+    return item;
+  }
+
+  const youtubeUrl = (item.youtubeUrl || '').toString().trim();
+  const mediaType = (item.mediaType || '').toString().trim().toLowerCase();
+  const resolvedMediaType = mediaType || (youtubeUrl ? 'video' : 'image');
+
+  return {
+    ...item,
+    mediaType: resolvedMediaType,
+    youtubeUrl,
+    thumbnailUrl: item.thumbnailUrl || item.imageUrl || ''
+  };
+}
+
 function initDataStorage() {
   const dataDir = getDataDir();
   if (!fs.existsSync(dataDir)) {
@@ -249,7 +266,7 @@ async function getGallery() {
     const blobItems = await readBlobJson('gallery.json');
     if (blobItems) {
       const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
-      return (Array.isArray(blobItems) ? blobItems : []).map((item) => ({
+      return (Array.isArray(blobItems) ? blobItems : []).map((item) => normalizeGalleryItem({
         ...item,
         imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
       }));
@@ -258,7 +275,7 @@ async function getGallery() {
     const remoteItems = await readRemoteJson('gallery.json');
     if (remoteItems) {
       const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
-      return (Array.isArray(remoteItems) ? remoteItems : []).map((item) => ({
+      return (Array.isArray(remoteItems) ? remoteItems : []).map((item) => normalizeGalleryItem({
         ...item,
         imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
       }));
@@ -267,7 +284,7 @@ async function getGallery() {
     const raw = fs.readFileSync(getDataFile('gallery.json'), 'utf8');
     const items = JSON.parse(raw);
     const baseUrl = getPublicBaseUrl(null, 'http://localhost:4000');
-    return (Array.isArray(items) ? items : []).map((item) => ({
+    return (Array.isArray(items) ? items : []).map((item) => normalizeGalleryItem({
       ...item,
       imageUrl: normalizeImageUrl(item && item.imageUrl ? item.imageUrl : '', baseUrl)
     }));
@@ -279,16 +296,22 @@ async function getGallery() {
 
 async function saveGallery(items) {
   initDataStorage();
-  const blobSaved = await writeBlobJson('gallery.json', items);
-  if (blobSaved) {
-    return;
+  const normalizedItems = (Array.isArray(items) ? items : []).map((item) => normalizeGalleryItem(item));
+  const payload = JSON.stringify(normalizedItems, null, 2);
+
+  if (payload.length < 8 * 1024 * 1024) {
+    const blobSaved = await writeBlobJson('gallery.json', normalizedItems);
+    if (blobSaved) {
+      return;
+    }
+
+    const remoteSaved = await writeRemoteJson('gallery.json', normalizedItems);
+    if (remoteSaved) {
+      return;
+    }
   }
 
-  const remoteSaved = await writeRemoteJson('gallery.json', items);
-  if (remoteSaved) {
-    return;
-  }
-  fs.writeFileSync(getDataFile('gallery.json'), JSON.stringify(items, null, 2));
+  fs.writeFileSync(getDataFile('gallery.json'), payload);
 }
 
 async function getBlogs() {

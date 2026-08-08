@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Article | Flame Logistics</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="/assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="bg-background text-on-surface font-body-md">
+  <div id="header-placeholder"></div>
+
+  <main class="pt-20 pb-24">
+    <section class="px-[40px] py-10">
+      <a id="back-to-blog" href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-secondary transition-colors">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back to Insights
+      </a>
+    </section>
+
+    <section class="px-[40px] max-w-[1080px] mx-auto">
+      <div id="article-loading" class="rounded-3xl border border-outline-variant/30 bg-white p-10 text-center">
+        <p class="text-body-lg text-on-surface-variant">Loading article...</p>
+      </div>
+
+      <div id="article-error" class="hidden"></div>
+
+      <article id="article-content-wrapper" class="hidden">
+        <div class="overflow-hidden rounded-[32px] border border-outline-variant/30 bg-white shadow-sm">
+          <img id="article-hero-image" class="h-[360px] w-full object-cover" alt="Article hero" />
+          <div class="p-8 md:p-12">
+            <div id="article-meta" class="mb-4 flex flex-wrap items-center gap-3"></div>
+            <h1 id="article-title" class="font-headline-md text-headline-md text-primary mb-4"></h1>
+            <p id="article-excerpt" class="text-body-lg text-on-surface-variant mb-8 border-b border-outline-variant/30 pb-8"></p>
+            <div id="article-content" class="space-y-6"></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/blog-post-detail.js"></script>
+</body>
+</html>
