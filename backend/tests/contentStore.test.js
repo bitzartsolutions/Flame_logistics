@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { sanitizePayloadForTable, normalizeSupabaseRowForApp } = require('../src/contentStore');
 
 test('createContent falls back to local storage when Supabase is unavailable', async () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'flame-content-store-'));
@@ -31,6 +32,48 @@ test('createContent falls back to local storage when Supabase is unavailable', a
   delete require.cache[require.resolve('../src/storage')];
   delete require.cache[require.resolve('../src/contentStore')];
   fs.rmSync(tempDir, { recursive: true, force: true });
+});
+
+test('sanitizePayloadForTable maps gallery fields to Supabase-friendly snake_case keys', () => {
+  const payload = {
+    title: 'YouTube gallery item',
+    imageUrl: 'https://example.com/cover.jpg',
+    youtubeUrl: 'https://www.youtube.com/watch?v=abc123',
+    thumbnailUrl: 'https://img.youtube.com/vi/abc123/hqdefault.jpg',
+    mediaType: 'video'
+  };
+
+  const sanitized = sanitizePayloadForTable('gallery', payload);
+
+  assert.equal(sanitized.title, 'YouTube gallery item');
+  assert.equal(sanitized.imageUrl, 'https://example.com/cover.jpg');
+  assert.equal(sanitized.youtubeUrl, 'https://www.youtube.com/watch?v=abc123');
+  assert.equal(sanitized.thumbnailUrl, 'https://img.youtube.com/vi/abc123/hqdefault.jpg');
+  assert.equal(sanitized.mediaType, 'video');
+});
+
+test('normalizeSupabaseRowForApp converts snake_case fields back to camelCase', () => {
+  const row = {
+    id: 7,
+    title: 'Video title',
+    image_url: 'https://example.com/cover.jpg',
+    youtube_url: 'https://www.youtube.com/watch?v=abc123',
+    thumbnail_url: 'https://img.youtube.com/vi/abc123/hqdefault.jpg',
+    media_type: 'video',
+    mobile_aspect: 'aspect-square',
+    desktop_layout: 'wide',
+    created_at: '2026-08-08T00:00:00.000Z'
+  };
+
+  const normalized = normalizeSupabaseRowForApp('gallery', row);
+
+  assert.equal(normalized.imageUrl, 'https://example.com/cover.jpg');
+  assert.equal(normalized.youtubeUrl, 'https://www.youtube.com/watch?v=abc123');
+  assert.equal(normalized.thumbnailUrl, 'https://img.youtube.com/vi/abc123/hqdefault.jpg');
+  assert.equal(normalized.mediaType, 'video');
+  assert.equal(normalized.mobileAspect, 'aspect-square');
+  assert.equal(normalized.desktopLayout, 'wide');
+  assert.equal(normalized.created_at, '2026-08-08T00:00:00.000Z');
 });
 
 test('createContent preserves gallery video fields for YouTube entries', async () => {

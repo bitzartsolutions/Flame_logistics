@@ -115,13 +115,97 @@ function normalizeRow(row) {
   return row;
 }
 
+const SUPABASE_COLUMN_MAP = {
+  gallery: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    category: 'category',
+    imageUrl: 'image_url',
+    youtubeUrl: 'youtube_url',
+    thumbnailUrl: 'thumbnail_url',
+    mediaType: 'media_type',
+    mobileAspect: 'mobile_aspect',
+    desktopLayout: 'desktop_layout',
+    created_at: 'created_at'
+  },
+  blog: {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    excerpt: 'excerpt',
+    category: 'category',
+    imageUrl: 'image_url',
+    date: 'date',
+    readTime: 'read_time',
+    featured: 'featured',
+    created_at: 'created_at'
+  },
+  careers: {
+    id: 'id',
+    title: 'title',
+    department: 'department',
+    location: 'location',
+    jobType: 'job_type',
+    experience: 'experience',
+    salary: 'salary',
+    requirements: 'requirements',
+    deadline: 'deadline',
+    active: 'active',
+    created_at: 'created_at'
+  }
+};
+
+function preparePayloadForSupabase(table, payload) {
+  if (!payload || typeof payload !== 'object') {
+    return payload;
+  }
+
+  const columnMap = SUPABASE_COLUMN_MAP[table] || {};
+  const mappedPayload = {};
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value === undefined) {
+      return;
+    }
+
+    const mappedKey = columnMap[key] || key;
+    mappedPayload[mappedKey] = value;
+  });
+
+  return mappedPayload;
+}
+
+function normalizeSupabaseRowForApp(table, row) {
+  if (!row || typeof row !== 'object') {
+    return row;
+  }
+
+  const columnMap = SUPABASE_COLUMN_MAP[table] || {};
+  const inverseMap = Object.entries(columnMap).reduce((acc, [camelKey, snakeKey]) => {
+    if (snakeKey && snakeKey !== camelKey) {
+      acc[snakeKey] = camelKey;
+    }
+    return acc;
+  }, {});
+
+  const normalized = {};
+  Object.entries(row).forEach(([key, value]) => {
+    const mappedKey = inverseMap[key] || key;
+    normalized[mappedKey] = value;
+  });
+
+  return normalized;
+}
+
 function sanitizePayloadForTable(table, payload) {
   if (!payload || typeof payload !== 'object') {
     return payload;
   }
 
   const allowedColumns = {
-    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'created_at'],
+    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'mobileAspect', 'desktopLayout', 'created_at'],
     blog: ['id', 'title', 'content', 'excerpt', 'category', 'imageUrl', 'date', 'readTime', 'featured', 'created_at'],
     careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'requirements', 'deadline', 'active', 'created_at']
   };
@@ -170,6 +254,16 @@ function shouldUseSupabase(table) {
   return Boolean(getSupabaseClient());
 }
 
+function getSupabasePayload(table, payload) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return null;
+  }
+
+  const safePayload = sanitizePayloadForTable(table, payload);
+  return safePayload;
+}
+
 async function getContent(table, fallback = []) {
   const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
@@ -178,7 +272,7 @@ async function getContent(table, fallback = []) {
       if (error) {
         console.error(`Supabase read failed for ${table}`, error.message);
       } else {
-        return (data || []).map(normalizeRow);
+        return (data || []).map((row) => normalizeRow(normalizeSupabaseRowForApp(table, row)));
       }
     } catch (error) {
       console.error(`Supabase read error for ${table}`, error.message);
@@ -201,15 +295,16 @@ async function getContent(table, fallback = []) {
 }
 
 async function createContent(table, payload) {
-  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   const safePayload = sanitizePayloadForTable(table, payload);
+  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
     try {
-      const { data, error } = await client.from(TABLES[table]).insert(safePayload).select().single();
+      const supabasePayload = preparePayloadForSupabase(table, safePayload);
+      const { data, error } = await client.from(TABLES[table]).insert(supabasePayload).select().single();
       if (error) {
         console.error(`Supabase create failed for ${table}`, error.message);
       } else {
-        return data;
+        return normalizeSupabaseRowForApp(table, data);
       }
     } catch (error) {
       console.error(`Supabase create error for ${table}`, error.message);
@@ -285,5 +380,7 @@ async function deleteContent(table, id) {
 module.exports = {
   getContent,
   createContent,
-  deleteContent
+  deleteContent,
+  sanitizePayloadForTable,
+  normalizeSupabaseRowForApp
 };

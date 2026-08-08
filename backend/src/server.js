@@ -7,9 +7,6 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 
-const galleryRoutes = require('../routes/galleryRoutes');
-const blogRoutes = require('../routes/blogRoutes');
-const careersRoutes = require('../routes/careersRoutes');
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
 const { saveUploadedFiles } = require('./contactAttachments');
 const { printSupabaseSetupHint } = require('./supabaseSetup');
@@ -35,6 +32,11 @@ function loadEnvFile(envPath) {
 }
 
 loadEnvFile(path.join(__dirname, '..', '.env'));
+
+const galleryRoutes = require('../routes/galleryRoutes');
+const blogRoutes = require('../routes/blogRoutes');
+const careersRoutes = require('../routes/careersRoutes');
+
 printSupabaseSetupHint();
 
 cloudinary.config({
