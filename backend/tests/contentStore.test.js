@@ -34,6 +34,60 @@ test('createContent falls back to local storage when Supabase is unavailable', a
   fs.rmSync(tempDir, { recursive: true, force: true });
 });
 
+test('createContent does not silently fall back when Supabase write fails', async () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'flame-content-store-'));
+  process.env.DATA_DIR = tempDir;
+  process.env.SUPABASE_URL = 'https://example.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role-key';
+
+  const fakeClient = {
+    from() {
+      return {
+        insert() {
+          return {
+            select() {
+              return {
+                single: async () => ({ data: null, error: { message: 'insert failed' } })
+              };
+            }
+          };
+        }
+      };
+    }
+  };
+
+  const Module = require('module');
+  const originalLoad = Module._load;
+  Module._load = function(request, parent, isMain) {
+    if (request === './supabase') {
+      return { getSupabaseClient: () => fakeClient };
+    }
+    return originalLoad.apply(this, arguments);
+  };
+
+  delete require.cache[require.resolve('../src/storage')];
+  delete require.cache[require.resolve('../src/contentStore')];
+
+  try {
+    const { createContent } = require('../src/contentStore');
+    const payload = { id: 2001, title: 'Supabase write failure', imageUrl: 'https://example.com/should-not-save.jpg' };
+
+    const saved = await createContent('gallery', payload);
+
+    assert.equal(saved, null);
+    assert.equal(fs.existsSync(path.join(tempDir, 'gallery.json')), false);
+  } finally {
+    Module._load = originalLoad;
+    delete process.env.DATA_DIR;
+    delete process.env.SUPABASE_URL;
+    delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+    delete process.env.SUPABASE_ANON_KEY;
+    delete require.cache[require.resolve('../src/storage')];
+    delete require.cache[require.resolve('../src/contentStore')];
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
 test('sanitizePayloadForTable maps gallery fields to Supabase-friendly snake_case keys', () => {
   const payload = {
     title: 'YouTube gallery item',

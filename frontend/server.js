@@ -1,13 +1,63 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const http = require('http');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const BACKEND_URL = process.env.BACKEND_URL || process.env.BACKEND_BASE_URL || 'http://127.0.0.1:4000';
 
 const PAGES_DIR = path.join(__dirname, 'pages');
 const DESKTOP_DIR = path.join(PAGES_DIR, 'desktop');
 const MOBILE_DIR = path.join(PAGES_DIR, 'mobile');
+
+// Proxy API requests to the backend so the pages can use /api consistently.
+app.use('/api', (req, res) => {
+  const target = new URL(BACKEND_URL);
+  const proxyReq = http.request({
+    protocol: target.protocol,
+    hostname: target.hostname,
+    port: target.port,
+    path: req.originalUrl,
+    method: req.method,
+    headers: {
+      ...req.headers,
+      host: target.host
+    }
+  }, (proxyRes) => {
+    res.writeHead(proxyRes.statusCode || 502, proxyRes.headers);
+    proxyRes.pipe(res, { end: true });
+  });
+
+  proxyReq.on('error', (error) => {
+    console.error('API proxy error:', error.message);
+    res.status(502).json({ error: 'Backend unavailable', detail: error.message });
+  });
+
+  req.pipe(proxyReq, { end: true });
+});
+
+app.get('/health', (req, res) => {
+  const target = new URL(BACKEND_URL);
+  const proxyReq = http.request({
+    protocol: target.protocol,
+    hostname: target.hostname,
+    port: target.port,
+    path: '/health',
+    method: 'GET',
+    headers: { host: target.host }
+  }, (proxyRes) => {
+    res.writeHead(proxyRes.statusCode || 502, proxyRes.headers);
+    proxyRes.pipe(res, { end: true });
+  });
+
+  proxyReq.on('error', (error) => {
+    console.error('Health proxy error:', error.message);
+    res.status(502).json({ error: 'Backend unavailable', detail: error.message });
+  });
+
+  proxyReq.end();
+});
 
 // Serve static files from frontend directory
 app.use(express.static(__dirname));

@@ -508,11 +508,11 @@
 
   <!-- JavaScript logic -->
   <script>
-    const BACKEND_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? 'http://localhost:4000'
-      : 'https://flame-logistics-backend.vercel.app';
-    const API_BASE = `${BACKEND_BASE}/api`;
-    const HEALTH_URL = `${BACKEND_BASE}/health`;
+    const configuredBackendBase = window.__FLAME_BACKEND_URL || '';
+    const isLocalHost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
+    const BACKEND_BASE = configuredBackendBase || (isLocalHost ? 'http://localhost:4000' : '');
+    const API_BASE = BACKEND_BASE ? `${BACKEND_BASE}/api` : '/api';
+    const HEALTH_URL = BACKEND_BASE ? `${BACKEND_BASE}/health` : '/health';
     let uploadedGalleryUrl = '';
     let uploadedBlogUrl = '';
     let adminToken = localStorage.getItem('adminToken') || '';

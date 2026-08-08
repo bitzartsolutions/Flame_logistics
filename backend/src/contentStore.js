@@ -303,11 +303,13 @@ async function createContent(table, payload) {
       const { data, error } = await client.from(TABLES[table]).insert(supabasePayload).select().single();
       if (error) {
         console.error(`Supabase create failed for ${table}`, error.message);
-      } else {
-        return normalizeSupabaseRowForApp(table, data);
+        return null;
       }
+
+      return normalizeSupabaseRowForApp(table, data);
     } catch (error) {
       console.error(`Supabase create error for ${table}`, error.message);
+      return null;
     }
   }
 
@@ -338,11 +340,13 @@ async function deleteContent(table, id) {
       const { error } = await client.from(TABLES[table]).delete().eq('id', id);
       if (error) {
         console.error(`Supabase delete failed for ${table}`, error.message);
-      } else {
-        return true;
+        return false;
       }
+
+      return true;
     } catch (error) {
       console.error(`Supabase delete error for ${table}`, error.message);
+      return false;
     }
   }
 
@@ -362,19 +366,6 @@ async function deleteContent(table, id) {
   const filteredItems = items.filter((item) => Number(item.id) !== Number(id));
   saveLocalTableData(table, filteredItems);
   return filteredItems.length !== items.length;
-
-  try {
-    const { error } = await client.from(TABLES[table]).delete().eq('id', id);
-    if (error) {
-      console.error(`Supabase delete failed for ${table}`, error.message);
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error(`Supabase delete error for ${table}`, error.message);
-    return false;
-  }
 }
 
 module.exports = {
