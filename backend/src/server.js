@@ -291,6 +291,13 @@ app.use('/api', (req, res, next) => {
     return next();
   }
 
+  if (req.headers['x-admin-token'] || req.headers.authorization) {
+    const token = getAuthToken(req);
+    if (token && (adminSessions.has(token) || verifyAdminToken(token))) {
+      return next();
+    }
+  }
+
   const token = getAuthToken(req);
 
   if (token && (adminSessions.has(token) || verifyAdminToken(token))) {

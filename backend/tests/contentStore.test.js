@@ -34,7 +34,7 @@ test('createContent falls back to local storage when Supabase is unavailable', a
   fs.rmSync(tempDir, { recursive: true, force: true });
 });
 
-test('createContent does not silently fall back when Supabase write fails', async () => {
+test('createContent falls back to local storage when Supabase write fails', async () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'flame-content-store-'));
   process.env.DATA_DIR = tempDir;
   process.env.SUPABASE_URL = 'https://example.supabase.co';
@@ -69,13 +69,15 @@ test('createContent does not silently fall back when Supabase write fails', asyn
   delete require.cache[require.resolve('../src/contentStore')];
 
   try {
-    const { createContent } = require('../src/contentStore');
+    const { createContent, getContent } = require('../src/contentStore');
     const payload = { id: 2001, title: 'Supabase write failure', imageUrl: 'https://example.com/should-not-save.jpg' };
 
     const saved = await createContent('gallery', payload);
+    const items = await getContent('gallery', []);
 
-    assert.equal(saved, null);
-    assert.equal(fs.existsSync(path.join(tempDir, 'gallery.json')), false);
+    assert.equal(saved.title, 'Supabase write failure');
+    assert.ok(items.some((item) => item.id === 2001));
+    assert.equal(fs.existsSync(path.join(tempDir, 'gallery.json')), true);
   } finally {
     Module._load = originalLoad;
     delete process.env.DATA_DIR;

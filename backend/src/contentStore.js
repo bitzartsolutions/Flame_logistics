@@ -302,14 +302,12 @@ async function createContent(table, payload) {
       const supabasePayload = preparePayloadForSupabase(table, safePayload);
       const { data, error } = await client.from(TABLES[table]).insert(supabasePayload).select().single();
       if (error) {
-        console.error(`Supabase create failed for ${table}`, error.message);
-        return null;
+        console.warn(`Supabase create failed for ${table}; falling back to local storage`, error.message);
+      } else {
+        return normalizeSupabaseRowForApp(table, data);
       }
-
-      return normalizeSupabaseRowForApp(table, data);
     } catch (error) {
-      console.error(`Supabase create error for ${table}`, error.message);
-      return null;
+      console.warn(`Supabase create error for ${table}; falling back to local storage`, error.message);
     }
   }
 
@@ -339,14 +337,12 @@ async function deleteContent(table, id) {
     try {
       const { error } = await client.from(TABLES[table]).delete().eq('id', id);
       if (error) {
-        console.error(`Supabase delete failed for ${table}`, error.message);
-        return false;
+        console.warn(`Supabase delete failed for ${table}; falling back to local storage`, error.message);
+      } else {
+        return true;
       }
-
-      return true;
     } catch (error) {
-      console.error(`Supabase delete error for ${table}`, error.message);
-      return false;
+      console.warn(`Supabase delete error for ${table}; falling back to local storage`, error.message);
     }
   }
 
