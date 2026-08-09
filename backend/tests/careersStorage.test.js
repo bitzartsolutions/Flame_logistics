@@ -2,8 +2,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { getJobs, saveJobs } = require('../src/storage');
 
-test('getJobs and saveJobs persist job openings', () => {
-  const originalJobs = getJobs();
+test('getJobs and saveJobs persist job openings', async () => {
+  const originalJobs = await getJobs();
   const sampleJob = {
     id: 999,
     title: 'Operations Analyst',
@@ -18,12 +18,12 @@ test('getJobs and saveJobs persist job openings', () => {
     createdAt: new Date().toISOString()
   };
 
-  saveJobs([sampleJob]);
-  const jobs = getJobs();
+  await saveJobs([sampleJob]);
+  const jobs = await getJobs();
 
   assert.equal(jobs.length, 1);
   assert.equal(jobs[0].title, 'Operations Analyst');
   assert.equal(jobs[0].department, 'Operations');
 
-  saveJobs(originalJobs);
+  await saveJobs(originalJobs);
 });

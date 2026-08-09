@@ -147,7 +147,7 @@ const SUPABASE_COLUMN_MAP = {
     title: 'title',
     department: 'department',
     location: 'location',
-    jobType: 'job_type',
+    jobType: 'jobType',
     experience: 'experience',
     salary: 'salary',
     requirements: 'requirements',
@@ -160,6 +160,27 @@ const SUPABASE_COLUMN_MAP = {
 function preparePayloadForSupabase(table, payload) {
   if (!payload || typeof payload !== 'object') {
     return payload;
+  }
+
+  if (table === 'careers') {
+    const safePayload = {};
+    ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'description', 'requirements', 'deadline', 'active', 'created_at'].forEach((key) => {
+      if (payload[key] !== undefined) {
+        safePayload[key] = payload[key];
+      }
+    });
+    return safePayload;
+  }
+
+  if (table === 'gallery') {
+    const safePayload = {};
+    ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'mobileAspect', 'desktopLayout', 'created_at'].forEach((key) => {
+      if (payload[key] !== undefined) {
+        safePayload[key] = payload[key];
+      }
+    });
+
+    return safePayload;
   }
 
   const columnMap = SUPABASE_COLUMN_MAP[table] || {};
@@ -304,6 +325,18 @@ async function createContent(table, payload) {
       if (error) {
         console.warn(`Supabase create failed for ${table}; falling back to local storage`, error.message);
       } else {
+        const adapter = getStorageAdapter(table);
+        if (adapter) {
+          try {
+            const items = await adapter.get();
+            const nextPayload = { ...safePayload, created_at: safePayload.created_at || new Date().toISOString() };
+            const nextItems = Array.isArray(items) ? [...items, nextPayload] : [nextPayload];
+            await adapter.save(nextItems);
+          } catch (storageError) {
+            console.warn(`Storage adapter write failed after Supabase create for ${table}`, storageError.message);
+          }
+        }
+
         return normalizeSupabaseRowForApp(table, data);
       }
     } catch (error) {

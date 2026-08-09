@@ -90,6 +90,75 @@ test('createContent falls back to local storage when Supabase write fails', asyn
   }
 });
 
+test('createContent sends careers data using a schema-safe column name', async () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'flame-content-store-'));
+  process.env.DATA_DIR = tempDir;
+  process.env.SUPABASE_URL = 'https://example.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role-key';
+
+  const insertedPayloads = [];
+  const fakeClient = {
+    from(table) {
+      return {
+        insert(payload) {
+          insertedPayloads.push({ table, payload });
+          return {
+            select() {
+              return {
+                single: async () => ({ data: { id: 1, ...payload }, error: null })
+              };
+            }
+          };
+        }
+      };
+    }
+  };
+
+  const Module = require('module');
+  const originalLoad = Module._load;
+  Module._load = function(request, parent, isMain) {
+    if (request === './supabase') {
+      return { getSupabaseClient: () => fakeClient };
+    }
+    return originalLoad.apply(this, arguments);
+  };
+
+  delete require.cache[require.resolve('../src/storage')];
+  delete require.cache[require.resolve('../src/contentStore')];
+
+  try {
+    const { createContent } = require('../src/contentStore');
+    await createContent('careers', {
+      id: 10,
+      title: 'Operations Lead',
+      department: 'Operations',
+      location: 'Riyadh',
+      jobType: 'Full Time',
+      experience: '3+ years',
+      salary: 'Competitive',
+      description: 'Lead operations',
+      requirements: ['Leadership'],
+      deadline: '2026-12-31',
+      active: true,
+      created_at: '2026-08-08T00:00:00.000Z'
+    });
+
+    assert.equal(insertedPayloads.length, 1);
+    assert.equal(insertedPayloads[0].table, 'career_openings');
+    assert.equal(insertedPayloads[0].payload.jobType, 'Full Time');
+    assert.equal(insertedPayloads[0].payload.job_type, undefined);
+  } finally {
+    Module._load = originalLoad;
+    delete process.env.DATA_DIR;
+    delete process.env.SUPABASE_URL;
+    delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+    delete process.env.SUPABASE_ANON_KEY;
+    delete require.cache[require.resolve('../src/storage')];
+    delete require.cache[require.resolve('../src/contentStore')];
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
 test('sanitizePayloadForTable maps gallery fields to Supabase-friendly snake_case keys', () => {
   const payload = {
     title: 'YouTube gallery item',
