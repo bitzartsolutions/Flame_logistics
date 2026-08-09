@@ -139,7 +139,22 @@
       </div>
     </div>
   </div>
-  
+
+  <div id="imageModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/90 px-4 py-6">
+    <div class="relative w-full max-w-5xl">
+      <button id="closeImageModal" class="absolute -top-12 right-0 md:right-4 md:top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg" type="button" aria-label="Close preview">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      <div class="overflow-hidden rounded-2xl bg-black shadow-2xl">
+        <img id="imageModalImg" class="max-h-[80vh] w-full object-contain" alt="" />
+      </div>
+      <div class="mt-4 text-center">
+        <h3 id="imageModalTitle" class="font-title-lg text-white"></h3>
+        <p id="imageModalSubtitle" class="text-body-sm text-white/70 mt-1"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- Common Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
@@ -153,7 +168,13 @@
     const videoModal = document.getElementById('videoModal');
     const videoModalFrame = document.getElementById('videoModalFrame');
     const closeVideoModal = document.getElementById('closeVideoModal');
+    const imageModal = document.getElementById('imageModal');
+    const imageModalImg = document.getElementById('imageModalImg');
+    const imageModalTitle = document.getElementById('imageModalTitle');
+    const imageModalSubtitle = document.getElementById('imageModalSubtitle');
+    const closeImageModal = document.getElementById('closeImageModal');
     let galleryItems = [];
+    let renderedPhotoItems = [];
 
     function renderGallerySkeleton() {
       const spanClasses = ['', 'lg:col-span-2 lg:row-span-2', '', '', '', ''];
@@ -211,6 +232,22 @@
       videoModalFrame.src = '';
     }
 
+    function openImageModal(item) {
+      if (!item) return;
+      imageModalImg.src = item.imageUrl || item.thumbnailUrl || '';
+      imageModalImg.alt = item.title || 'Gallery image';
+      imageModalTitle.textContent = item.title || '';
+      imageModalSubtitle.textContent = item.subtitle || item.description || '';
+      imageModal.classList.remove('hidden');
+      imageModal.classList.add('flex');
+    }
+
+    function closeImageModalHandler() {
+      imageModal.classList.add('hidden');
+      imageModal.classList.remove('flex');
+      imageModalImg.src = '';
+    }
+
     function setActiveTab(activeButton) {
       filterTabs.forEach((button) => {
         const isActive = button === activeButton;
@@ -231,15 +268,20 @@
         return mediaType === 'video' || Boolean(item.youtubeUrl);
       });
 
+      renderedPhotoItems = photoItems;
+
       if (!photoItems.length) {
         galleryGrid.innerHTML = '<p class="text-on-surface-variant col-span-full">No gallery photos found for this category.</p>';
       } else {
         galleryGrid.innerHTML = photoItems.map((item, index) => {
           const spanClass = index === 1 ? 'md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2' : '';
           return `
-            <div class="reveal gallery-item group relative rounded-xl overflow-hidden shadow-lg cursor-pointer ${spanClass}">
-              <img class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 ${spanClass ? 'h-full min-h-72' : ''}" alt="${item.title}" src="${item.thumbnailUrl || item.imageUrl}">
+            <div class="reveal gallery-item group relative rounded-xl overflow-hidden shadow-lg cursor-pointer ${spanClass}" data-photo-index="${index}" role="button" tabindex="0">
+              <img class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700 ${spanClass ? 'h-full min-h-72' : ''}" alt="${item.title}" src="${item.thumbnailUrl || item.imageUrl}">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="material-symbols-outlined text-xl">zoom_in</span>
+                </div>
                 <span class="text-secondary font-label-md uppercase tracking-widest mb-2">${item.category || 'Gallery'}</span>
                 <h3 class="text-white font-title-lg">${item.title}</h3>
                 <p class="text-white/70 text-body-sm">${item.subtitle || item.description || 'Updated from the admin portal'}</p>
@@ -321,6 +363,36 @@
       if (event.target === videoModal) {
         closeVideoModalHandler();
       }
+    });
+
+    galleryGrid.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-photo-index]');
+      if (!trigger) return;
+      const index = Number(trigger.dataset.photoIndex);
+      openImageModal(renderedPhotoItems[index]);
+    });
+
+    galleryGrid.addEventListener('keydown', (event) => {
+      const trigger = event.target.closest('[data-photo-index]');
+      if (!trigger) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const index = Number(trigger.dataset.photoIndex);
+        openImageModal(renderedPhotoItems[index]);
+      }
+    });
+
+    closeImageModal.addEventListener('click', closeImageModalHandler);
+    imageModal.addEventListener('click', (event) => {
+      if (event.target === imageModal) {
+        closeImageModalHandler();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (!imageModal.classList.contains('hidden')) closeImageModalHandler();
+      if (!videoModal.classList.contains('hidden')) closeVideoModalHandler();
     });
 
     setActiveTab(filterTabs[0]);
