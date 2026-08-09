@@ -156,11 +156,16 @@ function initDataStorage() {
   }
 
   const galleryFile = getDataFile('gallery.json');
+  const galleryVideosFile = getDataFile('gallery-videos.json');
   const blogFile = getDataFile('blogs.json');
   const jobsFile = getDataFile('jobs.json');
 
   if (!fs.existsSync(galleryFile)) {
     fs.writeFileSync(galleryFile, JSON.stringify(defaultGalleryItems, null, 2));
+  }
+
+  if (!fs.existsSync(galleryVideosFile)) {
+    fs.writeFileSync(galleryVideosFile, JSON.stringify([], null, 2));
   }
 
   if (!fs.existsSync(blogFile)) {
@@ -314,6 +319,45 @@ async function saveGallery(items) {
   fs.writeFileSync(getDataFile('gallery.json'), payload);
 }
 
+async function getGalleryVideos() {
+  initDataStorage();
+  try {
+    const blobItems = await readBlobJson('gallery-videos.json');
+    if (blobItems) {
+      return Array.isArray(blobItems) ? blobItems : [];
+    }
+
+    const remoteItems = await readRemoteJson('gallery-videos.json');
+    if (remoteItems) {
+      return Array.isArray(remoteItems) ? remoteItems : [];
+    }
+
+    const raw = fs.readFileSync(getDataFile('gallery-videos.json'), 'utf8');
+    const items = JSON.parse(raw);
+    return Array.isArray(items) ? items : [];
+  } catch (err) {
+    console.error('Error reading gallery videos file:', err);
+    return [];
+  }
+}
+
+async function saveGalleryVideos(items) {
+  initDataStorage();
+  const payload = JSON.stringify(items, null, 2);
+
+  const blobSaved = await writeBlobJson('gallery-videos.json', items);
+  if (blobSaved) {
+    return;
+  }
+
+  const remoteSaved = await writeRemoteJson('gallery-videos.json', items);
+  if (remoteSaved) {
+    return;
+  }
+
+  fs.writeFileSync(getDataFile('gallery-videos.json'), payload);
+}
+
 async function getBlogs() {
   initDataStorage();
   try {
@@ -387,6 +431,8 @@ async function saveJobs(jobs) {
 module.exports = {
   getGallery,
   saveGallery,
+  getGalleryVideos,
+  saveGalleryVideos,
   getBlogs,
   saveBlogs,
   getJobs,

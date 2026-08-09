@@ -10,7 +10,14 @@ router.get('/', async (req, res) => {
     const q = (req.query.q || '').toString().toLowerCase().trim();
     const limit = Number(req.query.limit || 0);
 
-    let results = await getContent('gallery');
+    const [photoItems, videoItems] = await Promise.all([
+      getContent('gallery', []),
+      getContent('galleryVideo', [])
+    ]);
+
+    let results = [...(photoItems || []), ...(videoItems || [])].sort((a, b) => {
+      return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+    });
 
     results = (results || []).map((item) => {
       const hasYoutube = Boolean((item.youtubeUrl || '').toString().trim());
@@ -61,36 +68,58 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Title and either an image URL or a YouTube link are required' });
     }
 
-    const items = await getContent('gallery', []);
-    const newId = items.length > 0 ? Math.max(...items.map((i) => Number(i.id) || 0)) + 1 : 1;
+    const [photoItems, videoItems] = await Promise.all([
+      getContent('gallery', []),
+      getContent('galleryVideo', [])
+    ]);
+    const allIds = [...photoItems, ...videoItems].map((i) => Number(i.id) || 0);
+    const newId = allIds.length > 0 ? Math.max(...allIds) + 1 : 1;
+
+    const isVideo = resolvedMediaType === 'video';
 
     const thumbnailUrl = resolvedYoutubeUrl
       ? `https://img.youtube.com/vi/${extractYouTubeVideoId(resolvedYoutubeUrl)}/hqdefault.jpg`
       : normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim();
 
-    const newItem = {
-      id: newId,
-      category: (category || 'transportation').toLowerCase().trim(),
-      title: title.trim(),
-      subtitle: subtitle ? subtitle.trim() : 'Showcase',
-      description: description ? description.trim() : '',
-      imageUrl: resolvedImageUrl
-        ? normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim()
-        : thumbnailUrl,
-      thumbnailUrl,
-      youtubeUrl: resolvedYoutubeUrl,
-      mediaType: resolvedMediaType,
-      mobileAspect: mobileAspect || '',
-      desktopLayout: desktopLayout || '',
-      created_at: new Date().toISOString()
-    };
+    let savedItem;
 
-    const savedItem = await createContent('gallery', newItem);
+    if (isVideo) {
+      const newVideoItem = {
+        id: newId,
+        category: (category || 'transportation').toLowerCase().trim(),
+        title: title.trim(),
+        subtitle: subtitle ? subtitle.trim() : 'Showcase',
+        description: description ? description.trim() : '',
+        youtubeUrl: resolvedYoutubeUrl,
+        thumbnailUrl,
+        created_at: new Date().toISOString()
+      };
+
+      savedItem = await createContent('galleryVideo', newVideoItem);
+    } else {
+      const newPhotoItem = {
+        id: newId,
+        category: (category || 'transportation').toLowerCase().trim(),
+        title: title.trim(),
+        subtitle: subtitle ? subtitle.trim() : 'Showcase',
+        description: description ? description.trim() : '',
+        imageUrl: normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim(),
+        mobileAspect: mobileAspect || '',
+        desktopLayout: desktopLayout || '',
+        created_at: new Date().toISOString()
+      };
+
+      savedItem = await createContent('gallery', newPhotoItem);
+    }
+
     if (!savedItem) {
       return res.status(500).json({ error: 'Failed to save gallery item' });
     }
 
-    res.status(201).json({ message: 'Gallery image added successfully', item: savedItem });
+    res.status(201).json({
+      message: isVideo ? 'Gallery video added successfully' : 'Gallery image added successfully',
+      item: savedItem
+    });
   } catch (error) {
     console.error('Error adding gallery image:', error);
     res.status(500).json({ error: 'Failed to add gallery image' });
@@ -101,7 +130,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const itemId = Number(req.params.id);
-    const deleted = await deleteContent('gallery', itemId);
+    const deleted = (await deleteContent('gallery', itemId)) || (await deleteContent('galleryVideo', itemId));
 
     if (!deleted) {
       return res.status(404).json({ error: 'Gallery item not found', id: req.params.id });

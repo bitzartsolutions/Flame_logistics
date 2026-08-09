@@ -2,10 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { getSupabaseClient } = require('./supabase');
-const { getGallery, saveGallery, getBlogs, saveBlogs, getJobs, saveJobs } = require('./storage');
+const { getGallery, saveGallery, getGalleryVideos, saveGalleryVideos, getBlogs, saveBlogs, getJobs, saveJobs } = require('./storage');
 
 const TABLES = {
   gallery: 'gallery_items',
+  galleryVideo: 'gallery_videos',
   blog: 'blog_posts',
   careers: 'career_openings'
 };
@@ -72,6 +73,7 @@ function writeLocalJson(fileName, data) {
 function getLocalFileName(table) {
   const mapping = {
     gallery: 'gallery.json',
+    galleryVideo: 'gallery-videos.json',
     blog: 'blogs.json',
     careers: 'jobs.json'
   };
@@ -136,9 +138,9 @@ const SUPABASE_COLUMN_MAP = {
     content: 'content',
     excerpt: 'excerpt',
     category: 'category',
-    imageUrl: 'image_url',
+    imageUrl: 'imageUrl',
     date: 'date',
-    readTime: 'read_time',
+    readTime: 'readTime',
     featured: 'featured',
     created_at: 'created_at'
   },
@@ -174,7 +176,18 @@ function preparePayloadForSupabase(table, payload) {
 
   if (table === 'gallery') {
     const safePayload = {};
-    ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'mobileAspect', 'desktopLayout', 'created_at'].forEach((key) => {
+    ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'mobileAspect', 'desktopLayout', 'created_at'].forEach((key) => {
+      if (payload[key] !== undefined) {
+        safePayload[key] = payload[key];
+      }
+    });
+
+    return safePayload;
+  }
+
+  if (table === 'galleryVideo') {
+    const safePayload = {};
+    ['id', 'title', 'subtitle', 'description', 'category', 'youtubeUrl', 'thumbnailUrl', 'created_at'].forEach((key) => {
       if (payload[key] !== undefined) {
         safePayload[key] = payload[key];
       }
@@ -226,7 +239,8 @@ function sanitizePayloadForTable(table, payload) {
   }
 
   const allowedColumns = {
-    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'youtubeUrl', 'thumbnailUrl', 'mediaType', 'mobileAspect', 'desktopLayout', 'created_at'],
+    gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'mobileAspect', 'desktopLayout', 'created_at'],
+    galleryVideo: ['id', 'title', 'subtitle', 'description', 'category', 'youtubeUrl', 'thumbnailUrl', 'created_at'],
     blog: ['id', 'title', 'content', 'excerpt', 'category', 'imageUrl', 'date', 'readTime', 'featured', 'created_at'],
     careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'requirements', 'deadline', 'active', 'created_at']
   };
@@ -243,14 +257,6 @@ function sanitizePayloadForTable(table, payload) {
     }
   });
 
-  if (table === 'gallery') {
-    const normalized = normalizeGalleryRow(sanitizedPayload);
-    if (normalized.youtubeUrl) {
-      normalized.mediaType = 'video';
-    }
-    return normalized;
-  }
-
   if (payload.created_at !== undefined && sanitizedPayload.created_at === undefined) {
     sanitizedPayload.created_at = payload.created_at;
   }
@@ -262,6 +268,8 @@ function getStorageAdapter(table) {
   switch (table) {
     case 'gallery':
       return { get: getGallery, save: saveGallery };
+    case 'galleryVideo':
+      return { get: getGalleryVideos, save: saveGalleryVideos };
     case 'blog':
       return { get: getBlogs, save: saveBlogs };
     case 'careers':
@@ -368,11 +376,11 @@ async function deleteContent(table, id) {
   const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
     try {
-      const { error } = await client.from(TABLES[table]).delete().eq('id', id);
+      const { data, error } = await client.from(TABLES[table]).delete().eq('id', id).select();
       if (error) {
         console.warn(`Supabase delete failed for ${table}; falling back to local storage`, error.message);
       } else {
-        return true;
+        return Array.isArray(data) && data.length > 0;
       }
     } catch (error) {
       console.warn(`Supabase delete error for ${table}; falling back to local storage`, error.message);
