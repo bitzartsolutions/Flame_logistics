@@ -1,394 +1,647 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Flame Logistics | GCC Hub Mobile</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-  
-  <!-- Tailwind Config -->
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "inverse-on-surface": "#f3eff7",
-            "surface-tint": "#5655a6",
-            "outline-variant": "#c7c5d3",
-            "tertiary-fixed-dim": "#c6c6c9",
-            "trust-navy": "#09005d",
-            "on-error-container": "#93000a",
-            "secondary-fixed": "#ffdad5",
-            "on-primary-fixed-variant": "#3e3d8c",
-            "surface-container": "#f0ecf4",
-            "error-container": "#ffdad6",
-            "on-surface-variant": "#464651",
-            "surface-container-low": "#f6f2fa",
-            "surface-bright": "#fcf8ff",
-            "on-tertiary-fixed": "#1a1c1e",
-            "on-secondary-fixed": "#410001",
-            "secondary-fixed-dim": "#ffb4aa",
-            "on-secondary-container": "#fffbff",
-            "on-tertiary": "#ffffff",
-            "on-tertiary-fixed-variant": "#454749",
-            "on-primary-fixed": "#0f0861",
-            "surface-container-highest": "#e5e1e9",
-            "tertiary": "#000000",
-            "outline": "#777682",
-            "tertiary-fixed": "#e2e2e5",
-            "on-secondary": "#ffffff",
-            "surface-container-high": "#eae7ee",
-            "secondary-container": "#e12823",
-            "surface": "#fcf8ff",
-            "on-surface": "#1b1b20",
-            "surface-dim": "#dcd9e0",
-            "surface-muted": "#f0ecf5",
-            "on-secondary-fixed-variant": "#930007",
-            "surface-container-lowest": "#ffffff",
-            "secondary": "#bc000c",
-            "primary-container": "#0f0861",
-            "on-background": "#1b1b20",
-            "industrial-black": "#151719",
-            "inverse-primary": "#c2c1ff",
-            "primary": "#000000",
-            "on-primary": "#ffffff",
-            "surface-variant": "#e5e1e9",
-            "on-tertiary-container": "#838486",
-            "on-error": "#ffffff",
-            "glass-border": "rgba(255, 255, 255, 0.2)",
-            "inverse-surface": "#303035",
-            "flame-red": "#bc000c",
-            "primary-fixed-dim": "#c2c1ff",
-            "error": "#ba1a1a",
-            "background": "#fcf8ff",
-            "on-primary-container": "#7c7bcf",
-            "tertiary-container": "#1a1c1e",
-            "primary-fixed": "#e2dfff"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "gutter": "24px",
-            "margin-mobile": "16px",
-            "margin-desktop": "40px",
-            "base-unit": "8px",
-            "section-padding": "96px",
-            "container-max": "1280px"
-          },
-          "fontFamily": {
-            "label-md": ["Inter"],
-            "display-lg-mobile": ["Plus Jakarta Sans"],
-            "display-lg": ["Plus Jakarta Sans"],
-            "headline-sm": ["Plus Jakarta Sans"],
-            "headline-md": ["Plus Jakarta Sans"],
-            "body-md": ["Inter"],
-            "body-lg": ["Inter"],
-            "title-lg": ["Plus Jakarta Sans"]
-          },
-          "fontSize": {
-            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-            "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-            "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-            "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-            "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
-          }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flame Logistics | GCC Premier Global Trade Partner</title>
+<meta content="Riyadh-based, GCC connected logistics partner delivering precision transportation, warehousing, and trade solutions." name="description"/>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "inverse-on-surface": "#f3eff7",
+          "surface-tint": "#5655a6",
+          "outline-variant": "#c7c5d3",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "trust-navy": "#09005d",
+          "on-error-container": "#93000a",
+          "secondary-fixed": "#ffdad5",
+          "on-primary-fixed-variant": "#3e3d8c",
+          "surface-container": "#f0ecf4",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#464651",
+          "surface-container-low": "#f6f2fa",
+          "surface-bright": "#fcf8ff",
+          "on-tertiary-fixed": "#1a1c1e",
+          "on-secondary-fixed": "#410001",
+          "secondary-fixed-dim": "#ffb4aa",
+          "on-secondary-container": "#fffbff",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed-variant": "#454749",
+          "on-primary-fixed": "#0f0861",
+          "surface-container-highest": "#e5e1e9",
+          "tertiary": "#000000",
+          "outline": "#777682",
+          "tertiary-fixed": "#e2e2e5",
+          "on-secondary": "#ffffff",
+          "surface-container-high": "#eae7ee",
+          "secondary-container": "#e12823",
+          "surface": "#fcf8ff",
+          "on-surface": "#1b1b20",
+          "surface-dim": "#dcd9e0",
+          "surface-muted": "#f0ecf5",
+          "on-secondary-fixed-variant": "#930007",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#bc000c",
+          "primary-container": "#0f0861",
+          "on-background": "#1b1b20",
+          "industrial-black": "#151719",
+          "inverse-primary": "#c2c1ff",
+          "primary": "#09005d",
+          "on-primary": "#ffffff",
+          "surface-variant": "#e5e1e9",
+          "on-tertiary-container": "#838486",
+          "on-error": "#ffffff",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "inverse-surface": "#303035",
+          "flame-red": "#bc000c",
+          "primary-fixed-dim": "#c2c1ff",
+          "error": "#ba1a1a",
+          "background": "#fcf8ff",
+          "on-primary-container": "#7c7bcf",
+          "tertiary-container": "#1a1c1e",
+          "primary-fixed": "#e2dfff"
         },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "gutter": "24px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px",
+          "base-unit": "8px",
+          "section-padding": "96px",
+          "container-max": "1280px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "title-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+        }
       },
-    }
-  </script>
-  
-  <!-- Base Styles -->
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  </style>
-  
-  <!-- Atomic Component Styles -->
-  <link rel="stylesheet" href="../../assets/css/mobile/atomic.css">
+    },
+  }
+</script>
+
+<!-- Base Styles -->
+<style>
+  body { font-family: 'Inter', sans-serif; min-height: max(884px, 100dvh); }
+  h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .hero-gradient { background: linear-gradient(180deg, rgba(9, 0, 93, 0.1) 0%, rgba(9, 0, 93, 0.85) 100%); }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 20s linear infinite; }
+</style>
 </head>
-<body class="bg-background text-on-surface">
+<body class="bg-background text-on-surface font-body-md">
 
-  <!-- Header Placeholder - Loaded dynamically -->
-  <div id="header-placeholder"></div>
+<!-- Header Placeholder - Loaded dynamically -->
+<div id="header-placeholder"></div>
 
-  <main class="pt-[80px]">
-    <!-- ============================================
-         ORGANISM: Hero Section
-         Composed of: Atoms (image, badge, heading, buttons)
-         ============================================ -->
-    <section class="organism-hero relative pt-16 min-h-[85vh] flex flex-col justify-end overflow-hidden">
-      <div class="organism-hero__bg absolute inset-0 z-0">
-        <img class="atom-image w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsB1KT-vJu88yP_nWj2TYnQSOfjrW1dX2yBPkSUmvZzScUEdO81XAIM8lTYMWY7ZuaxmToUPzhX84ZGBMBUUiMFBZVD3BpNnjOinyP0FhLuJT3DwGmm4t-B-l1JSDozp_wvaVX9o4oL-pLz2L8W9SybCmaSv2q4svTrByMQdfe8uCNBZLc3hZaGQifwaIO-3haIV52qkf8S9OTrOhzDmt_uopjAftglxxkbudQvHWUUGTPllsS_5aDBKOCl7AEpfYfbjAG60Dm8sc" alt="Flame Logistics Hero">
-        <div class="absolute inset-0 hero-gradient"></div>
-      </div>
-      <div class="organism-hero__content relative z-10 px-margin-mobile pb-12 text-white">
-        <div class="atom-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-flame-red/20 border border-flame-red/30 backdrop-blur-md mb-4">
-          <span class="atom-badge__dot w-2 h-2 rounded-full bg-flame-red animate-pulse"></span>
-          <span class="atom-badge__text text-label-md font-label-md tracking-widest uppercase">GCC Logistics Hub</span>
-        </div>
-        <h1 class="atom-heading font-display-lg-mobile text-display-lg-mobile mb-6">Connecting the GCC to the World</h1>
-        <div class="organism-hero__actions flex flex-col gap-3">
-          <button class="atom-btn-primary w-full py-4 bg-flame-red text-white rounded-xl font-title-lg flex items-center justify-center gap-2 shadow-xl shadow-flame-red/20 active:scale-[0.98] transition-all">
-            Track Your Shipment
-            <span class="atom-icon material-symbols-outlined">arrow_forward</span>
-          </button>
-          <button class="atom-btn-secondary w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
-            Our Solutions
-          </button>
-        </div>
-      </div>
-    </section>
+<main class="pt-[80px]">
 
-    <!-- ============================================
-         ORGANISM: Stats Grid
-         Composed of: Molecules (stat-card x4)
-         ============================================ -->
-    <section class="organism-stats-grid py-12 bg-white px-margin-mobile">
-      <div class="grid grid-cols-2 gap-4">
-        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
-          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">public</span>
-          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">120+</div>
-          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Countries Reached</div>
-        </div>
-        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
-          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
-          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">500+</div>
-          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Modern Fleet</div>
-        </div>
-        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
-          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">verified</span>
-          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">99.9%</div>
-          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">On-time Delivery</div>
-        </div>
-        <div class="molecule-stat-card p-6 bg-surface-container-low rounded-xl border border-outline-variant/30">
-          <span class="atom-icon material-symbols-outlined text-trust-navy mb-4" style="font-variation-settings: 'FILL' 1;">support_agent</span>
-          <div class="molecule-stat-card__value font-headline-sm text-trust-navy">24/7</div>
-          <div class="molecule-stat-card__label font-label-md text-on-surface-variant uppercase opacity-70">Expert Support</div>
-        </div>
+  <!-- Hero -->
+  <section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img class="w-full h-full object-cover" alt="A cinematic, high-resolution wide shot of a massive modern cargo ship" src="../../assets/images/Home_hero.png">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+    <div class="relative z-10 px-margin-mobile pb-12 text-white">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-flame-red/20 border border-flame-red/30 backdrop-blur-md mb-4 w-fit">
+        <span class="w-2 h-2 rounded-full bg-flame-red animate-pulse"></span>
+        <span class="text-label-md font-label-md tracking-widest uppercase">GCC Premium Logistics</span>
+      </span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile mb-4 leading-[1.1]">Moving with care, every time</h1>
+      <p class="font-body-md text-white/90 mb-8 max-w-md">Riyadh-based, GCC connected, delivering excellence at every node of your supply chain.</p>
+      <div class="flex flex-col gap-3">
+        <a href="services.html" class="w-full py-4 bg-flame-red text-white rounded-xl font-title-lg flex items-center justify-center gap-2 shadow-xl shadow-flame-red/20 active:scale-[0.98] transition-all">
+          Explore Services
+          <span class="material-symbols-outlined">trending_flat</span>
+        </a>
+        <a href="solutions.html" class="w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+          Our Solutions
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============================================
-         ORGANISM: Services Carousel
-         Composed of: Atoms (heading, divider), Molecules (service-card x3)
-         ============================================ -->
-    <section class="organism-services-carousel py-16 bg-background">
-      <div class="organism-services-carousel__header px-margin-mobile mb-8">
-        <h2 class="atom-heading font-headline-md text-trust-navy">Core Logistics Services</h2>
-        <div class="atom-divider h-1 w-12 bg-flame-red mt-2"></div>
+  <!-- Stats -->
+  <section class="py-12 bg-white px-margin-mobile">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">6000+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Warehouse Space</div>
       </div>
-      <div class="organism-services-carousel__cards flex overflow-x-auto gap-4 px-margin-mobile pb-6 scrollbar-hide">
-        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
-          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
-            <span class="atom-icon material-symbols-outlined text-3xl">airplanemode_active</span>
-          </div>
-          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Air Freight</h3>
-          <p class="atom-text font-body-md text-on-surface-variant">Global expedited air solutions for time-sensitive cargo and tech shipments.</p>
-        </div>
-        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
-          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
-            <span class="atom-icon material-symbols-outlined text-3xl">directions_boat</span>
-          </div>
-          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Sea Freight</h3>
-          <p class="atom-text font-body-md text-on-surface-variant">Cost-effective FCL and LCL shipping across all major global maritime routes.</p>
-        </div>
-        <div class="molecule-service-card flex-none w-72 p-6 bg-white rounded-xl shadow-sm border border-outline-variant/20">
-          <div class="molecule-service-card__icon w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-flame-red mb-4">
-            <span class="atom-icon material-symbols-outlined text-3xl">local_shipping</span>
-          </div>
-          <h3 class="atom-heading font-title-lg text-trust-navy mb-2">Land Transport</h3>
-          <p class="atom-text font-body-md text-on-surface-variant">Comprehensive GCC cross-border trucking and domestic distribution network.</p>
-        </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-flame-red">20+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Modern Fleet</div>
       </div>
-    </section>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">15+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Years Excellence</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">GCC</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Wide Presence</div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ============================================
-         ORGANISM: Sectors Section
-         Composed of: Atoms (heading), Molecules (sector-card x3)
-         ============================================ -->
-    <section class="organism-sectors py-16 px-margin-mobile bg-white">
-      <h2 class="atom-heading font-headline-md text-trust-navy mb-8">Sectors We Empower</h2>
-      <div class="organism-sectors__cards space-y-4">
-        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
-          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwxjfVJ774WdKXzo7iBr0vgYLhtskNymP_FazrbRnViQ7E35rGSAjAEkzuudiZpGDtpgJIQJ5Bp_SblVVmCMunUDbeLwqdkAsQGQDu5yExmdAJlbrL42A0bfixcTj-_r6l9crpogMTOKa04VqC5pf4OXSH5HueBjjjDi3B0YwHanAAXWUd08UyI-7GbUiFf3QUexXKQAbLDYBDxtmXibTaHW6OLtsa63BNwx_6rkj6hLXVhgrhU27wrcb_E9NTnl7B3wmn_qD6Vis')"></div>
-          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
-          <div class="molecule-sector-card__content absolute bottom-6 left-6">
-            <h3 class="atom-heading text-white font-headline-sm">Technology</h3>
-            <p class="atom-text text-white/80 font-body-md">Delicate electronics &amp; high-value hardware.</p>
-          </div>
+  <!-- Services -->
+  <section class="py-16 bg-background">
+    <div class="px-margin-mobile mb-8">
+      <h2 class="font-headline-md text-headline-md text-trust-navy">Precision Logistics Services</h2>
+      <p class="font-body-md text-on-surface-variant mt-2">Frictionless movement for your cargo, from urgent deliveries to complex land transport.</p>
+    </div>
+    <div class="flex overflow-x-auto gap-4 px-margin-mobile pb-6 hide-scrollbar">
+      <a href="land-transportation.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Land Transportation" src="../../assets/images/Land_transp.png">
         </div>
-        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
-          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYCUgAKAjLjQeK3aUfW0lRQcoqwr8A4fy9z2wXPUxatc3gac2LG359OeyDc3FIKWQGaD-DQ-vl0x_kbGqmTSqybKdCGNseTMoqe-Nbr7F4FLIPPGNblwsiK2CMxzxDAkCLJZAIfvNhOpkPtX3VbgYxmfkTlTwHsq_ZgTlzZbg8WiYfUBCe14VFv7Me4w9HEQRkJBqOvUP4kOfLB2tBEZIPs4k7wt61ub_foLwKeUooTROvEfaCE2l-PtlkS_sUEW856f110rreTf4')"></div>
-          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
-          <div class="molecule-sector-card__content absolute bottom-6 left-6">
-            <h3 class="atom-heading text-white font-headline-sm">Healthcare</h3>
-            <p class="atom-text text-white/80 font-body-md">Cold-chain solutions for medical supplies.</p>
-          </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Land Transportation</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive GCC-wide delivery via our robust and monitored logistics network.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
         </div>
-        <div class="molecule-sector-card relative h-48 rounded-xl overflow-hidden group">
-          <div class="molecule-sector-card__bg absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfpgjtuLuzyg2_LvAR0oAPxUUvNZVJANeCsZCMs6WIWSbsEY9Eiyr6Va9-s1CybVfuFht8pRIgH74xFtnGwuAbH5662rUSoCqFPPK59tLTc9UZbytZGRNLT8VYKlUSZE2i2Rv4YJ0ig0dXc3PaXCyuKD9jVKpCi61ZKT86ujVSiohrKekaCHmPQgSLYuTmrHCy0cXVt38aPq9iQ8rne4i7ZlgfY3-Z64uer5wVMLoYdwVGQJIMEZbyffqmIbtWtn6lGNNTUfzNpN0')"></div>
-          <div class="molecule-sector-card__overlay absolute inset-0 bg-gradient-to-t from-trust-navy via-transparent to-transparent"></div>
-          <div class="molecule-sector-card__content absolute bottom-6 left-6">
-            <h3 class="atom-heading text-white font-headline-sm">Energy &amp; Gas</h3>
-            <p class="atom-text text-white/80 font-body-md">Massive equipment &amp; urgent industrial parts.</p>
-          </div>
+      </a>
+      <a href="customs-clearance.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Customs Clearance" src="../../assets/images/Custom_clear.png">
         </div>
-      </div>
-    </section>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Customs Clearance</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Frictionless border transitions managed by our expert local regulatory team.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="warehousing-distribution.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Warehousing" src="../../assets/images/Warehouse.png">
+        </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Warehousing &amp; Distribution</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Strategically located hubs in Riyadh and Jeddah with WMS integration.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="packing-moving.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Packing and Moving" src="../../assets/images/Packaging.png">
+        </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Packing &amp; Moving</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">White-glove residential and commercial relocation services.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="industrial-crating.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Industrial Crating" src="../../assets/images/industrial.png">
+        </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Industrial Crating</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Bespoke heavy-duty protection for high-value industrial assets.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="office-shifting.html" class="flex-none w-72 bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-all">
+        <div class="h-40 overflow-hidden">
+          <img class="w-full h-full object-cover" alt="Office Shifting" src="../../assets/images/Office_shift.png">
+        </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Office Shifting</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive office relocation services for a smooth business transition.</p>
+          <span class="inline-flex items-center gap-1 text-flame-red font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    <!-- ============================================
-         ORGANISM: Partners Marquee
-         Composed of: Atoms (heading, divider), Molecules (partner-logo)
-         ============================================ -->
-    <section class="organism-partners-marquee py-16 bg-white overflow-hidden">
-      <div class="organism-partners-marquee__header px-margin-mobile mb-8">
-        <h2 class="atom-heading font-headline-md text-trust-navy">Strategic Partnerships</h2>
-        <div class="atom-divider h-1 w-12 bg-flame-red mt-2"></div>
-      </div>
-      <div class="organism-partners-marquee__track relative flex overflow-hidden">
-        <div class="flex gap-12 animate-marquee whitespace-nowrap items-center py-4">
-          <div class="flex items-center gap-12">
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">NEOM</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">ARAMCO</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">SABIC</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">STC</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Maaden</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Red Sea</span>
-          </div>
-          <div class="flex items-center gap-12">
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">NEOM</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">ARAMCO</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">SABIC</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">STC</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Maaden</span>
-            <span class="molecule-partner-logo text-2xl font-extrabold text-trust-navy/30 tracking-tighter uppercase">Red Sea</span>
-          </div>
+  <!-- How It Works -->
+  <section class="py-16 bg-surface-container-low px-margin-mobile border-y border-outline-variant/20">
+    <div class="text-center mb-10">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-flame-red/10 text-flame-red font-label-md uppercase tracking-wider mb-4">How It Works</span>
+      <h2 class="font-headline-md text-headline-md text-trust-navy mb-3">A Streamlined Journey From Request to Delivery</h2>
+      <p class="font-body-md text-on-surface-variant">From first contact to final handoff, every step is coordinated with precision and transparency.</p>
+    </div>
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-outline-variant/30 bg-white p-6 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-flame-red/10 text-flame-red flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-2xl">search</span>
         </div>
+        <div class="text-flame-red font-bold text-label-md uppercase tracking-wider mb-2">Step 01</div>
+        <h3 class="font-title-lg text-trust-navy mb-2">Assess Your Needs</h3>
+        <p class="text-on-surface-variant font-body-md text-sm">We begin by understanding your cargo profile, timing, destination, and critical handling requirements.</p>
       </div>
-    </section>
+      <div class="rounded-2xl border border-outline-variant/30 bg-white p-6 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-trust-navy/10 text-trust-navy flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-2xl">route</span>
+        </div>
+        <div class="text-flame-red font-bold text-label-md uppercase tracking-wider mb-2">Step 02</div>
+        <h3 class="font-title-lg text-trust-navy mb-2">Build the Supply Chain Plan</h3>
+        <p class="text-on-surface-variant font-body-md text-sm">Our specialists design a tailored movement plan using the right mode, route, and asset mix.</p>
+      </div>
+      <div class="rounded-2xl border border-outline-variant/30 bg-white p-6 shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-flame-red/10 text-flame-red flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-2xl">local_shipping</span>
+        </div>
+        <div class="text-flame-red font-bold text-label-md uppercase tracking-wider mb-2">Step 03</div>
+        <h3 class="font-title-lg text-trust-navy mb-2">Track and Deliver with Confidence</h3>
+        <p class="text-on-surface-variant font-body-md text-sm">Every shipment stays visible through our command center, with real-time coordination until handoff.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- ============================================
-         ORGANISM: Authority Section
-         Composed of: Atoms (heading, text), Molecules (feature-item, testimonial-card)
-         ============================================ -->
-    <section class="organism-authority py-16 bg-surface-container px-margin-mobile">
-      <div class="organism-authority__content mb-10">
-        <h2 class="atom-heading font-headline-md text-trust-navy mb-4">GCC Authority in Supply Chain</h2>
-        <p class="atom-text font-body-lg text-on-surface-variant mb-6">Our presence in Saudi Arabia and the UAE provides an unmatched gateway for global trade.</p>
-        <ul class="organism-authority__features space-y-4">
-          <li class="molecule-feature-item flex items-start gap-3">
-            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
-            <span class="atom-text font-body-md text-on-surface">Integrated Customs Brokerage at all GCC ports.</span>
-          </li>
-          <li class="molecule-feature-item flex items-start gap-3">
-            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
-            <span class="atom-text font-body-md text-on-surface">Strategic Bonded Warehousing in Riyadh &amp; Dubai.</span>
-          </li>
-          <li class="molecule-feature-item flex items-start gap-3">
-            <span class="atom-icon material-symbols-outlined text-flame-red mt-1">check_circle</span>
-            <span class="atom-text font-body-md text-on-surface">End-to-end Last Mile visibility and tracking.</span>
-          </li>
-        </ul>
-      </div>
-      <div class="molecule-testimonial-card p-8 bg-white rounded-2xl shadow-xl shadow-trust-navy/5 border border-outline-variant/30">
-        <div class="molecule-testimonial-card__rating flex gap-1 text-flame-red mb-4">
-          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="atom-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+  <!-- Partners Marquee -->
+  <section class="py-16 bg-white overflow-hidden">
+    <div class="px-margin-mobile mb-8 text-center">
+      <h2 class="font-headline-md text-headline-md text-trust-navy">Our Trusted Partners</h2>
+      <p class="font-body-md text-on-surface-variant mt-2">Collaborating with global industry leaders across the GCC.</p>
+    </div>
+    <div class="relative">
+      <div class="flex gap-10 items-center animate-marquee whitespace-nowrap">
+        <div class="flex shrink-0 gap-10 items-center">
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">ENERGY</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">PHARMA</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">RETAIL</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">TECH</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">AUTO</span>
         </div>
-        <p class="molecule-testimonial-card__quote italic font-body-lg text-trust-navy mb-6">"Flame Logistics has redefined our regional distribution speed. Their local knowledge combined with global reach is exactly what we needed."</p>
-        <div class="molecule-testimonial-card__author flex items-center gap-4">
-          <div class="molecule-testimonial-card__avatar w-12 h-12 rounded-full bg-surface-container"></div>
-          <div>
-            <div class="atom-heading font-title-lg text-trust-navy">Abdulaziz Al-Salem</div>
-            <div class="atom-text font-label-md text-on-surface-variant">Operations Director, Energy Group</div>
-          </div>
+        <div class="flex shrink-0 gap-10 items-center">
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">ENERGY</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">PHARMA</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">RETAIL</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">TECH</span>
+          <span class="w-28 text-center font-display-lg text-trust-navy/30 font-bold text-lg">AUTO</span>
         </div>
       </div>
-    </section>
+      <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent"></div>
+      <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent"></div>
+    </div>
+  </section>
 
-    <!-- ============================================
-         ORGANISM: Gallery Grid
-         Composed of: Atoms (heading), Molecules (gallery-image x4)
-         ============================================ -->
-    <section class="organism-gallery py-16 px-margin-mobile bg-white">
-      <h2 class="atom-heading font-headline-sm text-trust-navy mb-6">Operations Hub</h2>
-      <div class="organism-gallery__grid grid grid-cols-2 gap-3">
-        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
-          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCazUs93WsFibUUUzgEtJ_QQ3bUBHWmUpK8OGUNWgrfR4HNmWXf1W_r5hpWXXVA5biTvB1HxQf2OvYz1cVYhOFJrzF-u8aWSc7DGUtQKxZ-g8JQkL5Rcvhln7gjHPotuiKwWCerJ5H0GolvMQY2e0K0ZcE51lXem8OGbNPt5U91w-1y0PgBIiPKl-OSpKqbyrcSqR4nZMEJkE7mDRQw5qEaEbtSDbb5gKbGEId1JDQBJxoNhfCxEjZwcqdPtOpj5ToFVTogqS0vofs" alt="Operations 1">
-        </div>
-        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
-          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzlBSuOMgvLDxJmbSeB8ou6FRRZ10xdyUOfCKdQMJsCdIkl3Dtij47c0KaGxc_EwkOLz3gWOkWMLS5pF9b_ugAMc9N2fIHmyAV1EtyzKbAMUuSrUdHjO6vs6l6I93vpc5Ik5GrFNc_KjQj6I766QjS3J-6WfsiDNZjA9mFVWxPo_pjzXEzR_3dvDX7t8bo0pwjyFQcX1wOLlEbHKBspdSRAxIZ9Tw806WXnJGvxEbut2GaqbD_B8FRXRLZNADBov-w_cDzGiLcSgg" alt="Operations 2">
-        </div>
-        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
-          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCUoDJpoqFmNSaAme2_S-tDaZ8JrjtUWxe_uPaoESfdMidvlTW5Dicg2rg75KyouTtMWE7-ewHVFcU-tqZEf9emBAQFIr_JTRob6sSH-zJHGOe0X9Dgp2IWD_yu5yasjokLSG8Qf1SbedROxpwRB4_6BTxUeWEAC_kz8SW0_U4WiBdI75jhEtCUvSF5H7SPU9VAuPQ5f-21CazkueEW1i9pFLBmd6e9cb2zKKVnmBtzJNThZkEdyKBvrjUAdAWPzErPSqPw8-pNLw" alt="Operations 3">
-        </div>
-        <div class="molecule-gallery-image aspect-square rounded-xl overflow-hidden">
-          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3bTb5ABHOSOFXoWS5udLQehdvuHoRbH61mKKrjxYC85tufjZrliwjolj8_WTDOpKfGkCgtoRaSuHp62kr34101ki90_EkX7LK0IZBuw2zy0Bu9W5x_zuFy47yVzaYDjKHEV-hbNjzLwYpZJwvbw3_ou343-GnHSQCNXm1pwCzKF5he_lbfuAG_p7X_ajAXUHy8U3yVr3YkoRhG3VupZ-33s1Mgj4r2YQnUzQ8j2fbtvgzTC8Kox3WgSdAECTe2Oe-C34xNfk4t9E" alt="Operations 4">
+  <!-- Industries -->
+  <section class="py-16 px-margin-mobile bg-industrial-black text-white">
+    <h2 class="font-headline-md text-headline-md mb-2">Sectors We Empower</h2>
+    <p class="font-body-md text-white/70 mb-8">Specialized handling for the GCC's most critical industrial verticals.</p>
+    <div class="space-y-4">
+      <div class="relative h-48 rounded-xl overflow-hidden">
+        <img class="w-full h-full object-cover" alt="Technology and Electronics" src="../../assets/images/Technology & Electronics.png">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex flex-col justify-end p-6">
+          <span class="material-symbols-outlined text-flame-red mb-2">memory</span>
+          <h3 class="font-title-lg mb-1">Technology &amp; Electronics</h3>
+          <p class="text-white/70 font-body-md text-sm">Sensitive handling for high-value tech components.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ============================================
-         ORGANISM: News Section
-         Composed of: Atoms (heading, button-link), Molecules (news-card x2)
-         ============================================ -->
-    <section class="organism-news py-16 bg-surface-container px-margin-mobile">
-      <div class="organism-news__header flex justify-between items-end mb-8">
-        <h2 class="atom-heading font-headline-md text-trust-navy">Trade Insights</h2>
-        <button class="atom-btn-link text-flame-red font-label-md border-b border-flame-red">View All</button>
-      </div>
-      <div class="organism-news__cards space-y-6">
-        <div class="molecule-news-card flex gap-4 group">
-          <div class="molecule-news-card__image w-24 h-24 flex-none rounded-xl overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjoPdQy9WqCie2oMo8QSkXOzSFUOM5Y8J1_XLXLcztoYk-ZczyfCQKvStj-b4xojpRl1m675dz39v86a7opryrCLsNtWPeYD-3mX_cQQKqELsiTSeJdVq_W6kYnqA9StAUJpf7tRieiB1GzGZT2asWVdRddyXNq8AIdpuqnmAoxAHzkB8RmewjA83QASSbdNykY36aeUUwjW2p65IWYJZ7NdISThXBlJtMeOnEBo7RiudOi3aMZzBHX4HNX2b0PIhk3iqkjW-kZXc" alt="News 1">
-          </div>
-          <div class="molecule-news-card__content flex flex-col justify-center">
-            <span class="atom-text text-label-md text-on-surface-variant mb-1 uppercase">Industry News • 2 days ago</span>
-            <h3 class="atom-heading font-title-lg text-trust-navy line-clamp-2">Navigating New GCC Customs Regulations in 2024</h3>
-          </div>
-        </div>
-        <div class="molecule-news-card flex gap-4 group">
-          <div class="molecule-news-card__image w-24 h-24 flex-none rounded-xl overflow-hidden">
-            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCStdLS81drUIWwUEP-AOFrRTWns5AJile3KOCR4oHqELkx1ne2KpnMkMPMzYV-Nxyctqnnf3QQsPQEGbLkLxgs8UZnHLD5-AO_Wjy1ahzQBhrhS2tjE_Qst6mmAzQTkwT3GNRJ4A-6BkjTFKqq3lkYOY08Mxs8atQ7-CbQUZf8lWbyl4NaB58Y8MFtu6L-nQ_l4P93XKRE8sylqSMHht_j4K949klnqOXzRFpGoLfv2sn9U5a-sBQeYGrIA6z4KXh6UCAhXtGT_e4" alt="News 2">
-          </div>
-          <div class="molecule-news-card__content flex flex-col justify-center">
-            <span class="atom-text text-label-md text-on-surface-variant mb-1 uppercase">Tech Updates • 1 week ago</span>
-            <h3 class="atom-heading font-title-lg text-trust-navy line-clamp-2">Blockchain in Middle East Supply Chains: A New Era</h3>
-          </div>
+      <div class="relative h-40 rounded-xl overflow-hidden">
+        <img class="w-full h-full object-cover" alt="Pharmaceuticals" src="../../assets/images/Pharmaceuticals.png">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5">
+          <h3 class="font-title-lg">Pharmaceuticals</h3>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="relative h-40 rounded-xl overflow-hidden">
+        <img class="w-full h-full object-cover" alt="Freight Forwarding & Logistics" src="../../assets/images/Freight Forwarding &Logistics.png">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5">
+          <h3 class="font-title-lg">Freight Forwarding &amp; Logistics</h3>
+        </div>
+      </div>
+      <div class="relative h-40 rounded-xl overflow-hidden">
+        <img class="w-full h-full object-cover" alt="Construction" src="../../assets/images/construction.png">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-5">
+          <h3 class="font-title-lg">Construction</h3>
+          <p class="text-white/70 font-body-md text-sm">Large-scale construction logistics and site deliveries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============================================
-       ORGANISM: Footer
-       Composed of: Atoms (icon, heading, text), Molecules (social-link, accordion-item, contact-info)
-       ============================================ -->
-  <!-- Footer Placeholder - Loaded dynamically -->
-  <div id="footer-placeholder"></div>
+  <!-- Why Choose Us -->
+  <section class="py-16 bg-white px-margin-mobile">
+    <h2 class="font-display-lg-mobile text-display-lg-mobile text-trust-navy mb-8">The GCC Authority in Supply Chain</h2>
+    <div class="rounded-2xl overflow-hidden shadow-xl shadow-trust-navy/10 mb-8">
+      <img class="w-full h-56 object-cover" alt="Logistics manager in control room" src="../../assets/images/Home.png">
+    </div>
+    <div class="space-y-8">
+      <div class="flex gap-4">
+        <div class="shrink-0 w-11 h-11 bg-trust-navy/5 rounded-full flex items-center justify-center text-trust-navy">
+          <span class="material-symbols-outlined">speed</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg text-trust-navy mb-1">Unmatched Speed</h4>
+          <p class="font-body-md text-on-surface-variant text-sm">Proprietary routing algorithms ensure your cargo bypasses congestion nodes across Saudi Arabia and neighboring states.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="shrink-0 w-11 h-11 bg-trust-navy/5 rounded-full flex items-center justify-center text-trust-navy">
+          <span class="material-symbols-outlined">verified_user</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg text-trust-navy mb-1">GCC Expertise</h4>
+          <p class="font-body-md text-on-surface-variant text-sm">Decades of navigating local customs, regulatory frameworks, and regional trade corridors with absolute compliance.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="shrink-0 w-11 h-11 bg-trust-navy/5 rounded-full flex items-center justify-center text-trust-navy">
+          <span class="material-symbols-outlined">analytics</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg text-trust-navy mb-1">Data-Driven Visibility</h4>
+          <p class="font-body-md text-on-surface-variant text-sm">Real-time IoT tracking integrated into our digital-first platform. Every shipment is a data point for your optimization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Bottom Navigation Placeholder - Loaded dynamically -->
-  <div id="bottom-nav-placeholder"></div>
+  <!-- Gallery -->
+  <section class="py-16 px-margin-mobile bg-surface-container">
+    <div class="mb-6">
+      <h2 class="font-headline-md text-headline-md text-trust-navy">Operations Gallery</h2>
+      <a href="gallery.html" class="inline-flex items-center gap-1 text-flame-red font-label-md mt-2">
+        View All Gallery Items <span class="material-symbols-outlined text-base">arrow_forward</span>
+      </a>
+    </div>
 
-  <!-- Mobile Common JS - Loads header and footer components -->
-  <script src="../../assets/js/mobile.js"></script>
+    <h3 class="font-title-lg text-trust-navy mb-4">Photos</h3>
+    <div id="operations-gallery-grid" class="grid grid-cols-2 gap-3 mb-10"></div>
+
+    <h3 class="font-title-lg text-trust-navy mb-4">Videos</h3>
+    <div id="operations-gallery-video-grid" class="space-y-4"></div>
+  </section>
+
+  <!-- Trade Insights -->
+  <section class="py-16 px-margin-mobile bg-white">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-headline-md text-headline-md text-trust-navy">Trade Insights</h2>
+      <a href="blog.html" class="inline-flex items-center gap-1 text-flame-red font-label-md">
+        View All <span class="material-symbols-outlined text-base">arrow_forward</span>
+      </a>
+    </div>
+    <div id="trade-insights-grid" class="space-y-6"></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 px-margin-mobile bg-trust-navy text-white text-center relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-flame-red/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+    <div class="relative z-10">
+      <h2 class="font-headline-md text-headline-md mb-4">Ready to optimize your supply chain?</h2>
+      <p class="font-body-md text-white/80 mb-8">Partner with the GCC's leader in precision logistics.</p>
+      <div class="flex flex-col gap-3">
+        <a href="contact.html" class="w-full bg-flame-red text-white py-4 rounded-xl font-title-lg shadow-lg shadow-flame-red/20 active:scale-[0.98] transition-all">
+          Get a Custom Quote
+        </a>
+        <a href="tel:+966550199701" class="w-full bg-white text-trust-navy py-4 rounded-xl font-title-lg active:scale-[0.98] transition-all">
+          Speak to an Expert
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer Placeholder - Loaded dynamically -->
+<div id="footer-placeholder"></div>
+
+<!-- Bottom Navigation Placeholder - Loaded dynamically -->
+<div id="bottom-nav-placeholder"></div>
+
+<div id="videoModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/85 px-4 py-6">
+  <div class="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-2xl">
+    <button id="closeVideoModal" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-trust-navy shadow-lg" type="button" aria-label="Close video">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="aspect-video w-full">
+      <iframe id="videoModalFrame" class="h-full w-full" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  const configuredBackendBase = window.__FLAME_BACKEND_URL || '';
+  const isLocalHost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
+  const BACKEND_BASE = configuredBackendBase || (isLocalHost ? 'http://localhost:4000' : '');
+  const API_BASE = BACKEND_BASE ? `${BACKEND_BASE}/api` : '/api';
+
+  const galleryGrid = document.getElementById('operations-gallery-grid');
+  const galleryVideoGrid = document.getElementById('operations-gallery-video-grid');
+  const videoModal = document.getElementById('videoModal');
+  const videoModalFrame = document.getElementById('videoModalFrame');
+  const closeVideoModalBtn = document.getElementById('closeVideoModal');
+
+  function getYouTubeEmbedUrl(url) {
+    if (!url) return '';
+    try {
+      const parsed = new URL(url);
+      if (parsed.hostname.includes('youtube.com')) {
+        const videoId = parsed.searchParams.get('v');
+        if (!videoId) return '';
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
+      if (parsed.hostname.includes('youtu.be')) {
+        const videoId = parsed.pathname.replace(/^\//, '');
+        if (!videoId) return '';
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
+    } catch (error) {
+      return '';
+    }
+    return '';
+  }
+
+  function openVideoModal(url) {
+    const embedUrl = getYouTubeEmbedUrl(url);
+    if (!embedUrl) return;
+    videoModalFrame.src = embedUrl;
+    videoModal.classList.remove('hidden');
+    videoModal.classList.add('flex');
+  }
+
+  function closeVideoModalHandler() {
+    videoModal.classList.add('hidden');
+    videoModal.classList.remove('flex');
+    videoModalFrame.src = '';
+  }
+
+  if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModalHandler);
+  if (videoModal) {
+    videoModal.addEventListener('click', (event) => {
+      if (event.target === videoModal) closeVideoModalHandler();
+    });
+  }
+
+  function renderGallery(items) {
+    if (!galleryGrid) return;
+    if (!items.length) {
+      galleryGrid.innerHTML = '<p class="col-span-2 text-on-surface-variant text-sm">No gallery photos are available yet.</p>';
+      return;
+    }
+    galleryGrid.innerHTML = items.map((item) => `
+      <div class="relative aspect-square rounded-xl overflow-hidden group">
+        <img class="w-full h-full object-cover" alt="${item.title || 'Operations gallery'}" src="${item.imageUrl}" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+          <span class="text-white text-xs font-label-md line-clamp-1">${item.title || 'Operations Gallery'}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderGalleryVideos(items) {
+    if (!galleryVideoGrid) return;
+    if (!items.length) {
+      galleryVideoGrid.innerHTML = '<p class="text-on-surface-variant text-sm">No gallery videos are available yet.</p>';
+      return;
+    }
+    galleryVideoGrid.innerHTML = items.map((item) => `
+      <div class="relative rounded-xl overflow-hidden shadow-sm cursor-pointer" data-video-url="${item.youtubeUrl}" role="button" tabindex="0">
+        <div class="aspect-video relative overflow-hidden bg-gray-100">
+          <img class="w-full h-full object-cover" alt="${item.title || 'Operations video'}" src="${item.thumbnailUrl || item.imageUrl || 'https://via.placeholder.com/600x338?text=YouTube+Video'}" loading="lazy">
+          <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-flame-red shadow-lg">
+              <span class="material-symbols-outlined text-2xl">play_arrow</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-outline-variant/30">
+          <span class="text-flame-red font-label-md uppercase tracking-widest mb-1 block text-xs">${item.category || 'Video'}</span>
+          <h3 class="text-trust-navy font-title-lg text-sm">${item.title || 'Operations Video'}</h3>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function loadOperationsGallery() {
+    try {
+      const response = await fetch(`${API_BASE}/gallery`);
+      if (!response.ok) throw new Error('Unable to load gallery');
+      const data = await response.json();
+      const items = data.items || [];
+
+      const photoItems = items.filter((item) => {
+        const mediaType = (item.mediaType || '').toString().toLowerCase();
+        return mediaType !== 'video' && !item.youtubeUrl;
+      }).slice(0, 7);
+
+      const videoItems = items.filter((item) => {
+        const mediaType = (item.mediaType || '').toString().toLowerCase();
+        return mediaType === 'video' || Boolean(item.youtubeUrl);
+      }).slice(0, 3);
+
+      renderGallery(photoItems);
+      renderGalleryVideos(videoItems);
+    } catch (error) {
+      if (galleryGrid) galleryGrid.innerHTML = '<p class="col-span-2 text-error text-sm">Unable to load gallery images right now.</p>';
+      if (galleryVideoGrid) galleryVideoGrid.innerHTML = '<p class="text-error text-sm">Unable to load gallery videos right now.</p>';
+    }
+  }
+
+  if (galleryVideoGrid) {
+    galleryVideoGrid.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-video-url]');
+      if (!trigger) return;
+      openVideoModal(trigger.dataset.videoUrl);
+    });
+    galleryVideoGrid.addEventListener('keydown', (event) => {
+      const trigger = event.target.closest('[data-video-url]');
+      if (!trigger) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openVideoModal(trigger.dataset.videoUrl);
+      }
+    });
+  }
+
+  function formatBlogDate(dateString) {
+    if (!dateString) return 'Recently published';
+    const date = new Date(dateString);
+    if (Number.isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+  }
+
+  async function loadTradeInsights() {
+    const container = document.getElementById('trade-insights-grid');
+    if (!container) return;
+
+    try {
+      const response = await fetch(`${API_BASE}/blog?limit=3`);
+      if (!response.ok) throw new Error('Unable to load blog posts');
+      const data = await response.json();
+      const posts = data.items || [];
+
+      if (!posts.length) {
+        container.innerHTML = '<p class="text-on-surface-variant text-sm">No blog posts are available yet.</p>';
+        return;
+      }
+
+      container.innerHTML = posts.map((post) => {
+        const title = (post.title || 'Latest update').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const excerpt = (post.excerpt || post.content || 'Read the latest update from Flame Logistics.').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const imageUrl = post.imageUrl || '../../assets/images/Home_page.png';
+        const dateLabel = formatBlogDate(post.date);
+        const readTime = post.readTime || '5 min read';
+
+        return `
+          <a href="blog-post.html?id=${post.id}" class="block overflow-hidden rounded-2xl border border-outline-variant/30 bg-white shadow-sm active:scale-[0.98] transition-all">
+            <div class="relative aspect-video overflow-hidden bg-surface-container-lowest">
+              <img class="h-full w-full object-cover" alt="${title}" src="${imageUrl}" loading="lazy">
+              <span class="absolute top-3 left-3 rounded-full bg-white/95 px-3 py-1 font-label-md text-[10px] uppercase tracking-widest text-trust-navy shadow-sm">${(post.category || 'Insights')}</span>
+            </div>
+            <div class="p-5">
+              <div class="mb-2 flex items-center gap-2 text-xs text-on-surface-variant">
+                <span>${dateLabel}</span>
+                <span>&middot;</span>
+                <span>${readTime}</span>
+              </div>
+              <h3 class="font-title-lg text-trust-navy mb-2 line-clamp-2">${title}</h3>
+              <p class="font-body-md text-on-surface-variant text-sm mb-3 line-clamp-2">${excerpt}</p>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-flame-red">
+                Read article
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </span>
+            </div>
+          </a>
+        `;
+      }).join('');
+    } catch (error) {
+      container.innerHTML = '<p class="text-error text-sm">Unable to load blog posts right now.</p>';
+    }
+  }
+
+  loadOperationsGallery();
+  loadTradeInsights();
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
 </body>
 </html>

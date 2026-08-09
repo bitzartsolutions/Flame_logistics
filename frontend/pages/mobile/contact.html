@@ -1,431 +1,515 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en"><head>
+<html class="scroll-smooth" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Contact Us | Flame Logistics</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary-fixed-dim": "#c2c1ff",
-                    "trust-navy": "#09005d",
-                    "primary-container": "#0f0861",
-                    "on-primary-container": "#7c7bcf",
-                    "background": "#fcf8ff",
-                    "surface-tint": "#5655a6",
-                    "tertiary-fixed": "#e2e2e5",
-                    "glass-border": "rgba(255, 255, 255, 0.2)",
-                    "secondary-fixed": "#ffdad5",
-                    "on-error": "#ffffff",
-                    "inverse-on-surface": "#f3eff7",
-                    "tertiary": "#000000",
-                    "surface-muted": "#f0ecf5",
-                    "surface-container": "#f0ecf4",
-                    "on-secondary-container": "#fffbff",
-                    "surface-container-highest": "#e5e1e9",
-                    "on-error-container": "#93000a",
-                    "inverse-surface": "#303035",
-                    "on-secondary-fixed-variant": "#930007",
-                    "secondary-fixed-dim": "#ffb4aa",
-                    "surface-dim": "#dcd9e0",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-low": "#f6f2fa",
-                    "primary-fixed": "#e2dfff",
-                    "flame-red": "#bc000c",
-                    "surface-bright": "#fcf8ff",
-                    "outline-variant": "#c7c5d3",
-                    "industrial-black": "#151719",
-                    "tertiary-container": "#1a1c1e",
-                    "error-container": "#ffdad6",
-                    "tertiary-fixed-dim": "#c6c6c9",
-                    "on-secondary-fixed": "#410001",
-                    "on-tertiary-fixed-variant": "#454749",
-                    "surface-container-lowest": "#ffffff",
-                    "surface": "#fcf8ff",
-                    "primary": "#000000",
-                    "secondary-container": "#e12823",
-                    "on-primary": "#ffffff",
-                    "inverse-primary": "#c2c1ff",
-                    "secondary": "#bc000c",
-                    "surface-variant": "#e5e1e9",
-                    "on-primary-fixed": "#0f0861",
-                    "error": "#ba1a1a",
-                    "on-tertiary-container": "#838486",
-                    "on-surface-variant": "#464651",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary-fixed": "#1a1c1e",
-                    "on-background": "#1b1b20",
-                    "surface-container-high": "#eae7ee",
-                    "outline": "#777682",
-                    "on-surface": "#1b1b20",
-                    "on-primary-fixed-variant": "#3e3d8c"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "container-max": "1280px",
-                    "base-unit": "8px",
-                    "margin-mobile": "16px",
-                    "margin-desktop": "40px",
-                    "gutter": "24px",
-                    "section-padding": "96px"
-            },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "headline-sm": ["Plus Jakarta Sans"],
-                    "display-lg": ["Plus Jakarta Sans"],
-                    "headline-md": ["Plus Jakarta Sans"],
-                    "display-lg-mobile": ["Plus Jakarta Sans"],
-                    "body-lg": ["Inter"],
-                    "title-lg": ["Plus Jakarta Sans"],
-                    "body-md": ["Inter"]
-            },
-            "fontSize": {
-                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
-          },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#c2c1ff",
+          "trust-navy": "#09005d",
+          "primary-container": "#0f0861",
+          "on-primary-container": "#7c7bcf",
+          "background": "#fcf8ff",
+          "surface-tint": "#5655a6",
+          "tertiary-fixed": "#e2e2e5",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "secondary-fixed": "#ffdad5",
+          "on-error": "#ffffff",
+          "inverse-on-surface": "#f3eff7",
+          "tertiary": "#151719",
+          "surface-muted": "#f0ecf5",
+          "surface-container": "#f0ecf4",
+          "on-secondary-container": "#fffbff",
+          "surface-container-highest": "#e5e1e9",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#303035",
+          "on-secondary-fixed-variant": "#930007",
+          "secondary-fixed-dim": "#ffb4aa",
+          "surface-dim": "#dcd9e0",
+          "on-tertiary": "#ffffff",
+          "surface-container-low": "#f6f2fa",
+          "primary-fixed": "#e2dfff",
+          "flame-red": "#bc000c",
+          "surface-bright": "#fcf8ff",
+          "outline-variant": "#c7c5d3",
+          "industrial-black": "#151719",
+          "tertiary-container": "#1a1c1e",
+          "error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "on-secondary-fixed": "#410001",
+          "on-tertiary-fixed-variant": "#454749",
+          "surface-container-lowest": "#ffffff",
+          "surface": "#fcf8ff",
+          "primary": "#09005d",
+          "secondary-container": "#e12823",
+          "on-primary": "#ffffff",
+          "inverse-primary": "#c2c1ff",
+          "secondary": "#bc000c",
+          "surface-variant": "#e5e1e9",
+          "on-primary-fixed": "#0f0861",
+          "error": "#ba1a1a",
+          "on-tertiary-container": "#838486",
+          "on-surface-variant": "#464651",
+          "on-secondary": "#ffffff",
+          "on-tertiary-fixed": "#1a1c1e",
+          "on-background": "#1b1b20",
+          "surface-container-high": "#eae7ee",
+          "outline": "#777682",
+          "on-surface": "#1b1b20",
+          "on-primary-fixed-variant": "#3e3d8c"
         },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "container-max": "1280px",
+          "base-unit": "8px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px",
+          "gutter": "24px",
+          "section-padding": "96px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "body-lg": ["Inter"],
+          "title-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"]
+        },
+        "fontSize": {
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+        }
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .form-input-focus:focus {
-            border-color: #bc000c;
-            box-shadow: none;
-            outline: none;
-        }
-        /* Mobile-first touch targets */
-        .touch-target {
-            min-height: 48px;
-            min-width: 48px;
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
     }
-  </style>
-  </head>
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .form-input-focus:focus {
+    border-color: #bc000c;
+    box-shadow: none;
+    outline: none;
+  }
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
 <body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
 <!-- Header Placeholder - Loaded dynamically -->
 <div id="header-placeholder"></div>
 
 <main class="pt-[80px]">
-<!-- Section 1: Hero -->
-<section class="relative h-[530px] flex items-center justify-center overflow-hidden">
-<div class="absolute inset-0 bg-industrial-black">
-<div class="w-full h-full opacity-40 bg-cover bg-center" data-alt="A cinematic, wide-angle shot of a massive container ship gliding through calm ocean waters at sunset. The lighting is dramatic, with golden hour hues reflecting off the dark metallic surfaces of the ship. The overall aesthetic is industrial and authoritative, maintaining the Flame Logistics brand identity with deep blues and sharp structural lines." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkf_kWy4cBw4jXdWhjSCYGRKo4gE_NGG3WJnh9LGPMvqf7b8kZhxZN4-hB3r98Pcj6DcayrN1vKF5lPWQZLAgQsqscvX5Lrr790pkaYUZ5705QENTRYWmPj-4oJGWsZpgSO-bPeVD1mgArpw2eUDykFwJaLgDBtqKFAG_D4blePBJjcU9EVJwu3CkVFFoVjUHNaapV0AdhjEh1nxYgkD4R67ieah1U-Frz7cC7FBW55WDtRjyR2_uIgPVwh2V2PENJxtF6FpZ-XR4')"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/60 to-transparent"></div>
-</div>
-<div class="relative z-10 px-margin-mobile text-center">
-<span class="inline-block bg-flame-red text-white px-4 py-1 rounded-full font-label-md text-label-md mb-4 uppercase tracking-widest">Global Operations</span>
-<h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-6">Let's Move Your Business Forward</h1>
-<p class="text-surface-variant/80 font-body-lg text-body-lg max-w-sm mx-auto">Precision-engineered logistics for the GCC's high-stakes sectors.</p>
-</div>
-</section>
-<!-- Section 2: Emergency Support -->
-<section class="bg-flame-red py-6 px-margin-mobile flex flex-col items-center text-center gap-4">
-<div class="flex items-center gap-3 text-white">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency</span>
-<span class="font-title-lg text-title-lg font-bold">24/7 Global Emergency Support</span>
-</div>
-<p class="text-white/80 text-sm">Critical failures wait for no one. Our rapid-response team is standing by.</p>
-<a class="w-full bg-trust-navy text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold touch-target active:scale-95 transition-transform" href="tel:+966123456789">
-<span class="material-symbols-outlined">call</span>
-                Dial Emergency Hotline
-            </a>
-</section>
-<!-- Section 3: Inquiry Form -->
-<section class="py-section-padding px-margin-mobile bg-white">
-<div class="mb-8">
-<h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Send an Inquiry</h2>
-<div class="w-12 h-1 bg-flame-red"></div>
-</div>
-<form class="space-y-6 contact-form" data-form-type="contact" enctype="multipart/form-data">
-<div class="grid grid-cols-1 gap-6">
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">FULL NAME</label>
-<input name="fullName" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="John Doe" type="text" required/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">COMPANY NAME</label>
-<input name="companyName" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="Enterprise Ltd." type="text"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">PHONE NUMBER</label>
-<input name="phone" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="+966 50 000 0000" type="tel"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">EMAIL ADDRESS</label>
-<input name="email" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target" placeholder="john@enterprise.com" type="email" required/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">COUNTRY</label>
-<select name="country" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target">
-<option value="">Select Country</option>
-<option>Saudi Arabia</option>
-<option>United Arab Emirates</option>
-<option>Kuwait</option>
-<option>Qatar</option>
-<option>Bahrain</option>
-<option>Oman</option>
-<option>Other</option>
-</select>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">SERVICE REQUIRED</label>
-<select name="service" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus touch-target">
-<option value="">Select Service</option>
-<option>Oil &amp; Gas Logistics</option>
-<option>Medical Cold Chain</option>
-<option>Electronic Secure-Freight</option>
-<option>General Warehousing</option>
-<option>Global Network Solutions</option>
-</select>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">MESSAGE</label>
-<textarea name="message" class="w-full px-6 py-4 rounded-xl border-surface-container-highest bg-surface-container-lowest form-input-focus" placeholder="How can we help your business move forward?" rows="4" required></textarea>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-trust-navy mb-2">UPLOAD MANIFEST OR PROJECT DETAIL</label>
-<div class="relative">
-<input type="file" id="file-upload-mobile" name="attachments" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple onchange="document.getElementById('mobile-file-list').textContent = Array.from(this.files).map(f => f.name).join(', ') || 'No file selected'"/>
-<label for="file-upload-mobile" class="w-full px-6 py-4 rounded-xl border-2 border-dashed border-surface-container-highest bg-surface-container-lowest flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container transition-colors touch-target">
-<span class="material-symbols-outlined text-flame-red text-2xl">upload_file</span>
-<span class="text-on-surface-variant font-body-md">Click to upload files</span>
-</label>
-</div>
-<p id="mobile-file-list" class="text-xs text-on-surface-variant mt-2">No file selected</p>
-<p class="text-xs text-on-surface-variant mt-2">Supported formats: PDF, DOC, DOCX, XLS, XLSX, TXT (Max 10MB per file)</p>
-</div>
-</div>
-<button class="w-full bg-flame-red text-white py-5 rounded-xl font-bold text-lg shadow-xl shadow-flame-red/10 active:scale-[0.98] transition-all" type="submit">
-                    Send Inquiry
-                </button>
-</form>
-</section>
-<!-- Section 4 & 5: Regional Locations & Map -->
-<section class="bg-surface-container-low py-section-padding">
-<div class="px-margin-mobile mb-8">
-<h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Our GCC Footprint</h2>
-<p class="text-on-surface-variant">Strategically positioned to dominate regional supply chains.</p>
-</div>
-<div class="flex flex-wrap gap-2 mb-4 px-margin-mobile">
-<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-flame-red text-white font-bold text-sm transition-all is-active" data-city="riyadh">Riyadh</button>
-<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-surface-container text-trust-navy font-bold text-sm transition-all" data-city="jeddah">Jeddah</button>
-<button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-surface-container text-trust-navy font-bold text-sm transition-all" data-city="dammam">Dammam</button>
-</div>
-<div class="w-full h-80 mb-4 bg-surface-dim relative group overflow-hidden">
-<iframe id="gcc-map-frame-mobile" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Riyadh%20Saudi%20Arabia&z=12&output=embed"></iframe>
-</div>
-<p id="gcc-location-copy-mobile" class="px-margin-mobile text-on-surface-variant text-sm mb-8">Our main Riyadh hub processes over 450,000 tons of freight annually with 99.8% precision rating.</p>
-<!-- Locations Stack -->
-<div class="px-margin-mobile space-y-4">
-<!-- Riyadh -->
-<div class="bg-white p-6 rounded-xl border border-outline-variant/30 shadow-sm">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h3 class="font-title-lg text-title-lg text-trust-navy mb-1">Riyadh HQ</h3>
-<p class="text-on-surface-variant text-sm">King Abdullah Financial District, Building 12</p>
-</div>
-<span class="material-symbols-outlined text-flame-red">corporate_fare</span>
-</div>
-<div class="flex gap-2">
-<a class="flex-1 bg-surface-container text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="tel:+966112345678">
-<span class="material-symbols-outlined text-lg">call</span> Call
-                        </a>
-<a class="flex-1 border border-outline-variant text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="#">
-<span class="material-symbols-outlined text-lg">near_me</span> Map
-                        </a>
-</div>
-</div>
-<!-- Jeddah -->
-<div class="bg-white p-6 rounded-xl border border-outline-variant/30 shadow-sm">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h3 class="font-title-lg text-title-lg text-trust-navy mb-1">Jeddah Port Ops</h3>
-<p class="text-on-surface-variant text-sm">Port Commerce Center, King Faisal St.</p>
-</div>
-<span class="material-symbols-outlined text-flame-red">anchor</span>
-</div>
-<div class="flex gap-2">
-<a class="flex-1 bg-surface-container text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="tel:+966123456789">
-<span class="material-symbols-outlined text-lg">call</span> Call
-                        </a>
-<a class="flex-1 border border-outline-variant text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="#">
-<span class="material-symbols-outlined text-lg">near_me</span> Map
-                        </a>
-</div>
-</div>
-<!-- Dammam -->
-<div class="bg-white p-6 rounded-xl border border-outline-variant/30 shadow-sm">
-<div class="flex justify-between items-start mb-4">
-<div>
-<h3 class="font-title-lg text-title-lg text-trust-navy mb-1">Dammam Logistics Center</h3>
-<p class="text-on-surface-variant text-sm">Industrial City 2, Logistics Row</p>
-</div>
-<span class="material-symbols-outlined text-flame-red">inventory_2</span>
-</div>
-<div class="flex gap-2">
-<a class="flex-1 bg-surface-container text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="tel:+966132345678">
-<span class="material-symbols-outlined text-lg">call</span> Call
-                        </a>
-<a class="flex-1 border border-outline-variant text-trust-navy py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="#">
-<span class="material-symbols-outlined text-lg">near_me</span> Map
-                        </a>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 6: FAQ Accordion -->
-<section class="py-section-padding px-margin-mobile bg-white">
-<div class="text-center mb-10">
-<h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Common Inquiries</h2>
-<p class="text-on-surface-variant">Immediate answers for urgent operations.</p>
-</div>
-<div class="space-y-3">
-<!-- FAQ Item 1 -->
-<div class="border border-outline-variant/30 rounded-xl overflow-hidden">
-<button class="w-full p-5 text-left flex justify-between items-center bg-surface-container-low" onclick="toggleAccordion(this)">
-<span class="font-bold text-trust-navy">How fast can you mobilize for emergency freight?</span>
-<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
-</button>
-<div class="hidden p-5 text-on-surface-variant text-sm bg-white">
-                        For GCC operations, we offer mobilization within 4 hours. Global critical shipments are processed for first-available flight departure, typically under 12 hours.
-                    </div>
-</div>
-<!-- FAQ Item 2 -->
-<div class="border border-outline-variant/30 rounded-xl overflow-hidden">
-<button class="w-full p-5 text-left flex justify-between items-center bg-surface-container-low" onclick="toggleAccordion(this)">
-<span class="font-bold text-trust-navy">What specialized equipment do you provide?</span>
-<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
-</button>
-<div class="hidden p-5 text-on-surface-variant text-sm bg-white">
-                        Our fleet includes temperature-controlled units for medical assets, heavy-lift transport for oilfield equipment, and secure, armored freight for high-value electronics.
-                    </div>
-</div>
-<!-- FAQ Item 3 -->
-<div class="border border-outline-variant/30 rounded-xl overflow-hidden">
-<button class="w-full p-5 text-left flex justify-between items-center bg-surface-container-low" onclick="toggleAccordion(this)">
-<span class="font-bold text-trust-navy">Do you handle GCC customs clearances?</span>
-<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
-</button>
-<div class="hidden p-5 text-on-surface-variant text-sm bg-white">
-                        Yes, we provide end-to-end customs brokerage for all GCC borders, specializing in Saudi customs regulations and regional hub transitions.
-                    </div>
-</div>
-</div>
-</section>
-<!-- Section 7: Final CTA -->
-<section class="py-section-padding px-margin-mobile bg-industrial-black text-white text-center relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-flame-red/20 to-transparent"></div>
-<div class="relative z-10">
-<h2 class="font-headline-md text-headline-md mb-4">Engineering Certainty Starts Here</h2>
-<p class="text-surface-variant/70 mb-10 font-body-lg text-body-lg">Get a custom logistics profile tailored to your industry scale.</p>
-<div class="flex flex-col gap-4">
-<button class="bg-flame-red text-white py-5 rounded-xl font-bold text-lg touch-target shadow-lg shadow-flame-red/20">
-                        Get Your Logistics Quote Today
-                    </button>
-<button class="bg-white/10 backdrop-blur-md text-white py-5 rounded-xl font-bold text-lg border border-white/20 touch-target">
-                        View Solution Deck
-                    </button>
-</div>
-</div>
-</section>
+
+  <!-- Hero -->
+  <section class="relative h-[480px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/60 to-trust-navy/20 z-10"></div>
+      <div class="w-full h-full bg-cover bg-center" style="background-image: url('../../assets/images/Contact.png')"></div>
+    </div>
+    <div class="relative z-20 px-margin-mobile text-white">
+      <span class="inline-block px-3 py-1 rounded bg-flame-red text-label-md font-label-md uppercase tracking-widest mb-5">Connect with Excellence</span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile mb-4">Let's Move Your Business Forward</h1>
+      <p class="font-body-md text-white/90 leading-relaxed">Experience engineering certainty with the GCC's most reliable logistics partner. Our regional experts are standing by to optimize your supply chain.</p>
+    </div>
+  </section>
+
+  <!-- Emergency Support -->
+  <section class="bg-flame-red py-6 px-margin-mobile flex flex-col items-center text-center gap-4">
+    <div class="flex items-center gap-3 text-white">
+      <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+      <span class="font-title-lg text-title-lg font-bold">24/7 Global Emergency Support</span>
+    </div>
+    <p class="text-white/80 text-sm">Immediate response for critical supply chain disruptions.</p>
+    <a class="w-full bg-trust-navy text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold touch-target active:scale-95 transition-transform" href="tel:+966550199701">
+      <span class="material-symbols-outlined">call</span>
+      +966 55 019 9701
+    </a>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact-enquiry-form" class="py-section-padding px-margin-mobile bg-white scroll-mt-20">
+    <div class="mb-8">
+      <h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Send an Inquiry</h2>
+      <p class="text-on-surface-variant text-sm mb-3">Fill out the form below and our logistics engineers will contact you within 2 business hours.</p>
+      <div class="w-12 h-1 bg-flame-red"></div>
+    </div>
+    <form class="space-y-6 contact-form" data-form-type="contact" enctype="multipart/form-data">
+      <div class="grid grid-cols-1 gap-6">
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">FULL NAME</label>
+          <input name="fullName" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target" placeholder="John Doe" type="text" required/>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">COMPANY NAME</label>
+          <input name="companyName" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target" placeholder="Enterprise Ltd." type="text"/>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">PHONE NUMBER</label>
+          <input name="phone" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target" placeholder="+966 50 000 0000" type="tel"/>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">EMAIL ADDRESS</label>
+          <input name="email" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target" placeholder="john@enterprise.com" type="email" required/>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">COUNTRY</label>
+          <select name="country" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target">
+            <option value="">Select Country</option>
+            <option>Saudi Arabia</option>
+            <option>United Arab Emirates</option>
+            <option>Kuwait</option>
+            <option>Qatar</option>
+            <option>Bahrain</option>
+            <option>Oman</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">SERVICE REQUIRED</label>
+          <select name="service" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus touch-target">
+            <option value="">Select Service</option>
+            <option>Domestic Land Transportation</option>
+            <option>International Land Transportation</option>
+            <option>Packing & Moving Works</option>
+            <option>Crating Works</option>
+            <option>Warehousing & Distribution</option>
+            <option>Destination Services</option>
+            <option>Customs Clearance</option>
+            <option>Terminal Services</option>
+            <option>Container Transportation</option>
+            <option>Stuffing & Lashing Services</option>
+            <option>Other Services</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">MESSAGE</label>
+          <textarea name="message" class="w-full px-6 py-4 rounded-xl border border-outline-variant bg-surface-container-lowest form-input-focus" placeholder="How can we help your business move forward?" rows="4" required></textarea>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-trust-navy mb-2">UPLOAD MANIFEST OR PROJECT DETAIL</label>
+          <div class="relative">
+            <input type="file" id="file-upload-mobile" name="attachments" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple onchange="document.getElementById('mobile-file-list').textContent = Array.from(this.files).map(f => f.name).join(', ') || 'No file selected'"/>
+            <label for="file-upload-mobile" class="w-full px-6 py-4 rounded-xl border-2 border-dashed border-outline-variant bg-surface-container-lowest flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container transition-colors touch-target">
+              <span class="material-symbols-outlined text-flame-red text-2xl">upload_file</span>
+              <span class="text-on-surface-variant font-body-md">Click to upload files</span>
+            </label>
+          </div>
+          <p id="mobile-file-list" class="text-xs text-on-surface-variant mt-2">No file selected</p>
+          <p class="text-xs text-on-surface-variant mt-2">Supported formats: PDF, DOC, DOCX, XLS, XLSX, TXT (Max 10MB per file)</p>
+        </div>
+      </div>
+      <button class="w-full bg-flame-red text-white py-5 rounded-xl font-bold text-lg shadow-xl shadow-flame-red/10 active:scale-[0.98] transition-all flex justify-center items-center gap-3" type="submit">
+        Send Inquiry
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </form>
+  </section>
+
+  <!-- Regional Locations & Map -->
+  <section class="bg-surface-container-low py-section-padding">
+    <div class="px-margin-mobile mb-8">
+      <h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Our Footprint</h2>
+      <p class="text-on-surface-variant text-sm">Strategically positioned to serve every corner of the Kingdom.</p>
+    </div>
+    <div class="flex gap-2 mb-4 px-margin-mobile">
+      <button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-flame-red text-white font-bold text-sm transition-all is-active" data-city="riyadh">Riyadh</button>
+      <button type="button" class="city-tab-mobile px-4 py-2 rounded-full bg-surface-container text-trust-navy font-bold text-sm transition-all" data-city="jeddah">Jeddah</button>
+    </div>
+    <div class="w-full h-80 mb-8 bg-surface-dim relative overflow-hidden">
+      <iframe id="gcc-map-frame-mobile" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=24.713551,46.675296&z=17&output=embed"></iframe>
+    </div>
+
+    <!-- Locations Stack -->
+    <div class="px-margin-mobile space-y-4">
+      <!-- Riyadh -->
+      <div class="bg-white p-6 rounded-xl border border-outline-variant/30 shadow-sm">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-title-lg text-title-lg text-trust-navy mb-1">Regional HQ &ndash; Riyadh, KSA</h3>
+            <p class="text-on-surface-variant text-sm">Al Hamra, As Sulay, Riyadh 14273, Saudi Arabia</p>
+          </div>
+          <span class="material-symbols-outlined text-flame-red">corporate_fare</span>
+        </div>
+        <div class="space-y-2 mb-4 text-sm text-on-surface-variant">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-flame-red text-lg">mail</span> info@flamelogistics.net</div>
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-flame-red text-lg">schedule</span> Saturday &ndash; Thursday, 8:00 AM &ndash; 5:00 PM</div>
+        </div>
+        <a class="w-full bg-trust-navy text-white py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="tel:+966550199701">
+          <span class="material-symbols-outlined text-lg">call</span> +966 55 019 9701
+        </a>
+      </div>
+      <!-- Jeddah -->
+      <div class="bg-white p-6 rounded-xl border border-outline-variant/30 shadow-sm">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-title-lg text-title-lg text-trust-navy mb-1">Jeddah, KSA</h3>
+            <p class="text-on-surface-variant text-sm">Al Qwizain, Jeddah, Saudi Arabia</p>
+          </div>
+          <span class="material-symbols-outlined text-flame-red">anchor</span>
+        </div>
+        <div class="space-y-2 mb-4 text-sm text-on-surface-variant">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-flame-red text-lg">mail</span> info@flamelogistics.net</div>
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-flame-red text-lg">schedule</span> Saturday &ndash; Thursday, 8:00 AM &ndash; 5:00 PM</div>
+        </div>
+        <a class="w-full bg-trust-navy text-white py-3 rounded-lg flex items-center justify-center gap-2 font-bold text-sm touch-target" href="tel:+966533347083">
+          <span class="material-symbols-outlined text-lg">call</span> +966 53 334 7083
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-section-padding px-margin-mobile bg-white">
+    <div class="text-center mb-10">
+      <h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Frequently Asked Questions</h2>
+      <p class="text-on-surface-variant text-sm">Common inquiries regarding our services, onboarding process, and specialized handling capabilities.</p>
+    </div>
+    <div class="space-y-3">
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">How quickly can I get a custom shipping quote?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          For standard land transportation across the GCC, our team provides competitive quotes within couple of minutes. For complex industrial crating or large-scale project logistics, a dedicated specialist will provide a detailed proposal within 2&ndash;4 business hours depends upon the volume, requirements etc..
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">Which regions do you cover for land transportation?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          We provide comprehensive full-truckload (FTL) and less-than-truckload (LTL) land transportation services connecting all major routes across Saudi Arabia and the entire GCC region. Also we cover Land Transportation services to Jordan and Egypt.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">Do you offer container transportation services between ports and facilities?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          Yes, we provide reliable container drayage and transport services, seamlessly moving containers between ports, manufacturing hubs, industrial sites, and warehouses.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">Where are your warehousing facilities located, and what options do you offer?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          We operate modern, strategically located warehousing facilities in Riyadh and Jeddah featuring Warehouse Management System (WMS) integration, inventory management, and climate-controlled storage zones.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">Do you handle customs clearance and cross-border documentation?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          Yes, Flame Logistics manages full customs brokerage services, border clearance, and compliance documentation. We specialize in navigating Saudi Zakat, Tax and Customs Authority (ZATCA) regulations and GCC border protocols.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">What terminal services do you provide?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          We manage comprehensive terminal logistics, including cargo handling, cross-docking, temporary storage, and loading/unloading operations at key transit nodes.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">What is included in your Industrial Crating services?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          We build customised, heavy-duty wooden crates and specialised packaging designed to secure fragile, high-value, or oversized machinery for safe land transport, air freight, Sea Freight and long-term storage.
+        </div>
+      </div>
+      <div class="border border-outline-variant/30 rounded-xl overflow-hidden">
+        <button class="w-full p-5 text-left flex justify-between items-center gap-4 bg-surface-container-low" onclick="toggleAccordion(this)">
+          <span class="font-bold text-trust-navy text-sm">What does your Packing &amp; Moving service cover?</span>
+          <span class="material-symbols-outlined transition-transform duration-300 shrink-0">expand_more</span>
+        </button>
+        <div class="hidden p-5 text-on-surface-variant text-sm bg-white leading-relaxed">
+          We offer complete commercial relocation and residential packing services. Our team handles everything from professional packing, loading, and transport to unpacking and setup at your new site.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-section-padding px-margin-mobile bg-trust-navy text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-flame-red/20 to-transparent"></div>
+    <div class="relative z-10">
+      <h2 class="font-headline-md text-headline-md mb-4">Get Your Logistics Quote Today</h2>
+      <p class="text-white/70 mb-8 font-body-md">Join the GCC's leaders who trust Flame Logistics for engineering certainty in every mile.</p>
+      <div class="flex flex-col gap-3">
+        <a href="#contact-enquiry-form" class="w-full bg-flame-red text-white py-4 rounded-xl font-bold touch-target shadow-lg shadow-flame-red/20 flex items-center justify-center active:scale-[0.98] transition-all">
+          Start Your Quote
+        </a>
+        <a href="services.html" class="w-full bg-white/10 backdrop-blur-md text-white py-4 rounded-xl font-bold border border-white/20 touch-target flex items-center justify-center active:scale-[0.98] transition-all">
+          View Services
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
+
 <!-- Footer Placeholder - Loaded dynamically -->
 <div id="footer-placeholder"></div>
-<script>
-        function toggleAccordion(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('.material-symbols-outlined');
-            
-            content.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-            
-            // Close others (optional)
-            const allAccordions = document.querySelectorAll('.border.border-outline-variant\\/30');
-            allAccordions.forEach(acc => {
-                const accBtn = acc.querySelector('button');
-                const accContent = acc.querySelector('.p-5.text-on-surface-variant');
-                if (accBtn !== button) {
-                    accContent.classList.add('hidden');
-                    accBtn.querySelector('.material-symbols-outlined').classList.remove('rotate-180');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.city-tab-mobile');
-            const mapFrame = document.getElementById('gcc-map-frame-mobile');
-            const locationCopy = document.getElementById('gcc-location-copy-mobile');
-
-            const locations = {
-                riyadh: {
-                    src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.314100000000!2d46.675296!3d24.713551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ3LjIiTiA0NsKwNDAnMjQuNCJF!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s',
-                    description: 'Our main Riyadh hub processes over 450,000 tons of freight annually with 99.8% precision rating.'
-                },
-                jeddah: {
-                    src: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14290.124145963514!2d39.1610947!3d21.2676182!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDE2JzAzLjQiTiAzOcKwMDknMzkuOSJF!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s',
-                    description: 'Jeddah operations support port-linked cargo flows with rapid customs coordination and coastal distribution access.'
-                },
-                dammam: {
-                    src: 'https://www.google.com/maps?q=Dammam%20Saudi%20Arabia&z=12&output=embed',
-                    description: 'Dammam handles industrial freight corridors and energy logistics with round-the-clock terminal support.'
-                }
-            };
-
-            tabs.forEach((tab) => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach((item) => {
-                        item.classList.remove('bg-flame-red', 'text-white');
-                        item.classList.add('bg-surface-container', 'text-trust-navy');
-                    });
-
-                    tab.classList.add('bg-flame-red', 'text-white');
-                    tab.classList.remove('bg-surface-container', 'text-trust-navy');
-
-                    const city = tab.getAttribute('data-city');
-                    const location = locations[city];
-                    if (location) {
-                        mapFrame.src = location.src;
-                        locationCopy.textContent = location.description;
-                    }
-                });
-            });
-        });
-    </script>
 
 <!-- Bottom Navigation Placeholder - Loaded dynamically -->
 <div id="bottom-nav-placeholder"></div>
 
-    <!-- Mobile Common JS - Loads header and footer components -->
-    <script src="../../assets/js/mobile.js"></script>
-</body></html>
+<script>
+  function toggleAccordion(button) {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('.material-symbols-outlined');
+
+    content.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180');
+
+    const allAccordions = document.querySelectorAll('.border.border-outline-variant\\/30');
+    allAccordions.forEach(acc => {
+      const accBtn = acc.querySelector('button');
+      const accContent = acc.querySelector('div:last-child');
+      if (accBtn !== button) {
+        accContent.classList.add('hidden');
+        accBtn.querySelector('.material-symbols-outlined').classList.remove('rotate-180');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.city-tab-mobile');
+    const mapFrame = document.getElementById('gcc-map-frame-mobile');
+
+    const locations = {
+      riyadh: {
+        src: 'https://www.google.com/maps?q=24.713551,46.675296&z=17&output=embed'
+      },
+      jeddah: {
+        src: 'https://www.google.com/maps?q=21.2676182,39.1610947&z=17&output=embed'
+      }
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((item) => {
+          item.classList.remove('bg-flame-red', 'text-white');
+          item.classList.add('bg-surface-container', 'text-trust-navy');
+        });
+
+        tab.classList.add('bg-flame-red', 'text-white');
+        tab.classList.remove('bg-surface-container', 'text-trust-navy');
+
+        const city = tab.getAttribute('data-city');
+        const location = locations[city];
+        if (location) {
+          mapFrame.src = location.src;
+        }
+      });
+    });
+  });
+
+  function getApiBase() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:4000';
+    }
+    return '';
+  }
+
+  async function handleQuoteFormSubmit(event) {
+    const form = event.currentTarget;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalLabel = submitButton ? submitButton.innerHTML : '';
+
+    event.preventDefault();
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Sending...';
+    }
+
+    try {
+      const formData = new FormData(form);
+      const fileInput = form.querySelector('input[type="file"]');
+      if (fileInput && fileInput.files && fileInput.files.length) {
+        Array.from(fileInput.files).forEach((file) => {
+          formData.append('attachments', file, file.name);
+        });
+      }
+
+      const response = await fetch(`${getApiBase()}/api/contact`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send your inquiry.');
+      }
+
+      if (submitButton) {
+        submitButton.innerHTML = 'Request Received';
+        submitButton.classList.remove('bg-flame-red');
+        submitButton.classList.add('bg-green-600');
+      }
+
+      form.reset();
+      document.getElementById('mobile-file-list').textContent = 'No file selected';
+    } catch (error) {
+      console.error('Quote form submission failed:', error);
+      if (submitButton) submitButton.innerHTML = 'Try again';
+    } finally {
+      if (submitButton) {
+        window.setTimeout(() => {
+          submitButton.innerHTML = originalLabel;
+          submitButton.disabled = false;
+          submitButton.classList.remove('bg-green-600');
+          submitButton.classList.add('bg-flame-red');
+        }, 2000);
+      }
+    }
+  }
+
+  document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.addEventListener('submit', handleQuoteFormSubmit);
+  });
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
+</body>
+</html>

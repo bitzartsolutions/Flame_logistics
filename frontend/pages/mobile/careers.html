@@ -1,59 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Careers | Flame Logistics</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <script src="/assets/js/tailwind.config.js"></script>
-  <link rel="stylesheet" href="/assets/css/main.css">
-</head>
-<body class="bg-background text-on-surface font-body-md">
-  <div id="header-placeholder"></div>
-  <main class="pt-20 px-4 pb-20">
-    <section class="rounded-3xl bg-primary p-6 text-white">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">Careers</p>
-      <h1 class="mt-3 font-display-lg text-display-lg leading-tight">Join the Flame team</h1>
-      <p class="mt-3 text-sm text-white/80">We are hiring across operations, customer success and transport planning.</p>
-    </section>
-
-    <section class="mt-6">
-      <div id="jobs-list" class="space-y-4"></div>
-    </section>
-  </main>
-  <div id="footer-placeholder"></div>
-  <script src="/assets/js/main.js"></script>
-  <script>
-    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? 'http://localhost:4000/api'
-      : 'https://flame-logistics-backend.vercel.app/api';
-
-    async function loadJobs() {
-      const container = document.getElementById('jobs-list');
-      try {
-        const response = await fetch(`${API_BASE}/careers`);
-        if (!response.ok) throw new Error('Unable to load roles');
-        const data = await response.json();
-        const jobs = Array.isArray(data.items) ? data.items : [];
-        if (!jobs.length) {
-          container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-white p-6 text-center text-gray-500">No openings are available right now.</div>';
-          return;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Careers | Flame Logistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "inverse-on-surface": "#f3eff7",
+          "surface-tint": "#5655a6",
+          "outline-variant": "#c7c5d3",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "trust-navy": "#09005d",
+          "on-error-container": "#93000a",
+          "secondary-fixed": "#ffdad5",
+          "on-primary-fixed-variant": "#3e3d8c",
+          "surface-container": "#f0ecf4",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#464651",
+          "surface-container-low": "#f6f2fa",
+          "surface-bright": "#fcf8ff",
+          "on-tertiary-fixed": "#1a1c1e",
+          "on-secondary-fixed": "#410001",
+          "secondary-fixed-dim": "#ffb4aa",
+          "on-secondary-container": "#fffbff",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed-variant": "#454749",
+          "on-primary-fixed": "#0f0861",
+          "surface-container-highest": "#e5e1e9",
+          "tertiary": "#151719",
+          "outline": "#777682",
+          "tertiary-fixed": "#e2e2e5",
+          "on-secondary": "#ffffff",
+          "surface-container-high": "#eae7ee",
+          "secondary-container": "#e12823",
+          "surface": "#fcf8ff",
+          "on-surface": "#1b1b20",
+          "surface-dim": "#dcd9e0",
+          "surface-muted": "#f0ecf5",
+          "on-secondary-fixed-variant": "#930007",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#bc000c",
+          "primary-container": "#0f0861",
+          "on-background": "#1b1b20",
+          "industrial-black": "#151719",
+          "inverse-primary": "#c2c1ff",
+          "primary": "#09005d",
+          "on-primary": "#ffffff",
+          "surface-variant": "#e5e1e9",
+          "on-tertiary-container": "#838486",
+          "on-error": "#ffffff",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "inverse-surface": "#303035",
+          "flame-red": "#bc000c",
+          "primary-fixed-dim": "#c2c1ff",
+          "error": "#ba1a1a",
+          "background": "#fcf8ff",
+          "on-primary-container": "#7c7bcf",
+          "tertiary-container": "#1a1c1e",
+          "primary-fixed": "#e2dfff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "gutter": "24px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px",
+          "base-unit": "8px",
+          "section-padding": "96px",
+          "container-max": "1280px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "title-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
         }
-        container.innerHTML = jobs.map((job) => `
-          <article class="rounded-3xl border border-outline-variant/40 bg-white p-5 shadow-sm">
-            <h3 class="font-title-lg text-title-lg text-primary">${job.title}</h3>
-            <p class="mt-1 text-sm font-semibold text-secondary">${job.department}</p>
-            <p class="mt-3 text-sm text-on-surface-variant">${job.description || ''}</p>
-          </article>
-        `).join('');
-      } catch (error) {
-        container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-white p-6 text-center text-gray-500">Unable to load careers data right now.</div>';
       }
     }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- Header Placeholder - Loaded dynamically -->
+<div id="header-placeholder"></div>
 
-    document.addEventListener('DOMContentLoaded', loadJobs);
-  </script>
+<main class="pt-[80px] pb-20">
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-trust-navy text-white px-margin-mobile py-14">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(188,0,12,0.28),_transparent_42%)]"></div>
+    <div class="relative">
+      <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em]">Careers at Flame Logistics</span>
+      <h1 class="mt-5 font-display-lg-mobile text-display-lg-mobile leading-tight">Join a team building the next era of regional logistics.</h1>
+      <p class="mt-4 text-white/80 text-sm">We are growing our operations across the GCC and looking for passionate professionals who thrive in fast-moving, high-standard environments.</p>
+      <div class="mt-6 flex flex-col gap-3">
+        <a href="#open-roles" class="w-full rounded-xl bg-flame-red py-4 text-center font-bold text-white active:scale-[0.98] transition-transform">View Open Roles</a>
+        <a href="#apply" class="w-full rounded-xl border border-white/30 py-4 text-center font-bold text-white active:scale-[0.98] transition-transform">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why work with Flame -->
+  <section class="px-margin-mobile py-12">
+    <div class="rounded-3xl border border-outline-variant/40 bg-white p-6 shadow-sm mb-4">
+      <h2 class="font-headline-md text-headline-md text-trust-navy">Why work with Flame?</h2>
+      <p class="mt-3 text-on-surface-variant text-sm">From multimodal transport to warehousing, customs and last-mile deliveries, our people are central to how we keep critical supply chains moving.</p>
+      <div class="mt-6 space-y-4">
+        <div class="rounded-2xl bg-surface p-5">
+          <div class="flex h-11 w-11 items-center justify-center rounded-full bg-trust-navy/10 text-trust-navy"><span class="material-symbols-outlined">groups</span></div>
+          <h3 class="mt-4 font-title-lg text-title-lg text-trust-navy">Growth Culture</h3>
+          <p class="mt-2 text-sm text-on-surface-variant">Collaborate with multidisciplinary teams and grow your expertise in a high-impact environment.</p>
+        </div>
+        <div class="rounded-2xl bg-surface p-5">
+          <div class="flex h-11 w-11 items-center justify-center rounded-full bg-trust-navy/10 text-trust-navy"><span class="material-symbols-outlined">workspace_premium</span></div>
+          <h3 class="mt-4 font-title-lg text-title-lg text-trust-navy">Operational Excellence</h3>
+          <p class="mt-2 text-sm text-on-surface-variant">Work on projects that require precision, accountability and strong cross-functional execution.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-3xl border border-outline-variant/40 bg-trust-navy p-6 text-white shadow-sm">
+      <h3 class="font-title-lg text-title-lg">What we value</h3>
+      <ul class="mt-5 space-y-3 text-sm text-white/80">
+        <li class="flex gap-3"><span class="material-symbols-outlined text-flame-red">check_circle</span> Customer-first thinking</li>
+        <li class="flex gap-3"><span class="material-symbols-outlined text-flame-red">check_circle</span> Ownership and reliability</li>
+        <li class="flex gap-3"><span class="material-symbols-outlined text-flame-red">check_circle</span> Strong communication across teams</li>
+        <li class="flex gap-3"><span class="material-symbols-outlined text-flame-red">check_circle</span> Commitment to safe and compliant operations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Open Roles -->
+  <section id="open-roles" class="px-margin-mobile py-8">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-flame-red">Open Positions</p>
+    <h2 class="mt-2 font-headline-md text-headline-md text-trust-navy">Current Opportunities</h2>
+    <div id="jobs-list" class="mt-6 space-y-4"></div>
+  </section>
+
+  <!-- Apply -->
+  <section id="apply" class="px-margin-mobile py-8">
+    <div class="rounded-3xl border border-outline-variant/40 bg-white p-6 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-flame-red">Application Form</p>
+      <h2 class="mt-2 font-headline-md text-headline-md text-trust-navy">Apply for a position</h2>
+      <p class="mt-3 text-sm text-on-surface-variant">Submit your details and a brief note. Our recruitment team will review your application and contact you if your profile matches an opening.</p>
+      <form id="career-application-form" class="mt-6 space-y-5">
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Full name *</label>
+          <input type="text" id="fullName" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Email *</label>
+          <input type="email" id="email" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Phone</label>
+          <input type="tel" id="phone" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Position / Role *</label>
+          <input type="text" id="applyingFor" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Location</label>
+          <input type="text" id="location" placeholder="Riyadh, Jeddah, Dubai..." class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Experience</label>
+          <input type="text" id="experience" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Expected salary</label>
+          <input type="text" id="expectedSalary" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Notice period</label>
+          <input type="text" id="noticePeriod" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Message *</label>
+          <textarea id="message" rows="5" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"></textarea>
+        </div>
+        <div class="border-t border-outline-variant/30 pt-4">
+          <p class="text-xs text-on-surface-variant mb-4">Applications are reviewed by our HR team. Please include any relevant links or supporting information in your message.</p>
+          <button type="submit" class="w-full rounded-xl bg-flame-red py-4 font-bold text-white active:scale-[0.98] transition-transform">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Footer Placeholder - Loaded dynamically -->
+<div id="footer-placeholder"></div>
+
+<!-- Bottom Navigation Placeholder - Loaded dynamically -->
+<div id="bottom-nav-placeholder"></div>
+
+<script>
+  const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:4000/api'
+    : 'https://flame-logistics-backend.vercel.app/api';
+
+  function renderJobsSkeleton() {
+    const container = document.getElementById('jobs-list');
+    container.innerHTML = Array.from({ length: 3 }).map(() => `
+      <div class="rounded-3xl border border-outline-variant/40 bg-white p-6 shadow-sm animate-pulse">
+        <div class="h-4 w-2/3 rounded bg-surface-container mb-3"></div>
+        <div class="h-3 w-1/3 rounded bg-surface-container mb-5"></div>
+        <div class="h-3 w-full rounded bg-surface-container mb-2"></div>
+        <div class="h-3 w-5/6 rounded bg-surface-container"></div>
+      </div>
+    `).join('');
+  }
+
+  renderJobsSkeleton();
+
+  async function loadJobs() {
+    const container = document.getElementById('jobs-list');
+    try {
+      const response = await fetch(`${API_BASE}/careers`);
+      if (!response.ok) throw new Error('Unable to load roles');
+      const data = await response.json();
+      const jobs = Array.isArray(data.items) ? data.items : [];
+
+      if (!jobs.length) {
+        container.innerHTML = '<div class="rounded-2xl border border-dashed border-outline-variant bg-surface p-6 text-center text-on-surface-variant text-sm">No openings are available right now. Please check back soon.</div>';
+        return;
+      }
+
+      container.innerHTML = jobs.map((job) => `
+        <article class="rounded-3xl border border-outline-variant/40 bg-white p-6 shadow-sm">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h3 class="font-title-lg text-title-lg text-trust-navy">${job.title}</h3>
+              <p class="mt-1 text-sm text-flame-red font-semibold">${job.department}</p>
+            </div>
+            <span class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-trust-navy">${job.jobType || 'Full Time'}</span>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-3 text-xs text-on-surface-variant">
+            <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">location_on</span> ${job.location || 'Riyadh'}</span>
+            <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">work_history</span> ${job.experience || 'Mid-Level'}</span>
+            <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">payments</span> ${job.salary || 'Competitive'}</span>
+          </div>
+          <p class="mt-4 text-sm leading-6 text-on-surface-variant">${job.description || ''}</p>
+          ${job.requirements && job.requirements.length ? `<ul class="mt-4 space-y-2 text-sm text-on-surface-variant">${job.requirements.map((item) => `<li class="flex gap-2"><span class="material-symbols-outlined text-flame-red text-lg">check_circle</span>${item}</li>`).join('')}</ul>` : ''}
+          ${job.deadline ? `<p class="mt-4 text-sm font-semibold text-trust-navy">Application deadline: ${job.deadline}</p>` : ''}
+        </article>
+      `).join('');
+    } catch (error) {
+      container.innerHTML = '<div class="rounded-2xl border border-dashed border-outline-variant bg-surface p-6 text-center text-on-surface-variant text-sm">Unable to load careers data right now.</div>';
+    }
+  }
+
+  document.getElementById('career-application-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = event.target.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Submitting...';
+
+    const payload = {
+      fullName: document.getElementById('fullName').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      applyingFor: document.getElementById('applyingFor').value.trim(),
+      location: document.getElementById('location').value.trim(),
+      experience: document.getElementById('experience').value.trim(),
+      expectedSalary: document.getElementById('expectedSalary').value.trim(),
+      noticePeriod: document.getElementById('noticePeriod').value.trim(),
+      message: document.getElementById('message').value.trim()
+    };
+
+    try {
+      const response = await fetch(`${API_BASE}/careers/apply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Application submission failed');
+      event.target.reset();
+      alert(data.message || 'Application submitted successfully.');
+    } catch (error) {
+      alert(error.message || 'Application submission failed.');
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+
+  loadJobs();
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
 </body>
 </html>

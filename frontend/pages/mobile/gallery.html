@@ -3,265 +3,221 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Flame Logistics | Our Logistics Journey</title>
+<title>Gallery | Flame Logistics - Precision in Motion</title>
+<meta content="Explore the visual chronicle of Flame Logistics. A premium gallery of GCC transportation, warehousing, and industrial projects." name="description"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-effect {
-            backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .active-filter {
-            background-color: #bc000c;
-            color: white;
-            border-color: #bc000c;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .active-filter {
+    background-color: #bc000c;
+    color: white;
+    border-color: #bc000c;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary": "#ffffff",
-                        "industrial-black": "#151719",
-                        "secondary": "#bc000c",
-                        "on-tertiary": "#ffffff",
-                        "inverse-on-surface": "#f3eff7",
-                        "outline": "#777682",
-                        "inverse-surface": "#303035",
-                        "surface-container-low": "#f6f2fa",
-                        "error-container": "#ffdad6",
-                        "primary-fixed-dim": "#c2c1ff",
-                        "on-tertiary-fixed": "#1a1c1e",
-                        "surface-container": "#f0ecf4",
-                        "tertiary-container": "#1a1c1e",
-                        "on-primary-fixed": "#0f0861",
-                        "on-primary-fixed-variant": "#3e3d8c",
-                        "primary-container": "#0f0861",
-                        "outline-variant": "#c7c5d3",
-                        "tertiary-fixed-dim": "#c6c6c9",
-                        "surface-bright": "#fcf8ff",
-                        "error": "#ba1a1a",
-                        "surface": "#fcf8ff",
-                        "tertiary": "#000000",
-                        "on-tertiary-fixed-variant": "#454749",
-                        "primary": "#000000",
-                        "trust-navy": "#09005d",
-                        "on-surface": "#1b1b20",
-                        "on-surface-variant": "#464651",
-                        "flame-red": "#bc000c",
-                        "secondary-fixed": "#ffdad5",
-                        "on-error-container": "#93000a",
-                        "on-secondary-fixed-variant": "#930007",
-                        "glass-border": "rgba(255, 255, 255, 0.2)",
-                        "surface-muted": "#f0ecf5",
-                        "tertiary-fixed": "#e2e2e5",
-                        "on-primary-container": "#7c7bcf",
-                        "surface-container-high": "#eae7ee",
-                        "on-secondary-fixed": "#410001",
-                        "surface-container-lowest": "#ffffff",
-                        "primary-fixed": "#e2dfff",
-                        "surface-tint": "#5655a6",
-                        "surface-dim": "#dcd9e0",
-                        "surface-container-highest": "#e5e1e9",
-                        "secondary-container": "#e12823",
-                        "on-secondary-container": "#fffbff",
-                        "secondary-fixed-dim": "#ffb4aa",
-                        "on-error": "#ffffff",
-                        "inverse-primary": "#c2c1ff",
-                        "on-tertiary-container": "#838486",
-                        "background": "#fcf8ff",
-                        "surface-variant": "#e5e1e9",
-                        "on-secondary": "#ffffff",
-                        "on-background": "#1b1b20"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "section-padding": "96px",
-                        "margin-mobile": "16px",
-                        "margin-desktop": "40px",
-                        "base-unit": "8px",
-                        "container-max": "1280px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "title-lg": ["Plus Jakarta Sans"],
-                        "headline-md": ["Plus Jakarta Sans"],
-                        "display-lg-mobile": ["Plus Jakarta Sans"],
-                        "display-lg": ["Plus Jakarta Sans"],
-                        "headline-sm": ["Plus Jakarta Sans"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-                    }
-                },
-            },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary": "#ffffff",
+          "industrial-black": "#151719",
+          "secondary": "#bc000c",
+          "on-tertiary": "#ffffff",
+          "inverse-on-surface": "#f3eff7",
+          "outline": "#777682",
+          "inverse-surface": "#303035",
+          "surface-container-low": "#f6f2fa",
+          "error-container": "#ffdad6",
+          "primary-fixed-dim": "#c2c1ff",
+          "on-tertiary-fixed": "#1a1c1e",
+          "surface-container": "#f0ecf4",
+          "tertiary-container": "#1a1c1e",
+          "on-primary-fixed": "#0f0861",
+          "on-primary-fixed-variant": "#3e3d8c",
+          "primary-container": "#0f0861",
+          "outline-variant": "#c7c5d3",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "surface-bright": "#fcf8ff",
+          "error": "#ba1a1a",
+          "surface": "#fcf8ff",
+          "tertiary": "#151719",
+          "on-tertiary-fixed-variant": "#454749",
+          "primary": "#09005d",
+          "trust-navy": "#09005d",
+          "on-surface": "#1b1b20",
+          "on-surface-variant": "#464651",
+          "flame-red": "#bc000c",
+          "secondary-fixed": "#ffdad5",
+          "on-error-container": "#93000a",
+          "on-secondary-fixed-variant": "#930007",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "surface-muted": "#f0ecf5",
+          "tertiary-fixed": "#e2e2e5",
+          "on-primary-container": "#7c7bcf",
+          "surface-container-high": "#eae7ee",
+          "on-secondary-fixed": "#410001",
+          "surface-container-lowest": "#ffffff",
+          "primary-fixed": "#e2dfff",
+          "surface-tint": "#5655a6",
+          "surface-dim": "#dcd9e0",
+          "surface-container-highest": "#e5e1e9",
+          "secondary-container": "#e12823",
+          "on-secondary-container": "#fffbff",
+          "secondary-fixed-dim": "#ffb4aa",
+          "on-error": "#ffffff",
+          "inverse-primary": "#c2c1ff",
+          "on-tertiary-container": "#838486",
+          "background": "#fcf8ff",
+          "surface-variant": "#e5e1e9",
+          "on-secondary": "#ffffff",
+          "on-background": "#1b1b20"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "gutter": "24px",
+          "section-padding": "96px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px",
+          "base-unit": "8px",
+          "container-max": "1280px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "title-lg": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"]
+        },
+        "fontSize": {
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
         }
-    </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+      }
     }
-  </style>
-  </head>
+  }
+</script>
+<style>
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
 <body class="bg-surface text-on-surface font-body-md">
 <!-- Header Placeholder - Loaded dynamically -->
 <div id="header-placeholder"></div>
 
 <main class="pt-[80px]">
-<section class="relative h-[707px] w-full overflow-hidden flex items-end">
-<div class="absolute inset-0 z-0">
-<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMWk-WYlMbHQ-Z95OO7hd_j7tR4q4WoT63DbfryBcupzNtf6E3b82C4vgcrGQ-HVkbXl6EA41-l36AzDb5ScM9g0iphSWmDIQPIVH56YM-rWdcq3XenlEYkf2KU_3_My2UPSGPP6sOnf9DtuC8IQ5d4ufzemKVC2acQZOomLNf0vQK5SWZSzLJK9lJst2GwtAxOqhDvVIvmCsCVBGDU0rnPhcCravO9EJ48RogA03IE6iu-SDTbjUJh_Efs6IngBZuTkoMbg09oEc')"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/40 to-transparent"></div>
-</div>
-<div class="relative z-10 p-margin-mobile pb-12 text-white max-w-container-max mx-auto w-full">
-<h1 class="font-display-lg-mobile text-display-lg-mobile mb-4">Our Logistics Journey</h1>
-<p class="font-body-md text-body-md text-white/80 max-w-md">
-                    Witness the immense scale of Saudi Arabia's industrial evolution. From the depths of the ports to the heart of the desert, we move the future.
-                </p>
-</div>
-</section>
-<section class="bg-surface py-8 sticky top-[80px] z-40 border-b border-outline-variant/20">
-<div class="flex overflow-x-auto px-margin-mobile gap-3 hide-scrollbar" id="galleryFilterChips">
-<button class="active-filter whitespace-nowrap px-6 py-2 rounded-full border border-flame-red bg-flame-red text-white font-label-md transition-all" data-category="all">All</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="transportation">Transportation</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="warehousing">Warehousing</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="projects">Projects</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="packing">Packing</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="crating">Crating</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="stuffing-lashing">Stuffing & Lashing</button>
-<button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="team">Team</button>
-</div>
-</section>
-<section class="px-margin-mobile py-12 bg-white">
-<div class="mb-8">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="font-headline-md text-headline-md text-trust-navy">Photos</h2>
-    <span class="text-sm text-on-surface-variant">From operations and facilities</span>
-  </div>
-  <div class="grid grid-cols-1 gap-6" id="galleryGrid"></div>
-</div>
-<div class="border-t border-outline-variant/20 pt-8">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="font-headline-md text-headline-md text-trust-navy">Videos</h2>
-    <span class="text-sm text-on-surface-variant">From YouTube</span>
-  </div>
-  <div class="grid grid-cols-1 gap-6" id="videoGrid"></div>
-</div>
-</section>
-<section class="bg-surface-container-low py-section-padding px-margin-mobile">
-<div class="max-w-container-max mx-auto">
-<div class="mb-12">
-<h2 class="font-headline-md text-headline-md text-trust-navy mb-4">Engineering Showcase</h2>
-<p class="font-body-md text-on-surface-variant">Petro-Chemical Hub Alpha Expansion: From raw terrain to a world-class logistics engine.</p>
-</div>
-<div class="space-y-4">
-<div class="bg-white rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm">
-<div class="h-64 relative">
-<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3k1VSbRS9bWNcY7JbEYqbC5IwJPjZPRk97eBlrpyOQ9RICl9Gz2BGbToRLcVZvFglcBjjviVO8Krdzb9WGLpV5wFjAhbPw1uoLyCCE9QQIZyguctigN3RJpkxHvlV1vrzKizIpdnt_6wdR1akjV8Ql4VRvyLhAk1jVV-vGHJ_BopBJMb4FR0e6iQ2O4-ovfhpy9P5j-jx-dKJ_Lf-OO1JqJ1zNoqJVEvupdAOLfVAIDVk2P5Ehgi6QgyMjS51JfDMWdCu6fDjkVo"/>
-<div class="absolute top-4 left-4 bg-industrial-black/80 text-white px-4 py-1 rounded-full text-xs font-bold backdrop-blur-md">BEFORE: SITE PREPARATION</div>
-</div>
-<div class="p-6">
-<p class="text-on-surface-variant font-body-md">Initial ground clearing and geological surveying for the 500,000 sqm energy logistics terminal.</p>
-</div>
-</div>
-<div class="flex justify-center h-12">
-<div class="w-1 bg-flame-red/20 rounded-full h-full relative">
-<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center">
-<div class="bg-flame-red p-1 rounded-full shadow-lg">
-<span class="material-symbols-outlined text-white text-sm">keyboard_arrow_down</span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-white rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm">
-<div class="h-64 relative">
-<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMDHRg3EaomxsFyZwZDCBZcuKeTIwQfa16Jtjkp5Ssvxo5OxVGLWfGFXwggHpos1vPcmgSDE-3rChLnP9caIDFMC3_by7G_M8e35y0NH7k5VjeGDWNDRmT_WnrxqlKvzHUj8JW70felOSR_LPOBvYXB2TyY28CHcdQ94CClE9FPNcPQ3kjnii-H5H_q3qLSQVzMQJDReganRimtI_mzoxYJ_ZoQYZEFn8nP54rxQsx9uwqsBb3Sv_qmeBy4lOlEaQMFxz42seSL14"/>
-<div class="absolute top-4 left-4 bg-flame-red text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">AFTER: COMMISSIONED PLANT</div>
-</div>
-<div class="p-6">
-<p class="text-on-surface-variant font-body-md">Completed high-tech facility featuring automated loading systems and real-time monitoring integration.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-section-padding px-margin-mobile bg-industrial-black text-white">
-<h2 class="font-headline-md text-headline-md mb-8">Operations in Motion</h2>
-<div class="flex overflow-x-auto gap-6 hide-scrollbar">
-<div class="flex-shrink-0 w-80">
-<div class="relative group rounded-xl overflow-hidden aspect-video border border-white/10">
-<img class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqkUPEtFlZF7ZeFOECKAwntVYmvRwcTwsigJKAjADMrgf3PVMwXsSx366ZC9wOla9ciRqr_42BtbHZQyBxXaOOLTy3rnwnTs8HXvc_7METmkD1ToANcICDLK3KKA_nYWuLE1DQsnnFEzpm_0gLEuSDKE-nLg0kHHSC7Q9R1nctJFIgf-E4qjnyN8qUApAY8kbvF9t0ARck0pRsBOJjI0gD6SIt3JY_rzfIRRsZ43PYfw1uPCPXI3TrkXY1FLPYDuYb4Mm2y4kQp1w"/>
-<div class="absolute inset-0 flex items-center justify-center">
-<div class="w-16 h-16 rounded-full bg-flame-red flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-4 left-4">
-<span class="font-label-md bg-white/10 backdrop-blur-md px-3 py-1 rounded text-xs">02:15</span>
-</div>
-</div>
-<p class="mt-4 font-title-lg text-white">The Speed of GCC Trade</p>
-</div>
-<div class="flex-shrink-0 w-80">
-<div class="relative group rounded-xl overflow-hidden aspect-video border border-white/10">
-<img class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqmJlyJpn1O3Lvt4HkUJnYMbIXXYzSFqhzStJ-r0-Nxv4trtbo6DuW7jv5ZZcs4aToGNsBx-4cebA1tQ6gqqdU0ET19gRjsWQj2nhR9dQRGE8h-XJBJ6kFvxWFJoLnn_kFyjg6SvRFdqjwXeka69JElJiQQu601sUXWagzGN3I6V3fvljn775U0G9RU05XBzhiNoHb4g26H3a1W2lfHZ4cVqOLKoNFO_T4zezpcuMhO5CRWsN5B1ulx_RQH-YELNvFct6-5ZGjfdA"/>
-<div class="absolute inset-0 flex items-center justify-center">
-<div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-white text-3xl">play_arrow</span>
-</div>
-</div>
-<div class="absolute bottom-4 left-4">
-<span class="font-label-md bg-white/10 backdrop-blur-md px-3 py-1 rounded text-xs">01:45</span>
-</div>
-</div>
-<p class="mt-4 font-title-lg text-white">Digital Control Center</p>
-</div>
-</div>
-</section>
-<section class="py-section-padding px-margin-mobile bg-white text-center">
-<div class="max-w-container-max mx-auto">
-<span class="text-flame-red font-label-md tracking-widest uppercase mb-4 block">Unwavering Reliability</span>
-<h2 class="font-headline-md text-headline-md text-trust-navy mb-6">Witness Precision in Every Move</h2>
-<p class="font-body-md text-on-surface-variant mb-10 max-w-lg mx-auto">
-                    Experience the future of regional logistics. Our infrastructure is ready to power your next big step in the Saudi market.
-                </p>
-<div class="flex flex-col gap-4">
-<button class="bg-flame-red text-white py-5 rounded-xl font-bold shadow-xl shadow-flame-red/10 active:scale-95 transition-all text-body-md">View Our Services</button>
-<button class="bg-surface-container-low text-trust-navy py-5 rounded-xl font-bold border border-outline-variant/30 active:scale-95 transition-all text-body-md">Track a Shipment</button>
-</div>
-</div>
-</section>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-20 text-white">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/70 to-trust-navy/30 z-10"></div>
+      <img class="h-full w-full object-cover" alt="Flame Logistics operations and fleet" src="../../assets/images/Home.png">
+    </div>
+    <div class="relative z-20 px-margin-mobile">
+      <span class="inline-block px-4 py-1.5 bg-flame-red/20 text-flame-red rounded-full font-label-md uppercase tracking-widest mb-5">Visual Chronicle</span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile mb-4">Operations Gallery</h1>
+      <p class="font-body-md text-white/80">Witness the scale, precision, and excellence of Flame Logistics operations across the GCC region.</p>
+    </div>
+  </section>
+
+  <!-- Filter Chips -->
+  <section class="bg-surface py-6 sticky top-[80px] z-40 border-b border-outline-variant/20">
+    <div class="flex overflow-x-auto px-margin-mobile gap-3 hide-scrollbar" id="galleryFilterChips">
+      <button class="active-filter whitespace-nowrap px-6 py-2 rounded-full border border-flame-red bg-flame-red text-white font-label-md transition-all" data-category="all">All</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="transportation">Transportation</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="warehousing">Warehousing</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="projects">Projects</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="packing">Packing</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="crating">Crating</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="stuffing-lashing">Stuffing & Lashing</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant/30 bg-surface-container font-label-md text-on-surface-variant hover:border-flame-red transition-all" data-category="team">Team</button>
+    </div>
+  </section>
+
+  <!-- Photos & Videos -->
+  <section class="px-margin-mobile py-12 bg-white">
+    <div class="mb-8">
+      <div class="mb-4">
+        <h2 class="font-headline-md text-headline-md text-trust-navy">Photos</h2>
+        <p class="text-sm text-on-surface-variant mt-1">Operations, facilities, and project highlights.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-6" id="galleryGrid"></div>
+    </div>
+    <div class="border-t border-outline-variant/20 pt-8">
+      <div class="mb-4">
+        <h2 class="font-headline-md text-headline-md text-trust-navy">Videos</h2>
+        <p class="text-sm text-on-surface-variant mt-1">Watch project walkthroughs and logistics operations on YouTube.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-6" id="videoGrid"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-16 px-margin-mobile bg-tertiary text-white">
+    <div class="grid grid-cols-2 gap-6 text-center">
+      <div>
+        <div class="font-display-lg-mobile text-flame-red mb-1">20+</div>
+        <div class="font-label-md text-white/60 uppercase tracking-widest text-xs">Fleet Vehicles</div>
+      </div>
+      <div>
+        <div class="font-display-lg-mobile text-flame-red mb-1">6000+</div>
+        <div class="font-label-md text-white/60 uppercase tracking-widest text-xs">Warehouse Space</div>
+      </div>
+      <div>
+        <div class="font-display-lg-mobile text-flame-red mb-1">15+</div>
+        <div class="font-label-md text-white/60 uppercase tracking-widest text-xs">Years Excellence</div>
+      </div>
+      <div>
+        <div class="font-display-lg-mobile text-flame-red mb-1">3K+</div>
+        <div class="font-label-md text-white/60 uppercase tracking-widest text-xs">Shipments</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 px-margin-mobile bg-trust-navy text-white text-center">
+    <h2 class="font-headline-md text-headline-md mb-4">See Our Operations in Action</h2>
+    <p class="font-body-md text-white/80 mb-8">Schedule a facility tour or request a virtual walkthrough of our state-of-the-art logistics infrastructure.</p>
+    <div class="flex flex-col gap-3">
+      <a href="contact.html" class="w-full bg-flame-red text-white py-4 rounded-xl font-title-lg active:scale-[0.98] transition-all">
+        Schedule a Tour
+      </a>
+      <a href="contact.html" class="w-full bg-white/10 backdrop-blur border border-white/20 text-white py-4 rounded-xl font-title-lg active:scale-[0.98] transition-all">
+        Contact Us
+      </a>
+    </div>
+  </section>
 </main>
+
 <!-- Footer Placeholder - Loaded dynamically -->
 <div id="footer-placeholder"></div>
+
 <div id="videoModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/85 px-4 py-6">
   <div class="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-2xl">
     <button id="closeVideoModal" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-trust-navy shadow-lg" type="button" aria-label="Close video">
@@ -272,200 +228,253 @@
     </div>
   </div>
 </div>
-<div class="fixed inset-0 bg-trust-navy z-[60] flex flex-col p-8 transition-transform translate-x-full duration-500" id="mobileMenu">
-<div class="flex justify-between items-center mb-16">
-<div class="font-display-lg text-headline-sm font-bold text-white">Flame Logistics</div>
-<button class="text-white p-2" id="closeMenu">
-<span class="material-symbols-outlined text-3xl">close</span>
-</button>
+
+<div id="imageModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/90 px-4 py-6">
+  <div class="relative w-full max-w-5xl">
+    <button id="closeImageModal" class="absolute -top-12 right-0 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-trust-navy shadow-lg" type="button" aria-label="Close preview">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <div class="overflow-hidden rounded-2xl bg-black shadow-2xl">
+      <img id="imageModalImg" class="max-h-[75vh] w-full object-contain" alt="" />
+    </div>
+    <div class="mt-4 text-center">
+      <h3 id="imageModalTitle" class="font-title-lg text-white"></h3>
+      <p id="imageModalSubtitle" class="text-sm text-white/70 mt-1"></p>
+    </div>
+  </div>
 </div>
-<div class="flex flex-col gap-8 text-2xl font-bold text-white">
-<a class="hover:text-flame-red transition-colors" href="#">Home</a>
-<a class="hover:text-flame-red transition-colors" href="#">Services</a>
-<a class="hover:text-flame-red transition-colors" href="#">Network</a>
-<a class="text-flame-red" href="#">Gallery</a>
-<a class="hover:text-flame-red transition-colors" href="#">Contact</a>
-</div>
-<div class="mt-auto">
-<button class="w-full bg-flame-red text-white py-5 rounded-xl font-bold text-lg">Track Shipment</button>
-</div>
-</div>
-<script>
-        const menuToggle = document.getElementById('menuToggle');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-        });
-
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-        });
-
-        const configuredBackendBase = window.__FLAME_BACKEND_URL || '';
-        const isLocalHost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
-        const BACKEND_BASE = configuredBackendBase || (isLocalHost ? 'http://localhost:4000' : '');
-        const API_BASE = BACKEND_BASE ? `${BACKEND_BASE}/api` : '/api';
-        const galleryGrid = document.getElementById('galleryGrid');
-        const videoGrid = document.getElementById('videoGrid');
-        const filterButtons = document.querySelectorAll('#galleryFilterChips button');
-        const videoModal = document.getElementById('videoModal');
-        const videoModalFrame = document.getElementById('videoModalFrame');
-        const closeVideoModal = document.getElementById('closeVideoModal');
-        let galleryItems = [];
-
-        function getYouTubeEmbedUrl(url) {
-            if (!url) return '';
-            try {
-                const parsed = new URL(url);
-                if (parsed.hostname.includes('youtube.com')) {
-                    const videoId = parsed.searchParams.get('v');
-                    if (!videoId) return '';
-                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                }
-                if (parsed.hostname.includes('youtu.be')) {
-                    const videoId = parsed.pathname.replace(/^\//, '');
-                    if (!videoId) return '';
-                    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                }
-            } catch (error) {
-                return '';
-            }
-            return '';
-        }
-
-        function openVideoModal(url) {
-            const embedUrl = getYouTubeEmbedUrl(url);
-            if (!embedUrl) return;
-            videoModalFrame.src = embedUrl;
-            videoModal.classList.remove('hidden');
-            videoModal.classList.add('flex');
-        }
-
-        function closeVideoModalHandler() {
-            videoModal.classList.add('hidden');
-            videoModal.classList.remove('flex');
-            videoModalFrame.src = '';
-        }
-
-        function renderGallery(items) {
-            const photoItems = items.filter(item => {
-                const mediaType = (item.mediaType || '').toString().toLowerCase();
-                return mediaType !== 'video' && !item.youtubeUrl;
-            });
-            const videoItems = items.filter(item => {
-                const mediaType = (item.mediaType || '').toString().toLowerCase();
-                return mediaType === 'video' || Boolean(item.youtubeUrl);
-            });
-
-            if (!photoItems.length) {
-                galleryGrid.innerHTML = '<p class="text-on-surface-variant">No photos found for this category.</p>';
-            } else {
-                galleryGrid.innerHTML = photoItems.map(item => `
-                    <div class="group relative rounded-xl overflow-hidden ${item.mobileAspect || 'aspect-[4/5]'} shadow-sm">
-                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.imageUrl}" alt="${item.title}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
-                            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Photo'}</span>
-                            <h3 class="text-white font-title-lg">${item.title}</h3>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            if (!videoItems.length) {
-                videoGrid.innerHTML = '<p class="text-on-surface-variant">No videos found for this category.</p>';
-            } else {
-                videoGrid.innerHTML = videoItems.map(item => `
-                    <div class="group relative rounded-xl overflow-hidden aspect-video shadow-sm cursor-pointer" data-video-url="${item.youtubeUrl}" role="button" tabindex="0">
-                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.thumbnailUrl || item.imageUrl}" alt="${item.title}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
-                            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Video'}</span>
-                            <h3 class="text-white font-title-lg">${item.title}</h3>
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-flame-red shadow-lg">
-                                <span class="material-symbols-outlined text-2xl">play_arrow</span>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function applyFilter(category) {
-            const normalized = (category || 'all').toLowerCase();
-            const filtered = normalized === 'all'
-                ? galleryItems
-                : galleryItems.filter(item => (item.category || '').toLowerCase() === normalized);
-            renderGallery(filtered);
-        }
-
-        async function loadGallery() {
-            try {
-                const response = await fetch(`${API_BASE}/gallery`);
-                if (!response.ok) {
-                    throw new Error('Failed to load gallery');
-                }
-                const data = await response.json();
-                galleryItems = data.items || [];
-                applyFilter('all');
-            } catch (error) {
-                galleryGrid.innerHTML = '<p class="text-error">Unable to load gallery from backend.</p>';
-            }
-        }
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => {
-                    b.classList.remove('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
-                    b.classList.add('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
-                });
-                btn.classList.remove('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
-                btn.classList.add('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
-                applyFilter(btn.dataset.category || 'all');
-            });
-        });
-
-        videoGrid.addEventListener('click', (event) => {
-            const trigger = event.target.closest('[data-video-url]');
-            if (!trigger) return;
-            event.preventDefault();
-            openVideoModal(trigger.dataset.videoUrl);
-        });
-
-        videoGrid.addEventListener('keydown', (event) => {
-            const trigger = event.target.closest('[data-video-url]');
-            if (!trigger) return;
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openVideoModal(trigger.dataset.videoUrl);
-            }
-        });
-
-        closeVideoModal.addEventListener('click', closeVideoModalHandler);
-        videoModal.addEventListener('click', (event) => {
-            if (event.target === videoModal) {
-                closeVideoModalHandler();
-            }
-        });
-
-        loadGallery();
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroText = document.querySelector('.relative.z-10');
-            if (heroText) {
-                heroText.style.transform = `translateY(${scrolled * 0.2}px)`;
-                heroText.style.opacity = 1 - (scrolled / 500);
-            }
-        });
-    </script>
 
 <!-- Bottom Navigation Placeholder - Loaded dynamically -->
 <div id="bottom-nav-placeholder"></div>
 
-    <!-- Mobile Common JS - Loads header and footer components -->
-    <script src="../../assets/js/mobile.js"></script>
+<script>
+  const configuredBackendBase = window.__FLAME_BACKEND_URL || '';
+  const isLocalHost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
+  const BACKEND_BASE = configuredBackendBase || (isLocalHost ? 'http://localhost:4000' : '');
+  const API_BASE = BACKEND_BASE ? `${BACKEND_BASE}/api` : '/api';
+  const galleryGrid = document.getElementById('galleryGrid');
+  const videoGrid = document.getElementById('videoGrid');
+  const filterButtons = document.querySelectorAll('#galleryFilterChips button');
+  const videoModal = document.getElementById('videoModal');
+  const videoModalFrame = document.getElementById('videoModalFrame');
+  const closeVideoModal = document.getElementById('closeVideoModal');
+  const imageModal = document.getElementById('imageModal');
+  const imageModalImg = document.getElementById('imageModalImg');
+  const imageModalTitle = document.getElementById('imageModalTitle');
+  const imageModalSubtitle = document.getElementById('imageModalSubtitle');
+  const closeImageModal = document.getElementById('closeImageModal');
+  let galleryItems = [];
+  let renderedPhotoItems = [];
+
+  function renderGallerySkeleton() {
+    galleryGrid.innerHTML = Array.from({ length: 3 }).map(() => `
+      <div class="rounded-xl overflow-hidden shadow-sm bg-surface-container-high animate-pulse aspect-[4/5]"></div>
+    `).join('');
+  }
+
+  function renderVideoSkeleton() {
+    videoGrid.innerHTML = Array.from({ length: 2 }).map(() => `
+      <div class="rounded-xl overflow-hidden shadow-sm bg-white border border-outline-variant/30">
+        <div class="aspect-video bg-surface-container-high animate-pulse"></div>
+        <div class="p-5 space-y-3">
+          <div class="h-3 w-20 rounded bg-surface-container-high animate-pulse"></div>
+          <div class="h-4 w-3/4 rounded bg-surface-container-high animate-pulse"></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  renderGallerySkeleton();
+  renderVideoSkeleton();
+
+  function getYouTubeEmbedUrl(url) {
+    if (!url) return '';
+    try {
+      const parsed = new URL(url);
+      if (parsed.hostname.includes('youtube.com')) {
+        const videoId = parsed.searchParams.get('v');
+        if (!videoId) return '';
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
+      if (parsed.hostname.includes('youtu.be')) {
+        const videoId = parsed.pathname.replace(/^\//, '');
+        if (!videoId) return '';
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
+    } catch (error) {
+      return '';
+    }
+    return '';
+  }
+
+  function openVideoModal(url) {
+    const embedUrl = getYouTubeEmbedUrl(url);
+    if (!embedUrl) return;
+    videoModalFrame.src = embedUrl;
+    videoModal.classList.remove('hidden');
+    videoModal.classList.add('flex');
+  }
+
+  function closeVideoModalHandler() {
+    videoModal.classList.add('hidden');
+    videoModal.classList.remove('flex');
+    videoModalFrame.src = '';
+  }
+
+  function openImageModal(item) {
+    if (!item) return;
+    imageModalImg.src = item.imageUrl || item.thumbnailUrl || '';
+    imageModalImg.alt = item.title || 'Gallery image';
+    imageModalTitle.textContent = item.title || '';
+    imageModalSubtitle.textContent = item.subtitle || item.description || '';
+    imageModal.classList.remove('hidden');
+    imageModal.classList.add('flex');
+  }
+
+  function closeImageModalHandler() {
+    imageModal.classList.add('hidden');
+    imageModal.classList.remove('flex');
+    imageModalImg.src = '';
+  }
+
+  function renderGallery(items) {
+    const photoItems = items.filter(item => {
+      const mediaType = (item.mediaType || '').toString().toLowerCase();
+      return mediaType !== 'video' && !item.youtubeUrl;
+    });
+    const videoItems = items.filter(item => {
+      const mediaType = (item.mediaType || '').toString().toLowerCase();
+      return mediaType === 'video' || Boolean(item.youtubeUrl);
+    });
+
+    renderedPhotoItems = photoItems;
+
+    if (!photoItems.length) {
+      galleryGrid.innerHTML = '<p class="text-on-surface-variant">No photos found for this category.</p>';
+    } else {
+      galleryGrid.innerHTML = photoItems.map((item, index) => `
+        <div class="group relative rounded-xl overflow-hidden ${item.mobileAspect || 'aspect-[4/5]'} shadow-sm cursor-pointer" data-photo-index="${index}" role="button" tabindex="0">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.imageUrl}" alt="${item.title}">
+          <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
+            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Photo'}</span>
+            <h3 class="text-white font-title-lg">${item.title}</h3>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    if (!videoItems.length) {
+      videoGrid.innerHTML = '<p class="text-on-surface-variant">No videos found for this category.</p>';
+    } else {
+      videoGrid.innerHTML = videoItems.map(item => `
+        <div class="group relative rounded-xl overflow-hidden aspect-video shadow-sm cursor-pointer" data-video-url="${item.youtubeUrl}" role="button" tabindex="0">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${item.thumbnailUrl || item.imageUrl}" alt="${item.title}">
+          <div class="absolute inset-0 bg-gradient-to-t from-industrial-black/80 to-transparent flex flex-col justify-end p-6">
+            <span class="text-flame-red font-label-md mb-1">${item.subtitle || 'Video'}</span>
+            <h3 class="text-white font-title-lg">${item.title}</h3>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-flame-red shadow-lg">
+              <span class="material-symbols-outlined text-2xl">play_arrow</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function applyFilter(category) {
+    const normalized = (category || 'all').toLowerCase();
+    const filtered = normalized === 'all'
+      ? galleryItems
+      : galleryItems.filter(item => (item.category || '').toLowerCase() === normalized);
+    renderGallery(filtered);
+  }
+
+  async function loadGallery() {
+    try {
+      const response = await fetch(`${API_BASE}/gallery`);
+      if (!response.ok) {
+        throw new Error('Failed to load gallery');
+      }
+      const data = await response.json();
+      galleryItems = data.items || [];
+      applyFilter('all');
+    } catch (error) {
+      galleryGrid.innerHTML = '<p class="text-error">Unable to load gallery from backend.</p>';
+      videoGrid.innerHTML = '<p class="text-error">Unable to load gallery from backend.</p>';
+    }
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => {
+        b.classList.remove('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
+        b.classList.add('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
+      });
+      btn.classList.remove('text-on-surface-variant', 'bg-surface-container', 'border-outline-variant/30');
+      btn.classList.add('active-filter', 'text-white', 'bg-flame-red', 'border-flame-red');
+      applyFilter(btn.dataset.category || 'all');
+    });
+  });
+
+  videoGrid.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-video-url]');
+    if (!trigger) return;
+    event.preventDefault();
+    openVideoModal(trigger.dataset.videoUrl);
+  });
+
+  videoGrid.addEventListener('keydown', (event) => {
+    const trigger = event.target.closest('[data-video-url]');
+    if (!trigger) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openVideoModal(trigger.dataset.videoUrl);
+    }
+  });
+
+  closeVideoModal.addEventListener('click', closeVideoModalHandler);
+  videoModal.addEventListener('click', (event) => {
+    if (event.target === videoModal) {
+      closeVideoModalHandler();
+    }
+  });
+
+  galleryGrid.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-photo-index]');
+    if (!trigger) return;
+    const index = Number(trigger.dataset.photoIndex);
+    openImageModal(renderedPhotoItems[index]);
+  });
+
+  galleryGrid.addEventListener('keydown', (event) => {
+    const trigger = event.target.closest('[data-photo-index]');
+    if (!trigger) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const index = Number(trigger.dataset.photoIndex);
+      openImageModal(renderedPhotoItems[index]);
+    }
+  });
+
+  closeImageModal.addEventListener('click', closeImageModalHandler);
+  imageModal.addEventListener('click', (event) => {
+    if (event.target === imageModal) {
+      closeImageModalHandler();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (!imageModal.classList.contains('hidden')) closeImageModalHandler();
+    if (!videoModal.classList.contains('hidden')) closeVideoModalHandler();
+  });
+
+  loadGallery();
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
 </body>
 </html>

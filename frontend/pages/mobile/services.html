@@ -3,461 +3,551 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Flame Logistics | Premium Services</title>
+<title>Flame Logistics | Premium Integrated Solutions Across GCC</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                "surface-dim": "#dcd9e0",
-                "primary-fixed": "#e2dfff",
-                "glass-border": "rgba(255, 255, 255, 0.2)",
-                "surface-container": "#f0ecf4",
-                "industrial-black": "#151719",
-                "on-secondary-fixed-variant": "#930007",
-                "surface-container-lowest": "#ffffff",
-                "tertiary-container": "#1a1c1e",
-                "secondary-fixed": "#ffdad5",
-                "error-container": "#ffdad6",
-                "on-tertiary": "#ffffff",
-                "on-error": "#ffffff",
-                "outline-variant": "#c7c5d3",
-                "background": "#fcf8ff",
-                "surface-container-low": "#f6f2fa",
-                "on-tertiary-fixed": "#1a1c1e",
-                "secondary-fixed-dim": "#ffb4aa",
-                "secondary": "#bc000c",
-                "tertiary-fixed": "#e2e2e5",
-                "surface-bright": "#fcf8ff",
-                "primary": "#000000",
-                "secondary-container": "#e12823",
-                "flame-red": "#bc000c",
-                "on-background": "#1b1b20",
-                "on-primary": "#ffffff",
-                "primary-container": "#0f0861",
-                "surface-container-highest": "#e5e1e9",
-                "surface-muted": "#f0ecf5",
-                "on-primary-fixed-variant": "#3e3d8c",
-                "on-tertiary-fixed-variant": "#454749",
-                "on-secondary": "#ffffff",
-                "outline": "#777682",
-                "surface-variant": "#e5e1e9",
-                "inverse-primary": "#c2c1ff",
-                "surface": "#fcf8ff",
-                "on-surface": "#1b1b20",
-                "on-tertiary-container": "#838486",
-                "surface-tint": "#5655a6",
-                "tertiary": "#000000",
-                "on-surface-variant": "#464651",
-                "on-primary-fixed": "#0f0861",
-                "on-secondary-container": "#fffbff",
-                "primary-fixed-dim": "#c2c1ff",
-                "on-secondary-fixed": "#410001",
-                "trust-navy": "#09005d",
-                "error": "#ba1a1a",
-                "tertiary-fixed-dim": "#c6c6c9",
-                "surface-container-high": "#eae7ee",
-                "on-error-container": "#93000a",
-                "inverse-on-surface": "#f3eff7",
-                "inverse-surface": "#303035",
-                "on-primary-container": "#7c7bcf"
-            },
-            "spacing": {
-                "margin-mobile": "16px",
-                "gutter": "24px",
-                "base-unit": "8px",
-                "margin-desktop": "40px",
-                "container-max": "1280px",
-                "section-padding": "96px"
-            },
-            "fontFamily": {
-                "title-lg": ["Plus Jakarta Sans"],
-                "body-md": ["Inter"],
-                "headline-sm": ["Plus Jakarta Sans"],
-                "headline-md": ["Plus Jakarta Sans"],
-                "display-lg": ["Plus Jakarta Sans"],
-                "body-lg": ["Inter"],
-                "display-lg-mobile": ["Plus Jakarta Sans"],
-                "label-md": ["Inter"]
-            },
-            "fontSize": {
-                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
-            }
-          }
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-dim": "#dcd9e0",
+          "primary-fixed": "#e2dfff",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "surface-container": "#f0ecf4",
+          "industrial-black": "#151719",
+          "on-secondary-fixed-variant": "#930007",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-container": "#1a1c1e",
+          "secondary-fixed": "#ffdad5",
+          "error-container": "#ffdad6",
+          "on-tertiary": "#ffffff",
+          "on-error": "#ffffff",
+          "outline-variant": "#c7c5d3",
+          "background": "#fcf8ff",
+          "surface-container-low": "#f6f2fa",
+          "on-tertiary-fixed": "#1a1c1e",
+          "secondary-fixed-dim": "#ffb4aa",
+          "secondary": "#bc000c",
+          "tertiary-fixed": "#e2e2e5",
+          "surface-bright": "#fcf8ff",
+          "primary": "#09005d",
+          "secondary-container": "#e12823",
+          "flame-red": "#bc000c",
+          "on-background": "#1b1b20",
+          "on-primary": "#ffffff",
+          "primary-container": "#0f0861",
+          "surface-container-highest": "#e5e1e9",
+          "surface-muted": "#f0ecf5",
+          "on-primary-fixed-variant": "#3e3d8c",
+          "on-tertiary-fixed-variant": "#454749",
+          "on-secondary": "#ffffff",
+          "outline": "#777682",
+          "surface-variant": "#e5e1e9",
+          "inverse-primary": "#c2c1ff",
+          "surface": "#fcf8ff",
+          "on-surface": "#1b1b20",
+          "on-tertiary-container": "#838486",
+          "surface-tint": "#5655a6",
+          "tertiary": "#000000",
+          "on-surface-variant": "#464651",
+          "on-primary-fixed": "#0f0861",
+          "on-secondary-container": "#fffbff",
+          "primary-fixed-dim": "#c2c1ff",
+          "on-secondary-fixed": "#410001",
+          "trust-navy": "#09005d",
+          "error": "#ba1a1a",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "surface-container-high": "#eae7ee",
+          "on-error-container": "#93000a",
+          "inverse-on-surface": "#f3eff7",
+          "inverse-surface": "#303035",
+          "on-primary-container": "#7c7bcf"
+        },
+        "spacing": {
+          "margin-mobile": "16px",
+          "gutter": "24px",
+          "base-unit": "8px",
+          "margin-desktop": "40px",
+          "container-max": "1280px",
+          "section-padding": "96px"
+        },
+        "fontFamily": {
+          "title-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "body-lg": ["Inter"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "label-md": ["Inter"]
+        },
+        "fontSize": {
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
         }
       }
-    </script>
+    }
+  }
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .industrial-shadow {
-            box-shadow: 0 10px 30px -5px rgba(9, 0, 93, 0.05);
-        }
-    </style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-flame-red selection:text-white">
 <!-- Header Placeholder - Loaded dynamically -->
 <div id="header-placeholder"></div>
 
 <main class="pt-[80px] pb-24">
-<!-- Hero Section -->
-<section class="relative h-[80vh] flex flex-col justify-center items-center text-center px-margin-mobile overflow-hidden">
-<div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-gradient-to-b from-trust-navy/80 via-trust-navy/40 to-background z-10"></div>
-<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATGrPcCta4mxCMmAfQ2-3JnR41clHaSfvWJcJ5hzytQsmDlPTHzvdVlSiQzkk4FooYXvKrYj_YGh-ovlHSnhvnH5Z7KoBc2Dl9faAav1-fQvpdPiateHiTmlniIX75UMxTBxq-an_CSmhaON33GDtZIYIYpOfmRlhbGaOBQNMNtRUj2hBx4c44_EVP91vAzvHp_VLLsh5PLhpbkqIPi_1CNOSReV6NdH6RQYsWgK4sfMAzVvOsCW4ixAawZI4rWzvsKCGooOAe7W4')"></div>
-</div>
-<div class="relative z-20 max-w-lg">
-<div class="inline-flex items-center bg-flame-red/10 border border-flame-red/20 rounded-full px-4 py-1 mb-6">
-<span class="w-2 h-2 bg-flame-red rounded-full mr-2 animate-pulse"></span>
-<span class="text-flame-red font-label-md tracking-wider uppercase">GCC Regional Powerhouse</span>
-</div>
-<h2 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">Integrated Logistics Solutions Across GCC</h2>
-<p class="text-white/80 font-body-lg mb-8">Engineering certainty in the global supply chain with specialized assets and a dominant regional network.</p>
-<div class="flex flex-col gap-4">
-<button class="bg-flame-red text-white py-4 px-8 rounded-xl font-headline-sm hover:scale-[1.02] transition-transform active:scale-95">
-                        Consult Our Specialists
-                    </button>
-<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white py-4 px-8 rounded-xl font-headline-sm">
-                        View Fleet Capacity
-                    </button>
-</div>
-</div>
-</section>
-<!-- Regional Performance Gauges -->
-<section class="px-margin-mobile py-12 -mt-16 relative z-30">
-<div class="grid grid-cols-2 gap-4">
-<div class="glass-card p-6 rounded-2xl flex flex-col items-center industrial-shadow">
-<div class="relative w-20 h-20 flex items-center justify-center">
-<svg class="w-full h-full transform -rotate-90">
-<circle class="text-surface-container-highest" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
-<circle class="text-flame-red" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.2" stroke-dashoffset="22.6" stroke-width="6"></circle>
-</svg>
-<span class="absolute font-headline-sm text-trust-navy">90%</span>
-</div>
-<span class="mt-3 font-label-md text-on-surface-variant text-center">On-Time Performance</span>
-</div>
-<div class="glass-card p-6 rounded-2xl flex flex-col items-center industrial-shadow">
-<div class="relative w-20 h-20 flex items-center justify-center">
-<svg class="w-full h-full transform -rotate-90">
-<circle class="text-surface-container-highest" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
-<circle class="text-trust-navy" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.2" stroke-dashoffset="4.5" stroke-width="6"></circle>
-</svg>
-<span class="absolute font-headline-sm text-trust-navy">98%</span>
-</div>
-<span class="mt-3 font-label-md text-on-surface-variant text-center">GCC Coverage</span>
-</div>
-</div>
-</section>
-<!-- Service Catalog (Vertical Stack) -->
-<section class="px-margin-mobile py-16">
-<div class="mb-10">
-<h3 class="font-headline-md text-trust-navy mb-2">Our Specialized Assets</h3>
-<div class="w-16 h-1 bg-flame-red"></div>
-</div>
-<div class="space-y-4">
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow active:bg-surface-container-low transition-colors">
-<img src="../../assets/images/Land_transp.png" alt="Land Transportation" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Land Transportation</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Reliable GCC-wide road freight with GPS visibility, flexible fleet options, and regional coverage.</p>
-<a href="/pages/mobile/land-transportation.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<div class="relative">
-<img src="../../assets/images/Land_transp.png" alt="Last Mile Delivery Services" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="absolute top-3 left-3 inline-flex items-center rounded-full bg-secondary/10 px-3 py-1 text-sm font-semibold text-secondary backdrop-blur-sm">Launching Soon</div>
-</div>
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Last Mile Delivery Services</h4>
-<p class="font-body-md text-on-surface-variant mt-1">A new flagship division launching this month for fast, reliable final-stop deliveries across urban and industrial locations.</p>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEDwSm82JzzMIjpV5kxVBTRoO8AJGw22kCKXHdWukvNoBqOs_LLsJwog4i2rRPkPIBEjda7A8iBNnfqI_IoGAqkF7dZhfoN1QwW18Hqun6qRXvqRF67G4DeK1c-DWJ7Qn4KNV7GR6hOQ7wIymMOHg1LAFcbX9bo3IUrTDTOVvU8-CIotZmfpHZNRAeDtbXmF8oNmhf53DipqCLiYQC_w3SlTSLZXrbebSK4JV2LUKc8sPwjtf7MJ1AACCxE7CHG_WJT4jDstKwhno" alt="Project Cargo Handling" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Project Cargo Handling</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Specialized engineering for oversized industrial machinery and equipment.</p>
-<a href="/pages/mobile/project-cargo-handling.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/Packaging.png" alt="Packing & Moving" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Packing & Moving</h4>
-<p class="font-body-md text-on-surface-variant mt-1">White-glove residential and commercial relocation services.</p>
-<a href="/pages/mobile/packing-moving.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/Custom_clear.png" alt="Customs Clearance" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Customs Clearance</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Automated digital clearance at 14 major GCC ports of entry.</p>
-<a href="/pages/mobile/customs-clearance.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/Warehouse.png" alt="Warehousing & Distribution" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Warehousing & Distribution</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Strategically located hubs in Riyadh and Dubai with WMS integration.</p>
-<a href="/pages/mobile/warehousing-distribution.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/industrial.png" alt="Industrial Crating" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Industrial Crating</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Bespoke heavy-duty protection for high-value industrial assets.</p>
-<a href="/pages/mobile/industrial-crating.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/Terminal_services.png" alt="Terminal Services" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Terminal Services</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Efficient terminal operations for fast cargo handling and storage.</p>
-<a href="/pages/mobile/terminal-services.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="../../assets/images/Exihibition.png" alt="Exhibition Cargo Handling" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Exhibition Cargo Handling</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Carefully coordinated exhibition cargo moves for trade shows and events.</p>
-<a href="/pages/mobile/exhibition-cargo-handling.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADu-D9ema0-YFQ4nYsPuDMbJJwSb1wMOWA9fAzcCFqtleH2yIqEnqKA_dv5WgMeAE30lePX2RWAcYDnlmKgavCaCfoCHfIaevYtETGH-xh4iH5C4VY6vMytmQvKjf8qxx2meypbb2Q4JazRtPnp__Y9TxmilptNfkhyin8SvYhUB7YJQjhTjHb6C-eSmtL4R5r_vGJYSJs83_d6zVlJKOF5e8HTYXaM4UCIwh4jdF8_mYFL9AI980J6bkUr-lGiqPSoky25TQA6DU" alt="Documentation" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Documentation</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Complete documentation services for international shipping and customs.</p>
-<a href="/pages/mobile/documentation-services.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIy-pN7Z_qmRGScuGFsRw51ne1VN_Qf-B1xqWIH3ZdKS2bwoBGC45iV042fQV4rkOEKWAAFZ9w3pPpkEajrH2hcNkplEM65ovm_GQU7IkNhLMgjHi9eiYqoe2g082O6pVgF-LlMeKfi35nV39StbgwuTWelTS3Gx43vW8eTiHeGfUQaDCSl254mYyij883nKU1nBZf5xOrvfIuJEdUOHsRz1E9KmrJQHKD1JD7I4LF-bbE5pmkpXpFSEQOuMC-MvLyxduaBPcpaM0" alt="Office Shifting" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Office Shifting</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Professional office relocation with minimal downtime and disruption.</p>
-<a href="/pages/mobile/office-shifting.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIy-pN7Z_qmRGScuGFsRw51ne1VN_Qf-B1xqWIH3ZdKS2bwoBGC45iV042fQV4rkOEKWAAFZ9w3pPpkEajrH2hcNkplEM65ovm_GQU7IkNhLMgjHi9eiYqoe2g082O6pVgF-LlMeKfi35nV39StbgwuTWelTS3Gx43vW8eTiHeGfUQaDCSl254mYyij883nKU1nBZf5xOrvfIuJEdUOHsRz1E9KmrJQHKD1JD7I4LF-bbE5pmkpXpFSEQOuMC-MvLyxduaBPcpaM0" alt="Container Transportation" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Container Transportation</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Cross-border GCC container haulage with real-time GPS tracking.</p>
-<a href="/pages/mobile/container-transportation.html" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow">
-<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADu-D9ema0-YFQ4nYsPuDMbJJwSb1wMOWA9fAzcCFqtleH2yIqEnqKA_dv5WgMeAE30lePX2RWAcYDnlmKgavCaCfoCHfIaevYtETGH-xh4iH5C4VY6vMytmQvKjf8qxx2meypbb2Q4JazRtPnp__Y9TxmilptNfkhyin8SvYhUB7YJQjhTjHb6C-eSmtL4R5r_vGJYSJs83_d6zVlJKOF5e8HTYXaM4UCIwh4jdF8_mYFL9AI980J6bkUr-lGiqPSoky25TQA6DU" alt="Cargo Insurance" class="w-full h-40 object-cover rounded-t-xl mb-4">
-<div class="px-5 pb-5">
-<h4 class="font-title-lg text-trust-navy">Cargo Insurance</h4>
-<p class="font-body-md text-on-surface-variant mt-1">Comprehensive cargo insurance coverage for complete peace of mind.</p>
-<a href="#" class="inline-flex items-center gap-1 mt-4 text-secondary font-label-md uppercase tracking-wider hover:opacity-80 active:scale-95 transition-all">Learn More <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
-</div>
-</div>
-</div>
-</section>
-<!-- Why GCC Leaders Partner (Value Prop Stack) -->
-<section class="bg-trust-navy py-16 px-margin-mobile text-white overflow-hidden relative">
-<div class="absolute top-0 right-0 w-64 h-64 bg-flame-red/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-<div class="relative z-10">
-<h3 class="font-headline-md mb-10 text-center">Engineering Absolute Certainty</h3>
-<div class="space-y-8">
-<div class="flex flex-col items-center text-center">
-<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-<h4 class="font-headline-sm mb-2">100% Asset Ownership</h4>
-<p class="text-white/70 font-body-md">We don't broker your reputation. Every truck, trailer, and warehouse is Flame-owned and operated.</p>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">hub</span>
-</div>
-<h4 class="font-headline-sm mb-2">Dominant GCC Network</h4>
-<p class="text-white/70 font-body-md">Seamless transit through Saudi Arabia, UAE, Qatar, Kuwait, Oman, and Bahrain.</p>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">monitoring</span>
-</div>
-<h4 class="font-headline-sm mb-2">24/7 Command Center</h4>
-<p class="text-white/70 font-body-md">Active mission control monitoring every shipment mile in real-time.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Process Timeline (Vertical Stepper) -->
-<section class="px-margin-mobile py-20">
-<div class="mb-10 text-center">
-<h3 class="font-headline-md text-trust-navy">The Execution Path</h3>
-</div>
-<div class="relative pl-8 border-l-2 border-surface-container-highest space-y-12 ml-4">
-<div class="relative">
-<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">1</div>
-<h4 class="font-title-lg text-trust-navy mb-1">Inquiry &amp; Analysis</h4>
-<p class="text-on-surface-variant font-body-md">Consult with our logistics engineers to define volume, routing, and compliance needs.</p>
-</div>
-<div class="relative">
-<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">2</div>
-<h4 class="font-title-lg text-trust-navy mb-1">Optimized Solution</h4>
-<p class="text-on-surface-variant font-body-md">Receive a custom architectural plan for your supply chain including tech integrations.</p>
-</div>
-<div class="relative">
-<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">3</div>
-<h4 class="font-title-lg text-trust-navy mb-1">Seamless Onboarding</h4>
-<p class="text-on-surface-variant font-body-md">Integration with our Command Center portal for total visibility from day one.</p>
-</div>
-<div class="relative">
-<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">4</div>
-<h4 class="font-title-lg text-trust-navy mb-1">Execution &amp; Transit</h4>
-<p class="text-on-surface-variant font-body-md">Assets deploy under constant surveillance with active customs handling.</p>
-</div>
-<div class="relative">
-<div class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-flame-red flex items-center justify-center text-white font-bold">5</div>
-<h4 class="font-title-lg text-trust-navy mb-1">Secured Delivery</h4>
-<p class="text-on-surface-variant font-body-md">Final delivery with digital proof of condition and performance analytics report.</p>
-</div>
-</div>
-</section>
-<!-- FAQ Section (Accordion) -->
-<section class="px-margin-mobile py-16 bg-surface-container-low">
-<h3 class="font-headline-md text-trust-navy mb-8">Technical FAQ</h3>
-<div class="space-y-2">
-<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
-<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
-<span class="font-title-lg text-trust-navy">What is the GCC customs turnaround time?</span>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
-</summary>
-<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
-                        Typically under 24 hours at major ports like Jebel Ali or King Abdulaziz Port, thanks to our pre-clearance digital protocols.
-                    </div>
-</details>
-<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
-<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
-<span class="font-title-lg text-trust-navy">Do you offer door-to-door tracking?</span>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
-</summary>
-<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
-                        Yes, our Flame Vision portal provides satellite tracking for every single VIN in our fleet, updated every 30 seconds.
-                    </div>
-</details>
-<details class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden">
-<summary class="flex justify-between items-center p-5 cursor-pointer list-none">
-<span class="font-title-lg text-trust-navy">What certifications do you hold?</span>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-flame-red">expand_more</span>
-</summary>
-<div class="p-5 pt-0 text-on-surface-variant font-body-md border-t border-surface-container">
-                        We are ISO 9001:2015, TAPA TSR Level 1, and GDP pharmaceutical handling certified across all Saudi and UAE facilities.
-                    </div>
-</details>
-</div>
-</section>
-<!-- Lead Generation Form -->
-<section class="px-margin-mobile py-20 bg-industrial-black text-white">
-<div class="text-center mb-10">
-<h3 class="font-headline-md mb-4">Accelerate Your Supply Chain</h3>
-<p class="text-outline-variant">Request a high-performance logistics audit from our technical team.</p>
-</div>
-<form class="space-y-4 contact-form" data-form-type="services" enctype="multipart/form-data">
-<div>
-<input name="fullName" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Full Name" type="text" required>
-</div>
-<div>
-<input name="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Corporate Email" type="email" required>
-</div>
-<div>
-<select name="service" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white">
-<option value="" class="text-industrial-black">Primary Interest</option>
-<option class="text-industrial-black">Land Transportation</option>
-<option class="text-industrial-black">Warehousing</option>
-<option class="text-industrial-black">Customs Clearance</option>
-</select>
-</div>
-<div>
-<textarea name="message" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-flame-red focus:ring-0 transition-colors text-white placeholder:text-outline-variant" placeholder="Brief Description of Logistics Challenge" rows="4" required></textarea>
-</div>
-<div>
-<label class="block text-sm text-outline-variant mb-2">UPLOAD MANIFEST OR PROJECT DETAIL</label>
-<div class="relative">
-<input type="file" id="file-upload-mobile-services" name="attachments" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple onchange="document.getElementById('mobile-services-file-list').textContent = Array.from(this.files).map(f => f.name).join(', ') || 'No file selected'"/>
-<label for="file-upload-mobile-services" class="w-full px-5 py-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center gap-3 cursor-pointer text-white/80">
-<span class="material-symbols-outlined text-flame-red">upload_file</span>
-<span>Click to upload files</span>
-</label>
-</div>
-<p id="mobile-services-file-list" class="text-xs text-outline-variant mt-2">No file selected</p>
-</div>
-<button class="w-full bg-flame-red text-white font-headline-sm py-5 rounded-xl mt-4 active:scale-95 transition-transform shadow-lg shadow-flame-red/20" type="submit">
-                    Send Inquiry
-                </button>
-</form>
-</section>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden flex items-end min-h-[640px]">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/70 to-trust-navy/20 z-10"></div>
+      <img class="w-full h-full object-cover" alt="Multi-modal logistics in GCC" src="../../assets/images/Service_hero.png">
+    </div>
+    <div class="relative z-20 px-margin-mobile pb-10 w-full">
+      <span class="inline-block bg-flame-red text-white font-label-md text-label-md px-4 py-1.5 rounded-full mb-5">END-TO-END SOLUTIONS</span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">Integrated Logistics Solutions</h1>
+      <p class="font-body-md text-white/80 mb-8 max-w-md">Bridging international markets with regional expertise across supply chain, warehousing, and transportation.</p>
+      <div class="flex flex-col gap-3 mb-10">
+        <a href="#services" class="w-full bg-white text-trust-navy py-4 rounded-xl font-title-lg text-center active:scale-[0.98] transition-all">Explore Services</a>
+        <a href="solutions.html" class="w-full border border-white/30 backdrop-blur-md text-white py-4 rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+          <span class="material-symbols-outlined">integration_instructions</span>
+          Our Solutions
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-y-5 pt-6 border-t border-white/10">
+        <div class="flex flex-col items-start">
+          <span class="font-headline-sm text-white">3K+</span>
+          <span class="font-label-md text-white/60 uppercase tracking-wider">Annual Shipments</span>
+        </div>
+        <div class="flex flex-col items-start">
+          <span class="font-headline-sm text-white">6000+</span>
+          <span class="font-label-md text-white/60 uppercase tracking-wider">Warehouse Space</span>
+        </div>
+        <div class="flex flex-col items-start">
+          <span class="font-headline-sm text-white">15+</span>
+          <span class="font-label-md text-white/60 uppercase tracking-wider">Years Excellence</span>
+        </div>
+        <div class="flex flex-col items-start">
+          <span class="font-headline-sm text-white">24/7</span>
+          <span class="font-label-md text-white/60 uppercase tracking-wider">Active Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="px-margin-mobile py-16" id="services">
+    <div class="mb-8 text-center">
+      <h2 class="font-headline-md text-headline-md text-trust-navy mb-2">Comprehensive Service Suite</h2>
+      <p class="font-body-md text-on-surface-variant">Precision-led logistics for the GCC's most demanding operations.</p>
+    </div>
+    <div class="space-y-4">
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Land_transp.png" alt="Land Transportation" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Land Transportation</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive GCC-wide delivery via our robust and monitored logistics network.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> FTL &amp; LTL Solutions</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> 24/7 Real-time Monitoring</li>
+          </ul>
+          <a href="land-transportation.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <div class="relative">
+          <img src="../../assets/images/last_mile.png" alt="Last Mile Delivery" class="w-full h-44 object-cover">
+          <div class="absolute top-3 left-3 inline-flex items-center rounded-full bg-flame-red/10 px-3 py-1 text-xs font-semibold text-flame-red backdrop-blur-sm">Launching Soon</div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Last Mile Delivery Services</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">A new flagship division set to launch this month, delivering fast and reliable final-stop logistics for urban and industrial destinations.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Same-day and scheduled final-mile routes</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Secure urban and industrial delivery coverage</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Live tracking with proof-of-delivery support</li>
+          </ul>
+          <span class="inline-flex items-center gap-2 text-flame-red font-bold text-sm">Launching this month</span>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Custom_clear.png" alt="Customs Clearance" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Customs Clearance</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Frictionless border transitions managed by our expert local regulatory team.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Duty Drawback Support</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> HS Code Classification</li>
+          </ul>
+          <a href="customs-clearance.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Warehouse.png" alt="Warehousing" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Warehousing &amp; Distribution</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Strategically located hubs in Riyadh and Jeddah with WMS Integration.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Climate Controlled Zones</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Inventory Management</li>
+          </ul>
+          <a href="warehousing-distribution.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Packaging.png" alt="Packing and Moving" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Packing &amp; Moving</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">White-glove residential and commercial relocation services.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Premium Packing Materials</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Door-to-Door Delivery</li>
+          </ul>
+          <a href="packing-moving.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/industrial.png" alt="Industrial Crating" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Industrial Crating</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Bespoke heavy-duty protection for high-value industrial assets.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> ISPM-15 Wood Compliance</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Custom Fit Engineering</li>
+          </ul>
+          <a href="industrial-crating.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Office_shift.png" alt="Office Shifting" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Office Shifting</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive office relocation services ensuring a smooth transition for your business.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Grid Layout Planning</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Packing and Unpacking</li>
+          </ul>
+          <a href="office-shifting.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/container.png" alt="Container Transportation" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Container Transportation</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Reliable container transportation services for domestic and international shipping.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Full Container Load (FCL) Services</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Less than Container Load (LCL) Services</li>
+          </ul>
+          <a href="container-transportation.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Project_cargo.png" alt="Project Cargo Handling" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Project Cargo Handling</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Expert handling of oversized and specialized cargo for complex projects.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Project Planning</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Heavy Lift Operations</li>
+          </ul>
+          <a href="project-cargo-handling.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Terminal_services.png" alt="Terminal Services" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Terminal Services</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive terminal services for efficient cargo handling and storage.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Cargo Handling</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Storage Solutions</li>
+          </ul>
+          <a href="terminal-services.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Exihibition.png" alt="Exhibition Cargo Handling" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Exhibition Cargo Handling</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Expert handling of exhibition cargo for seamless event logistics.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Cargo Handling</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Storage Solutions</li>
+          </ul>
+          <a href="exhibition-cargo-handling.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+
+      <div class="bg-white border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+        <img src="../../assets/images/Documentation_services.png" alt="Documentation Services" class="w-full h-44 object-cover">
+        <div class="p-5">
+          <h3 class="font-title-lg text-trust-navy mb-2">Documentation Services</h3>
+          <p class="font-body-md text-on-surface-variant text-sm mb-3">Comprehensive documentation services for smooth cargo processing.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Bill of Lading Preparation</li>
+            <li class="flex items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-flame-red text-base">check_circle</span> Customs Documentation</li>
+          </ul>
+          <a href="documentation-services.html" class="inline-flex items-center gap-1 text-trust-navy font-bold text-sm">Learn More <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 px-margin-mobile bg-industrial-black text-white">
+    <h2 class="font-headline-md text-headline-md mb-8">Why GCC Leaders Partner with Flame Logistics</h2>
+    <div class="space-y-7 mb-12">
+      <div class="flex gap-4">
+        <div class="bg-flame-red/10 p-3 rounded-xl h-fit">
+          <span class="material-symbols-outlined text-flame-red">groups_3</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg mb-1">100% Asset Ownership</h4>
+          <p class="text-white/60 font-body-md text-sm">We don't outsource our reliability. We own our fleet of 500+ trucks and warehouse facilities.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="bg-flame-red/10 p-3 rounded-xl h-fit">
+          <span class="material-symbols-outlined text-flame-red">public</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg mb-1">Dominant GCC Network</h4>
+          <p class="text-white/60 font-body-md text-sm">Seamless cross-border operations between Saudi Arabia, UAE, Qatar, and beyond.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="bg-flame-red/10 p-3 rounded-xl h-fit">
+          <span class="material-symbols-outlined text-flame-red">support_agent</span>
+        </div>
+        <div>
+          <h4 class="font-title-lg mb-1">24/7 Command Center</h4>
+          <p class="text-white/60 font-body-md text-sm">Real-time proactive support for every shipment, every mile, every minute.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-trust-navy p-8 rounded-3xl border border-white/10 relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-48 h-48 bg-flame-red blur-[100px] opacity-20"></div>
+      <h3 class="text-headline-sm font-bold mb-6 relative z-10">Regional Performance</h3>
+      <div class="space-y-8 relative z-10">
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>On-Time Delivery</span><span>98.5%</span></div>
+          <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-flame-red w-[98.5%]"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Safety Compliance</span><span>100%</span></div>
+          <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-flame-red w-full"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Network Coverage</span><span>95%</span></div>
+          <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+            <div class="h-full bg-flame-red w-[95%]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Quote Form -->
+  <section class="py-16 px-margin-mobile bg-trust-navy text-white">
+    <h2 class="font-headline-md text-headline-md mb-4">Accelerate Your Supply Chain Today</h2>
+    <p class="text-white/70 font-body-md mb-8">Get a precision quote tailored to your volume and destination in less than 24 hours.</p>
+
+    <div class="space-y-4 mb-8">
+      <div class="rounded-2xl border border-white/10 bg-white/10 p-5">
+        <h3 class="text-flame-red font-bold text-xl mb-1">Riyadh Hub</h3>
+        <p class="text-white/50 text-sm">Industrial City Phase 2</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/10 p-5">
+        <h3 class="text-flame-red font-bold text-xl mb-1">Jeddah Hub</h3>
+        <p class="text-white/50 text-sm">King Abdulaziz Port</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/10 p-5">
+        <h3 class="text-flame-red font-bold text-xl mb-1">Dammam Hub</h3>
+        <p class="text-white/50 text-sm">King Fahd Industrial Port</p>
+      </div>
+    </div>
+
+    <ul class="space-y-3 text-white/80 text-sm mb-10">
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-flame-red mt-0.5 text-lg">check_circle</span><span>Dedicated technical support for complex industrial and cross-border shipments.</span></li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-flame-red mt-0.5 text-lg">check_circle</span><span>Rapid response from our operational teams across the GCC and beyond.</span></li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-flame-red mt-0.5 text-lg">check_circle</span><span>Flexible planning for urgent, high-value, and time-sensitive cargo.</span></li>
+    </ul>
+
+    <form class="space-y-5 contact-form bg-white rounded-2xl p-6" data-form-type="services" enctype="multipart/form-data">
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Full Name</label>
+        <input name="fullName" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface" placeholder="John Doe" type="text" required>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Company Name</label>
+        <input name="companyName" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface" placeholder="Enterprise Ltd." type="text">
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Phone Number</label>
+        <input name="phone" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface" placeholder="+966 50 000 0000" type="tel">
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Email Address</label>
+        <input name="email" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface" placeholder="john@enterprise.com" type="email" required>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Country</label>
+        <select name="country" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface">
+          <option value="">Select Country</option>
+          <option>Saudi Arabia</option>
+          <option>United Arab Emirates</option>
+          <option>Kuwait</option>
+          <option>Qatar</option>
+          <option>Bahrain</option>
+          <option>Oman</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Service Required</label>
+        <select name="service" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface">
+          <option value="">Select Service</option>
+          <option>Domestic Land Transportation</option>
+          <option>International Land Transportation</option>
+          <option>Packing & Moving Works</option>
+          <option>Crating Works</option>
+          <option>Warehousing & Distribution</option>
+          <option>Destination Services</option>
+          <option>Customs Clearance</option>
+          <option>Terminal Services</option>
+          <option>Container Transportation</option>
+          <option>Stuffing & Lashing Services</option>
+          <option>Other Services</option>
+        </select>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Message</label>
+        <textarea name="message" class="w-full px-5 py-3.5 rounded-xl border border-outline-variant bg-surface-bright text-on-surface" placeholder="How can we help your business move forward?" rows="4" required></textarea>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-md text-on-surface-variant uppercase text-xs">Upload Manifest or Project Detail</label>
+        <div class="relative">
+          <input type="file" id="file-upload-mobile-services" name="attachments" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" multiple onchange="document.getElementById('mobile-services-file-list').textContent = Array.from(this.files).map(f => f.name).join(', ') || 'No file selected'"/>
+          <label for="file-upload-mobile-services" class="w-full px-5 py-4 rounded-xl border-2 border-dashed border-outline-variant bg-surface-bright flex items-center justify-center gap-3 cursor-pointer text-on-surface-variant">
+            <span class="material-symbols-outlined text-flame-red">upload_file</span>
+            <span class="font-body-md text-sm">Click to upload files</span>
+          </label>
+        </div>
+        <p id="mobile-services-file-list" class="text-xs text-on-surface-variant">No file selected</p>
+        <p class="text-xs text-on-surface-variant">Supported formats: PDF, DOC, DOCX, XLS, XLSX, TXT (Max 10MB per file)</p>
+      </div>
+      <button class="w-full bg-flame-red text-white py-4 rounded-xl font-title-lg flex justify-center items-center gap-2 active:scale-[0.98] transition-all" type="submit">
+        Request Technical Quote
+        <span class="material-symbols-outlined">send</span>
+      </button>
+      <p class="text-center text-on-surface-variant text-xs">Or call our 24/7 hotline: <span class="font-bold text-trust-navy">+966 11 000 0000</span></p>
+    </form>
+  </section>
+</main>
+
 <!-- Footer Placeholder - Loaded dynamically -->
 <div id="footer-placeholder"></div>
-</main>
-<script>
-        // Micro-interaction for service cards.
-        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
-            card.addEventListener('touchstart', () => {
-                card.classList.add('scale-[0.98]');
-            });
-            card.addEventListener('touchend', () => {
-                card.classList.remove('scale-[0.98]');
-            });
-        });
-
-        // Form submission simulation.
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = 'Transmitting...';
-            btn.disabled = true;
-            btn.classList.add('opacity-80');
-
-            setTimeout(() => {
-                btn.innerText = 'Request Received';
-                btn.classList.remove('bg-flame-red');
-                btn.classList.add('bg-green-600');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.classList.add('bg-flame-red');
-                    btn.classList.remove('bg-green-600', 'opacity-80');
-                    btn.disabled = false;
-                    e.target.reset();
-                }, 2000);
-            }, 1500);
-        });
-    </script>
 
 <!-- Bottom Navigation Placeholder - Loaded dynamically -->
 <div id="bottom-nav-placeholder"></div>
 
-    <!-- Mobile Common JS - Loads header and footer components -->
-    <script src="../../assets/js/mobile.js"></script>
+<script>
+  function getApiBase() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:4000';
+    }
+    return '';
+  }
+
+  async function handleQuoteFormSubmit(event) {
+    const form = event.currentTarget;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalLabel = submitButton ? submitButton.innerHTML : '';
+
+    event.preventDefault();
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Sending...';
+    }
+
+    try {
+      const formData = new FormData(form);
+      const fileInput = form.querySelector('input[type="file"]');
+      if (fileInput && fileInput.files && fileInput.files.length) {
+        Array.from(fileInput.files).forEach((file) => {
+          formData.append('attachments', file, file.name);
+        });
+      }
+
+      const response = await fetch(`${getApiBase()}/api/contact`, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send your inquiry.');
+      }
+
+      if (submitButton) {
+        submitButton.innerHTML = 'Request Received';
+        submitButton.classList.remove('bg-flame-red');
+        submitButton.classList.add('bg-green-600');
+      }
+
+      form.reset();
+      document.getElementById('mobile-services-file-list').textContent = 'No file selected';
+    } catch (error) {
+      console.error('Quote form submission failed:', error);
+      if (submitButton) submitButton.innerHTML = 'Try again';
+    } finally {
+      if (submitButton) {
+        window.setTimeout(() => {
+          submitButton.innerHTML = originalLabel;
+          submitButton.disabled = false;
+          submitButton.classList.remove('bg-green-600');
+          submitButton.classList.add('bg-flame-red');
+        }, 2000);
+      }
+    }
+  }
+
+  document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.addEventListener('submit', handleQuoteFormSubmit);
+  });
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
 </body>
 </html>
