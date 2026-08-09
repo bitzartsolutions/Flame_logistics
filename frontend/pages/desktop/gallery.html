@@ -275,9 +275,10 @@
       } else {
         galleryGrid.innerHTML = photoItems.map((item, index) => {
           const spanClass = index === 1 ? 'md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2' : '';
+          const imgHeightClass = spanClass ? 'h-full min-h-72' : 'h-72';
           return `
             <div class="reveal gallery-item group relative rounded-xl overflow-hidden shadow-lg cursor-pointer ${spanClass}" data-photo-index="${index}" role="button" tabindex="0">
-              <img class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700 ${spanClass ? 'h-full min-h-72' : ''}" alt="${item.title}" src="${item.thumbnailUrl || item.imageUrl}">
+              <img class="w-full ${imgHeightClass} object-cover group-hover:scale-105 transition-transform duration-700" alt="${item.title}" src="${item.thumbnailUrl || item.imageUrl}">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <div class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-primary shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
                   <span class="material-symbols-outlined text-xl">zoom_in</span>
