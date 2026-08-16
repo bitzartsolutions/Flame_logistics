@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Last Mile Delivery | Flame Logistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#dcd9e0",
+              "primary-fixed": "#e2dfff",
+              "glass-border": "rgba(255, 255, 255, 0.2)",
+              "surface-container": "#f0ecf4",
+              "industrial-black": "#151719",
+              "on-secondary-fixed-variant": "#930007",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#1a1c1e",
+              "secondary-fixed": "#ffdad5",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "outline-variant": "#c7c5d3",
+              "background": "#fcf8ff",
+              "surface-container-low": "#f6f2fa",
+              "on-tertiary-fixed": "#1a1c1e",
+              "secondary-fixed-dim": "#ffb4aa",
+              "secondary": "#bc000c",
+              "tertiary-fixed": "#e2e2e5",
+              "surface-bright": "#fcf8ff",
+              "primary": "#09005d",
+              "secondary-container": "#e12823",
+              "flame-red": "#bc000c",
+              "on-background": "#1b1b20",
+              "on-primary": "#ffffff",
+              "primary-container": "#0f0861",
+              "surface-container-highest": "#e5e1e9",
+              "surface-muted": "#f0ecf5",
+              "on-primary-fixed-variant": "#3e3d8c",
+              "on-tertiary-fixed-variant": "#454749",
+              "on-secondary": "#ffffff",
+              "outline": "#777682",
+              "surface-variant": "#e5e1e9",
+              "inverse-primary": "#c2c1ff",
+              "surface": "#fcf8ff",
+              "on-surface": "#1b1b20",
+              "on-tertiary-container": "#838486",
+              "surface-tint": "#5655a6",
+              "tertiary": "#151719",
+              "on-surface-variant": "#464651",
+              "on-primary-fixed": "#0f0861",
+              "on-secondary-container": "#fffbff",
+              "trust-navy": "#09005d",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#c6c6c9",
+              "surface-container-high": "#eae7ee",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f3eff7",
+              "inverse-surface": "#303035",
+              "on-primary-container": "#7c7bcf"
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "gutter": "24px",
+              "base-unit": "8px",
+              "margin-desktop": "40px",
+              "container-max": "1280px",
+              "section-padding": "96px"
+            },
+            fontFamily: {
+              "title-lg": ["Plus Jakarta Sans"],
+              "body-md": ["Inter"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Inter"],
+              "display-lg-mobile": ["Plus Jakarta Sans"],
+              "label-md": ["Inter"]
+            },
+            fontSize: {
+              "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+              "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+              "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+              "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+              "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .industrial-shadow {
+            box-shadow: 0 10px 30px -5px rgba(9, 0, 93, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-flame-red selection:text-white">
+<div id="header-placeholder"></div>
+
+<main class="pt-[80px] pb-24">
+<section class="relative h-[72vh] flex flex-col justify-center items-center text-center px-margin-mobile overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-trust-navy/80 via-trust-navy/40 to-background z-10"></div>
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('../../assets/images/last_mile.png')"></div>
+</div>
+<div class="relative z-20 max-w-lg">
+<div class="inline-flex items-center bg-flame-red/10 border border-flame-red/20 rounded-full px-4 py-1 mb-6">
+<span class="w-2 h-2 bg-flame-red rounded-full mr-2 animate-pulse"></span>
+<span class="text-flame-red font-label-md tracking-wider uppercase">Last Mile Delivery</span>
+</div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">Fast, reliable delivery for the final critical mile</h2>
+<p class="text-white/80 font-body-lg mb-8">Professionally coordinated last-mile logistics for urban, commercial, and industrial destinations across the GCC.</p>
+<a href="contact" class="inline-flex items-center justify-center bg-flame-red text-white py-4 px-8 rounded-xl font-headline-sm hover:scale-[1.02] transition-transform active:scale-95">Request Quote</a>
+</div>
+</section>
+
+<section class="px-margin-mobile py-16">
+<div class="space-y-4">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow p-5">
+<h3 class="font-title-lg text-trust-navy">Same-Day &amp; Scheduled Routes</h3>
+<p class="font-body-md text-on-surface-variant mt-2">Flexible dispatch windows calibrated to urgent same-day drops or planned final-mile schedules.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow p-5">
+<h3 class="font-title-lg text-trust-navy">Flexible Fleet Options</h3>
+<p class="font-body-md text-on-surface-variant mt-2">Motorcycles, vans, and light trucks matched to load size and destination for maximum delivery efficiency.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow p-5">
+<h3 class="font-title-lg text-trust-navy">Urban &amp; Industrial Coverage</h3>
+<p class="font-body-md text-on-surface-variant mt-2">Secure delivery coverage across dense urban districts and industrial zones alike.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl industrial-shadow p-5">
+<h3 class="font-title-lg text-trust-navy">Proof of Delivery</h3>
+<p class="font-body-md text-on-surface-variant mt-2">Digital signature and photo capture on every delivery for complete accountability.</p>
+</div>
+</div>
+</section>
+
+<section class="bg-trust-navy py-16 px-margin-mobile text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-flame-red/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<h3 class="font-headline-md mb-10 text-center">Why operations teams rely on us</h3>
+<div class="space-y-8">
+<div class="flex flex-col items-center text-center">
+<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h4 class="font-headline-sm mb-2">98% On-Time Final Delivery</h4>
+<p class="text-white/70 font-body-md">A disciplined final-mile operation built around route planning, driver readiness, and rapid exception handling.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+</div>
+<h4 class="font-headline-sm mb-2">100% Proof-of-Delivery Capture</h4>
+<p class="text-white/70 font-body-md">Every drop is verified with digital signature and photo confirmation.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="px-margin-mobile py-20">
+<div class="text-center mb-10">
+<h3 class="font-headline-md text-trust-navy">Let's build a final-mile delivery plan for your business</h3>
+</div>
+<a href="contact" class="block w-full bg-flame-red text-white font-headline-sm py-5 rounded-xl text-center active:scale-95 transition-transform shadow-lg shadow-flame-red/20">Start a Consultation</a>
+</section>
+</main>
+
+<div id="footer-placeholder"></div>
+<div id="bottom-nav-placeholder"></div>
+<script src="../../assets/js/mobile.js"></script>
+</body>
+</html>

@@ -55,13 +55,13 @@
       </div>
 
       <nav class="flex items-center gap-4 text-sm font-medium">
-        <a href="/pages/desktop/home.html" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
+        <a href="/home" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
           <span class="material-symbols-outlined text-lg">open_in_new</span> Live Site
         </a>
-        <a href="/pages/desktop/gallery.html" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
+        <a href="/gallery" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
           <span class="material-symbols-outlined text-lg">photo_library</span> Gallery
         </a>
-        <a href="/pages/desktop/blog.html" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
+        <a href="/blog" class="text-white/80 hover:text-white flex items-center gap-1 transition-colors">
           <span class="material-symbols-outlined text-lg">article</span> Insights
         </a>
       </nav>
@@ -185,7 +185,7 @@
           </div>
 
           <div class="md:col-span-2 flex justify-end gap-3">
-            <button type="button" onclick="document.getElementById('youtube-gallery-form').reset()" class="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 border border-gray-300 rounded-xl hover:bg-gray-50">
+            <button type="button" onclick="resetYoutubeGalleryForm()" class="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-900 border border-gray-300 rounded-xl hover:bg-gray-50">
               Clear
             </button>
             <button type="submit" id="youtube-gallery-submit-btn" class="px-6 py-2.5 text-sm font-bold text-white bg-secondary hover:bg-secondary-hover rounded-xl shadow-md transition-all flex items-center gap-2">
@@ -476,7 +476,7 @@
             </div>
             <div>
               <label class="block text-sm font-semibold text-gray-700 mb-1">Deadline</label>
-              <input type="text" id="career-deadline" placeholder="31 Aug 2026" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
+              <input type="date" id="career-deadline" min="" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm" />
             </div>
             <div class="flex items-center gap-2 pt-2">
               <input type="checkbox" id="career-active" checked class="w-4 h-4 text-secondary border-gray-300 rounded focus:ring-secondary" />
@@ -529,9 +529,24 @@
     let localGalleryItems = [];
     let localBlogPosts = [];
     let localCareersItems = [];
+    let editingCareerId = null;
+    let editingBlogId = null;
+    let editingGalleryPhotoId = null;
+    let editingGalleryVideoId = null;
+
+    function toDateInputValue(value) {
+      if (!value) return '';
+      const parsed = new Date(value);
+      if (isNaN(parsed.getTime())) return '';
+      return parsed.toISOString().split('T')[0];
+    }
 
     // Initialize application
     document.addEventListener('DOMContentLoaded', () => {
+      const deadlineInput = document.getElementById('career-deadline');
+      if (deadlineInput) {
+        deadlineInput.min = new Date().toISOString().split('T')[0];
+      }
       checkBackendStatus();
       if (adminToken) {
         showDashboard();
@@ -788,6 +803,61 @@
       uploadedGalleryUrl = '';
       document.getElementById('gallery-image-preview').classList.add('hidden');
       document.getElementById('gallery-upload-placeholder').classList.remove('hidden');
+      editingGalleryPhotoId = null;
+      document.getElementById('gallery-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add Gallery Item';
+    }
+
+    function resetYoutubeGalleryForm() {
+      document.getElementById('youtube-gallery-form').reset();
+      editingGalleryVideoId = null;
+      document.getElementById('youtube-gallery-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add YouTube Link';
+    }
+
+    function editGalleryItem(id) {
+      const item = localGalleryItems.find((entry) => Number(entry.id) === Number(id));
+      if (!item) return;
+      const isVideo = item.mediaType === 'video' || Boolean(item.youtubeUrl);
+      if (isVideo) {
+        editGalleryVideo(item);
+      } else {
+        editGalleryPhoto(item);
+      }
+    }
+
+    function editGalleryPhoto(item) {
+      resetYoutubeGalleryForm();
+      editingGalleryPhotoId = item.id;
+      document.getElementById('gallery-title').value = item.title || '';
+      document.getElementById('gallery-category').value = item.category || '';
+      document.getElementById('gallery-subtitle').value = item.subtitle || '';
+      document.getElementById('gallery-desktop-layout').value = item.desktopLayout || 'default';
+      document.getElementById('gallery-description').value = item.description || '';
+      document.getElementById('gallery-youtube-url').value = '';
+
+      uploadedGalleryUrl = item.imageUrl || '';
+      document.getElementById('gallery-image-url').value = '';
+      const preview = document.getElementById('gallery-image-preview');
+      if (item.imageUrl) {
+        preview.src = item.imageUrl;
+        preview.classList.remove('hidden');
+        document.getElementById('gallery-upload-placeholder').classList.add('hidden');
+      }
+
+      document.getElementById('gallery-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">save</span> Update Gallery Item';
+      document.getElementById('gallery-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function editGalleryVideo(item) {
+      resetGalleryForm();
+      editingGalleryVideoId = item.id;
+      document.getElementById('youtube-gallery-title').value = item.title || '';
+      document.getElementById('youtube-gallery-category').value = item.category || '';
+      document.getElementById('youtube-gallery-subtitle').value = item.subtitle || '';
+      document.getElementById('youtube-gallery-description').value = item.description || '';
+      document.getElementById('youtube-gallery-url').value = item.youtubeUrl || '';
+
+      document.getElementById('youtube-gallery-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">save</span> Update YouTube Link';
+      document.getElementById('youtube-gallery-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function resetBlogForm() {
@@ -795,6 +865,33 @@
       uploadedBlogUrl = '';
       document.getElementById('blog-image-preview').classList.add('hidden');
       document.getElementById('blog-upload-placeholder').classList.remove('hidden');
+      editingBlogId = null;
+      document.getElementById('blog-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">publish</span> Publish Blog';
+    }
+
+    function editBlogPost(id) {
+      const post = localBlogPosts.find((item) => Number(item.id) === Number(id));
+      if (!post) return;
+
+      editingBlogId = id;
+      document.getElementById('blog-title').value = post.title || '';
+      document.getElementById('blog-category').value = post.category || '';
+      document.getElementById('blog-read-time').value = post.readTime || '';
+      document.getElementById('blog-excerpt').value = post.excerpt || '';
+      document.getElementById('blog-content').value = post.content || '';
+      document.getElementById('blog-featured').checked = Boolean(post.featured);
+
+      uploadedBlogUrl = post.imageUrl || '';
+      document.getElementById('blog-image-url').value = '';
+      const preview = document.getElementById('blog-image-preview');
+      if (post.imageUrl) {
+        preview.src = post.imageUrl;
+        preview.classList.remove('hidden');
+        document.getElementById('blog-upload-placeholder').classList.add('hidden');
+      }
+
+      document.getElementById('blog-submit-btn').innerHTML = '<span class="material-symbols-outlined text-lg">save</span> Update Blog';
+      document.getElementById('blog-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     async function handleYoutubeGallerySubmit(event) {
@@ -810,14 +907,15 @@
         return;
       }
 
+      const isEditing = editingGalleryVideoId !== null && editingGalleryVideoId !== undefined;
       const submitBtn = document.getElementById('youtube-gallery-submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Adding...';
+      submitBtn.innerText = isEditing ? 'Updating...' : 'Adding...';
 
       try {
         const thumbnailUrl = getYouTubeThumbnailUrl(youtubeUrl);
-        const res = await fetch(`${API_BASE}/gallery`, {
-          method: 'POST',
+        const res = await fetch(`${API_BASE}/gallery${isEditing ? `/${editingGalleryVideoId}` : ''}`, {
+          method: isEditing ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
           body: JSON.stringify({
             title,
@@ -833,17 +931,20 @@
 
         if (!res.ok) {
           const err = await res.json();
-          throw new Error(err.error || 'Failed to add YouTube gallery item');
+          throw new Error(err.error || `Failed to ${isEditing ? 'update' : 'add'} YouTube gallery item`);
         }
 
-        showToast('Gallery item added successfully!');
-        document.getElementById('youtube-gallery-form').reset();
+        showToast(isEditing ? 'Gallery item updated successfully!' : 'Gallery item added successfully!');
+        resetYoutubeGalleryForm();
         loadGalleryItems();
       } catch (err) {
         showToast(err.message, 'error');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add YouTube Link';
+        const stillEditing = editingGalleryVideoId !== null && editingGalleryVideoId !== undefined;
+        submitBtn.innerHTML = stillEditing
+          ? '<span class="material-symbols-outlined text-lg">save</span> Update YouTube Link'
+          : '<span class="material-symbols-outlined text-lg">add_circle</span> Add YouTube Link';
       }
     }
 
@@ -866,14 +967,15 @@
         return;
       }
 
+      const isEditing = editingGalleryPhotoId !== null && editingGalleryPhotoId !== undefined;
       const submitBtn = document.getElementById('gallery-submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Adding...';
+      submitBtn.innerText = isEditing ? 'Updating...' : 'Adding...';
 
       try {
         const thumbnailUrl = youtubeUrl ? getYouTubeThumbnailUrl(youtubeUrl) : '';
-        const res = await fetch(`${API_BASE}/gallery`, {
-          method: 'POST',
+        const res = await fetch(`${API_BASE}/gallery${isEditing ? `/${editingGalleryPhotoId}` : ''}`, {
+          method: isEditing ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
           body: JSON.stringify({
             title,
@@ -890,17 +992,20 @@
 
         if (!res.ok) {
           const err = await res.json();
-          throw new Error(err.error || 'Failed to add image');
+          throw new Error(err.error || `Failed to ${isEditing ? 'update' : 'add'} image`);
         }
 
-        showToast('Gallery image added successfully!');
+        showToast(isEditing ? 'Gallery image updated successfully!' : 'Gallery image added successfully!');
         resetGalleryForm();
         loadGalleryItems();
       } catch (err) {
         showToast(err.message, 'error');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add Gallery Item';
+        const stillEditing = editingGalleryPhotoId !== null && editingGalleryPhotoId !== undefined;
+        submitBtn.innerHTML = stillEditing
+          ? '<span class="material-symbols-outlined text-lg">save</span> Update Gallery Item'
+          : '<span class="material-symbols-outlined text-lg">add_circle</span> Add Gallery Item';
       }
     }
 
@@ -948,9 +1053,14 @@
               </div>
               <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
                 <span class="text-[11px] text-gray-400">${isVideo ? 'YouTube video' : `Layout: ${item.desktopLayout || 'default'}`}</span>
-                <button onclick="deleteGalleryItem(${item.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
-                  <span class="material-symbols-outlined text-sm">delete</span> Delete
-                </button>
+                <div class="flex items-center gap-1">
+                  <button onclick="editGalleryItem(${item.id})" class="text-xs font-bold text-primary hover:text-primary-light flex items-center gap-1 hover:bg-primary/5 px-2 py-1 rounded transition-colors">
+                    <span class="material-symbols-outlined text-sm">edit</span> Edit
+                  </button>
+                  <button onclick="deleteGalleryItem(${item.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
+                    <span class="material-symbols-outlined text-sm">delete</span> Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -1032,13 +1142,14 @@
         return;
       }
 
+      const isEditing = editingBlogId !== null && editingBlogId !== undefined;
       const submitBtn = document.getElementById('blog-submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Publishing...';
+      submitBtn.innerText = isEditing ? 'Updating...' : 'Publishing...';
 
       try {
-        const res = await fetch(`${API_BASE}/blog`, {
-          method: 'POST',
+        const res = await fetch(`${API_BASE}/blog${isEditing ? `/${editingBlogId}` : ''}`, {
+          method: isEditing ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
           body: JSON.stringify({
             title,
@@ -1053,17 +1164,20 @@
 
         if (!res.ok) {
           const err = await res.json();
-          throw new Error(err.error || 'Failed to publish blog post');
+          throw new Error(err.error || `Failed to ${isEditing ? 'update' : 'publish'} blog post`);
         }
 
-        showToast('Blog article published successfully!');
+        showToast(isEditing ? 'Blog article updated successfully!' : 'Blog article published successfully!');
         resetBlogForm();
         loadBlogPosts();
       } catch (err) {
         showToast(err.message, 'error');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">publish</span> Publish Blog';
+        const stillEditing = editingBlogId !== null && editingBlogId !== undefined;
+        submitBtn.innerHTML = stillEditing
+          ? '<span class="material-symbols-outlined text-lg">save</span> Update Blog'
+          : '<span class="material-symbols-outlined text-lg">publish</span> Publish Blog';
       }
     }
 
@@ -1105,7 +1219,10 @@
                 <h4 class="font-display font-bold text-gray-900 text-base leading-snug line-clamp-2">${post.title}</h4>
                 <p class="text-xs text-gray-600 mt-2 line-clamp-2">${post.excerpt}</p>
               </div>
-              <div class="flex items-center justify-end mt-4 pt-3 border-t border-gray-100">
+              <div class="flex items-center justify-end gap-1 mt-4 pt-3 border-t border-gray-100">
+                <button onclick="editBlogPost(${post.id})" class="text-xs font-bold text-primary hover:text-primary-light flex items-center gap-1 hover:bg-primary/5 px-2 py-1 rounded transition-colors">
+                  <span class="material-symbols-outlined text-sm">edit</span> Edit
+                </button>
                 <button onclick="deleteBlogPost(${post.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
                   <span class="material-symbols-outlined text-sm">delete</span> Delete Post
                 </button>
@@ -1168,6 +1285,30 @@
     function resetCareerForm() {
       document.getElementById('careers-form').reset();
       document.getElementById('career-active').checked = true;
+      editingCareerId = null;
+      const submitBtn = document.getElementById('career-submit-btn');
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add Job Opening';
+    }
+
+    function editCareerOpening(id) {
+      const job = localCareersItems.find((item) => Number(item.id) === Number(id));
+      if (!job) return;
+
+      editingCareerId = id;
+      document.getElementById('career-title').value = job.title || '';
+      document.getElementById('career-department').value = job.department || '';
+      document.getElementById('career-location').value = job.location || '';
+      document.getElementById('career-job-type').value = job.jobType || '';
+      document.getElementById('career-experience').value = job.experience || '';
+      document.getElementById('career-salary').value = job.salary || '';
+      document.getElementById('career-description').value = job.description || '';
+      document.getElementById('career-requirements').value = Array.isArray(job.requirements) ? job.requirements.join('\n') : '';
+      document.getElementById('career-deadline').value = toDateInputValue(job.deadline);
+      document.getElementById('career-active').checked = job.active !== false;
+
+      const submitBtn = document.getElementById('career-submit-btn');
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">save</span> Update Job Opening';
+      document.getElementById('careers-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     async function handleCareerSubmit(event) {
@@ -1192,30 +1333,42 @@
         return;
       }
 
+      if (deadline) {
+        const todayStr = new Date().toISOString().split('T')[0];
+        if (deadline < todayStr) {
+          showToast('Deadline cannot be a date in the past.', 'error');
+          return;
+        }
+      }
+
+      const isEditing = editingCareerId !== null && editingCareerId !== undefined;
       const submitBtn = document.getElementById('career-submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Adding...';
+      submitBtn.innerText = isEditing ? 'Updating...' : 'Adding...';
 
       try {
-        const res = await fetch(`${API_BASE}/careers`, {
-          method: 'POST',
+        const res = await fetch(`${API_BASE}/careers${isEditing ? `/${editingCareerId}` : ''}`, {
+          method: isEditing ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
           body: JSON.stringify({ title, department, location, jobType, experience, salary, description, requirements, deadline, active })
         });
 
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
-          throw new Error(data.error || 'Failed to add job opening');
+          throw new Error(data.error || `Failed to ${isEditing ? 'update' : 'add'} job opening`);
         }
 
-        showToast('Job opening added successfully');
+        showToast(isEditing ? 'Job opening updated successfully' : 'Job opening added successfully');
         resetCareerForm();
         loadCareerOpenings();
       } catch (err) {
         showToast(err.message, 'error');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="material-symbols-outlined text-lg">add_circle</span> Add Job Opening';
+        const stillEditing = editingCareerId !== null && editingCareerId !== undefined;
+        submitBtn.innerHTML = stillEditing
+          ? '<span class="material-symbols-outlined text-lg">save</span> Update Job Opening'
+          : '<span class="material-symbols-outlined text-lg">add_circle</span> Add Job Opening';
       }
     }
 
@@ -1256,9 +1409,14 @@
             <p class="text-sm text-gray-500 line-clamp-3">${job.description}</p>
             <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
               <span class="text-[11px] text-gray-400">${job.deadline ? `Deadline: ${job.deadline}` : 'Open until filled'}</span>
-              <button onclick="deleteCareerOpening(${job.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
-                <span class="material-symbols-outlined text-sm">delete</span> Delete
-              </button>
+              <div class="flex items-center gap-1">
+                <button onclick="editCareerOpening(${job.id})" class="text-xs font-bold text-primary hover:text-primary-light flex items-center gap-1 hover:bg-primary/5 px-2 py-1 rounded transition-colors">
+                  <span class="material-symbols-outlined text-sm">edit</span> Edit
+                </button>
+                <button onclick="deleteCareerOpening(${job.id})" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 hover:bg-rose-50 px-2 py-1 rounded transition-colors">
+                  <span class="material-symbols-outlined text-sm">delete</span> Delete
+                </button>
+              </div>
             </div>
           </div>
         `).join('');

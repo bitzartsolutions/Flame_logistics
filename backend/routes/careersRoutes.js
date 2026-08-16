@@ -1,10 +1,29 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
 const nodemailer = require('nodemailer');
-const { getContent, createContent, deleteContent } = require('../src/contentStore');
+const { getContent, createContent, updateContent, deleteContent } = require('../src/contentStore');
+const { saveUploadedFiles } = require('../src/contactAttachments');
+const { getPublicBaseUrl } = require('../src/imageUrls');
 
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'info@flamelogistics.net';
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@flamelogistics.net';
+
+const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (error) {
+  console.warn('Unable to ensure uploads directory exists', error.message);
+}
+
+const cvUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }
+});
 
 function createMailTransporter() {
   if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
@@ -22,8 +41,57 @@ function createMailTransporter() {
   });
 }
 
+function isDeadlinePassed(deadline) {
+  if (!deadline) return false;
+
+  const parsed = new Date(deadline);
+  if (Number.isNaN(parsed.getTime())) {
+    // Free-text deadlines that aren't parseable dates (e.g. "Open until filled")
+    // are treated as having no deadline.
+    return false;
+  }
+
+  const endOfDeadlineDay = new Date(parsed);
+  endOfDeadlineDay.setHours(23, 59, 59, 999);
+
+  return endOfDeadlineDay.getTime() < Date.now();
+}
+
+function isDeletionDue(deadline) {
+  if (!deadline) return false;
+
+  const parsed = new Date(deadline);
+  if (Number.isNaN(parsed.getTime())) {
+    return false;
+  }
+
+  const endOfDeadlineDay = new Date(parsed);
+  endOfDeadlineDay.setHours(23, 59, 59, 999);
+
+  const oneDayAfterDeadline = endOfDeadlineDay.getTime() + 24 * 60 * 60 * 1000;
+  return Date.now() >= oneDayAfterDeadline;
+}
+
+async function pruneExpiredJobs(jobs) {
+  const expired = (jobs || []).filter((job) => isDeletionDue(job.deadline));
+  if (!expired.length) return jobs || [];
+
+  await Promise.all(
+    expired.map((job) =>
+      deleteContent('careers', Number(job.id)).catch((error) => {
+        console.warn('Failed to auto-delete expired job opening', job.id, error.message);
+      })
+    )
+  );
+
+  const expiredIds = new Set(expired.map((job) => Number(job.id)));
+  return (jobs || []).filter((job) => !expiredIds.has(Number(job.id)));
+}
+
 function normalizeJob(job) {
   if (!job) return null;
+
+  const deadline = job.deadline || '';
 
   return {
     ...job,
@@ -36,7 +104,8 @@ function normalizeJob(job) {
     description: job.description || 'Join our team and help shape the next chapter of Flame Logistics.',
     requirements: Array.isArray(job.requirements) ? job.requirements : [],
     active: job.active !== false,
-    deadline: job.deadline || ''
+    deadline,
+    deadlinePassed: isDeadlinePassed(deadline)
   };
 }
 
@@ -47,7 +116,8 @@ function normalizeJobs(jobs) {
 router.get('/', async (req, res) => {
   try {
     const activeOnly = (req.query.active || 'true').toString().toLowerCase() !== 'false';
-    let jobs = normalizeJobs(await getContent('careers', []));
+    const rawJobs = await pruneExpiredJobs(await getContent('careers', []));
+    let jobs = normalizeJobs(rawJobs);
 
     if (activeOnly) {
       jobs = jobs.filter((job) => job.active);
@@ -62,7 +132,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
-    const jobs = normalizeJobs(await getContent('careers', []));
+    const rawJobs = await pruneExpiredJobs(await getContent('careers', []));
+    const jobs = normalizeJobs(rawJobs);
     const job = jobs.find((item) => Number(item.id) === jobId);
 
     if (!job) {
@@ -120,6 +191,50 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const jobId = Number(req.params.id);
+    const { title, department, location, jobType, experience, salary, description, requirements, deadline, active } = req.body || {};
+
+    if (!title || !department || !location || !description) {
+      return res.status(400).json({ error: 'Title, department, location, and description are required.' });
+    }
+
+    const jobs = await getContent('careers', []);
+    const exists = jobs.some((job) => Number(job.id) === jobId);
+    if (!exists) {
+      return res.status(404).json({ error: 'Job opening not found' });
+    }
+
+    const normalizedRequirements = Array.isArray(requirements)
+      ? requirements.map((item) => String(item).trim()).filter(Boolean)
+      : [];
+
+    const updatedJob = {
+      title: title.trim(),
+      department: department.trim(),
+      location: location.trim(),
+      jobType: jobType ? jobType.trim() : 'Full Time',
+      experience: experience ? experience.trim() : 'Mid-Level',
+      salary: salary ? salary.trim() : 'Competitive',
+      description: description.trim(),
+      requirements: normalizedRequirements,
+      deadline: deadline ? deadline.trim() : '',
+      active: active !== false
+    };
+
+    const savedJob = await updateContent('careers', jobId, updatedJob);
+    if (!savedJob) {
+      return res.status(404).json({ error: 'Job opening not found' });
+    }
+
+    res.json({ message: 'Job opening updated successfully', item: savedJob });
+  } catch (error) {
+    console.error('Error updating job opening:', error);
+    res.status(500).json({ error: 'Failed to update job opening' });
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const jobId = Number(req.params.id);
@@ -142,7 +257,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.post('/apply', async (req, res) => {
+router.post('/apply', cvUpload.single('cv'), async (req, res) => {
   try {
     const body = req.body || {};
     const fullName = body.fullName || body.name || '';
@@ -154,9 +269,18 @@ router.post('/apply', async (req, res) => {
     const expectedSalary = body.expectedSalary || '';
     const noticePeriod = body.noticePeriod || '';
     const message = body.message || '';
+    const jobId = body.jobId;
 
     if (!fullName || !email || !applyingFor || !message) {
       return res.status(400).json({ error: 'Please provide your full name, email, role, and a message.' });
+    }
+
+    if (jobId) {
+      const jobs = await getContent('careers', []);
+      const job = jobs.find((item) => Number(item.id) === Number(jobId));
+      if (job && isDeadlinePassed(job.deadline)) {
+        return res.status(400).json({ error: 'The application deadline for this role has passed.' });
+      }
     }
 
     const transporter = createMailTransporter();
@@ -164,6 +288,13 @@ router.post('/apply', async (req, res) => {
       console.error('SMTP configuration missing. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in backend/.env');
       return res.status(500).json({ error: 'Mail service is not configured yet.' });
     }
+
+    const savedFiles = req.file ? saveUploadedFiles([req.file], UPLOADS_DIR, getPublicBaseUrl(req, 'http://localhost:4000')) : [];
+    const attachments = savedFiles.map((file) => ({
+      filename: file.filename,
+      contentType: file.mimeType,
+      path: file.path
+    }));
 
     const info = await transporter.sendMail({
       from: SMTP_FROM,
@@ -181,7 +312,9 @@ router.post('/apply', async (req, res) => {
         <p><strong>Expected salary:</strong> ${expectedSalary || 'Not provided'}</p>
         <p><strong>Notice period:</strong> ${noticePeriod || 'Not provided'}</p>
         <p><strong>Message:</strong><br/>${message}</p>
-      `
+        ${savedFiles.length ? `<p><strong>CV:</strong> ${savedFiles[0].filename}</p>` : '<p><strong>CV:</strong> Not attached</p>'}
+      `,
+      attachments
     });
 
     res.json({ success: true, message: 'Your application was sent successfully.', messageId: info.messageId });

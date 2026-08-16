@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getContent, createContent, deleteContent } = require('../src/contentStore');
+const { getContent, createContent, updateContent, deleteContent } = require('../src/contentStore');
 const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 function getBaseUrl(req) {
@@ -120,6 +120,55 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.error('Error adding blog post:', error);
     res.status(500).json({ error: 'Failed to add blog post' });
+  }
+});
+
+// PUT /api/blog/:id
+router.put('/:id', async (req, res) => {
+  try {
+    const postId = Number(req.params.id);
+    const { title, category, excerpt, content, imageUrl, readTime, date, featured } = req.body;
+
+    if (!title || !excerpt || !imageUrl) {
+      return res.status(400).json({ error: 'Title, excerpt, and imageUrl are required' });
+    }
+
+    const posts = await getContent('blog', []);
+    const exists = posts.some((p) => Number(p.id) === postId);
+    if (!exists) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    const normalizedImageUrl = normalizeImageUrl(imageUrl, getBaseUrl(req)).trim();
+    const isFeatured = Boolean(featured);
+
+    if (isFeatured) {
+      // Unset previous featured flags
+      posts.forEach((p) => {
+        p.featured = false;
+      });
+    }
+
+    const updatedPost = {
+      category: (category || 'logistics').toLowerCase().trim(),
+      title: title.trim(),
+      excerpt: excerpt.trim(),
+      content: content ? content.trim() : excerpt.trim(),
+      date: date || undefined,
+      readTime: readTime ? readTime.trim() : '5 min read',
+      imageUrl: normalizedImageUrl,
+      featured: isFeatured
+    };
+
+    const savedPost = await updateContent('blog', postId, updatedPost);
+    if (!savedPost) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    res.json({ message: 'Blog post updated successfully', item: savedPost });
+  } catch (error) {
+    console.error('Error updating blog post:', error);
+    res.status(500).json({ error: 'Failed to update blog post' });
   }
 });
 

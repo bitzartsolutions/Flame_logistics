@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getContent, createContent, deleteContent } = require('../src/contentStore');
+const { getContent, createContent, updateContent, deleteContent } = require('../src/contentStore');
 const { normalizeImageUrl, getPublicBaseUrl } = require('../src/imageUrls');
 
 // GET /api/gallery
@@ -123,6 +123,51 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.error('Error adding gallery image:', error);
     res.status(500).json({ error: 'Failed to add gallery image' });
+  }
+});
+
+// PUT /api/gallery/:id
+router.put('/:id', async (req, res) => {
+  try {
+    const itemId = Number(req.params.id);
+    const { title, subtitle, category, description, imageUrl, youtubeUrl, mobileAspect, desktopLayout } = req.body;
+
+    const resolvedImageUrl = (imageUrl || '').toString().trim();
+    const resolvedYoutubeUrl = (youtubeUrl || '').toString().trim();
+
+    if (!title || (!resolvedImageUrl && !resolvedYoutubeUrl)) {
+      return res.status(400).json({ error: 'Title and either an image URL or a YouTube link are required' });
+    }
+
+    const photoPayload = {
+      category: (category || 'transportation').toLowerCase().trim(),
+      title: title.trim(),
+      subtitle: subtitle ? subtitle.trim() : 'Showcase',
+      description: description ? description.trim() : '',
+      imageUrl: resolvedImageUrl ? normalizeImageUrl(resolvedImageUrl, getPublicBaseUrl(req, 'http://localhost:4000')).trim() : undefined,
+      mobileAspect: mobileAspect || '',
+      desktopLayout: desktopLayout || ''
+    };
+
+    const videoPayload = {
+      category: (category || 'transportation').toLowerCase().trim(),
+      title: title.trim(),
+      subtitle: subtitle ? subtitle.trim() : 'Showcase',
+      description: description ? description.trim() : '',
+      youtubeUrl: resolvedYoutubeUrl || undefined,
+      thumbnailUrl: resolvedYoutubeUrl ? `https://img.youtube.com/vi/${extractYouTubeVideoId(resolvedYoutubeUrl)}/hqdefault.jpg` : undefined
+    };
+
+    const savedItem = (await updateContent('gallery', itemId, photoPayload)) || (await updateContent('galleryVideo', itemId, videoPayload));
+
+    if (!savedItem) {
+      return res.status(404).json({ error: 'Gallery item not found', id: req.params.id });
+    }
+
+    res.json({ message: 'Gallery item updated successfully', item: savedItem });
+  } catch (error) {
+    console.error('Error updating gallery item:', error);
+    res.status(500).json({ error: 'Failed to update gallery item' });
   }
 });
 

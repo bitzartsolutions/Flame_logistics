@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Job Opening | Flame Logistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "inverse-on-surface": "#f3eff7",
+          "surface-tint": "#5655a6",
+          "outline-variant": "#c7c5d3",
+          "tertiary-fixed-dim": "#c6c6c9",
+          "trust-navy": "#09005d",
+          "on-error-container": "#93000a",
+          "secondary-fixed": "#ffdad5",
+          "on-primary-fixed-variant": "#3e3d8c",
+          "surface-container": "#f0ecf4",
+          "error-container": "#ffdad6",
+          "on-surface-variant": "#464651",
+          "surface-container-low": "#f6f2fa",
+          "surface-bright": "#fcf8ff",
+          "on-tertiary-fixed": "#1a1c1e",
+          "on-secondary-fixed": "#410001",
+          "secondary-fixed-dim": "#ffb4aa",
+          "on-secondary-container": "#fffbff",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed-variant": "#454749",
+          "on-primary-fixed": "#0f0861",
+          "surface-container-highest": "#e5e1e9",
+          "tertiary": "#151719",
+          "outline": "#777682",
+          "tertiary-fixed": "#e2e2e5",
+          "on-secondary": "#ffffff",
+          "surface-container-high": "#eae7ee",
+          "secondary-container": "#e12823",
+          "surface": "#fcf8ff",
+          "on-surface": "#1b1b20",
+          "surface-dim": "#dcd9e0",
+          "surface-muted": "#f0ecf5",
+          "on-secondary-fixed-variant": "#930007",
+          "surface-container-lowest": "#ffffff",
+          "secondary": "#bc000c",
+          "primary-container": "#0f0861",
+          "on-background": "#1b1b20",
+          "industrial-black": "#151719",
+          "inverse-primary": "#c2c1ff",
+          "primary": "#09005d",
+          "on-primary": "#ffffff",
+          "surface-variant": "#e5e1e9",
+          "on-tertiary-container": "#838486",
+          "on-error": "#ffffff",
+          "glass-border": "rgba(255, 255, 255, 0.2)",
+          "inverse-surface": "#303035",
+          "flame-red": "#bc000c",
+          "primary-fixed-dim": "#c2c1ff",
+          "error": "#ba1a1a",
+          "background": "#fcf8ff",
+          "on-primary-container": "#7c7bcf",
+          "tertiary-container": "#1a1c1e",
+          "primary-fixed": "#e2dfff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "gutter": "24px",
+          "margin-mobile": "16px",
+          "margin-desktop": "40px",
+          "base-unit": "8px",
+          "section-padding": "96px",
+          "container-max": "1280px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"],
+          "display-lg-mobile": ["Plus Jakarta Sans"],
+          "display-lg": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "body-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "title-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<div id="header-placeholder"></div>
+
+<main class="pt-[80px] pb-20">
+  <section class="px-margin-mobile py-6">
+    <a href="careers" class="inline-flex items-center gap-2 text-sm font-semibold text-trust-navy">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Back to Careers
+    </a>
+  </section>
+
+  <section class="px-margin-mobile">
+    <div id="job-loading" class="rounded-3xl border border-outline-variant/40 bg-white p-8 text-center">
+      <p class="text-on-surface-variant">Loading job opening...</p>
+    </div>
+
+    <div id="job-error" class="hidden rounded-3xl border border-dashed border-outline-variant bg-surface p-8 text-center text-on-surface-variant text-sm"></div>
+
+    <article id="job-content" class="hidden">
+      <div class="rounded-3xl border border-outline-variant/40 bg-white p-6 shadow-sm">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p id="job-department" class="text-xs font-semibold uppercase tracking-[0.2em] text-flame-red"></p>
+            <h1 id="job-title" class="mt-2 font-headline-md text-headline-md text-trust-navy"></h1>
+          </div>
+          <span id="job-type-badge" class="rounded-full bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-trust-navy"></span>
+        </div>
+
+        <div id="job-meta" class="mt-4 flex flex-wrap gap-3 text-xs text-on-surface-variant"></div>
+
+        <p id="job-description" class="mt-5 text-sm leading-6 text-on-surface-variant"></p>
+
+        <div id="job-requirements-wrap" class="hidden">
+          <h2 class="mt-5 font-title-lg text-title-lg text-trust-navy">Requirements</h2>
+          <ul id="job-requirements" class="mt-3 space-y-2 text-sm text-on-surface-variant"></ul>
+        </div>
+
+        <p id="job-deadline" class="mt-5 text-sm font-semibold"></p>
+
+        <div class="mt-6 space-y-3 border-t border-outline-variant/20 pt-5">
+          <button id="job-apply-btn" type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-flame-red py-3.5 font-bold text-white active:scale-[0.98] transition-transform">
+            Apply for this role
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </button>
+          <button id="job-share-toggle" type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-outline-variant py-3.5 font-bold text-trust-navy active:scale-[0.98] transition-transform">
+            <span class="material-symbols-outlined text-base">share</span>
+            Share this opportunity
+          </button>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<!-- Share Sheet -->
+<div id="job-share-menu" class="fixed inset-0 z-[70] hidden items-end justify-center bg-black/60">
+  <div class="w-full bg-white rounded-t-3xl shadow-2xl p-6 pb-10">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-title-lg text-title-lg text-trust-navy">Share this opportunity</h3>
+      <button id="job-share-close" type="button" class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100" aria-label="Close">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+    </div>
+    <div class="space-y-2">
+      <a id="share-whatsapp" target="_blank" rel="noopener" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <img src="../../assets/images/whatsapp.png" alt="" class="w-5 h-5 shrink-0"> WhatsApp
+      </a>
+      <a id="share-linkedin" target="_blank" rel="noopener" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <img src="../../assets/images/linkedin.png" alt="" class="w-5 h-5 shrink-0"> LinkedIn
+      </a>
+      <a id="share-facebook" target="_blank" rel="noopener" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <img src="../../assets/images/facebook.png" alt="" class="w-5 h-5 shrink-0"> Facebook
+      </a>
+      <button id="share-instagram" type="button" class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <img src="../../assets/images/social.png" alt="" class="w-5 h-5 shrink-0"> Instagram
+      </button>
+      <a id="share-email" class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <span class="material-symbols-outlined text-flame-red">mail</span> Email
+      </a>
+      <button id="share-copy" type="button" class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold text-gray-700 active:bg-surface-container-low transition-colors">
+        <span class="material-symbols-outlined">link</span> Copy Link
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Apply Modal -->
+<div id="applyModal" class="fixed inset-0 z-[70] hidden items-end justify-center bg-black/60">
+  <div class="relative w-full max-h-[92vh] bg-white rounded-t-3xl shadow-2xl flex flex-col">
+    <div class="relative shrink-0 rounded-t-3xl border-b border-outline-variant/20 p-6 pr-16">
+      <button id="closeApplyModal" type="button" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Close">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-flame-red">Application Form</p>
+      <h2 class="mt-2 font-headline-md text-headline-md text-trust-navy">Apply for <span id="applyModalJobTitle" class="text-flame-red"></span></h2>
+      <div id="applyModalJobMeta" class="mt-2 text-xs text-on-surface-variant"></div>
+      <p id="applyModalJobDeadline" class="mt-2 text-xs font-semibold text-flame-red"></p>
+    </div>
+    <div class="overflow-y-auto p-6">
+      <p class="mb-5 text-sm text-on-surface-variant">Submit your details and a brief note. Our recruitment team will review your application and contact you if your profile matches an opening.</p>
+      <form id="career-application-form" class="space-y-5" enctype="multipart/form-data">
+        <input type="hidden" id="applyingFor" />
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-trust-navy">First name *</label>
+            <input type="text" id="firstName" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-trust-navy">Last name *</label>
+            <input type="text" id="lastName" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+          </div>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Email *</label>
+          <input type="email" id="email" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Phone</label>
+          <input type="tel" id="phone" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Location</label>
+          <input type="text" id="location" placeholder="Riyadh, Jeddah, Dubai..." class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Experience</label>
+          <input type="text" id="experience" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Expected salary</label>
+          <input type="text" id="expectedSalary" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Notice period</label>
+          <input type="text" id="noticePeriod" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Message *</label>
+          <textarea id="message" rows="4" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"></textarea>
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Upload CV / Resume</label>
+          <div class="relative">
+            <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="document.getElementById('cv-file-name').textContent = (this.files[0] && this.files[0].name) || 'No file selected'" />
+            <label for="cv" class="w-full px-4 py-3.5 rounded-xl border-2 border-dashed border-outline-variant flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container-low transition-all">
+              <span class="material-symbols-outlined text-flame-red">upload_file</span>
+              <span class="text-on-surface-variant text-sm">Click to upload your CV</span>
+            </label>
+          </div>
+          <p id="cv-file-name" class="mt-2 text-xs text-on-surface-variant">No file selected</p>
+          <p class="mt-1 text-xs text-on-surface-variant">Supported formats: PDF, DOC, DOCX (Max 10MB)</p>
+        </div>
+        <div class="border-t border-outline-variant/30 pt-4">
+          <p class="text-xs text-on-surface-variant mb-4">Applications are reviewed by our HR team.</p>
+          <button type="submit" class="w-full rounded-xl bg-flame-red py-4 font-bold text-white active:scale-[0.98] transition-transform">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer Placeholder - Loaded dynamically -->
+<div id="footer-placeholder"></div>
+
+<!-- Bottom Navigation Placeholder - Loaded dynamically -->
+<div id="bottom-nav-placeholder"></div>
+
+<script>
+  const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:4000/api'
+    : 'https://flame-logistics-backend.vercel.app/api';
+
+  const params = new URLSearchParams(window.location.search);
+  const jobId = params.get('id');
+
+  function formatDeadline(value) {
+    if (!value) return '';
+    const parsed = new Date(value);
+    if (isNaN(parsed.getTime())) return value;
+    return parsed.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function formatMetaLine(job) {
+    return [job.department, job.location, job.jobType].filter(Boolean).join('  •  ');
+  }
+
+  function renderJob(job) {
+    document.title = `${job.title} | Careers at Flame Logistics`;
+
+    document.getElementById('job-department').textContent = job.department || 'Operations';
+    document.getElementById('job-title').textContent = job.title;
+    document.getElementById('job-type-badge').textContent = job.jobType || 'Full Time';
+
+    document.getElementById('job-meta').innerHTML = `
+      <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">location_on</span> ${job.location || 'Riyadh'}</span>
+      <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">work_history</span> ${job.experience || 'Mid-Level'}</span>
+      <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">payments</span> ${job.salary || 'Competitive'}</span>
+    `;
+
+    document.getElementById('job-description').textContent = job.description || '';
+
+    const requirementsWrap = document.getElementById('job-requirements-wrap');
+    const requirementsList = document.getElementById('job-requirements');
+    if (job.requirements && job.requirements.length) {
+      requirementsWrap.classList.remove('hidden');
+      requirementsList.innerHTML = job.requirements.map((item) => `<li class="flex gap-2"><span class="material-symbols-outlined text-flame-red text-lg">check_circle</span>${item}</li>`).join('');
+    } else {
+      requirementsWrap.classList.add('hidden');
+    }
+
+    const deadlineEl = document.getElementById('job-deadline');
+    const closed = Boolean(job.deadlinePassed);
+    if (job.deadline) {
+      deadlineEl.textContent = `${closed ? 'Applications closed' : 'Application deadline'}: ${formatDeadline(job.deadline)}`;
+      deadlineEl.className = `mt-5 text-sm font-semibold ${closed ? 'text-red-600' : 'text-trust-navy'}`;
+    } else {
+      deadlineEl.textContent = '';
+    }
+
+    const applyBtn = document.getElementById('job-apply-btn');
+    if (closed) {
+      applyBtn.disabled = true;
+      applyBtn.textContent = 'Applications Closed';
+      applyBtn.classList.remove('bg-flame-red', 'text-white');
+      applyBtn.classList.add('bg-gray-200', 'text-gray-500', 'cursor-not-allowed');
+    } else {
+      applyBtn.addEventListener('click', () => applyForJob(job));
+    }
+
+    const shareToggleBtn = document.getElementById('job-share-toggle');
+    if (closed) {
+      shareToggleBtn.disabled = true;
+      shareToggleBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
+    const shareUrl = window.location.href;
+    const shareText = `${job.title} at Flame Logistics${job.deadline ? ` (Apply by ${formatDeadline(job.deadline)})` : ''}`;
+    document.getElementById('share-whatsapp').href = `https://wa.me/?text=${encodeURIComponent(shareText + ' - ' + shareUrl)}`;
+    document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+    document.getElementById('share-email').href = `mailto:?subject=${encodeURIComponent(shareText)}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+
+    document.getElementById('job-loading').classList.add('hidden');
+    document.getElementById('job-content').classList.remove('hidden');
+  }
+
+  async function loadJob() {
+    if (!jobId) {
+      document.getElementById('job-loading').classList.add('hidden');
+      const errorEl = document.getElementById('job-error');
+      errorEl.textContent = 'No job was specified. Please go back to Careers and select a role.';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE}/careers/${jobId}`);
+      if (!response.ok) throw new Error('Job not found');
+      const job = await response.json();
+      renderJob(job);
+    } catch (error) {
+      document.getElementById('job-loading').classList.add('hidden');
+      const errorEl = document.getElementById('job-error');
+      errorEl.textContent = 'This job opening could not be found. It may have been removed.';
+      errorEl.classList.remove('hidden');
+    }
+  }
+
+  // Share sheet
+  const shareMenu = document.getElementById('job-share-menu');
+  document.getElementById('job-share-toggle').addEventListener('click', () => {
+    shareMenu.classList.remove('hidden');
+    shareMenu.classList.add('flex');
+  });
+  document.getElementById('job-share-close').addEventListener('click', () => {
+    shareMenu.classList.add('hidden');
+    shareMenu.classList.remove('flex');
+  });
+  shareMenu.addEventListener('click', (event) => {
+    if (event.target === shareMenu) {
+      shareMenu.classList.add('hidden');
+      shareMenu.classList.remove('flex');
+    }
+  });
+  document.getElementById('share-copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      const btn = document.getElementById('share-copy');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-green-600">check</span> Copied!';
+      window.setTimeout(() => { btn.innerHTML = originalHtml; }, 1500);
+    } catch (error) {
+      window.prompt('Copy this link:', window.location.href);
+    }
+  });
+  document.getElementById('share-instagram').addEventListener('click', async () => {
+    const btn = document.getElementById('share-instagram');
+    const originalHtml = btn.innerHTML;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      btn.innerHTML = '<span class="material-symbols-outlined text-green-600">check</span> Link copied &ndash; paste in Instagram';
+    } catch (error) {
+      window.prompt('Copy this link to share on Instagram:', window.location.href);
+    }
+    window.setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+  });
+
+  // Apply modal
+  const applyModal = document.getElementById('applyModal');
+  const applyModalJobTitle = document.getElementById('applyModalJobTitle');
+  const applyModalJobMeta = document.getElementById('applyModalJobMeta');
+  const applyModalJobDeadline = document.getElementById('applyModalJobDeadline');
+  const closeApplyModalBtn = document.getElementById('closeApplyModal');
+  let currentJobId = null;
+
+  function applyForJob(job) {
+    if (!job || job.deadlinePassed) return;
+    currentJobId = job.id;
+    document.getElementById('applyingFor').value = job.title || '';
+    applyModalJobTitle.textContent = job.title || 'this role';
+    applyModalJobMeta.textContent = formatMetaLine(job);
+    applyModalJobDeadline.textContent = job.deadline ? `Application deadline: ${formatDeadline(job.deadline)}` : '';
+    applyModal.classList.remove('hidden');
+    applyModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeApplyModal() {
+    applyModal.classList.add('hidden');
+    applyModal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  closeApplyModalBtn.addEventListener('click', closeApplyModal);
+  applyModal.addEventListener('click', (event) => {
+    if (event.target === applyModal) closeApplyModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !applyModal.classList.contains('hidden')) closeApplyModal();
+  });
+
+  document.getElementById('career-application-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = event.target.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Submitting...';
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+
+    const formData = new FormData();
+    if (currentJobId !== null && currentJobId !== undefined) {
+      formData.append('jobId', currentJobId);
+    }
+    formData.append('fullName', [firstName, lastName].filter(Boolean).join(' '));
+    formData.append('email', document.getElementById('email').value.trim());
+    formData.append('phone', document.getElementById('phone').value.trim());
+    formData.append('applyingFor', document.getElementById('applyingFor').value.trim());
+    formData.append('location', document.getElementById('location').value.trim());
+    formData.append('experience', document.getElementById('experience').value.trim());
+    formData.append('expectedSalary', document.getElementById('expectedSalary').value.trim());
+    formData.append('noticePeriod', document.getElementById('noticePeriod').value.trim());
+    formData.append('message', document.getElementById('message').value.trim());
+
+    const cvInput = document.getElementById('cv');
+    if (cvInput && cvInput.files && cvInput.files[0]) {
+      formData.append('cv', cvInput.files[0], cvInput.files[0].name);
+    }
+
+    try {
+      const response = await fetch(`${API_BASE}/careers/apply`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Application submission failed');
+      event.target.reset();
+      document.getElementById('cv-file-name').textContent = 'No file selected';
+      closeApplyModal();
+      alert(data.message || 'Application submitted successfully.');
+    } catch (error) {
+      alert(error.message || 'Application submission failed.');
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+
+  loadJob();
+</script>
+
+<!-- Mobile Common JS - Loads header and footer components -->
+<script src="../../assets/js/mobile.js"></script>
+</body>
+</html>

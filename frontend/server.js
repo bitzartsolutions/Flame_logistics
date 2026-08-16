@@ -59,11 +59,50 @@ app.get('/health', (req, res) => {
   proxyReq.end();
 });
 
-// Serve static files from frontend directory
-app.use(express.static(__dirname));
+// Redirect any trailing-slash URL (e.g. /services/) to its slash-less form
+// (/services). Without this, Express's default non-strict routing silently
+// serves both as identical, and a relative link like href="solutions" then
+// resolves against the trailing slash into a broken /services/solutions
+// instead of /solutions.
+app.use((req, res, next) => {
+  if (req.path !== '/' && req.path.endsWith('/')) {
+    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    return res.redirect(301, req.path.slice(0, -1) + query);
+  }
+  next();
+});
 
-// Route root / to index.html (viewport detector)
+// Serve static files from frontend directory (index:false so our own "/" route below
+// decides what to send, instead of express.static auto-serving index.html)
+app.use(express.static(__dirname, { index: false }));
+
+// Detect mobile devices via User-Agent, mirroring the site's existing 768px
+// viewport breakpoint used by the client-side detector in index.html.
+function isMobileRequest(req) {
+  const ua = req.headers['user-agent'] || '';
+  return /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|Mobile(?!.*iPad)/i.test(ua);
+}
+
+// Resolve a page name (no extension) to an actual file on disk, preferring the
+// device-appropriate folder and falling back to the other if only one exists.
+function resolvePageFile(pageName, isMobile) {
+  const primaryDir = isMobile ? MOBILE_DIR : DESKTOP_DIR;
+  const fallbackDir = isMobile ? DESKTOP_DIR : MOBILE_DIR;
+
+  const primaryPath = path.join(primaryDir, pageName + '.html');
+  if (fs.existsSync(primaryPath)) return primaryPath;
+
+  const fallbackPath = path.join(fallbackDir, pageName + '.html');
+  if (fs.existsSync(fallbackPath)) return fallbackPath;
+
+  return null;
+}
+
+// Route root / directly to the home page content (served in place, so the
+// address bar keeps showing "/" instead of "/pages/desktop/home.html").
 app.get('/', (req, res) => {
+  const filePath = resolvePageFile('home', isMobileRequest(req));
+  if (filePath) return res.sendFile(filePath);
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -72,30 +111,28 @@ app.get(['/admin', '/admin.html'], (req, res) => {
   res.sendFile(path.join(PAGES_DIR, 'admin.html'));
 });
 
-// Handle page routes - redirect to index.html with page parameter
-// This allows client-side viewport detection to work
+// Clean page routes: /home, /services, /job-detail.html?id=5, etc.
+// Serves the matching desktop/mobile file's content directly at this URL
+// (no redirect), so the address bar never reveals the /pages/desktop/ or
+// /pages/mobile/ folder structure.
 app.get('/:page', (req, res, next) => {
   let pageName = req.params.page;
-  
-  // Skip if it's a file request (has extension other than .html)
+
+  // Skip if it's a file request (has extension other than .html) so real
+  // static assets (favicon.ico, robots.txt, etc.) fall through normally.
   if (pageName.includes('.') && !pageName.endsWith('.html')) {
     return next();
   }
-  
-  // Remove .html extension if present
+
   if (pageName.endsWith('.html')) {
     pageName = pageName.slice(0, -5);
   }
-  
-  // Check if page exists in either mobile or desktop
-  const desktopExists = fs.existsSync(path.join(DESKTOP_DIR, pageName + '.html'));
-  const mobileExists = fs.existsSync(path.join(MOBILE_DIR, pageName + '.html'));
-  
-  if (desktopExists || mobileExists) {
-    // Redirect to index.html with page parameter for client-side detection
-    return res.redirect(`/?page=${pageName}`);
+
+  const filePath = resolvePageFile(pageName, isMobileRequest(req));
+  if (filePath) {
+    return res.sendFile(filePath);
   }
-  
+
   next();
 });
 
@@ -152,13 +189,13 @@ app.listen(PORT, () => {
   console.log(`  Flame Logistics Frontend Server`);
   console.log(`========================================`);
   console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`\nViewport Detection: Client-side (works with DevTools)`);
-  console.log(`Breakpoint: 768px`);
+  console.log(`\nViewport Detection: Server-side User-Agent sniffing`);
   console.log(`\nHow it works:`);
-  console.log(`  1. Visit http://localhost:${PORT}`);
-  console.log(`  2. Client detects viewport width`);
-  console.log(`  3. Redirects to /pages/mobile/ or /pages/desktop/`);
-  console.log(`\nDirect access:`);
+  console.log(`  1. Visit http://localhost:${PORT}/home (or any clean page URL)`);
+  console.log(`  2. Server detects device type from the request's User-Agent`);
+  console.log(`  3. Serves the matching pages/mobile/ or pages/desktop/ file`);
+  console.log(`     directly, so the URL stays clean (no /pages/... prefix)`);
+  console.log(`\nDirect access (still works, unchanged):`);
   console.log(`  Mobile:  http://localhost:${PORT}/pages/mobile/about.html`);
   console.log(`  Desktop: http://localhost:${PORT}/pages/desktop/about.html`);
   console.log(`\nAvailable pages:`);

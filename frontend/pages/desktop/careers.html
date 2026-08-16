@@ -23,7 +23,6 @@
           <p class="mt-6 max-w-2xl text-lg text-white/80">We are growing our operations across the GCC and looking for passionate professionals who thrive in fast-moving, high-standard environments.</p>
           <div class="mt-8 flex flex-wrap gap-4">
             <a href="#open-roles" class="rounded-xl bg-secondary px-8 py-4 font-bold text-white transition hover:bg-secondary-hover">View Open Roles</a>
-            <a href="#apply" class="rounded-xl border border-white/30 px-8 py-4 font-bold text-white transition hover:bg-white/10">Apply Now</a>
           </div>
         </div>
       </div>
@@ -65,22 +64,34 @@
           <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Open Positions</p>
           <h2 class="mt-2 font-headline-md text-headline-md text-primary">Current Opportunities</h2>
         </div>
-        <a href="#apply" class="hidden text-sm font-semibold text-primary hover:text-secondary md:block">Apply for a role</a>
       </div>
       <div id="jobs-list" class="mt-8 grid gap-6 lg:grid-cols-2"></div>
     </section>
+  </main>
 
-    <section id="apply" class="mx-auto max-w-[1280px] px-[40px] pb-20 pt-8 lg:pt-16">
-      <div class="rounded-3xl border border-outline-variant/40 bg-white p-8 shadow-sm">
-        <div class="max-w-2xl">
-          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Application Form</p>
-          <h2 class="mt-2 font-headline-md text-headline-md text-primary">Apply for a position</h2>
-          <p class="mt-4 text-base text-on-surface-variant">Submit your details and a brief note. Our recruitment team will review your application and contact you if your profile matches an opening.</p>
-        </div>
-        <form id="career-application-form" class="mt-8 grid gap-6 md:grid-cols-2">
+  <!-- Apply Modal -->
+  <div id="applyModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/60 px-4 py-8">
+    <div class="relative w-full max-w-2xl max-h-[85vh] bg-white rounded-3xl shadow-2xl flex flex-col">
+      <div class="relative shrink-0 rounded-t-3xl border-b border-gray-100 p-6 pr-16 md:p-8 md:pr-16">
+        <button id="closeApplyModal" type="button" class="absolute right-4 top-4 md:right-6 md:top-6 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Close">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Application Form</p>
+        <h2 class="mt-2 font-headline-md text-headline-md text-primary">Apply for <span id="applyModalJobTitle" class="text-secondary"></span></h2>
+        <div id="applyModalJobMeta" class="mt-3 text-sm text-on-surface-variant"></div>
+        <p id="applyModalJobDeadline" class="mt-2 text-sm font-semibold text-secondary"></p>
+      </div>
+      <div class="overflow-y-auto p-6 md:p-8">
+        <p class="mb-6 text-sm text-on-surface-variant">Submit your details and a brief note. Our recruitment team will review your application and contact you if your profile matches an opening.</p>
+        <form id="career-application-form" class="grid gap-6 md:grid-cols-2" enctype="multipart/form-data">
+          <input type="hidden" id="applyingFor" />
           <div>
-            <label class="mb-2 block text-sm font-semibold text-gray-700">Full name *</label>
-            <input type="text" id="fullName" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+            <label class="mb-2 block text-sm font-semibold text-gray-700">First name *</label>
+            <input type="text" id="firstName" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Last name *</label>
+            <input type="text" id="lastName" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
           </div>
           <div>
             <label class="mb-2 block text-sm font-semibold text-gray-700">Email *</label>
@@ -89,10 +100,6 @@
           <div>
             <label class="mb-2 block text-sm font-semibold text-gray-700">Phone</label>
             <input type="tel" id="phone" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
-          </div>
-          <div>
-            <label class="mb-2 block text-sm font-semibold text-gray-700">Position / Role *</label>
-            <input type="text" id="applyingFor" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
           </div>
           <div>
             <label class="mb-2 block text-sm font-semibold text-gray-700">Location</label>
@@ -112,16 +119,28 @@
           </div>
           <div class="md:col-span-2">
             <label class="mb-2 block text-sm font-semibold text-gray-700">Message *</label>
-            <textarea id="message" rows="5" required class="w-full rounded-xl border border-gray-300 px-4 py-3"></textarea>
+            <textarea id="message" rows="4" required class="w-full rounded-xl border border-gray-300 px-4 py-3"></textarea>
+          </div>
+          <div class="md:col-span-2">
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Upload CV / Resume</label>
+            <div class="relative">
+              <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="document.getElementById('cv-file-name').textContent = (this.files[0] && this.files[0].name) || 'No file selected'" />
+              <label for="cv" class="w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center gap-3 cursor-pointer hover:bg-surface hover:border-secondary transition-all">
+                <span class="material-symbols-outlined text-secondary">upload_file</span>
+                <span class="text-on-surface-variant text-sm">Click to upload your CV</span>
+              </label>
+            </div>
+            <p id="cv-file-name" class="mt-2 text-xs text-on-surface-variant">No file selected</p>
+            <p class="mt-1 text-xs text-on-surface-variant">Supported formats: PDF, DOC, DOCX (Max 10MB)</p>
           </div>
           <div class="md:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 pt-4">
-            <p class="text-sm text-gray-500">Applications are reviewed by our HR team. Please include any relevant links or supporting information in your message.</p>
+            <p class="text-sm text-gray-500">Applications are reviewed by our HR team.</p>
             <button type="submit" class="rounded-xl bg-secondary px-6 py-3 font-bold text-white transition hover:bg-secondary-hover">Submit Application</button>
           </div>
         </form>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 
   <div id="footer-placeholder"></div>
   <script src="/assets/js/main.js"></script>
@@ -130,6 +149,53 @@
       ? 'http://localhost:4000/api'
       : 'https://flame-logistics-backend.vercel.app/api';
 
+    let renderedJobs = [];
+
+    function formatDeadline(value) {
+      if (!value) return '';
+      const parsed = new Date(value);
+      if (isNaN(parsed.getTime())) return value;
+      return parsed.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    const applyModal = document.getElementById('applyModal');
+    const applyModalJobTitle = document.getElementById('applyModalJobTitle');
+    const applyModalJobMeta = document.getElementById('applyModalJobMeta');
+    const applyModalJobDeadline = document.getElementById('applyModalJobDeadline');
+    const closeApplyModalBtn = document.getElementById('closeApplyModal');
+    let currentJobId = null;
+
+    function applyForJob(job) {
+      if (!job || job.deadlinePassed) return;
+      currentJobId = job.id;
+      document.getElementById('applyingFor').value = job.title || '';
+      applyModalJobTitle.textContent = job.title || 'this role';
+      applyModalJobMeta.textContent = [job.department, job.location || 'Riyadh', job.jobType || 'Full Time']
+        .filter(Boolean)
+        .join('  •  ');
+      applyModalJobDeadline.textContent = job.deadline ? `Application deadline: ${formatDeadline(job.deadline)}` : '';
+      applyModal.classList.remove('hidden');
+      applyModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(() => {
+        document.getElementById('firstName').focus();
+      }, 100);
+    }
+
+    function closeApplyModal() {
+      applyModal.classList.add('hidden');
+      applyModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    closeApplyModalBtn.addEventListener('click', closeApplyModal);
+    applyModal.addEventListener('click', (event) => {
+      if (event.target === applyModal) closeApplyModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !applyModal.classList.contains('hidden')) closeApplyModal();
+    });
+
     async function loadJobs() {
       const container = document.getElementById('jobs-list');
       try {
@@ -137,14 +203,17 @@
         if (!response.ok) throw new Error('Unable to load roles');
         const data = await response.json();
         const jobs = Array.isArray(data.items) ? data.items : [];
+        renderedJobs = jobs;
 
         if (!jobs.length) {
           container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-surface p-8 text-center text-gray-500">No openings are available right now. Please check back soon.</div>';
           return;
         }
 
-        container.innerHTML = jobs.map((job) => `
-          <article class="rounded-3xl border border-outline-variant/40 bg-white p-7 shadow-sm">
+        container.innerHTML = jobs.map((job, index) => {
+          const closed = Boolean(job.deadlinePassed);
+          return `
+          <article class="rounded-3xl border border-outline-variant/40 bg-white p-7 shadow-sm flex flex-col ${closed ? 'opacity-70' : ''}">
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 class="font-title-lg text-title-lg text-primary">${job.title}</h3>
@@ -159,13 +228,31 @@
             </div>
             <p class="mt-5 text-sm leading-7 text-on-surface-variant">${job.description || ''}</p>
             ${job.requirements && job.requirements.length ? `<ul class="mt-5 space-y-2 text-sm text-on-surface-variant">${job.requirements.map((item) => `<li class="flex gap-2"><span class="material-symbols-outlined text-secondary">check_circle</span>${item}</li>`).join('')}</ul>` : ''}
-            ${job.deadline ? `<p class="mt-5 text-sm font-semibold text-primary">Application deadline: ${job.deadline}</p>` : ''}
+            ${job.deadline ? `<p class="mt-5 text-sm font-semibold ${closed ? 'text-red-600' : 'text-primary'}">${closed ? 'Applications closed' : 'Application deadline'}: ${formatDeadline(job.deadline)}</p>` : ''}
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button type="button" ${closed ? 'disabled' : `data-apply-index="${index}"`} class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold transition ${closed ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-secondary text-white hover:bg-secondary-hover'}">
+                ${closed ? 'Applications Closed' : 'Apply for this role'}
+                ${closed ? '' : '<span class="material-symbols-outlined text-base">arrow_forward</span>'}
+              </button>
+              ${closed
+                ? `<span class="inline-flex items-center justify-center gap-2 rounded-xl border border-outline-variant px-4 py-3 font-bold text-gray-400 cursor-not-allowed" aria-disabled="true" aria-label="Sharing unavailable for closed roles"><span class="material-symbols-outlined text-base">share</span></span>`
+                : `<a href="job-detail?id=${job.id}" class="inline-flex items-center justify-center gap-2 rounded-xl border border-outline-variant px-4 py-3 font-bold text-primary transition hover:bg-surface" aria-label="View and share this job opening"><span class="material-symbols-outlined text-base">share</span></a>`
+              }
+            </div>
           </article>
-        `).join('');
+        `;
+        }).join('');
       } catch (error) {
         container.innerHTML = '<div class="rounded-2xl border border-dashed border-gray-300 bg-surface p-8 text-center text-gray-500">Unable to load careers data right now.</div>';
       }
     }
+
+    document.getElementById('jobs-list').addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-apply-index]');
+      if (!trigger) return;
+      const index = Number(trigger.dataset.applyIndex);
+      applyForJob(renderedJobs[index]);
+    });
 
     document.getElementById('career-application-form').addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -174,27 +261,38 @@
       button.disabled = true;
       button.textContent = 'Submitting...';
 
-      const payload = {
-        fullName: document.getElementById('fullName').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        applyingFor: document.getElementById('applyingFor').value.trim(),
-        location: document.getElementById('location').value.trim(),
-        experience: document.getElementById('experience').value.trim(),
-        expectedSalary: document.getElementById('expectedSalary').value.trim(),
-        noticePeriod: document.getElementById('noticePeriod').value.trim(),
-        message: document.getElementById('message').value.trim()
-      };
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+
+      const formData = new FormData();
+      if (currentJobId !== null && currentJobId !== undefined) {
+        formData.append('jobId', currentJobId);
+      }
+      formData.append('fullName', [firstName, lastName].filter(Boolean).join(' '));
+      formData.append('email', document.getElementById('email').value.trim());
+      formData.append('phone', document.getElementById('phone').value.trim());
+      formData.append('applyingFor', document.getElementById('applyingFor').value.trim());
+      formData.append('location', document.getElementById('location').value.trim());
+      formData.append('experience', document.getElementById('experience').value.trim());
+      formData.append('expectedSalary', document.getElementById('expectedSalary').value.trim());
+      formData.append('noticePeriod', document.getElementById('noticePeriod').value.trim());
+      formData.append('message', document.getElementById('message').value.trim());
+
+      const cvInput = document.getElementById('cv');
+      if (cvInput && cvInput.files && cvInput.files[0]) {
+        formData.append('cv', cvInput.files[0], cvInput.files[0].name);
+      }
 
       try {
         const response = await fetch(`${API_BASE}/careers/apply`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: formData
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error || 'Application submission failed');
         event.target.reset();
+        document.getElementById('cv-file-name').textContent = 'No file selected';
+        closeApplyModal();
         alert(data.message || 'Application submitted successfully.');
       } catch (error) {
         alert(error.message || 'Application submission failed.');

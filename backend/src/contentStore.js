@@ -242,7 +242,7 @@ function sanitizePayloadForTable(table, payload) {
     gallery: ['id', 'title', 'subtitle', 'description', 'category', 'imageUrl', 'mobileAspect', 'desktopLayout', 'created_at'],
     galleryVideo: ['id', 'title', 'subtitle', 'description', 'category', 'youtubeUrl', 'thumbnailUrl', 'created_at'],
     blog: ['id', 'title', 'content', 'excerpt', 'category', 'imageUrl', 'date', 'readTime', 'featured', 'created_at'],
-    careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'requirements', 'deadline', 'active', 'created_at']
+    careers: ['id', 'title', 'department', 'location', 'jobType', 'experience', 'salary', 'description', 'requirements', 'deadline', 'active', 'created_at']
   };
 
   const columns = allowedColumns[table];
@@ -372,6 +372,64 @@ async function createContent(table, payload) {
   return saved ? nextPayload : null;
 }
 
+async function updateContent(table, id, payload) {
+  const safePayload = sanitizePayloadForTable(table, payload);
+  delete safePayload.id;
+  delete safePayload.created_at;
+
+  const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
+  if (client) {
+    try {
+      const supabasePayload = preparePayloadForSupabase(table, safePayload);
+      const { data, error } = await client.from(TABLES[table]).update(supabasePayload).eq('id', id).select().single();
+      if (error) {
+        console.warn(`Supabase update failed for ${table}; falling back to local storage`, error.message);
+      } else if (data) {
+        const adapter = getStorageAdapter(table);
+        if (adapter) {
+          try {
+            const items = await adapter.get();
+            const nextItems = Array.isArray(items)
+              ? items.map((item) => (Number(item.id) === Number(id) ? { ...item, ...safePayload } : item))
+              : [];
+            await adapter.save(nextItems);
+          } catch (storageError) {
+            console.warn(`Storage adapter write failed after Supabase update for ${table}`, storageError.message);
+          }
+        }
+
+        return normalizeSupabaseRowForApp(table, data);
+      }
+    } catch (error) {
+      console.warn(`Supabase update error for ${table}; falling back to local storage`, error.message);
+    }
+  }
+
+  const adapter = getStorageAdapter(table);
+  if (adapter) {
+    try {
+      const items = await adapter.get();
+      const list = Array.isArray(items) ? items : [];
+      const index = list.findIndex((item) => Number(item.id) === Number(id));
+      if (index === -1) return null;
+      const updated = { ...list[index], ...safePayload };
+      list[index] = updated;
+      await adapter.save(list);
+      return updated;
+    } catch (error) {
+      console.warn(`Storage adapter update failed for ${table}`, error.message);
+    }
+  }
+
+  const items = getLocalTableData(table, []);
+  const index = items.findIndex((item) => Number(item.id) === Number(id));
+  if (index === -1) return null;
+  const updated = { ...items[index], ...safePayload };
+  items[index] = updated;
+  const saved = saveLocalTableData(table, items);
+  return saved ? updated : null;
+}
+
 async function deleteContent(table, id) {
   const client = shouldUseSupabase(table) ? getSupabaseClient() : null;
   if (client) {
@@ -408,6 +466,7 @@ async function deleteContent(table, id) {
 module.exports = {
   getContent,
   createContent,
+  updateContent,
   deleteContent,
   sanitizePayloadForTable,
   normalizeSupabaseRowForApp
