@@ -163,6 +163,40 @@ function getMobileApiBase() {
   return 'https://flame-logistics-backend.vercel.app';
 }
 
+// ===== Global Success Modal =====
+function showSuccessModal(message) {
+  let modal = document.getElementById('global-success-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'global-success-modal';
+    modal.className = 'fixed inset-0 z-[100] hidden items-end justify-center bg-black/60';
+    modal.innerHTML = `
+      <div class="relative w-full rounded-t-3xl bg-white p-8 pb-10 text-center shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-flame-red/10 text-flame-red">
+          <span class="material-symbols-outlined text-4xl">check_circle</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-trust-navy mb-3">Successfully Submitted!</h3>
+        <p id="global-success-modal-message" class="text-on-surface-variant text-sm mb-8"></p>
+        <button type="button" id="global-success-modal-ok" class="w-full rounded-xl bg-flame-red px-6 py-4 font-bold text-white active:scale-[0.98] transition-transform">OK</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const close = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+    modal.querySelector('#global-success-modal-ok').addEventListener('click', close);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+  }
+
+  modal.querySelector('#global-success-modal-message').textContent = message || 'Your request has been submitted successfully.';
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
 async function handleMobileQuoteFormSubmit(event) {
   const form = event.currentTarget;
   const submitButton = form.querySelector('button[type="submit"]');
@@ -205,6 +239,7 @@ async function handleMobileQuoteFormSubmit(event) {
     }
 
     form.reset();
+    showSuccessModal(result.message || 'Your inquiry was submitted successfully. Our team will get back to you shortly.');
   } catch (error) {
     console.error('Mobile quote form submission failed:', error);
     if (submitButton) {

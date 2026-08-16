@@ -91,6 +91,43 @@ window.addEventListener("scroll", () => {
   handleNavScroll();
 });
 
+// ===== Global Success Modal =====
+function showSuccessModal(message) {
+  let modal = document.getElementById('global-success-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'global-success-modal';
+    modal.className = 'fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 px-4';
+    modal.innerHTML = `
+      <div class="relative w-full max-w-sm rounded-3xl bg-white p-8 text-center shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10 text-secondary">
+          <span class="material-symbols-outlined text-4xl">check_circle</span>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-primary mb-3">Successfully Submitted!</h3>
+        <p id="global-success-modal-message" class="text-on-surface-variant text-sm mb-8"></p>
+        <button type="button" id="global-success-modal-ok" class="w-full rounded-xl bg-secondary px-6 py-3 font-bold text-white transition hover:bg-secondary-hover">OK</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const close = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+    modal.querySelector('#global-success-modal-ok').addEventListener('click', close);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.classList.contains('hidden')) close();
+    });
+  }
+
+  modal.querySelector('#global-success-modal-message').textContent = message || 'Your request has been submitted successfully.';
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
 function getApiBase() {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://localhost:4000';
@@ -140,6 +177,7 @@ async function handleQuoteFormSubmit(event) {
     }
 
     form.reset();
+    showSuccessModal(result.message || 'Your inquiry was submitted successfully. Our team will get back to you shortly.');
   } catch (error) {
     console.error('Quote form submission failed:', error);
     if (submitButton) {

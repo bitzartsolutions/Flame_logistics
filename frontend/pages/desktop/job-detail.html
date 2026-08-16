@@ -374,7 +374,7 @@
         event.target.reset();
         document.getElementById('cv-file-name').textContent = 'No file selected';
         closeApplyModal();
-        alert(data.message || 'Application submitted successfully.');
+        showSuccessModal(data.message || 'Your application has been submitted successfully. Our recruitment team will be in touch.');
       } catch (error) {
         alert(error.message || 'Application submission failed.');
       } finally {
