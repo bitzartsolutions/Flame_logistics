@@ -1,24 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const { getContent, createContent, updateContent, deleteContent } = require('../src/contentStore');
-const { saveUploadedFiles } = require('../src/contactAttachments');
-const { getPublicBaseUrl } = require('../src/imageUrls');
 
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || 'info@flamelogistics.net';
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@flamelogistics.net';
-
-const UPLOADS_DIR = path.join(__dirname, '..', 'uploads');
-try {
-  if (!fs.existsSync(UPLOADS_DIR)) {
-    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
-  }
-} catch (error) {
-  console.warn('Unable to ensure uploads directory exists', error.message);
-}
 
 const cvUpload = multer({
   storage: multer.memoryStorage(),
@@ -289,12 +276,13 @@ router.post('/apply', cvUpload.single('cv'), async (req, res) => {
       return res.status(500).json({ error: 'Mail service is not configured yet.' });
     }
 
-    const savedFiles = req.file ? saveUploadedFiles([req.file], UPLOADS_DIR, getPublicBaseUrl(req, 'http://localhost:4000')) : [];
-    const attachments = savedFiles.map((file) => ({
-      filename: file.filename,
-      contentType: file.mimeType,
-      path: file.path
-    }));
+    const attachments = req.file
+      ? [{
+          filename: req.file.originalname || 'cv',
+          contentType: req.file.mimetype || 'application/octet-stream',
+          content: req.file.buffer
+        }]
+      : [];
 
     const info = await transporter.sendMail({
       from: SMTP_FROM,
@@ -312,7 +300,7 @@ router.post('/apply', cvUpload.single('cv'), async (req, res) => {
         <p><strong>Expected salary:</strong> ${expectedSalary || 'Not provided'}</p>
         <p><strong>Notice period:</strong> ${noticePeriod || 'Not provided'}</p>
         <p><strong>Message:</strong><br/>${message}</p>
-        ${savedFiles.length ? `<p><strong>CV:</strong> ${savedFiles[0].filename}</p>` : '<p><strong>CV:</strong> Not attached</p>'}
+        ${req.file ? `<p><strong>CV:</strong> ${req.file.originalname || 'Attached'}</p>` : '<p><strong>CV:</strong> Not attached</p>'}
       `,
       attachments
     });

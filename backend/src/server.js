@@ -8,7 +8,6 @@ const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 
 const { normalizeImageUrl, getPublicBaseUrl } = require('./imageUrls');
-const { saveUploadedFiles } = require('./contactAttachments');
 const { printSupabaseSetupHint } = require('./supabaseSetup');
 
 function loadEnvFile(envPath) {
@@ -212,17 +211,17 @@ app.post('/api/contact', contactUpload.array('attachments', 5), async (req, res)
       return res.status(400).json({ error: 'Please provide your full name, email address, and message.' });
     }
 
-    const savedFiles = saveUploadedFiles(req.files || [], UPLOADS_DIR, getPublicBaseUrl(req, 'http://localhost:4000'));
     const transporter = createMailTransporter();
     if (!transporter) {
       console.error('SMTP configuration missing. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in backend/.env');
       return res.status(500).json({ error: 'Mail service is not configured yet.' });
     }
 
-    const attachments = savedFiles.map((file) => ({
-      filename: file.filename,
-      contentType: file.mimeType,
-      path: file.path
+    const uploadedFiles = req.files || [];
+    const attachments = uploadedFiles.map((file) => ({
+      filename: file.originalname || 'attachment',
+      contentType: file.mimetype || 'application/octet-stream',
+      content: file.buffer
     }));
 
     const info = await transporter.sendMail({
@@ -240,7 +239,7 @@ app.post('/api/contact', contactUpload.array('attachments', 5), async (req, res)
         <p><strong>Country:</strong> ${country || 'Not provided'}</p>
         <p><strong>Service:</strong> ${service || 'Not provided'}</p>
         <p><strong>Message:</strong><br/>${message}</p>
-        ${savedFiles.length ? `<p><strong>Attachments:</strong> ${savedFiles.map((file) => file.filename).join(', ')}</p>` : ''}
+        ${uploadedFiles.length ? `<p><strong>Attachments:</strong> ${uploadedFiles.map((file) => file.originalname || 'attachment').join(', ')}</p>` : ''}
       `,
       attachments
     });
