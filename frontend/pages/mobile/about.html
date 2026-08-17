@@ -115,6 +115,7 @@ tailwind.config = {
 }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hero-gradient { background: linear-gradient(180deg, rgba(9, 0, 93, 0) 0%, rgba(9, 0, 93, 0.15) 55%, rgba(9, 0, 93, 0.65) 100%); }
 </style>
 </head>
 <body class="bg-surface font-body-md text-on-surface">
@@ -124,38 +125,46 @@ tailwind.config = {
 <main class="pt-[80px]">
 
   <!-- Hero -->
-  <section class="relative w-full overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClr6wiIcEqw_31qwzn5o5gHU5qHyie2X9aRzF_Qm6JITSi3Q6HYL0r5YBdJ2C7SRB8WRfioh1LScaNEJnzu1jbgDZvOsGgUM4bxgkinavIMJeHoQGwNy8iynZ9tcefXOuBZM9OTnceVFvl-LlNKqBXUCsmZFaI4uqF30E6suRD6MMoW4qryBuDWb6R_U5iwLMmfThUya137jH5MMqa8Amz9dZNLdy2KDgUKLKKH01xcTLEtxmxCvEymZuMcjmGf19kwjDEZPZf80k')">
+  <section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img class="w-full h-full object-cover" alt="Flame Logistics fleet and team" src="../../assets/images/About_page_hero.png">
+      <div class="absolute inset-0 hero-gradient"></div>
     </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/50 to-trust-navy/20"></div>
-    <div class="relative px-margin-mobile pt-16 pb-10">
-      <span class="inline-block px-3 py-1 bg-flame-red/20 text-flame-red font-label-md rounded-full mb-4">Established 2011</span>
-      <h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4">About Flame Logistics</h1>
-      <p class="font-body-md text-white/80 mb-8 border-l-4 border-flame-red pl-4">Redefining the standard of GCC logistics through technology and asset ownership.</p>
-      <div class="flex flex-col gap-3 mb-10">
-        <a href="../../assets/images/Brochure_Flame2.pdf" download class="w-full bg-flame-red text-white py-4 rounded-xl font-bold text-center active:scale-[0.98] transition-transform">Download Profile</a>
-        <a href="#journey-of-flame" class="glass-panel text-white py-4 rounded-xl active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+    <div class="relative z-10 px-margin-mobile pb-12">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-flame-red/20 border border-flame-red/30 backdrop-blur-md mb-4 w-fit">
+        <span class="w-2 h-2 rounded-full bg-flame-red animate-pulse"></span>
+        <span class="text-label-md font-label-md tracking-widest uppercase text-white">Established 2011</span>
+      </span>
+      <h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">About Flame Logistics</h1>
+      <p class="font-body-md text-white/90 mb-8 max-w-md">Redefining the standard of GCC logistics through technology and asset ownership.</p>
+      <div class="flex flex-col gap-3">
+        <a href="../../assets/images/Brochure_Flame2.pdf" download class="w-full bg-flame-red text-white py-4 rounded-xl font-title-lg text-center active:scale-[0.98] transition-transform">Download Profile</a>
+        <a href="#journey-of-flame" class="w-full bg-white/10 backdrop-blur-md border border-white/20 text-white py-4 rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
           <span>Our Story</span>
           <span class="material-symbols-outlined">arrow_downward</span>
         </a>
       </div>
-      <div class="grid grid-cols-2 gap-y-5 pt-6 border-t border-white/10">
-        <div>
-          <div class="text-flame-red font-display-lg-mobile mb-0.5">15+</div>
-          <div class="text-white font-label-md uppercase tracking-widest text-xs">Years Experience</div>
-        </div>
-        <div>
-          <div class="text-flame-red font-display-lg-mobile mb-0.5">3K+</div>
-          <div class="text-white font-label-md uppercase tracking-widest text-xs">Annual Shipments</div>
-        </div>
-        <div>
-          <div class="text-flame-red font-display-lg-mobile mb-0.5">6000+</div>
-          <div class="text-white font-label-md uppercase tracking-widest text-xs">Warehouse Space</div>
-        </div>
-        <div>
-          <div class="text-flame-red font-display-lg-mobile mb-0.5">20+</div>
-          <div class="text-white font-label-md uppercase tracking-widest text-xs">Fleet Vehicles</div>
-        </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-white px-margin-mobile">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">15+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Years Experience</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-flame-red">20+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Fleet Vehicles</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">3K+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Annual Shipments</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">6000+ m&sup2;</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Warehouse Space</div>
       </div>
     </div>
   </section>
@@ -166,7 +175,7 @@ tailwind.config = {
     <p class="font-body-md text-on-surface-variant mb-4 leading-relaxed">Since our inception in 2011, Flame Logistics has been at the forefront of the Kingdom's industrial evolution. We don't just move cargo; we drive the economic engine of Saudi Arabia.</p>
     <p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">Aligned with <span class="font-bold text-trust-navy">Saudi Vision 2030</span>, we are committed to transforming the GCC into a global logistics hub.</p>
     <div class="rounded-2xl overflow-hidden shadow-xl aspect-video relative mb-8">
-      <img class="w-full h-full object-cover" alt="Flame Logistics operations" src="../../assets/images/About_page.png">
+      <img class="w-full h-full object-cover" alt="Flame Logistics operations" src="../../assets/images/About_page_hero.png">
     </div>
     <div class="space-y-4">
       <div class="p-6 bg-white rounded-xl border-l-4 border-flame-red shadow-sm text-center">

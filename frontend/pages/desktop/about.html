@@ -27,49 +27,56 @@
   <div id="header-placeholder"></div>
   
   <!-- Hero Section -->
-  <header class="relative h-[819px] flex items-center justify-start overflow-hidden pt-20">
+  <header class="relative h-screen w-full flex items-center overflow-hidden" style="margin-top: 80px;">
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/40 to-transparent z-10"></div>
-      <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClr6wiIcEqw_31qwzn5o5gHU5qHyie2X9aRzF_Qm6JITSi3Q6HYL0r5YBdJ2C7SRB8WRfioh1LScaNEJnzu1jbgDZvOsGgUM4bxgkinavIMJeHoQGwNy8iynZ9tcefXOuBZM9OTnceVFvl-LlNKqBXUCsmZFaI4uqF30E6suRD6MMoW4qryBuDWb6R_U5iwLMmfThUya137jH5MMqa8Amz9dZNLdy2KDgUKLKKH01xcTLEtxmxCvEymZuMcjmGf19kwjDEZPZf80k')"></div>
+      <img class="w-full h-full object-cover" alt="Flame Logistics fleet and team" src="../../assets/images/About_page_hero.png">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/75 via-primary/25 to-transparent z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent z-10"></div>
     </div>
-    <div class="relative z-20 max-w-[1280px] mx-auto px-[40px] w-full">
+    <div class="relative z-30 max-w-[1280px] mx-auto px-[40px] w-full">
       <div class="max-w-2xl">
-        <span class="inline-block px-4 py-1.5 bg-secondary/10 text-secondary rounded-full font-label-md uppercase tracking-widest mb-6">Established 2011</span>
+        <span class="inline-block px-4 py-1.5 rounded-full bg-secondary text-white font-label-md text-label-md mb-6 tracking-wider uppercase">Established 2011</span>
         <h1 class="font-display-lg text-display-lg text-white mb-6 leading-tight">About Flame Logistics</h1>
-        <p class="font-body-lg text-body-lg text-white/80 mb-10 border-l-4 border-secondary pl-6">
+        <p class="font-body-lg text-white/90 mb-10 max-w-xl">
           Redefining the standard of GCC logistics through technology and asset ownership.
         </p>
-        <div class="flex gap-4">
-          <a href="/assets/images/FLAME LOGISTICS_BROCHURE.pdf" download class="bg-secondary text-white px-8 py-4 rounded-xl font-bold hover:bg-secondary-container transition-all inline-flex items-center justify-center">
+        <div class="flex flex-wrap gap-4">
+          <a href="/assets/images/FLAME LOGISTICS_BROCHURE.pdf" download class="bg-secondary text-white px-8 py-4 rounded-xl font-title-lg hover:bg-on-secondary-fixed-variant transition-all active:scale-95 inline-flex items-center justify-center">
             Download Profile
           </a>
-          <a href="#journey-of-flame" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all inline-flex items-center justify-center">Our Story</a>
+          <a href="#journey-of-flame" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-title-lg hover:bg-white/20 transition-all inline-flex items-center justify-center">Our Story</a>
         </div>
       </div>
     </div>
-    <div class="absolute bottom-0 left-0 w-full z-30 bg-primary/30 backdrop-blur-md border-t border-white/10">
-      <div class="max-w-[1280px] mx-auto px-[40px] py-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center md:text-left">
-            <div class="text-secondary font-display-lg text-headline-md mb-1">15+</div>
-            <div class="text-white font-label-md uppercase tracking-widest">Years Experience</div>
-          </div>
-          <div class="text-center md:text-left">
-            <div class="text-secondary font-display-lg text-headline-md mb-1">20+</div>
-            <div class="text-white font-label-md uppercase tracking-widest">Fleet Vehicles</div>
-          </div>
-          <div class="text-center md:text-left">
-            <div class="text-secondary font-display-lg text-headline-md mb-1">3K+</div>
-            <div class="text-white font-label-md uppercase tracking-widest">Annual Shipments</div>
-          </div>
-          <div class="text-center md:text-left">
-            <div class="text-secondary font-display-lg text-headline-md mb-1">6000+ m²</div>
-            <div class="text-white font-label-md uppercase tracking-widest">Warehouse Space</div>
-          </div>
-        </div>
-      </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/60">
+      <span class="font-label-md text-label-md uppercase tracking-widest">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-white/60 to-transparent"></div>
     </div>
   </header>
+
+  <!-- Stats Section -->
+  <section class="bg-white py-20 relative z-40 -mt-10 mx-[40px] rounded-xl shadow-xl shadow-primary/5">
+    <div class="max-w-[1280px] mx-auto px-[40px]">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-[24px] text-center">
+        <div class="reveal">
+          <div class="font-display-lg text-primary mb-2">15+</div>
+          <div class="font-label-md text-on-surface-variant uppercase tracking-widest">Years Experience</div>
+        </div>
+        <div class="reveal" style="transition-delay: 100ms">
+          <div class="font-display-lg text-secondary mb-2">20+</div>
+          <div class="font-label-md text-on-surface-variant uppercase tracking-widest">Fleet Vehicles</div>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms">
+          <div class="font-display-lg text-primary mb-2">3K+</div>
+          <div class="font-label-md text-on-surface-variant uppercase tracking-widest">Annual Shipments</div>
+        </div>
+        <div class="reveal" style="transition-delay: 300ms">
+          <div class="font-display-lg text-primary mb-2">6000+ m&sup2;</div>
+          <div class="font-label-md text-on-surface-variant uppercase tracking-widest">Warehouse Space</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Introduction & Vision Mission -->
   <section class="py-24 bg-surface-container-lowest">
@@ -103,7 +110,7 @@ complete honesty and integrity</p>
         </div>
         <div class="reveal relative group">
           <div class="absolute -inset-4 bg-secondary/5 rounded-2xl transform rotate-2 -z-10 group-hover:rotate-0 transition-transform duration-500"></div>
-          <div class="h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('../../assets/images/About_page.png')"></div>
+          <div class="h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('../../assets/images/About_page_hero.png')"></div>
         </div>
       </div>
     </div>
