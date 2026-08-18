@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Flame Logistics | Premium Integrated Solutions Across GCC</title>
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- Tailwind Configuration -->
@@ -102,6 +106,7 @@
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
+  .hero-gradient { background: linear-gradient(180deg, rgba(9, 0, 93, 0) 0%, rgba(9, 0, 93, 0.15) 55%, rgba(9, 0, 93, 0.65) 100%); }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-flame-red selection:text-white">
@@ -111,39 +116,43 @@
 <main class="pt-[80px] pb-24">
 
   <!-- Hero Section -->
-  <section class="relative overflow-hidden flex items-end min-h-[640px]">
+  <section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-t from-trust-navy via-trust-navy/70 to-trust-navy/20 z-10"></div>
       <img class="w-full h-full object-cover" alt="Multi-modal logistics in GCC" src="../../assets/images/Service_hero.png">
+      <div class="absolute inset-0 hero-gradient"></div>
     </div>
-    <div class="relative z-20 px-margin-mobile pb-10 w-full">
-      <span class="inline-block bg-flame-red text-white font-label-md text-label-md px-4 py-1.5 rounded-full mb-5">END-TO-END SOLUTIONS</span>
+    <div class="relative z-10 px-margin-mobile pb-12">
+      <span class="inline-block bg-flame-red text-white font-label-md text-label-md px-4 py-1.5 rounded-full mb-4">END-TO-END SOLUTIONS</span>
       <h1 class="font-display-lg-mobile text-display-lg-mobile text-white mb-4 leading-tight">Integrated Logistics Solutions</h1>
-      <p class="font-body-md text-white/80 mb-8 max-w-md">Bridging international markets with regional expertise across supply chain, warehousing, and transportation.</p>
-      <div class="flex flex-col gap-3 mb-10">
+      <p class="font-body-md text-white/90 mb-8 max-w-md">Bridging international markets with regional expertise across supply chain, warehousing, and transportation.</p>
+      <div class="flex flex-col gap-3">
         <a href="#services" class="w-full bg-white text-trust-navy py-4 rounded-xl font-title-lg text-center active:scale-[0.98] transition-all">Explore Services</a>
         <a href="solutions" class="w-full border border-white/30 backdrop-blur-md text-white py-4 rounded-xl font-title-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
           <span class="material-symbols-outlined">integration_instructions</span>
           Our Solutions
         </a>
       </div>
-      <div class="grid grid-cols-2 gap-y-5 pt-6 border-t border-white/10">
-        <div class="flex flex-col items-start">
-          <span class="font-headline-sm text-white">3K+</span>
-          <span class="font-label-md text-white/60 uppercase tracking-wider">Annual Shipments</span>
-        </div>
-        <div class="flex flex-col items-start">
-          <span class="font-headline-sm text-white">6000+</span>
-          <span class="font-label-md text-white/60 uppercase tracking-wider">Warehouse Space</span>
-        </div>
-        <div class="flex flex-col items-start">
-          <span class="font-headline-sm text-white">15+</span>
-          <span class="font-label-md text-white/60 uppercase tracking-wider">Years Excellence</span>
-        </div>
-        <div class="flex flex-col items-start">
-          <span class="font-headline-sm text-white">24/7</span>
-          <span class="font-label-md text-white/60 uppercase tracking-wider">Active Support</span>
-        </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-white px-margin-mobile">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">3K+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Annual Shipments</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-flame-red">6000+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Warehouse Space</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">15+</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Years Excellence</div>
+      </div>
+      <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 text-center">
+        <div class="font-headline-sm text-trust-navy">24/7</div>
+        <div class="font-label-md text-on-surface-variant uppercase tracking-widest mt-1">Active Support</div>
       </div>
     </div>
   </section>
