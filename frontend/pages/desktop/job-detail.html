@@ -44,7 +44,7 @@
 
           <div id="job-meta" class="mt-6 flex flex-wrap gap-4 text-sm text-on-surface-variant"></div>
 
-          <p id="job-description" class="mt-8 text-base leading-7 text-on-surface-variant"></p>
+          <div id="job-description" class="rich-text mt-8 text-base leading-7 text-on-surface-variant"></div>
 
           <div id="job-requirements-wrap" class="hidden">
             <h2 class="mt-8 font-title-lg text-title-lg text-primary">Requirements</h2>
@@ -119,8 +119,8 @@
             <input type="email" id="email" required class="w-full rounded-xl border border-gray-300 px-4 py-3" />
           </div>
           <div>
-            <label class="mb-2 block text-sm font-semibold text-gray-700">Phone</label>
-            <input type="tel" id="phone" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Phone *</label>
+            <input type="tel" id="phone" class="w-full rounded-xl border border-gray-300 px-4 py-3" required />
           </div>
           <div>
             <label class="mb-2 block text-sm font-semibold text-gray-700">Location</label>
@@ -139,13 +139,13 @@
             <input type="text" id="noticePeriod" class="w-full rounded-xl border border-gray-300 px-4 py-3" />
           </div>
           <div class="md:col-span-2">
-            <label class="mb-2 block text-sm font-semibold text-gray-700">Message *</label>
-            <textarea id="message" rows="4" required class="w-full rounded-xl border border-gray-300 px-4 py-3"></textarea>
+            <label class="mb-2 block text-sm font-semibold text-gray-700">Message</label>
+            <textarea id="message" rows="4" class="w-full rounded-xl border border-gray-300 px-4 py-3"></textarea>
           </div>
           <div class="md:col-span-2">
             <label class="mb-2 block text-sm font-semibold text-gray-700">Upload CV / Resume</label>
             <div class="relative">
-              <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="document.getElementById('cv-file-name').textContent = (this.files[0] && this.files[0].name) || 'No file selected'" />
+              <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="handleCvFileSelect(this)" />
               <label for="cv" class="w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center gap-3 cursor-pointer hover:bg-surface hover:border-secondary transition-all">
                 <span class="material-symbols-outlined text-secondary">upload_file</span>
                 <span class="text-on-surface-variant text-sm">Click to upload your CV</span>
@@ -199,7 +199,7 @@
         <span class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-base">payments</span> ${job.salary || 'Competitive'}</span>
       `;
 
-      document.getElementById('job-description').textContent = job.description || '';
+      document.getElementById('job-description').innerHTML = job.description || '';
 
       const requirementsWrap = document.getElementById('job-requirements-wrap');
       const requirementsList = document.getElementById('job-requirements');
@@ -377,6 +377,7 @@
         if (!response.ok) throw new Error(data.error || 'Application submission failed');
         event.target.reset();
         document.getElementById('cv-file-name').textContent = 'No file selected';
+        document.getElementById('cv-file-name').className = 'mt-2 text-xs text-on-surface-variant';
         closeApplyModal();
         showSuccessModal(data.message || 'Your application has been submitted successfully. Our recruitment team will be in touch.');
       } catch (error) {

@@ -114,12 +114,16 @@
   body {
     min-height: max(884px, 100dvh);
   }
+  .rich-text ul { list-style: disc; padding-left: 1.25rem; margin: 0.5rem 0; }
+  .rich-text li { margin-bottom: 0.25rem; }
+  .rich-text b, .rich-text strong { font-weight: 700; }
+  .rich-text i, .rich-text em { font-style: italic; }
 </style>
 </head>
 <body class="bg-background text-on-surface font-body-md">
 <div id="header-placeholder"></div>
 
-<main class="pt-[80px] pb-20">
+<main class="pt-[80px]">
   <section class="px-margin-mobile py-6">
     <a href="careers" class="inline-flex items-center gap-2 text-sm font-semibold text-trust-navy">
       <span class="material-symbols-outlined">arrow_back</span>
@@ -146,7 +150,7 @@
 
         <div id="job-meta" class="mt-4 flex flex-wrap gap-3 text-xs text-on-surface-variant"></div>
 
-        <p id="job-description" class="mt-5 text-sm leading-6 text-on-surface-variant"></p>
+        <div id="job-description" class="rich-text mt-5 text-sm leading-6 text-on-surface-variant"></div>
 
         <div id="job-requirements-wrap" class="hidden">
           <h2 class="mt-5 font-title-lg text-title-lg text-trust-navy">Requirements</h2>
@@ -233,8 +237,8 @@
           <input type="email" id="email" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
         </div>
         <div>
-          <label class="mb-2 block text-sm font-semibold text-trust-navy">Phone</label>
-          <input type="tel" id="phone" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Phone *</label>
+          <input type="tel" id="phone" class="w-full rounded-xl border border-outline-variant px-4 py-3.5" required />
         </div>
         <div>
           <label class="mb-2 block text-sm font-semibold text-trust-navy">Location</label>
@@ -253,13 +257,13 @@
           <input type="text" id="noticePeriod" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"/>
         </div>
         <div>
-          <label class="mb-2 block text-sm font-semibold text-trust-navy">Message *</label>
-          <textarea id="message" rows="4" required class="w-full rounded-xl border border-outline-variant px-4 py-3.5"></textarea>
+          <label class="mb-2 block text-sm font-semibold text-trust-navy">Message</label>
+          <textarea id="message" rows="4" class="w-full rounded-xl border border-outline-variant px-4 py-3.5"></textarea>
         </div>
         <div>
           <label class="mb-2 block text-sm font-semibold text-trust-navy">Upload CV / Resume</label>
           <div class="relative">
-            <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="document.getElementById('cv-file-name').textContent = (this.files[0] && this.files[0].name) || 'No file selected'" />
+            <input type="file" id="cv" name="cv" class="hidden" accept=".pdf,.doc,.docx" onchange="handleCvFileSelect(this)" />
             <label for="cv" class="w-full px-4 py-3.5 rounded-xl border-2 border-dashed border-outline-variant flex items-center justify-center gap-3 cursor-pointer hover:bg-surface-container-low transition-all">
               <span class="material-symbols-outlined text-flame-red">upload_file</span>
               <span class="text-on-surface-variant text-sm">Click to upload your CV</span>
@@ -280,8 +284,6 @@
 <!-- Footer Placeholder - Loaded dynamically -->
 <div id="footer-placeholder"></div>
 
-<!-- Bottom Navigation Placeholder - Loaded dynamically -->
-<div id="bottom-nav-placeholder"></div>
 
 <script>
   const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -315,7 +317,7 @@
       <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined text-base">payments</span> ${job.salary || 'Competitive'}</span>
     `;
 
-    document.getElementById('job-description').textContent = job.description || '';
+    document.getElementById('job-description').innerHTML = job.description || '';
 
     const requirementsWrap = document.getElementById('job-requirements-wrap');
     const requirementsList = document.getElementById('job-requirements');
@@ -495,6 +497,7 @@
       if (!response.ok) throw new Error(data.error || 'Application submission failed');
       event.target.reset();
       document.getElementById('cv-file-name').textContent = 'No file selected';
+      document.getElementById('cv-file-name').className = 'mt-2 text-xs text-on-surface-variant';
       closeApplyModal();
       showSuccessModal(data.message || 'Your application has been submitted successfully. Our recruitment team will be in touch.');
     } catch (error) {

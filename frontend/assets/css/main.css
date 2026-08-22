@@ -275,3 +275,19 @@ body {
     padding-bottom: 64px;
   }
 }
+
+/* ===== Rich Text (admin-authored descriptions with bold/italic/lists) ===== */
+.rich-text ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+.rich-text li {
+  margin-bottom: 0.25rem;
+}
+.rich-text b, .rich-text strong {
+  font-weight: 700;
+}
+.rich-text i, .rich-text em {
+  font-style: italic;
+}

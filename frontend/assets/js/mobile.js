@@ -70,69 +70,6 @@ async function loadMobileFooter() {
   }
 }
 
-// Load mobile bottom navigation component
-async function loadMobileBottomNav() {
-  const bottomNavPlaceholder = document.getElementById('bottom-nav-placeholder');
-  if (!bottomNavPlaceholder) return;
-  
-  try {
-    // Determine the correct path based on page location
-    let basePath = '';
-    const pathname = window.location.pathname;
-    
-    // If we're in pages/mobile/, we need to go up two levels
-    if (pathname.includes('/pages/mobile/')) {
-      basePath = '../../components/';
-    } else if (pathname.includes('/pages/')) {
-      basePath = '../components/';
-    } else {
-      basePath = '/components/';
-    }
-    
-    const response = await fetch(basePath + 'bottom-nav-mobile.html');
-    if (response.ok) {
-      const html = await response.text();
-      bottomNavPlaceholder.innerHTML = html;
-      
-      // Highlight active page in bottom nav
-      highlightActiveNavItem();
-    }
-  } catch (error) {
-    console.error('Error loading mobile bottom navigation:', error);
-  }
-}
-
-// Highlight active page in bottom navigation
-function highlightActiveNavItem() {
-  const pathname = window.location.pathname;
-  const filename = pathname.split('/').pop().replace('.html', '');
-  
-  // Find all nav links
-  const navLinks = document.querySelectorAll('#bottom-nav-placeholder a');
-  
-  navLinks.forEach(link => {
-    const page = link.getAttribute('data-page');
-    const icon = link.querySelector('.material-symbols-outlined');
-    const text = link.querySelector('span:last-child');
-    
-    if (page === filename) {
-      // Active page styling
-      link.classList.remove('text-white');
-      link.classList.add('text-flame-red');
-      if (icon) {
-        icon.style.fontVariationSettings = "'FILL' 1";
-      }
-    } else {
-      // Inactive page styling
-      link.classList.remove('text-flame-red');
-      link.classList.add('text-white');
-      if (icon && page !== 'services') {
-        icon.style.fontVariationSettings = "'FILL' 0";
-      }
-    }
-  });
-}
-
 // Footer accordion toggle function
 function toggleFooterAccordion(id) {
   const el = document.getElementById(id);
@@ -195,6 +132,31 @@ function showSuccessModal(message) {
   modal.querySelector('#global-success-modal-message').textContent = message || 'Your request has been submitted successfully.';
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+}
+
+// ===== CV / Resume Upload Feedback =====
+const CV_MAX_BYTES = 10 * 1024 * 1024;
+
+function handleCvFileSelect(input) {
+  const label = document.getElementById('cv-file-name');
+  if (!label) return;
+
+  const file = input.files && input.files[0];
+  if (!file) {
+    label.textContent = 'No file selected';
+    label.className = 'mt-2 text-xs text-on-surface-variant';
+    return;
+  }
+
+  if (file.size > CV_MAX_BYTES) {
+    label.textContent = `"${file.name}" is too large (max 10MB). Please choose a smaller file.`;
+    label.className = 'mt-2 text-xs font-semibold text-red-600';
+    input.value = '';
+    return;
+  }
+
+  label.textContent = `✓ "${file.name}" uploaded successfully`;
+  label.className = 'mt-2 text-xs font-semibold text-green-600';
 }
 
 async function handleMobileQuoteFormSubmit(event) {
@@ -268,6 +230,5 @@ function bindMobileQuoteForms() {
 document.addEventListener('DOMContentLoaded', function() {
   loadMobileHeader();
   loadMobileFooter();
-  loadMobileBottomNav();
   bindMobileQuoteForms();
 });

@@ -128,6 +128,31 @@ function showSuccessModal(message) {
   modal.classList.add('flex');
 }
 
+// ===== CV / Resume Upload Feedback =====
+const CV_MAX_BYTES = 10 * 1024 * 1024;
+
+function handleCvFileSelect(input) {
+  const label = document.getElementById('cv-file-name');
+  if (!label) return;
+
+  const file = input.files && input.files[0];
+  if (!file) {
+    label.textContent = 'No file selected';
+    label.className = 'mt-2 text-xs text-on-surface-variant';
+    return;
+  }
+
+  if (file.size > CV_MAX_BYTES) {
+    label.textContent = `"${file.name}" is too large (max 10MB). Please choose a smaller file.`;
+    label.className = 'mt-2 text-xs font-semibold text-red-600';
+    input.value = '';
+    return;
+  }
+
+  label.textContent = `✓ "${file.name}" uploaded successfully`;
+  label.className = 'mt-2 text-xs font-semibold text-green-600';
+}
+
 function getApiBase() {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://localhost:4000';

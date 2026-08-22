@@ -12,6 +12,17 @@ const cvUpload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }
 });
 
+// The description field allows a small set of formatting tags (bold, italic,
+// bullet lists) from the admin panel's rich text editor. Strip anything that
+// could execute script before it's stored.
+function sanitizeRichText(html) {
+  return (html || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/\son\w+="[^"]*"/gi, '')
+    .replace(/\son\w+='[^']*'/gi, '')
+    .replace(/javascript:/gi, '');
+}
+
 function createMailTransporter() {
   if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
     return null;
@@ -155,7 +166,7 @@ router.post('/', async (req, res) => {
       jobType: jobType ? jobType.trim() : 'Full Time',
       experience: experience ? experience.trim() : 'Mid-Level',
       salary: salary ? salary.trim() : 'Competitive',
-      description: description.trim(),
+      description: sanitizeRichText(description).trim(),
       requirements: normalizedRequirements,
       deadline: deadline ? deadline.trim() : '',
       active: active !== false,
@@ -204,7 +215,7 @@ router.put('/:id', async (req, res) => {
       jobType: jobType ? jobType.trim() : 'Full Time',
       experience: experience ? experience.trim() : 'Mid-Level',
       salary: salary ? salary.trim() : 'Competitive',
-      description: description.trim(),
+      description: sanitizeRichText(description).trim(),
       requirements: normalizedRequirements,
       deadline: deadline ? deadline.trim() : '',
       active: active !== false
@@ -258,8 +269,8 @@ router.post('/apply', cvUpload.single('cv'), async (req, res) => {
     const message = body.message || '';
     const jobId = body.jobId;
 
-    if (!fullName || !email || !applyingFor || !message) {
-      return res.status(400).json({ error: 'Please provide your full name, email, role, and a message.' });
+    if (!fullName || !email || !applyingFor || !phone) {
+      return res.status(400).json({ error: 'Please provide your full name, email, phone number, and role.' });
     }
 
     if (jobId) {
@@ -299,7 +310,7 @@ router.post('/apply', cvUpload.single('cv'), async (req, res) => {
         <p><strong>Experience:</strong> ${experience || 'Not provided'}</p>
         <p><strong>Expected salary:</strong> ${expectedSalary || 'Not provided'}</p>
         <p><strong>Notice period:</strong> ${noticePeriod || 'Not provided'}</p>
-        <p><strong>Message:</strong><br/>${message}</p>
+        <p><strong>Message:</strong><br/>${message || 'Not provided'}</p>
         ${req.file ? `<p><strong>CV:</strong> ${req.file.originalname || 'Attached'}</p>` : '<p><strong>CV:</strong> Not attached</p>'}
       `,
       attachments

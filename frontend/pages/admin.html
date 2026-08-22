@@ -43,6 +43,22 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
+    .rte-editable:empty:before {
+      content: attr(data-placeholder);
+      color: #9ca3af;
+      pointer-events: none;
+    }
+    .rte-editable ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin: 0.25rem 0;
+    }
+    .rte-editable b, .rte-editable strong {
+      font-weight: 700;
+    }
+    .rte-editable i, .rte-editable em {
+      font-style: italic;
+    }
   </style>
 </head>
 <body class="bg-surface text-gray-900 font-sans min-h-screen flex flex-col">
@@ -472,7 +488,16 @@
             </div>
             <div class="sm:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Description *</label>
-              <textarea id="career-description" rows="3" required class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"></textarea>
+              <div class="rounded-xl border border-gray-300 focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent overflow-hidden">
+                <div class="flex items-center gap-1 border-b border-gray-200 bg-gray-50 px-2 py-1.5">
+                  <button type="button" data-rte-target="career-description" data-cmd="bold" class="rte-btn w-8 h-8 flex items-center justify-center rounded hover:bg-gray-200 font-bold text-sm text-gray-700" title="Bold">B</button>
+                  <button type="button" data-rte-target="career-description" data-cmd="italic" class="rte-btn w-8 h-8 flex items-center justify-center rounded hover:bg-gray-200 italic text-sm text-gray-700" title="Italic">I</button>
+                  <button type="button" data-rte-target="career-description" data-cmd="insertUnorderedList" class="rte-btn w-8 h-8 flex items-center justify-center rounded hover:bg-gray-200 text-gray-700" title="Bullet List">
+                    <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+                  </button>
+                </div>
+                <div id="career-description" contenteditable="true" data-required="true" class="rte-editable w-full px-4 py-2.5 text-sm min-h-[100px] focus:outline-none" data-placeholder="Describe the role, responsibilities, and what makes it a great opportunity..."></div>
+              </div>
             </div>
             <div class="sm:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Requirements (one per line)</label>
@@ -551,6 +576,16 @@
       if (deadlineInput) {
         deadlineInput.min = new Date().toISOString().split('T')[0];
       }
+
+      document.querySelectorAll('.rte-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.dataset.rteTarget;
+          const target = document.getElementById(targetId);
+          target.focus();
+          document.execCommand(btn.dataset.cmd, false, null);
+        });
+      });
+
       checkBackendStatus();
       if (adminToken) {
         showDashboard();
@@ -1286,8 +1321,20 @@
       }
     }
 
+    function getRteContent(id) {
+      const el = document.getElementById(id);
+      const html = el.innerHTML.trim();
+      if (html === '<br>' || html === '<div><br></div>') return '';
+      return html;
+    }
+
+    function setRteContent(id, html) {
+      document.getElementById(id).innerHTML = html || '';
+    }
+
     function resetCareerForm() {
       document.getElementById('careers-form').reset();
+      setRteContent('career-description', '');
       document.getElementById('career-active').checked = true;
       editingCareerId = null;
       const submitBtn = document.getElementById('career-submit-btn');
@@ -1305,7 +1352,7 @@
       document.getElementById('career-job-type').value = job.jobType || '';
       document.getElementById('career-experience').value = job.experience || '';
       document.getElementById('career-salary').value = job.salary || '';
-      document.getElementById('career-description').value = job.description || '';
+      setRteContent('career-description', job.description || '');
       document.getElementById('career-requirements').value = Array.isArray(job.requirements) ? job.requirements.join('\n') : '';
       document.getElementById('career-deadline').value = toDateInputValue(job.deadline);
       document.getElementById('career-active').checked = job.active !== false;
@@ -1323,7 +1370,7 @@
       const jobType = document.getElementById('career-job-type').value.trim();
       const experience = document.getElementById('career-experience').value.trim();
       const salary = document.getElementById('career-salary').value.trim();
-      const description = document.getElementById('career-description').value.trim();
+      const description = getRteContent('career-description');
       const requirementsRaw = document.getElementById('career-requirements').value.trim();
       const deadline = document.getElementById('career-deadline').value.trim();
       const active = document.getElementById('career-active').checked;
@@ -1410,7 +1457,7 @@
               <p><span class="font-semibold text-gray-700">Type:</span> ${job.jobType || 'Full Time'}</p>
               <p><span class="font-semibold text-gray-700">Experience:</span> ${job.experience || 'Mid-Level'}</p>
             </div>
-            <p class="text-sm text-gray-500 line-clamp-3">${job.description}</p>
+            <div class="text-sm text-gray-500 line-clamp-3">${job.description}</div>
             <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
               <span class="text-[11px] text-gray-400">${job.deadline ? `Deadline: ${job.deadline}` : 'Open until filled'}</span>
               <div class="flex items-center gap-1">
